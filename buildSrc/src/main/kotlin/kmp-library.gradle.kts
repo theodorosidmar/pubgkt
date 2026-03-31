@@ -13,6 +13,8 @@ kotlin {
         languageVersion = KOTLIN_2_3
     }
 
+    explicitApi()
+
     jvm {
         compilerOptions {
             jvmTarget.set(JVM_17)
