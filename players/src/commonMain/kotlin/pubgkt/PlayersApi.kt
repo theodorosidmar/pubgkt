@@ -1,7 +1,6 @@
 package pubgkt
 
 import io.ktor.client.request.get
-import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 
 private const val FILTER_PLAYER_IDS = "filter[playerIds]"
