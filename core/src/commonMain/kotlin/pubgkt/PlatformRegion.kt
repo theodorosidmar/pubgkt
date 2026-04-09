@@ -4,7 +4,7 @@ package pubgkt
  * PUBG Platform Region shard
  * @see <a href="https://documentation.pubg.com/en/making-requests.html#platforms-and-regions">PUBG Developer Portal - Platform & Regions</a>
  */
-enum class PlatformRegion {
+public enum class PlatformRegion {
     PC_AS, // Asia
     PC_EU, // Europe
     PC_JP, // Japan
