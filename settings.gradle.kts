@@ -8,4 +8,8 @@ dependencyResolutionManagement {
     }
 }
 
-include("core")
+include(
+    "common",
+    "core",
+    "players",
+)
