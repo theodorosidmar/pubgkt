@@ -41,7 +41,6 @@ public val client: HttpClient by lazy {
         }
 
         defaultRequest {
-            url("$PATH/")
             contentType(
                 ContentType(
                     contentType = "application",
