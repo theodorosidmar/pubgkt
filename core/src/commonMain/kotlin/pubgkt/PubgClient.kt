@@ -10,11 +10,11 @@ import io.ktor.client.plugins.logging.Logger
 import io.ktor.http.ContentType
 import io.ktor.serialization.kotlinx.serialization
 import io.ktor.client.plugins.logging.Logging
-import io.ktor.client.request.bearerAuth
 import io.ktor.http.contentType
 import kotlinx.serialization.json.Json
 
-internal val client: HttpClient by lazy {
+@PubgktInternal
+public val client: HttpClient by lazy {
     HttpClient(engine) {
         install(ContentNegotiation) {
             serialization(
@@ -41,7 +41,6 @@ internal val client: HttpClient by lazy {
         }
 
         defaultRequest {
-//        bearerAuth(apiKey)
             url("$PATH/")
             contentType(
                 ContentType(
