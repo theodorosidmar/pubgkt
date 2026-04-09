@@ -12,4 +12,5 @@ include(
     "common",
     "core",
     "players",
+    "samples",
 )
