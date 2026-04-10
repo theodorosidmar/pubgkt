@@ -9,7 +9,7 @@ import kotlin.annotation.AnnotationTarget.*
  */
 @MustBeDocumented
 @Retention(BINARY)
-@Target(CLASS, PROPERTY, FUNCTION, TYPEALIAS)
+@Target(CLASS, CONSTRUCTOR, PROPERTY, FUNCTION, TYPEALIAS)
 @RequiresOptIn(
     message = "This API is intended for internal use only.",
     level = ERROR,
