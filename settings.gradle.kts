@@ -9,6 +9,7 @@ dependencyResolutionManagement {
 }
 
 include(
+    "bom",
     "common",
     "core",
     "players",
