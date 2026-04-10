@@ -1,3 +1,3 @@
 package pubgkt
 
-internal const val PATH = "https://api.pubg.com/shards"
+internal const val PATH = "api.pubg.com/shards"
