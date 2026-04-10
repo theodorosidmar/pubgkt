@@ -125,18 +125,17 @@ public class PubgApi @JvmOverloads constructor(
             )
         }
 
-            HttpResponseValidator {
-                validateResponse { response ->
-                    rl.onResponse(
-                        limit = response.headers["X-RateLimit-Limit"]?.toIntOrNull(),
-                        remaining = response.headers["X-RateLimit-Remaining"]?.toIntOrNull(),
-                        reset = response.headers["X-RateLimit-Reset"]?.toLongOrNull(),
+        HttpResponseValidator {
+            validateResponse { response ->
+                rateLimiter.onResponse(
+                    limit = response.headers[HEADER_RATE_LIMIT_LIMIT]?.toIntOrNull(),
+                    remaining = response.headers[HEADER_RATE_LIMIT_REMAINING]?.toIntOrNull(),
+                    reset = response.headers[HEADER_RATE_LIMIT_RESET]?.toLongOrNull(),
+                )
+                if (response.status == HttpStatusCode.TooManyRequests) {
+                    throw RateLimitExceededException(
+                        resetAtEpochSeconds = response.headers[HEADER_RATE_LIMIT_RESET]?.toLongOrNull(),
                     )
-                    if (response.status == HttpStatusCode.TooManyRequests) {
-                        throw RateLimitExceededException(
-                            resetAtEpochSeconds = response.headers["X-RateLimit-Reset"]?.toLongOrNull(),
-                        )
-                    }
                 }
             }
         }
