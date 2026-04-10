@@ -4,4 +4,5 @@ plugins {
 
 dependencies {
     api(libs.gradle.kotlin)
+    api(libs.gradle.vanniktech)
 }
