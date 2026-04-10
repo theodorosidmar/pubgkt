@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_3
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
     kotlin("multiplatform")
@@ -22,6 +23,21 @@ kotlin {
     jvm {
         compilerOptions {
             jvmTarget.set(JVM_17)
+        }
+    }
+
+    @OptIn(ExperimentalAbiValidation::class)
+    abiValidation {
+        enabled.set(true)
+        filters {
+            exclude {
+                annotatedWith.add("pubgkt.PubgktInternal")
+                byNames.add("pubgkt.PubgktInternal")
+            }
+
+            include {
+                byNames.add("pubgkt.**")
+            }
         }
     }
 }

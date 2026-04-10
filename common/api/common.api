@@ -1,0 +1,70 @@
+public final class pubgkt/DelayRateLimiter : pubgkt/RateLimiter {
+	public fun <init> ()V
+	public fun <init> (Lkotlin/time/Clock;)V
+	public synthetic fun <init> (Lkotlin/time/Clock;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun onResponse (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Long;)V
+	public fun throttle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class pubgkt/Platform : java/lang/Enum {
+	public static final field KAKAO Lpubgkt/Platform;
+	public static final field PSN Lpubgkt/Platform;
+	public static final field STADIA Lpubgkt/Platform;
+	public static final field STEAM Lpubgkt/Platform;
+	public static final field XBOX Lpubgkt/Platform;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lpubgkt/Platform;
+	public static fun values ()[Lpubgkt/Platform;
+}
+
+public final class pubgkt/PlatformRegion : java/lang/Enum {
+	public static final field PC_AS Lpubgkt/PlatformRegion;
+	public static final field PC_EU Lpubgkt/PlatformRegion;
+	public static final field PC_JP Lpubgkt/PlatformRegion;
+	public static final field PC_KAKAO Lpubgkt/PlatformRegion;
+	public static final field PC_KRJP Lpubgkt/PlatformRegion;
+	public static final field PC_NA Lpubgkt/PlatformRegion;
+	public static final field PC_OC Lpubgkt/PlatformRegion;
+	public static final field PC_RU Lpubgkt/PlatformRegion;
+	public static final field PC_SA Lpubgkt/PlatformRegion;
+	public static final field PC_SEA Lpubgkt/PlatformRegion;
+	public static final field PC_TOURNAMENT Lpubgkt/PlatformRegion;
+	public static final field PSN_AS Lpubgkt/PlatformRegion;
+	public static final field PSN_EU Lpubgkt/PlatformRegion;
+	public static final field PSN_NA Lpubgkt/PlatformRegion;
+	public static final field PSN_OC Lpubgkt/PlatformRegion;
+	public static final field XBOX_AS Lpubgkt/PlatformRegion;
+	public static final field XBOX_EU Lpubgkt/PlatformRegion;
+	public static final field XBOX_NA Lpubgkt/PlatformRegion;
+	public static final field XBOX_OC Lpubgkt/PlatformRegion;
+	public static final field XBOX_SA Lpubgkt/PlatformRegion;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lpubgkt/PlatformRegion;
+	public static fun values ()[Lpubgkt/PlatformRegion;
+}
+
+public final class pubgkt/PubgApi : kotlinx/coroutines/CoroutineScope {
+	public fun <init> (Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;)V
+	public synthetic fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getCoroutineContext ()Lkotlin/coroutines/CoroutineContext;
+	public final fun getPlatform ()Lpubgkt/Platform;
+	public final fun getRateLimiter ()Lpubgkt/RateLimiter;
+	public final fun setPlatform (Lpubgkt/Platform;)V
+}
+
+public final class pubgkt/RateLimitExceededException : java/lang/Exception {
+	public fun <init> (Ljava/lang/Long;)V
+	public final fun getResetAtEpochSeconds ()Ljava/lang/Long;
+}
+
+public abstract interface class pubgkt/RateLimiter {
+	public static final field Companion Lpubgkt/RateLimiter$Companion;
+	public abstract fun onResponse (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Long;)V
+	public abstract fun throttle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class pubgkt/RateLimiter$Companion {
+	public final fun getNone ()Lpubgkt/RateLimiter;
+}
+
