@@ -3,6 +3,8 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_3
 
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.serialization")
+    id("org.jetbrains.dokka")
     id("publication")
 }
 
