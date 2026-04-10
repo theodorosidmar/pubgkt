@@ -1,44 +1,58 @@
 package pubgkt;
 
-import kotlin.Result;
-import kotlin.coroutines.Continuation;
-import kotlin.coroutines.CoroutineContext;
-import kotlin.coroutines.EmptyCoroutineContext;
-import org.jetbrains.annotations.NotNull;
+import kotlinx.coroutines.CoroutineStart;
+import kotlinx.coroutines.future.FutureKt;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import static pubgkt.PlayersApiKt.*;
-
+/**
+ * Demonstrates calling the pubgkt library from Java using
+ * {@code kotlinx-coroutines-jdk8} to bridge suspend functions to
+ * {@link java.util.concurrent.CompletableFuture}.
+ *
+ * <p>Run via Gradle:
+ * <pre>
+ *   ./gradlew :samples:runJava --args="&lt;api-key&gt; [accountId] [playerName]"
+ * </pre>
+ */
 public class PlayersSample {
-    static void main(String[] args) throws ExecutionException, InterruptedException {
-        PubgApi api = new PubgApi("");
+
+    @SuppressWarnings("unchecked")
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Usage: PlayersSample <api-key> [accountId] [playerName]");
+        }
+
+        String apiKey = args[0];
+        String accountId = args.length > 1 ? args[1] : "account.c766e217ed7345499ac1b342de1de0dd";
+        String playerName = args.length > 2 ? args[2] : "shroud";
+
+        PubgApi api = new PubgApi(apiKey);
         api.setPlatform(Platform.STEAM);
-        CompletableFuture<String> result = new CompletableFuture<>();
-        getPlayerByAccountId(api, "account.c766e217ed7345499ac1b342de1de0dd", new CustomContinuation<>(result));
-        System.out.println(result.get());
-    }
-}
 
-class CustomContinuation<T> implements Continuation<T> {
-    private final CompletableFuture<T> future;
+        // 1. Get a single player by account ID
+        Player player = FutureKt.<Player>future(
+                api, api.getCoroutineContext(), CoroutineStart.DEFAULT,
+                (scope, cont) -> PlayersApiKt.getPlayerByAccountId(api, accountId, cont)
+        ).get();
+        System.out.println("=== getPlayerByAccountId ===");
+        System.out.println(player);
 
-    public CustomContinuation(CompletableFuture<T> future) {
-        this.future = future;
-    }
+        // 2. Get players by account IDs
+        List<Player> byIds = FutureKt.<List<Player>>future(
+                api, api.getCoroutineContext(), CoroutineStart.DEFAULT,
+                (scope, cont) -> PlayersApiKt.getPlayersById(api, List.of(accountId), cont)
+        ).get();
+        System.out.println("\n=== getPlayersById ===");
+        byIds.forEach(System.out::println);
 
-    @Override
-    public void resumeWith(@NotNull Object o) {
-        if (o instanceof Result.Failure)
-            future.completeExceptionally(((Result.Failure) o).exception);
-        else
-            future.complete((T) o);
-    }
-
-    @NotNull
-    @Override
-    public CoroutineContext getContext() {
-        return EmptyCoroutineContext.INSTANCE;
+        // 3. Get players by names
+        List<Player> byNames = FutureKt.<List<Player>>future(
+                api, api.getCoroutineContext(), CoroutineStart.DEFAULT,
+                (scope, cont) -> PlayersApiKt.getPlayersByNames(api, List.of(playerName), cont)
+        ).get();
+        System.out.println("\n=== getPlayersByNames ===");
+        byNames.forEach(System.out::println);
     }
 }
