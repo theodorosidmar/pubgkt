@@ -1,37 +1,90 @@
 package pubgkt
 
 import io.ktor.client.HttpClient
+import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.compression.ContentEncoding
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.DEFAULT
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
-import io.ktor.http.ContentType
-import io.ktor.serialization.kotlinx.serialization
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.bearerAuth
+import io.ktor.http.ContentType
+import io.ktor.http.HttpStatusCode
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import io.ktor.http.path
+import io.ktor.serialization.kotlinx.serialization
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.json.Json
 import kotlin.coroutines.CoroutineContext
 
 /**
- * Class to interact with the PUBG API.
- * @param apiKey Your PUBG API key.
- * @property platform The [Platform] you want to use
+ * Entry point for all PUBG API interactions.
+ *
+ * Create a single instance per API key and reuse it across requests. The
+ * underlying HTTP client is initialised lazily on first use.
+ *
+ * ```kotlin
+ * val api = PubgApi("your-api-key").apply { platform = Platform.STEAM }
+ * val player = api.getPlayerByAccountId("account.abc123")
+ * ```
+ *
+ * @param apiKey Your PUBG API key, obtained from the PUBG Developer Portal.
+ * @param rateLimiter Controls request throughput. Defaults to [DelayRateLimiter],
+ *   which proactively delays requests when the rate limit is exhausted.
+ *   Pass [RateLimiter.None] to disable rate limiting entirely.
+ * @see Platform
+ * @see RateLimiter
+ * @see <a href="https://documentation.pubg.com/en/introduction.html">PUBG Developer Portal</a>
  */
-public class PubgApi(private val apiKey: String) : CoroutineScope {
+public class PubgApi @JvmOverloads constructor(
+    private val apiKey: String,
+    public val rateLimiter: RateLimiter = DelayRateLimiter(),
+) : CoroutineScope {
+
     override val coroutineContext: CoroutineContext = Dispatchers.IO
 
+    /**
+     * The platform shard used to scope all requests.
+     *
+     * Defaults to [Platform.STEAM]. Change this before making requests if you
+     * need to target a different platform.
+     */
     public var platform: Platform = Platform.STEAM
 
+    private var _clientOverride: HttpClient? = null
+
+    /**
+     * The underlying Ktor [HttpClient] used for all API requests.
+     *
+     * This property is intended for internal library use only. Do not use it
+     * in application code.
+     */
     @PubgktInternal
     public val client: HttpClient by lazy {
-        HttpClient(engine) {
+        _clientOverride ?: createHttpClient()
+    }
+
+    /**
+     * Constructs a [PubgApi] with a pre-built [HttpClient].
+     *
+     * This constructor exists for testing purposes and should not be used in
+     * production code. Rate limiting is disabled when using this constructor.
+     *
+     * @param apiKey Your PUBG API key.
+     * @param httpClient A pre-configured [HttpClient], typically backed by a mock engine.
+     */
+    @PubgktInternal
+    public constructor(apiKey: String, httpClient: HttpClient) : this(apiKey, RateLimiter.None) {
+        _clientOverride = httpClient
+    }
+
+    private fun createHttpClient(): HttpClient {
+        val rl = rateLimiter
+        return HttpClient(engine) {
             install(ContentNegotiation) {
                 serialization(
                     ContentType.Application.Json,
@@ -56,6 +109,10 @@ public class PubgApi(private val apiKey: String) : CoroutineScope {
                 level = LogLevel.INFO
             }
 
+            install(RateLimitPlugin) {
+                rateLimiter = rl
+            }
+
             defaultRequest {
                 url {
                     protocol = URLProtocol.HTTPS
@@ -69,6 +126,21 @@ public class PubgApi(private val apiKey: String) : CoroutineScope {
                         contentSubtype = "vnd.api+json",
                     )
                 )
+            }
+
+            HttpResponseValidator {
+                validateResponse { response ->
+                    rl.onResponse(
+                        limit = response.headers["X-RateLimit-Limit"]?.toIntOrNull(),
+                        remaining = response.headers["X-RateLimit-Remaining"]?.toIntOrNull(),
+                        reset = response.headers["X-RateLimit-Reset"]?.toLongOrNull(),
+                    )
+                    if (response.status == HttpStatusCode.TooManyRequests) {
+                        throw RateLimitExceededException(
+                            resetAtEpochSeconds = response.headers["X-RateLimit-Reset"]?.toLongOrNull(),
+                        )
+                    }
+                }
             }
         }
     }
