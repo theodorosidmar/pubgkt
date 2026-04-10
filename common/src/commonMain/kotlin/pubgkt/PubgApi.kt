@@ -14,7 +14,6 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
-import io.ktor.http.path
 import io.ktor.serialization.kotlinx.serialization
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -82,51 +81,49 @@ public class PubgApi @JvmOverloads constructor(
         _clientOverride = httpClient
     }
 
-    private fun createHttpClient(): HttpClient {
-        val rl = rateLimiter
-        return HttpClient(engine) {
-            install(ContentNegotiation) {
-                serialization(
-                    ContentType.Application.Json,
-                    Json {
-                        ignoreUnknownKeys = true
-                        encodeDefaults = true
-                        isLenient = true
-                        allowSpecialFloatingPointValues = true
-                        allowStructuredMapKeys = true
-                        prettyPrint = true
-                        useArrayPolymorphism = false
-                    },
+    private fun createHttpClient(): HttpClient = HttpClient(engine) {
+        install(ContentNegotiation) {
+            serialization(
+                ContentType.Application.Json,
+                Json {
+                    ignoreUnknownKeys = true
+                    encodeDefaults = true
+                    isLenient = true
+                    allowSpecialFloatingPointValues = true
+                    allowStructuredMapKeys = true
+                    prettyPrint = true
+                    useArrayPolymorphism = false
+                },
+            )
+        }
+
+        install(ContentEncoding) {
+            gzip()
+        }
+
+        install(Logging) {
+            logger = Logger.DEFAULT
+            level = LogLevel.INFO
+        }
+
+        install(RateLimitPlugin) {
+            rateLimiter = this@PubgApi.rateLimiter
+        }
+
+        defaultRequest {
+            url {
+                protocol = URLProtocol.HTTPS
+                host = HOST
+                url("shards/${platform.name.lowercase()}/")
+            }
+            bearerAuth(apiKey)
+            contentType(
+                ContentType(
+                    contentType = "application",
+                    contentSubtype = "vnd.api+json",
                 )
-            }
-
-            install(ContentEncoding) {
-                gzip()
-            }
-
-            install(Logging) {
-                logger = Logger.DEFAULT
-                level = LogLevel.INFO
-            }
-
-            install(RateLimitPlugin) {
-                rateLimiter = rl
-            }
-
-            defaultRequest {
-                url {
-                    protocol = URLProtocol.HTTPS
-                    host = PATH
-                    path(platform.name.lowercase())
-                }
-                bearerAuth(apiKey)
-                contentType(
-                    ContentType(
-                        contentType = "application",
-                        contentSubtype = "vnd.api+json",
-                    )
-                )
-            }
+            )
+        }
 
             HttpResponseValidator {
                 validateResponse { response ->
