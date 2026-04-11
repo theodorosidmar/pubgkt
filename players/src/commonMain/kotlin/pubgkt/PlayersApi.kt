@@ -4,6 +4,7 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.client.statement.bodyAsText
 
+private const val MAX_PLAYERS_COUNT = 10
 private const val FILTER_PLAYER_IDS = "filter[playerIds]"
 private const val FILTER_PLAYER_NAMES = "filter[playerNames]"
 
@@ -78,7 +79,7 @@ public suspend fun PubgApi.getPlayerByAccountId(accountId: String): Player {
 private suspend fun PubgApi.fetchPlayers(param: String, values: List<String>): List<Player> {
     require(values.isNotEmpty()) { "At least one value must be provided" }
     val text = client.get("players") {
-        parameter(param, values.take(10).joinToString(","))
+        parameter(param, values.take(MAX_PLAYERS_COUNT).joinToString(","))
     }.bodyAsText()
     return playersJson.decodeFromString<PlayersResponse>(text).data.map { it.toPlayer() }
 }

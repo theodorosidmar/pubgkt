@@ -42,10 +42,8 @@ import kotlin.coroutines.CoroutineContext
 public class PubgApi @JvmOverloads constructor(
     private val apiKey: String,
     public val rateLimiter: RateLimiter = DelayRateLimiter(),
+    public override val coroutineContext: CoroutineContext = Dispatchers.IO
 ) : CoroutineScope {
-
-    override val coroutineContext: CoroutineContext = Dispatchers.IO
-
     /**
      * The platform shard used to scope all requests.
      *

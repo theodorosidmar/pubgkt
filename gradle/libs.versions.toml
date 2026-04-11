@@ -4,6 +4,7 @@ ktor = "3.4.0"
 coroutines = "1.10.2"
 dokka = "2.2.0"
 vanniktech = "0.36.0"
+detekt = "2.0.0-alpha.2"
 
 [libraries]
 # Kotlin
@@ -30,3 +31,4 @@ gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.
 gradle-kotlin-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 gradle-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 gradle-vanniktech = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "vanniktech" }
+gradle-detekt = { module = "dev.detekt:dev.detekt.gradle.plugin", version.ref = "detekt" }

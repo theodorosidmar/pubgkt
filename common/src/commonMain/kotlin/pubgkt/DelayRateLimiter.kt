@@ -2,6 +2,8 @@ package pubgkt
 
 import kotlinx.coroutines.delay
 import kotlin.time.Clock
+import kotlin.time.Duration.Companion.seconds
+import kotlin.time.Instant
 
 /**
  * A [RateLimiter] that proactively delays requests when the API rate limit is exhausted.
@@ -24,20 +26,18 @@ import kotlin.time.Clock
 public class DelayRateLimiter(
     private val clock: Clock = Clock.System,
 ) : RateLimiter {
-
     private var remaining: Int = Int.MAX_VALUE
-    private var resetAtEpochSeconds: Long = 0L
+    private var resetAt: Instant = Instant.fromEpochSeconds(0L)
 
     override suspend fun throttle() {
         if (remaining <= 0) {
-            val nowSeconds = clock.now().epochSeconds
-            val waitMs = maxOf(0L, (resetAtEpochSeconds - nowSeconds + 1L) * 1_000L)
-            if (waitMs > 0L) delay(waitMs)
+            val wait = (resetAt - clock.now() + 1.seconds).coerceAtLeast(0.seconds)
+            if (wait > 0.seconds) delay(wait)
         }
     }
 
     override fun onResponse(limit: Int?, remaining: Int?, reset: Long?) {
         remaining?.let { this.remaining = it }
-        reset?.let { this.resetAtEpochSeconds = it }
+        reset?.let { this.resetAt = Instant.fromEpochSeconds(it) }
     }
 }

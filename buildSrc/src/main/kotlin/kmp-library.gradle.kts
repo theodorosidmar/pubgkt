@@ -1,3 +1,5 @@
+import dev.detekt.gradle.Detekt
+import dev.detekt.gradle.extensions.FailOnSeverity.Warning
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_3
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
@@ -7,6 +9,7 @@ plugins {
     kotlin("plugin.serialization")
     id("org.jetbrains.dokka")
     id("publication")
+    id("dev.detekt")
 }
 
 kotlin {
@@ -38,6 +41,26 @@ kotlin {
             include {
                 byNames.add("pubgkt.**")
             }
+        }
+    }
+}
+
+detekt {
+    config.setFrom(rootProject.file("detekt/detekt.yml"))
+    buildUponDefaultConfig = false
+    parallel = true
+    debug = false
+    ignoreFailures = false
+    failOnSeverity = Warning
+}
+
+tasks {
+    withType<Detekt>().configureEach {
+        reports {
+            checkstyle.required.set(true)
+            html.required.set(true)
+            sarif.required.set(true)
+            markdown.required.set(true)
         }
     }
 }

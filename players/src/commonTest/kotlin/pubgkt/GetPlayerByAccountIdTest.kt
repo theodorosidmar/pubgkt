@@ -27,6 +27,10 @@ class GetPlayerByAccountIdTest {
         api.getPlayerByAccountId("account.abc123")
 
         val path = mock.lastRequest.url.encodedPath
-        assertEquals(true, path.endsWith("players/account.abc123"), "Expected path to end with players/account.abc123 but was $path")
+        assertEquals(
+            true,
+            path.endsWith("players/account.abc123"),
+            "Expected path to end with players/account.abc123 but was $path",
+        )
     }
 }

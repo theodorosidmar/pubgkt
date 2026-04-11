@@ -7,4 +7,5 @@ dependencies {
     api(libs.gradle.kotlin.serialization)
     api(libs.gradle.dokka)
     api(libs.gradle.vanniktech)
+    api(libs.gradle.detekt)
 }
