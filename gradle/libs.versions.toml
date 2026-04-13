@@ -5,6 +5,7 @@ coroutines = "1.10.2"
 dokka = "2.2.0"
 vanniktech = "0.36.0"
 detekt = "2.0.0-alpha.2"
+kover = "0.9.8"
 
 [libraries]
 # Kotlin
@@ -29,6 +30,7 @@ coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", ve
 # Gradle Plugins
 gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradle-kotlin-serialization = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
+gradle-kover = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version.ref = "kover" }
 gradle-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 gradle-vanniktech = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "vanniktech" }
 gradle-detekt = { module = "dev.detekt:dev.detekt.gradle.plugin", version.ref = "detekt" }

@@ -7,6 +7,7 @@ import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
+    id("org.jetbrains.kotlinx.kover")
     id("org.jetbrains.dokka")
     id("publication")
     id("dev.detekt")
