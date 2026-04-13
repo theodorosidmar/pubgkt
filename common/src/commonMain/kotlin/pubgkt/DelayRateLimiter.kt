@@ -23,8 +23,8 @@ import kotlin.time.Instant
  * @see RateLimiter
  * @see RateLimitExceededException
  */
-public class DelayRateLimiter(
-    private val clock: Clock = Clock.System,
+public open class DelayRateLimiter(
+    protected val clock: Clock = Clock.System,
 ) : RateLimiter {
     private var remaining: Int = Int.MAX_VALUE
     private var resetAt: Instant = Instant.fromEpochSeconds(0L)
@@ -32,7 +32,7 @@ public class DelayRateLimiter(
     override suspend fun throttle() {
         if (remaining <= 0) {
             val wait = (resetAt - clock.now() + 1.seconds).coerceAtLeast(0.seconds)
-            if (wait > 0.seconds) delay(wait)
+            if (wait.isPositive()) delay(wait)
         }
     }
 
