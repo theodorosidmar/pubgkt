@@ -125,6 +125,10 @@ public class PubgApi @JvmOverloads constructor(
 
         HttpResponseValidator {
             validateResponse { response ->
+                if (response.status == HttpStatusCode.Unauthorized) {
+                    throw UnauthorizedException()
+                }
+
                 rateLimiter.onResponse(
                     limit = response.headers[HEADER_RATE_LIMIT_LIMIT]?.toIntOrNull(),
                     remaining = response.headers[HEADER_RATE_LIMIT_REMAINING]?.toIntOrNull(),
