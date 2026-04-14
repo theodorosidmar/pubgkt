@@ -17,7 +17,6 @@ import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.serialization
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.serialization.json.Json
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -42,7 +41,7 @@ import kotlin.coroutines.CoroutineContext
 public class PubgApi @JvmOverloads constructor(
     private val apiKey: String,
     public val rateLimiter: RateLimiter = DelayRateLimiter(),
-    public override val coroutineContext: CoroutineContext = Dispatchers.IO
+    public override val coroutineContext: CoroutineContext = Dispatchers.IO,
 ) : CoroutineScope {
     /**
      * The platform shard used to scope all requests.
@@ -83,15 +82,7 @@ public class PubgApi @JvmOverloads constructor(
         install(ContentNegotiation) {
             serialization(
                 ContentType.Application.Json,
-                Json {
-                    ignoreUnknownKeys = true
-                    encodeDefaults = true
-                    isLenient = true
-                    allowSpecialFloatingPointValues = true
-                    allowStructuredMapKeys = true
-                    prettyPrint = true
-                    useArrayPolymorphism = false
-                },
+                json,
             )
         }
 

@@ -1,27 +1,50 @@
-public final class pubgkt/Player {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+public final class pubgkt/GetPlayerByAccountIdKt {
+	public static final fun getPlayerByAccountId (Lpubgkt/PubgApi;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class pubgkt/GetPlayersByIdKt {
+	public static final fun getPlayersById (Lpubgkt/PubgApi;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getPlayersById (Lpubgkt/PubgApi;[Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class pubgkt/GetPlayersByNameKt {
+	public static final fun getPlayersByNames (Lpubgkt/PubgApi;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getPlayersByNames (Lpubgkt/PubgApi;[Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class pubgkt/Match {
+	public fun <init> (Ljava/lang/String;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Ljava/lang/String;
-	public final fun component3 ()Ljava/lang/String;
-	public final fun component4 ()Ljava/lang/String;
-	public final fun component5 ()Ljava/util/List;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Lpubgkt/Player;
-	public static synthetic fun copy$default (Lpubgkt/Player;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lpubgkt/Player;
+	public final fun copy (Ljava/lang/String;)Lpubgkt/Match;
+	public static synthetic fun copy$default (Lpubgkt/Match;Ljava/lang/String;ILjava/lang/Object;)Lpubgkt/Match;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getAccountId ()Ljava/lang/String;
-	public final fun getMatchIds ()Ljava/util/List;
-	public final fun getName ()Ljava/lang/String;
-	public final fun getPatchVersion ()Ljava/lang/String;
-	public final fun getTitleId ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class pubgkt/PlayersApiKt {
-	public static final fun getPlayerByAccountId (Lpubgkt/PubgApi;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun getPlayersById (Lpubgkt/PubgApi;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun getPlayersById (Lpubgkt/PubgApi;[Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun getPlayersByNames (Lpubgkt/PubgApi;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun getPlayersByNames (Lpubgkt/PubgApi;[Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+public final class pubgkt/Player {
+	public fun <init> (Ljava/lang/String;Lpubgkt/BanType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lpubgkt/BanType;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Ljava/lang/String;
+	public final fun component8 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Lpubgkt/BanType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Lpubgkt/Player;
+	public static synthetic fun copy$default (Lpubgkt/Player;Ljava/lang/String;Lpubgkt/BanType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lpubgkt/Player;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBanType ()Lpubgkt/BanType;
+	public final fun getClanId ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getMatches ()Ljava/util/List;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getPatchVersion ()Ljava/lang/String;
+	public final fun getShardId ()Ljava/lang/String;
+	public final fun getTitleId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 

@@ -17,9 +17,7 @@ import java.util.concurrent.ExecutionException;
  * </pre>
  */
 public class PlayersSample {
-
-    @SuppressWarnings("unchecked")
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
+    static void main(String[] args) throws ExecutionException, InterruptedException {
         if (args.length == 0) {
             throw new IllegalArgumentException("Usage: PlayersSample <api-key> [accountId] [playerName]");
         }
@@ -34,7 +32,7 @@ public class PlayersSample {
         // 1. Get a single player by account ID
         Player player = FutureKt.<Player>future(
                 api, api.getCoroutineContext(), CoroutineStart.DEFAULT,
-                (scope, cont) -> PlayersApiKt.getPlayerByAccountId(api, accountId, cont)
+                (scope, cont) -> GetPlayerByAccountIdKt.getPlayerByAccountId(api, accountId, cont)
         ).get();
         System.out.println("=== getPlayerByAccountId ===");
         System.out.println(player);
@@ -42,7 +40,7 @@ public class PlayersSample {
         // 2. Get players by account IDs
         List<Player> byIds = FutureKt.<List<Player>>future(
                 api, api.getCoroutineContext(), CoroutineStart.DEFAULT,
-                (scope, cont) -> PlayersApiKt.getPlayersById(api, List.of(accountId), cont)
+                (scope, cont) -> GetPlayersByIdKt.getPlayersById(api, List.of(accountId), cont)
         ).get();
         System.out.println("\n=== getPlayersById ===");
         byIds.forEach(System.out::println);
@@ -50,7 +48,7 @@ public class PlayersSample {
         // 3. Get players by names
         List<Player> byNames = FutureKt.<List<Player>>future(
                 api, api.getCoroutineContext(), CoroutineStart.DEFAULT,
-                (scope, cont) -> PlayersApiKt.getPlayersByNames(api, List.of(playerName), cont)
+                (scope, cont) -> GetPlayersByNameKt.getPlayersByNames(api, List.of(playerName), cont)
         ).get();
         System.out.println("\n=== getPlayersByNames ===");
         byNames.forEach(System.out::println);

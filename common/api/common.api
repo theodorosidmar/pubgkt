@@ -1,3 +1,12 @@
+public final class pubgkt/BanType : java/lang/Enum {
+	public static final field Innocent Lpubgkt/BanType;
+	public static final field PermanentBan Lpubgkt/BanType;
+	public static final field TemporaryBan Lpubgkt/BanType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lpubgkt/BanType;
+	public static fun values ()[Lpubgkt/BanType;
+}
+
 public final class pubgkt/ConcurrentDelayRateLimiter : pubgkt/DelayRateLimiter {
 	public fun <init> ()V
 	public fun <init> (Lkotlin/time/Clock;)V
@@ -75,5 +84,9 @@ public abstract interface class pubgkt/RateLimiter {
 
 public final class pubgkt/RateLimiter$Companion {
 	public final fun getNone ()Lpubgkt/RateLimiter;
+}
+
+public final class pubgkt/UnauthorizedException : java/lang/Exception {
+	public fun <init> ()V
 }
 
