@@ -14,4 +14,5 @@ include(
     "core",
     "players",
     "samples",
+    "test-support",
 )

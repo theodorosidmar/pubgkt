@@ -1,4 +1,4 @@
-package pubgkt.support
+package pubgkt
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
@@ -8,14 +8,13 @@ import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
-import pubgkt.PubgApi
 
 /**
- * Builds a [PubgApi] backed by a [MockEngine] that returns [responseJson] for every request.
+ * Builds a [PubgApi] backed by a [io.ktor.client.engine.mock.MockEngine] that returns [responseJson] for every request.
  *
  * The captured requests are stored so tests can inspect URLs, headers, and query parameters.
  */
-internal class MockPubgApi(
+class MockPubgApi(
     responseJson: String,
     status: HttpStatusCode = HttpStatusCode.OK,
 ) {
