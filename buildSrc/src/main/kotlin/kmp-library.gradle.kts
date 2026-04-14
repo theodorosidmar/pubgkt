@@ -12,6 +12,10 @@ plugins {
 }
 
 kotlin {
+    compilerOptions {
+        optIn.addAll(pubgktOptIns)
+    }
+
     explicitApi()
 
     @OptIn(ExperimentalAbiValidation::class)

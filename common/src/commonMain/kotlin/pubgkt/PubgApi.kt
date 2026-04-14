@@ -1,6 +1,8 @@
 package pubgkt
 
 import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.compression.ContentEncoding
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -51,7 +53,7 @@ public class PubgApi @JvmOverloads constructor(
      */
     public var platform: Platform = Platform.STEAM
 
-    private var _clientOverride: HttpClient? = null
+    private var _engineOverride: HttpClientEngine? = null
 
     /**
      * The underlying Ktor [HttpClient] used for all API requests.
@@ -61,24 +63,37 @@ public class PubgApi @JvmOverloads constructor(
      */
     @PubgktInternal
     public val client: HttpClient by lazy {
-        _clientOverride ?: createHttpClient()
+        createHttpClient()
     }
 
     /**
-     * Constructs a [PubgApi] with a pre-built [HttpClient].
+     * Constructs a [PubgApi] backed by a custom [HttpClientEngine].
      *
      * This constructor exists for testing purposes and should not be used in
-     * production code. Rate limiting is disabled when using this constructor.
+     * production code. The full client pipeline (plugins, validators,
+     * default-request) is preserved; only the engine is swapped.
      *
-     * @param apiKey Your PUBG API key.
-     * @param httpClient A pre-configured [HttpClient], typically backed by a mock engine.
+     * @param engine A pre-configured [HttpClientEngine], typically a [io.ktor.client.engine.mock.MockEngine].
+     * @param rateLimiter Controls request throughput. Defaults to [RateLimiter.None].
      */
     @PubgktInternal
-    public constructor(apiKey: String, httpClient: HttpClient) : this(apiKey, RateLimiter.None) {
-        _clientOverride = httpClient
+    public constructor(
+        engine: HttpClientEngine,
+        rateLimiter: RateLimiter = RateLimiter.None,
+    ) : this(apiKey = "", rateLimiter = rateLimiter) {
+        _engineOverride = engine
     }
 
-    private fun createHttpClient(): HttpClient = HttpClient(engine) {
+    private fun createHttpClient(): HttpClient {
+        val override = _engineOverride
+        return if (override != null) {
+            HttpClient(override) { configureClient() }
+        } else {
+            HttpClient(engine) { configureClient() }
+        }
+    }
+
+    private fun HttpClientConfig<*>.configureClient() {
         install(ContentNegotiation) {
             serialization(
                 ContentType.Application.Json,

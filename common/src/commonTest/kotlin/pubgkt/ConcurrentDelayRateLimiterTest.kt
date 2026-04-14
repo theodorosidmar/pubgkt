@@ -1,6 +1,5 @@
 package pubgkt
 
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.test.currentTime
@@ -9,7 +8,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.time.Clock
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class ConcurrentDelayRateLimiterTest : DelayRateLimiterTest() {
     override fun createSubject(clock: Clock): ConcurrentDelayRateLimiter = ConcurrentDelayRateLimiter(clock)
 

@@ -5,8 +5,8 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            api(projects.common)
             api(libs.ktor.client.mock)
+            api(libs.coroutines.test)
         }
     }
 }

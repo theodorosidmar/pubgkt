@@ -1,5 +1,8 @@
 package pubgkt
 
+import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
+import io.ktor.http.headersOf
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -13,8 +16,13 @@ import kotlin.test.assertTrue
  */
 abstract class GetPlayersTest {
 
-    private val mock = MockPubgApi(PLAYERS_RESPONSE_JSON)
-    private val api = mock.api
+    private val engine = mockEngine(
+        MockResponse(
+            body = PLAYERS_RESPONSE_JSON,
+            headers = headersOf(HttpHeaders.ContentType, ContentType.Application.Json.toString()),
+        ),
+    )
+    private val api = PubgApi(engine = engine)
 
     /** The query-parameter key used by the endpoint (e.g. `"filter[playerIds]"`). */
     protected abstract val queryParameterName: String
@@ -53,7 +61,7 @@ abstract class GetPlayersTest {
         val values = (1..15).map { "value$it" }
         api.fetchPlayers(values)
 
-        val sent = mock.lastRequest.url.parameters[queryParameterName]!!.split(",")
+        val sent = engine.requestHistory.last().url.parameters[queryParameterName]!!.split(",")
         assertEquals(10, sent.size)
     }
 
@@ -61,6 +69,6 @@ abstract class GetPlayersTest {
     fun `uses correct query parameter`() = runTest {
         api.fetchPlayers("value1")
 
-        assertTrue(mock.lastRequest.url.parameters.contains(queryParameterName))
+        assertTrue(engine.requestHistory.last().url.parameters.contains(queryParameterName))
     }
 }

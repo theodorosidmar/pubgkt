@@ -11,7 +11,6 @@ kotlin {
         progressiveMode = true
         apiVersion = KOTLIN_2_3
         languageVersion = KOTLIN_2_3
-        optIn.addAll(pubgktOptIns)
     }
 
     jvm {
