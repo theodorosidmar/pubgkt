@@ -1,11 +1,9 @@
 import dev.detekt.gradle.Detekt
 import dev.detekt.gradle.extensions.FailOnSeverity.Warning
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_3
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
-    kotlin("multiplatform")
+    id("kmp-internal-library")
     kotlin("plugin.serialization")
     id("org.jetbrains.kotlinx.kover")
     id("org.jetbrains.dokka")
@@ -14,21 +12,7 @@ plugins {
 }
 
 kotlin {
-    compilerOptions {
-        allWarningsAsErrors = true
-        progressiveMode = true
-        apiVersion = KOTLIN_2_3
-        languageVersion = KOTLIN_2_3
-        optIn.addAll(pubgktOptIns)
-    }
-
     explicitApi()
-
-    jvm {
-        compilerOptions {
-            jvmTarget.set(JVM_17)
-        }
-    }
 
     @OptIn(ExperimentalAbiValidation::class)
     abiValidation {
