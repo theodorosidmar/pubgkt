@@ -26,7 +26,7 @@ public class PlayersSample {
 
         String apiKey = args[0];
         String accountId = args.length > 1 ? args[1] : "account.c766e217ed7345499ac1b342de1de0dd";
-        String playerName = args.length > 2 ? args[2] : "shroud";
+        String playerName = args.length > 2 ? args[2] : "sparkingg";
 
         PubgApi api = new PubgApi(apiKey);
         api.setPlatform(Platform.STEAM);
