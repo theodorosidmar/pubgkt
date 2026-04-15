@@ -8,14 +8,22 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 
-class RateLimitIntegrationTest {
+abstract class RateLimitIntegrationTest {
+    protected abstract val rateLimiter: RateLimiter
+
+    private fun createSubject(vararg responses: MockResponse): PubgApi =
+        PubgApi(
+            engine = mockEngine(*responses),
+            rateLimiter = rateLimiter,
+        )
 
     @Test
     fun `first request is never delayed`() = runTest {
-        val api = PubgApi(
-            engine = mockEngine(MockResponse(remaining = 5, reset = 2000L)),
-            rateLimiter = DelayRateLimiter(FixedClock(1000L)),
-        )
+        val mockEngine = mockResponse {
+            remaining = 5
+            reset = 2000L
+        }
+        val api = createSubject(mockEngine)
 
         api.client.get("test")
 
@@ -24,17 +32,16 @@ class RateLimitIntegrationTest {
 
     @Test
     fun `no delay when remaining is positive`() = runTest {
-        val mockEngine = mockEngine(
-            listOf(
-                MockResponse(remaining = 5, reset = 2000L),
-                MockResponse(remaining = 4, reset = 2000L),
-            )
-        )
+        val mockFirstResponse = mockResponse {
+            remaining = 5
+            reset = 2000L
+        }
+        val mockSecondResponse = mockResponse {
+            remaining = 4
+            reset = 2000L
+        }
 
-        val api = PubgApi(
-            engine = mockEngine,
-            rateLimiter = DelayRateLimiter(FixedClock(1000L))
-        )
+        val api = createSubject(mockFirstResponse, mockSecondResponse)
 
         api.client.get("test")
         api.client.get("test")
@@ -44,16 +51,16 @@ class RateLimitIntegrationTest {
 
     @Test
     fun `delays next request when remaining is zero and reset is in the future`() = runTest {
-        val mockEngine = mockEngine(
-            listOf(
-                MockResponse(remaining = 0, reset = 1005L),
-                MockResponse(remaining = 10, reset = 2000L),
-            )
-        )
-        val api = PubgApi(
-            engine = mockEngine,
-            rateLimiter = DelayRateLimiter(FixedClock(1000L)),
-        )
+        val mockFirstResponse = mockResponse {
+            remaining = 0
+            reset = 1005L
+        }
+        val mockSecondResponse = mockResponse {
+            remaining = 10
+            reset = 2000L
+        }
+
+        val api = createSubject(mockFirstResponse, mockSecondResponse)
 
         api.client.get("test")
         api.client.get("test")
@@ -64,13 +71,11 @@ class RateLimitIntegrationTest {
 
     @Test
     fun `throws RateLimitExceededException on HTTP 429`() = runTest {
-        val mockEngine = mockEngine(
-            MockResponse(status = HttpStatusCode.TooManyRequests, remaining = 0, reset = 1005L),
-        )
-        val api = PubgApi(
-            engine = mockEngine,
-            rateLimiter = DelayRateLimiter(FixedClock(1000L)),
-        )
+        val mockEngine = mockResponse {
+            status = HttpStatusCode.TooManyRequests
+            reset = 1005L
+        }
+        val api = createSubject(mockEngine)
 
         val exception = assertFailsWith<RateLimitExceededException> {
             api.client.get("test")

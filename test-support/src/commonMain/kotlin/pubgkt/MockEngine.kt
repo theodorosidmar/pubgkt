@@ -1,29 +1,21 @@
 package pubgkt
 
 import io.ktor.client.engine.mock.MockEngine
-import io.ktor.client.engine.mock.MockEngineConfig
 import io.ktor.client.engine.mock.respond
-import io.ktor.http.Headers
+import io.ktor.client.request.HttpRequestData
 
 /**
- * Creates a [MockEngine] that returns [response] for every request.
+ * Creates a [MockEngine] that returns response created by [MockResponse.Builder] for every request.
  */
-// TODO(Remove duplication)
-fun mockEngine(response: MockResponse): MockEngine = MockEngine {
-    val headers = Headers.build {
-        appendAll(response.headers)
-        if (response.remaining != null) {
-            append("X-RateLimit-Remaining", response.remaining.toString())
-        }
-        if (response.reset != null) {
-            append("X-RateLimit-Reset", response.reset.toString())
-        }
+fun mockEngine(builder: MockResponse.Builder.() -> Unit): MockEngine {
+    val response = MockResponse.Builder().apply(builder).build()
+    return MockEngine {
+        respond(
+            content = response.body,
+            status = response.status,
+            headers = response.headers,
+        )
     }
-    respond(
-        content = response.body,
-        status = response.status,
-        headers = headers,
-    )
 }
 
 /**
@@ -31,26 +23,24 @@ fun mockEngine(response: MockResponse): MockEngine = MockEngine {
  *
  * Throws if more requests are made than responses provided.
  */
-fun mockEngine(responses: List<MockResponse>): MockEngine = MockEngine(
-    MockEngineConfig().apply {
-        reuseHandlers = false
-        responses.forEach { response ->
-            addHandler {
-                val headers = Headers.build {
-                    appendAll(response.headers)
-                    if (response.remaining != null) {
-                        append("X-RateLimit-Remaining", response.remaining.toString())
-                    }
-                    if (response.reset != null) {
-                        append("X-RateLimit-Reset", response.reset.toString())
-                    }
+fun mockEngine(responses: List<MockResponse>): MockEngine =
+    if (responses.isEmpty()) {
+        mockEngine {}
+    } else {
+        MockEngine.Queue().apply {
+            responses.forEach { response ->
+                enqueue {
+                    respond(
+                        content = response.body,
+                        status = response.status,
+                        headers = response.headers,
+                    )
                 }
-                respond(
-                    content = response.body,
-                    status = response.status,
-                    headers = headers,
-                )
             }
         }
     }
-)
+
+fun mockEngine(vararg responses: MockResponse): MockEngine = mockEngine(responses.toList())
+
+val MockEngine.lastRequest: HttpRequestData
+    get() = requestHistory.last()

@@ -13,8 +13,9 @@ class UnauthorizedExceptionTest {
     @Test
     fun `throws UnauthorizedException on HTTP 401`() = runTest {
         val api = PubgApi(
-            engine = MockEngine {
-                respond(content = "", status = HttpStatusCode.Unauthorized)
+            engine = mockEngine {
+                body = ""
+                status = HttpStatusCode.Unauthorized
             },
         )
 

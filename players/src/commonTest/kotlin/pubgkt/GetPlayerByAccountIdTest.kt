@@ -1,8 +1,5 @@
 package pubgkt
 
-import io.ktor.http.ContentType
-import io.ktor.http.HttpHeaders
-import io.ktor.http.headersOf
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -10,12 +7,9 @@ import kotlin.test.assertTrue
 
 class GetPlayerByAccountIdTest {
 
-    private val engine = mockEngine(
-        MockResponse(
-            body = PLAYER_RESPONSE_JSON,
-            headers = headersOf(HttpHeaders.ContentType, ContentType.Application.Json.toString()),
-        ),
-    )
+    private val engine = mockEngine {
+        body = PLAYER_RESPONSE_JSON
+    }
     private val api = PubgApi(engine = engine)
 
     @Test
@@ -23,7 +17,7 @@ class GetPlayerByAccountIdTest {
         api.getPlayerByAccountId("account.abc123")
 
         assertTrue(
-            engine.requestHistory.last().url.encodedPath.endsWith("players/account.abc123"),
+            engine.lastRequest.url.encodedPath.endsWith("players/account.abc123"),
         )
     }
 
