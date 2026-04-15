@@ -1,12 +1,12 @@
 plugins {
-    id("kmp-internal-library")
+    `kmp-internal-library`
 }
 
 kotlin {
     sourceSets {
         commonMain.dependencies {
+            api(libs.bundles.test.common)
             api(libs.ktor.client.mock)
-            api(libs.coroutines.test)
         }
     }
 }

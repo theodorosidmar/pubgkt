@@ -1,5 +1,5 @@
 plugins {
-    id("kmp-library")
+    `kmp-library`
 }
 
 kotlin {

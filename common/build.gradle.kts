@@ -1,5 +1,5 @@
 plugins {
-    id("kmp-library")
+    `kmp-library`
 }
 
 kotlin {
@@ -11,11 +11,6 @@ kotlin {
             api(libs.ktor.client.logging)
             api(libs.ktor.client.encoding)
             api(libs.ktor.serialization.kotlinx.json)
-        }
-
-        commonTest.dependencies {
-            implementation(projects.testSupport)
-            implementation(libs.kotlin.test)
         }
 
         jvmMain.dependencies {

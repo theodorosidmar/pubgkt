@@ -8,9 +8,6 @@ detekt = "2.0.0-alpha.2"
 kover = "0.9.8"
 
 [libraries]
-# Kotlin
-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-
 # Ktor client
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-contentnegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
@@ -24,8 +21,12 @@ ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx
 
 # Coroutines
 coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "coroutines" }
+
+# Tests
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test-common", version.ref = "kotlin" }
+kotlin-test-annotations = { module = "org.jetbrains.kotlin:kotlin-test-annotations-common", version.ref = "kotlin" }
+coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 
 # Gradle Plugins
 gradle-kotlin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -34,3 +35,6 @@ gradle-kover = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version.r
 gradle-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 gradle-vanniktech = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "vanniktech" }
 gradle-detekt = { module = "dev.detekt:dev.detekt.gradle.plugin", version.ref = "detekt" }
+
+[bundles]
+test-common = ["kotlin-test", "kotlin-test-annotations", "coroutines-test"]

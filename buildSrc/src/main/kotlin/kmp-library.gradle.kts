@@ -32,6 +32,13 @@ kotlin {
             }
         }
     }
+
+    sourceSets {
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+            implementation(project(":test-support"))
+        }
+    }
 }
 
 detekt {

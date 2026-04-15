@@ -4,7 +4,7 @@ import org.gradle.api.publish.maven.MavenPublication
 
 plugins {
     `java-platform`
-    id("publication")
+    publication
 }
 
 val me = project

@@ -1,16 +1,11 @@
 plugins {
-    id("kmp-library")
+    `kmp-library`
 }
 
 kotlin {
     sourceSets {
         commonMain.dependencies {
             api(projects.common)
-        }
-
-        commonTest.dependencies {
-            implementation(projects.testSupport)
-            implementation(libs.kotlin.test)
         }
     }
 }
