@@ -4,10 +4,11 @@ Kotlin Multiplatform library for the official [PUBG API](https://documentation.p
 
 ## Supported Platforms
 
-| Module           | JVM | Android | iOS | JS/Node |
-|------------------|:---:|:-------:|:---:|:-------:|
-| `pubgkt-common`  | ✓   |         |     |         |
-| `pubgkt-players` | ✓   |         |     |         |
+| Module                        | JVM | Android | iOS | JS/Node |
+|-------------------------------|:---:|:-------:|:---:|:-------:|
+| `bom`                         | ✓   |         |     |         |
+| `core` (All modules together) | ✓   |         |     |         |
+| `players`                     | ✓   |         |     |         |
 
 ## Getting Started
 
