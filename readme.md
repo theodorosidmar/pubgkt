@@ -59,11 +59,11 @@ val named = api.getPlayersByNames("sparkingg", "TGLTN")
 PubgApi api = new PubgApi("your-api-key");
 api.setPlatform(Platform.STEAM);
 
-// Bridge suspend functions to CompletableFuture using kotlinx-coroutines-jdk8
-Player player = FutureKt.<Player>future(
-    api, api.getCoroutineContext(), CoroutineStart.DEFAULT,
-    (scope, cont) -> PlayersApiKt.getPlayerByAccountId(api, "account.abc123", cont)
-).get();
+// Bridge suspend functions with runBlocking
+Player player = BuildersKt.runBlocking(
+    EmptyCoroutineContext.INSTANCE,
+    (scope, cont) -> GetPlayerByAccountIdKt.getPlayerByAccountId(api, "account.abc123", cont)
+);
 ```
 
 ## Rate Limiting

@@ -17,9 +17,6 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.serialization
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlin.coroutines.CoroutineContext
 
 /**
  * Entry point for all PUBG API interactions.
@@ -47,8 +44,7 @@ public class PubgApi @JvmOverloads constructor(
     private val apiKey: String,
     public val rateLimiter: RateLimiter = DelayRateLimiter(),
     public var platform: Platform = Platform.STEAM,
-    public override val coroutineContext: CoroutineContext = Dispatchers.IO,
-) : CoroutineScope {
+) {
 
     private var _engineOverride: HttpClientEngine? = null
 

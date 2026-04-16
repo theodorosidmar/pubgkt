@@ -16,14 +16,16 @@ public suspend fun PubgApi.getPlayersById(vararg accountIds: String): List<Playe
  *
  * PUBG allows a maximum of 10 ids per request; extra ids are ignored.
  */
-public suspend fun PubgApi.getPlayersById(accountIds: List<String>): List<Player> {
-    if (accountIds.isEmpty()) return emptyList()
-    return client
-        .get(PLAYERS_PATH) {
-            parameter(
-                key = FILTER_PLAYER_IDS,
-                value = accountIds.take(MAX_PLAYERS_COUNT).joinToString(","),
-            )
-        }
-        .deserializeList(PlayerSerializer)
-}
+public suspend fun PubgApi.getPlayersById(accountIds: List<String>): List<Player> =
+    if (accountIds.isEmpty()) {
+        emptyList()
+    } else {
+        client
+            .get(PLAYERS_PATH) {
+                parameter(
+                    key = FILTER_PLAYER_IDS,
+                    value = accountIds.take(MAX_PLAYERS_COUNT).joinToString(","),
+                )
+            }
+            .deserializeList(PlayerSerializer)
+    }

@@ -60,13 +60,11 @@ public final class pubgkt/PlatformRegion : java/lang/Enum {
 	public static fun values ()[Lpubgkt/PlatformRegion;
 }
 
-public final class pubgkt/PubgApi : kotlinx/coroutines/CoroutineScope {
+public final class pubgkt/PubgApi {
 	public fun <init> (Ljava/lang/String;)V
 	public fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;)V
 	public fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;Lpubgkt/Platform;)V
-	public fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;Lpubgkt/Platform;Lkotlin/coroutines/CoroutineContext;)V
-	public synthetic fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;Lpubgkt/Platform;Lkotlin/coroutines/CoroutineContext;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public fun getCoroutineContext ()Lkotlin/coroutines/CoroutineContext;
+	public synthetic fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;Lpubgkt/Platform;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun getPlatform ()Lpubgkt/Platform;
 	public final fun getRateLimiter ()Lpubgkt/RateLimiter;
 	public final fun setPlatform (Lpubgkt/Platform;)V

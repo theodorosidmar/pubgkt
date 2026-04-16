@@ -1,15 +1,14 @@
 package pubgkt;
 
-import kotlinx.coroutines.CoroutineStart;
-import kotlinx.coroutines.future.FutureKt;
+import kotlinx.coroutines.BuildersKt;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
+
+import kotlin.coroutines.EmptyCoroutineContext;
 
 /**
- * Demonstrates calling the pubgkt library from Java using
- * {@code kotlinx-coroutines-jdk8} to bridge suspend functions to
- * {@link java.util.concurrent.CompletableFuture}.
+ * Demonstrates calling the pubgkt library from Java by bridging suspend
+ * functions with {@code runBlocking}.
  *
  * <p>Run via Gradle:
  * <pre>
@@ -17,7 +16,7 @@ import java.util.concurrent.ExecutionException;
  * </pre>
  */
 public class PlayersSample {
-    static void main(String[] args) throws ExecutionException, InterruptedException {
+    static void main(String[] args) throws InterruptedException {
         if (args.length == 0) {
             throw new IllegalArgumentException("Usage: PlayersSample <api-key> [accountId] [playerName]");
         }
@@ -30,26 +29,26 @@ public class PlayersSample {
         api.setPlatform(Platform.STEAM);
 
         // 1. Get a single player by account ID
-        Player player = FutureKt.<Player>future(
-                api, api.getCoroutineContext(), CoroutineStart.DEFAULT,
-                (scope, cont) -> GetPlayerByAccountIdKt.getPlayerByAccountId(api, accountId, cont)
-        ).get();
+        Player player = BuildersKt.runBlocking(
+                EmptyCoroutineContext.INSTANCE,
+                (_, cont) -> GetPlayerByAccountIdKt.getPlayerByAccountId(api, accountId, cont)
+        );
         System.out.println("=== getPlayerByAccountId ===");
         System.out.println(player);
 
         // 2. Get players by account IDs
-        List<Player> byIds = FutureKt.<List<Player>>future(
-                api, api.getCoroutineContext(), CoroutineStart.DEFAULT,
-                (scope, cont) -> GetPlayersByIdKt.getPlayersById(api, List.of(accountId), cont)
-        ).get();
+        List<Player> byIds = BuildersKt.runBlocking(
+                EmptyCoroutineContext.INSTANCE,
+                (_, cont) -> GetPlayersByIdKt.getPlayersById(api, List.of(accountId), cont)
+        );
         System.out.println("\n=== getPlayersById ===");
         byIds.forEach(System.out::println);
 
         // 3. Get players by names
-        List<Player> byNames = FutureKt.<List<Player>>future(
-                api, api.getCoroutineContext(), CoroutineStart.DEFAULT,
-                (scope, cont) -> GetPlayersByNameKt.getPlayersByNames(api, List.of(playerName), cont)
-        ).get();
+        List<Player> byNames = BuildersKt.runBlocking(
+                EmptyCoroutineContext.INSTANCE,
+                (_, cont) -> GetPlayersByNameKt.getPlayersByNames(api, List.of(playerName), cont)
+        );
         System.out.println("\n=== getPlayersByNames ===");
         byNames.forEach(System.out::println);
     }
