@@ -1,0 +1,23 @@
+public final class pubgkt/Clan {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;II)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()I
+	public final fun component5 ()I
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;II)Lpubgkt/Clan;
+	public static synthetic fun copy$default (Lpubgkt/Clan;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;IIILjava/lang/Object;)Lpubgkt/Clan;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public final fun getLevel ()I
+	public final fun getMemberCount ()I
+	public final fun getName ()Ljava/lang/String;
+	public final fun getTag ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/GetClanByIdKt {
+	public static final fun getClanById (Lpubgkt/PubgApi;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+

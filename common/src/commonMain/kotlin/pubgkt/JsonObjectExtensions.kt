@@ -39,6 +39,10 @@ public fun JsonObject.optionalArray(key: String): JsonArray? =
 public fun JsonObject.requiredString(key: String): String =
     optionalString(key) ?: throw SerializationException("Missing string field '$key'")
 
+@PubgktInternal
+public fun JsonObject.requiredInt(key: String): Int =
+    optionalInt(key) ?: throw SerializationException("Missing int field '$key'")
+
 /**
  * Returns the [String] value for the given [key], or `null` when the key
  * is absent, the value is [JsonNull], or not a primitive.
@@ -48,4 +52,15 @@ public fun JsonObject.optionalString(key: String): String? =
     (this[key] as? JsonPrimitive)
         ?.let { primitive ->
             if (primitive == JsonNull) null else primitive.content
+        }
+
+/**
+ * Returns the [Int] value for the given [key], or `null` when the key
+ * is absent, the value is [JsonNull], or not a primitive.
+ */
+@PubgktInternal
+public fun JsonObject.optionalInt(key: String): Int? =
+    (this[key] as? JsonPrimitive)
+        ?.let { primitive ->
+            if (primitive == JsonNull) null else primitive.content.toInt()
         }

@@ -8,7 +8,7 @@ application {
 }
 
 dependencies {
-    implementation(projects.players)
+    implementation(projects.core)
     implementation(libs.coroutines.jdk8)
 }
 

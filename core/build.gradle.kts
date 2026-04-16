@@ -6,6 +6,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             api(projects.players)
+            api(projects.clans)
         }
     }
 }
@@ -18,6 +19,8 @@ kotlin {
 dependencies {
     dokka(projects.common)
     dokka(projects.players)
+    dokka(projects.clans)
     kover(projects.common)
     kover(projects.players)
+    kover(projects.clans)
 }

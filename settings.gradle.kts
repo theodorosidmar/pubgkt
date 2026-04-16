@@ -13,6 +13,7 @@ include(
     "common",
     "core",
     "players",
+    "clans",
     "samples",
     "test-support",
 )

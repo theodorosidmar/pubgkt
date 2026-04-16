@@ -51,5 +51,13 @@ public class PlayersSample {
         );
         System.out.println("\n=== getPlayersByNames ===");
         byNames.forEach(System.out::println);
+
+        // 4. Get clan by id
+        Clan clan = BuildersKt.runBlocking(
+                EmptyCoroutineContext.INSTANCE,
+                (_, cont) -> GetClanByIdKt.getClanById(api, "clan.d52aad6adcfb4c4783a85eb250f6e822", cont)
+        );
+        System.out.println("\n=== getClanById ===");
+        System.out.println(clan);
     }
 }
