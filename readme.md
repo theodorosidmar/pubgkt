@@ -40,8 +40,7 @@ dependencies {
 ### Usage — Kotlin
 
 ```kotlin
-val api = PubgApi("your-api-key")
-api.platform = Platform.STEAM
+val api = PubgApi(apiKey = "your-api-key", platform = Platform.STEAM)
 
 // Single player by account ID
 val player = api.getPlayerByAccountId("account.abc123")

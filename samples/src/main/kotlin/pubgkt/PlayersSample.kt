@@ -5,7 +5,7 @@ suspend fun main(args: Array<String>) {
     val accountId = args.getOrElse(1) { "account.c766e217ed7345499ac1b342de1de0dd" }
     val playerName = args.getOrElse(2) { "sparkingg" }
 
-    val api = PubgApi(apiKey).apply { platform = Platform.STEAM }
+    val api = PubgApi(apiKey)
 
     println("=== getPlayerByAccountId ===")
     val player = api.getPlayerByAccountId(accountId)

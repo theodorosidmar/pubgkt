@@ -28,7 +28,7 @@ import kotlin.coroutines.CoroutineContext
  * underlying HTTP client is initialised lazily on first use.
  *
  * ```kotlin
- * val api = PubgApi("your-api-key").apply { platform = Platform.STEAM }
+ * val api = PubgApi(apiKey = "your-api-key", platform = Platform.STEAM)
  * val player = api.getPlayerByAccountId("account.abc123")
  * ```
  *
@@ -36,6 +36,9 @@ import kotlin.coroutines.CoroutineContext
  * @param rateLimiter Controls request throughput. Defaults to [DelayRateLimiter],
  *   which proactively delays requests when the rate limit is exhausted.
  *   Pass [RateLimiter.None] to disable rate limiting entirely.
+ * @param platform The platform shard used to scope all requests.
+ *   Defaults to [Platform.STEAM]. Change this before making requests if you
+ *   need to target a different platform.
  * @see Platform
  * @see RateLimiter
  * @see <a href="https://documentation.pubg.com/en/introduction.html">PUBG Developer Portal</a>
@@ -43,15 +46,9 @@ import kotlin.coroutines.CoroutineContext
 public class PubgApi @JvmOverloads constructor(
     private val apiKey: String,
     public val rateLimiter: RateLimiter = DelayRateLimiter(),
+    public var platform: Platform = Platform.STEAM,
     public override val coroutineContext: CoroutineContext = Dispatchers.IO,
 ) : CoroutineScope {
-    /**
-     * The platform shard used to scope all requests.
-     *
-     * Defaults to [Platform.STEAM]. Change this before making requests if you
-     * need to target a different platform.
-     */
-    public var platform: Platform = Platform.STEAM
 
     private var _engineOverride: HttpClientEngine? = null
 
