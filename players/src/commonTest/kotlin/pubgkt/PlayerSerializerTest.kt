@@ -25,7 +25,7 @@ class PlayerSerializerTest {
         assertEquals("14.1", player.patchVersion)
         assertEquals("bluehole-pubg", player.titleId)
         assertEquals("steam", player.shardId)
-        assertEquals(listOf("match-id-1", "match-id-2"), player.matches.map(Match::id))
+        assertEquals(listOf("match-id-1", "match-id-2"), player.matches.map(PlayerMatch::id))
     }
 
     @Test

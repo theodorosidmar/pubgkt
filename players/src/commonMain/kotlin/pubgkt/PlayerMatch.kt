@@ -1,6 +1,6 @@
 package pubgkt
 
-public data class Match(
+public data class PlayerMatch(
     /**
      * Match ID
      */

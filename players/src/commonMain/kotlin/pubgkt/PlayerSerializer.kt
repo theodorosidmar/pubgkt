@@ -21,7 +21,7 @@ internal object PlayerSerializer : JsonApiResourceDeserializer<Player>("pubgkt.P
             ?.optionalArray("data")
             ?.filterIsInstance<JsonObject>()
             ?.map { item ->
-                item.requiredString("id").let(::Match)
+                item.requiredString("id").let(::PlayerMatch)
             }.orEmpty(),
     )
 }

@@ -46,5 +46,5 @@ public data class Player(
     /**
      * Player recent matches (up to 14 days old)
      */
-    val matches: List<Match>,
+    val matches: List<PlayerMatch>,
 )
