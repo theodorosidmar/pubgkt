@@ -17,6 +17,9 @@ class JsonObjectExtensionsTest {
         put("nullable", JsonNull)
         put("nested", buildJsonObject { put("key", JsonPrimitive("value")) })
         put("items", buildJsonArray { add(JsonPrimitive(1)) })
+        put("int", JsonPrimitive(1))
+        put("boolean", JsonPrimitive(true))
+        put("booleanString", JsonPrimitive("true"))
     }
 
     // ── requiredString ──────────────────────────────────────────────────
@@ -55,6 +58,84 @@ class JsonObjectExtensionsTest {
     @Test
     fun `optionalString returns null for JsonNull`() {
         assertNull(obj.optionalString("nullable"))
+    }
+
+    // ── requiredInt ──────────────────────────────────────────────────
+
+    @Test
+    fun `requiredInt returns value when present`() {
+        assertEquals(1, obj.requiredInt("int"))
+    }
+
+    @Test
+    fun `requiredInt throws when key is missing`() {
+        assertFailsWith<SerializationException> {
+            obj.requiredInt("missing")
+        }
+    }
+
+    @Test
+    fun `requiredInt throws when value is null`() {
+        assertFailsWith<SerializationException> {
+            obj.requiredInt("nullable")
+        }
+    }
+
+    // ── optionalInt ──────────────────────────────────────────────────
+
+    @Test
+    fun `optionalInt returns value when present`() {
+        assertEquals(1, obj.optionalInt("int"))
+    }
+
+    @Test
+    fun `optionalInt returns null when key is missing`() {
+        assertNull(obj.optionalInt("missing"))
+    }
+
+    @Test
+    fun `optionalInt returns null for JsonNull`() {
+        assertNull(obj.optionalInt("nullable"))
+    }
+
+    // ── requiredBoolean ──────────────────────────────────────────────────
+
+    @Test
+    fun `requiredBoolean returns value when present`() {
+        assertEquals(true, obj.requiredBoolean("boolean"))
+        assertEquals(true, obj.requiredBoolean("booleanString"))
+    }
+
+    @Test
+    fun `requiredBoolean throws when key is missing`() {
+        assertFailsWith<SerializationException> {
+            obj.requiredBoolean("missing")
+        }
+    }
+
+    @Test
+    fun `requiredBoolean throws when value is null`() {
+        assertFailsWith<SerializationException> {
+            obj.requiredBoolean("nullable")
+        }
+    }
+
+    // ── optionalBoolean ──────────────────────────────────────────────────
+
+    @Test
+    fun `optionalBoolean returns value when present`() {
+        assertEquals(true, obj.optionalBoolean("boolean"))
+        assertEquals(true, obj.optionalBoolean("booleanString"))
+    }
+
+    @Test
+    fun `optionalBoolean returns null when key is missing`() {
+        assertNull(obj.optionalBoolean("missing"))
+    }
+
+    @Test
+    fun `optionalBoolean returns null for JsonNull`() {
+        assertNull(obj.optionalBoolean("nullable"))
     }
 
     // ── requiredObject ──────────────────────────────────────────────────

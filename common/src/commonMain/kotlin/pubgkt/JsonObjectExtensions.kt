@@ -43,6 +43,10 @@ public fun JsonObject.requiredString(key: String): String =
 public fun JsonObject.requiredInt(key: String): Int =
     optionalInt(key) ?: throw SerializationException("Missing int field '$key'")
 
+@PubgktInternal
+public fun JsonObject.requiredBoolean(key: String): Boolean =
+    optionalBoolean(key) ?: throw SerializationException("Missing boolean field '$key'")
+
 /**
  * Returns the [String] value for the given [key], or `null` when the key
  * is absent, the value is [JsonNull], or not a primitive.
@@ -63,4 +67,14 @@ public fun JsonObject.optionalInt(key: String): Int? =
     (this[key] as? JsonPrimitive)
         ?.let { primitive ->
             if (primitive == JsonNull) null else primitive.content.toInt()
+        }
+/**
+ * Returns the [Boolean] value for the given [key], or `null` when the key
+ * is absent, the value is [JsonNull], or not a primitive.
+ */
+@PubgktInternal
+public fun JsonObject.optionalBoolean(key: String): Boolean? =
+    (this[key] as? JsonPrimitive)
+        ?.let { primitive ->
+            if (primitive == JsonNull) null else primitive.content.toBoolean()
         }
