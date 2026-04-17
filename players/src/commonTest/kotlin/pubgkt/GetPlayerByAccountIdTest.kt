@@ -10,7 +10,7 @@ class GetPlayerByAccountIdTest {
     private val engine = mockEngine {
         body = PLAYER_RESPONSE_JSON
     }
-    private val api = PubgApi(engine = engine)
+    private val api = PubgApi(engine = engine, apiKey = "")
 
     @Test
     fun `sends request to the correct path`() = runTest {

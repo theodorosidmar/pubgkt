@@ -1,7 +1,5 @@
 package pubgkt
 
-import io.ktor.client.request.get
-
 /**
  * Returns a single [Match] by their match ID.
  *
@@ -11,5 +9,5 @@ import io.ktor.client.request.get
  */
 public suspend fun PubgApi.getMatchById(matchId: String): Match =
     client
-        .get("$MATCHES_PATH/$matchId")
+        .getWithPublicRequest("$MATCHES_PATH/$matchId")
         .deserialize(MatchSerializer)

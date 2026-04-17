@@ -1,7 +1,6 @@
 package pubgkt
 
 import kotlinx.coroutines.test.runTest
-import pubgkt.MockResponse.Builder
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -17,7 +16,7 @@ abstract class GetPlayersTest {
     private val engine = mockEngine {
         body = PLAYERS_RESPONSE_JSON
     }
-    private val api = PubgApi(engine = engine)
+    private val api = PubgApi(engine = engine, apiKey = "")
 
     /** The query-parameter key used by the endpoint (e.g. `"filter[playerIds]"`). */
     protected abstract val queryParameterName: String

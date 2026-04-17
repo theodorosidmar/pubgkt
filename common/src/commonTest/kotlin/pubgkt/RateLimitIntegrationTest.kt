@@ -15,6 +15,7 @@ abstract class RateLimitIntegrationTest {
         PubgApi(
             engine = mockEngine(*responses),
             rateLimiter = rateLimiter,
+            apiKey = "",
         )
 
     @Test

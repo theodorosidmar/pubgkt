@@ -4,6 +4,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.HttpResponseValidator
+import io.ktor.client.plugins.api.createClientPlugin
 import io.ktor.client.plugins.compression.ContentEncoding
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
@@ -11,12 +12,14 @@ import io.ktor.client.plugins.logging.DEFAULT
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.bearerAuth
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.serialization
+import io.ktor.util.AttributeKey
 
 /**
  * Entry point for all PUBG API interactions.
@@ -73,7 +76,8 @@ public class PubgApi @JvmOverloads constructor(
     public constructor(
         engine: HttpClientEngine,
         rateLimiter: RateLimiter = RateLimiter.None,
-    ) : this(apiKey = "", rateLimiter = rateLimiter) {
+        apiKey: String = "",
+    ) : this(apiKey = apiKey, rateLimiter = rateLimiter) {
         _engineOverride = engine
     }
 
@@ -103,8 +107,9 @@ public class PubgApi @JvmOverloads constructor(
             level = LogLevel.INFO
         }
 
-        install(RateLimitPlugin) {
+        install(RequestPolicyPlugin) {
             rateLimiter = this@PubgApi.rateLimiter
+            apiKey = this@PubgApi.apiKey
         }
 
         defaultRequest {
@@ -113,7 +118,6 @@ public class PubgApi @JvmOverloads constructor(
                 host = HOST
                 url("shards/${platform.name.lowercase()}/")
             }
-            bearerAuth(apiKey)
             contentType(
                 ContentType(
                     contentType = "application",
@@ -128,11 +132,6 @@ public class PubgApi @JvmOverloads constructor(
                     throw UnauthorizedException()
                 }
 
-                rateLimiter.onResponse(
-                    limit = response.headers[HEADER_RATE_LIMIT_LIMIT]?.toIntOrNull(),
-                    remaining = response.headers[HEADER_RATE_LIMIT_REMAINING]?.toIntOrNull(),
-                    reset = response.headers[HEADER_RATE_LIMIT_RESET]?.toLongOrNull(),
-                )
                 if (response.status == HttpStatusCode.TooManyRequests) {
                     throw RateLimitExceededException(
                         resetAtEpochSeconds = response.headers[HEADER_RATE_LIMIT_RESET]?.toLongOrNull(),

@@ -1,12 +1,10 @@
 package pubgkt
 
-import io.ktor.client.engine.mock.MockEngine
-import io.ktor.client.engine.mock.respond
 import io.ktor.client.request.get
 import io.ktor.http.HttpStatusCode
-import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
+import kotlinx.coroutines.test.runTest
 
 class UnauthorizedExceptionTest {
 
@@ -17,6 +15,7 @@ class UnauthorizedExceptionTest {
                 body = ""
                 status = HttpStatusCode.Unauthorized
             },
+            apiKey = "",
         )
 
         assertFailsWith<UnauthorizedException> {

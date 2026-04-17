@@ -22,21 +22,28 @@ class MockResponse private constructor(
     ) {
         var reset: Long? = null
             set(value) {
-                this.headers = headers {
-                    appendAll(this@Builder.headers)
-                    append("X-RateLimit-Reset", value.toString())
-                }
+                headers("X-RateLimit-Reset", value.toString())
                 field = value
             }
 
         var remaining: Int? = null
             set(value) {
-                this.headers = headers {
-                    appendAll(this@Builder.headers)
-                    append("X-RateLimit-Remaining", value.toString())
-                }
+                headers("X-RateLimit-Remaining", value.toString())
                 field = value
             }
+
+        var limit: Int? = null
+            set(value) {
+                headers("X-RateLimit-Limit", value.toString())
+                field = value
+            }
+
+        private fun headers(key: String, value: String) {
+            this.headers = headers {
+                appendAll(this@Builder.headers)
+                append(key, value)
+            }
+        }
 
         internal fun build(): MockResponse = MockResponse(
             body = body,

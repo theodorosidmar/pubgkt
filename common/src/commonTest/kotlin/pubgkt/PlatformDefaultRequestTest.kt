@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 
 class PlatformDefaultRequestTest {
     private val engine = mockEngine()
-    private val api = PubgApi(engine)
+    private val api = PubgApi(engine, apiKey = "")
 
     @Test
     fun `should update platform and use it at requests`() = runTest {
