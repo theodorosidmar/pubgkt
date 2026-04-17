@@ -5,8 +5,9 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            api(projects.players)
             api(projects.clans)
+            api(projects.matches)
+            api(projects.players)
         }
     }
 }
@@ -18,9 +19,11 @@ kotlin {
 // Run: ./gradlew :core:koverHtmlReport
 dependencies {
     dokka(projects.common)
-    dokka(projects.players)
     dokka(projects.clans)
+    dokka(projects.matches)
+    dokka(projects.players)
     kover(projects.common)
-    kover(projects.players)
     kover(projects.clans)
+    kover(projects.matches)
+    kover(projects.players)
 }

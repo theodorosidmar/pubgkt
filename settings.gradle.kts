@@ -12,6 +12,7 @@ include(
     "bom",
     "common",
     "core",
+    "matches",
     "players",
     "clans",
     "samples",

@@ -1,0 +1,46 @@
+public final class pubgkt/GetMatchByIdKt {
+	public static final fun getMatchById (Lpubgkt/PubgApi;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class pubgkt/Match {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/GameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;I)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Lpubgkt/Platform;
+	public final fun component4 ()Z
+	public final fun component5 ()Lpubgkt/MatchType;
+	public final fun component6 ()Lpubgkt/GameMode;
+	public final fun component7 ()Lpubgkt/Map;
+	public final fun component8 ()Lpubgkt/SeasonState;
+	public final fun component9 ()Lkotlin/time/Instant;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/GameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;I)Lpubgkt/Match;
+	public static synthetic fun copy$default (Lpubgkt/Match;Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/GameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;IILjava/lang/Object;)Lpubgkt/Match;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()Lkotlin/time/Instant;
+	public final fun getDuration ()I
+	public final fun getGameMode ()Lpubgkt/GameMode;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getMapName ()Lpubgkt/Map;
+	public final fun getMatchType ()Lpubgkt/MatchType;
+	public final fun getPlatform ()Lpubgkt/Platform;
+	public final fun getSeasonState ()Lpubgkt/SeasonState;
+	public final fun getTitleId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isCustomMatch ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/MatchType : java/lang/Enum {
+	public static final field AIROYALE Lpubgkt/MatchType;
+	public static final field ARCADE Lpubgkt/MatchType;
+	public static final field CUSTOM Lpubgkt/MatchType;
+	public static final field EVENT Lpubgkt/MatchType;
+	public static final field OFFICIAL Lpubgkt/MatchType;
+	public static final field SEASONAL Lpubgkt/MatchType;
+	public static final field TRAINING Lpubgkt/MatchType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lpubgkt/MatchType;
+	public static fun values ()[Lpubgkt/MatchType;
+}
+
