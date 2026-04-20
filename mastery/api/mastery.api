@@ -1,0 +1,290 @@
+public final class pubgkt/GetSurvivalMasteryByAccountIdKt {
+	public static final fun getSurvivalMasteryByAccountId (Lpubgkt/PubgApi;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class pubgkt/GetWeaponMasteryByAccountIdKt {
+	public static final fun getWeaponMasteryByAccountId (Lpubgkt/PubgApi;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class pubgkt/SurvivalMastery {
+	public fun <init> (Ljava/lang/String;IIIILpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;ILpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;I)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Lpubgkt/SurvivalStats;
+	public final fun component11 ()Lpubgkt/SurvivalStats;
+	public final fun component12 ()Lpubgkt/SurvivalStats;
+	public final fun component13 ()Lpubgkt/SurvivalStats;
+	public final fun component14 ()I
+	public final fun component15 ()Lpubgkt/SurvivalStats;
+	public final fun component16 ()Lpubgkt/SurvivalStats;
+	public final fun component17 ()Lpubgkt/SurvivalStats;
+	public final fun component18 ()Lpubgkt/SurvivalStats;
+	public final fun component19 ()Lpubgkt/SurvivalStats;
+	public final fun component2 ()I
+	public final fun component20 ()Lpubgkt/SurvivalStats;
+	public final fun component21 ()Lpubgkt/SurvivalStats;
+	public final fun component22 ()I
+	public final fun component3 ()I
+	public final fun component4 ()I
+	public final fun component5 ()I
+	public final fun component6 ()Lpubgkt/SurvivalStats;
+	public final fun component7 ()Lpubgkt/SurvivalStats;
+	public final fun component8 ()Lpubgkt/SurvivalStats;
+	public final fun component9 ()Lpubgkt/SurvivalStats;
+	public final fun copy (Ljava/lang/String;IIIILpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;ILpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;I)Lpubgkt/SurvivalMastery;
+	public static synthetic fun copy$default (Lpubgkt/SurvivalMastery;Ljava/lang/String;IIIILpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;ILpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;Lpubgkt/SurvivalStats;IILjava/lang/Object;)Lpubgkt/SurvivalMastery;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAirDropsCalled ()Lpubgkt/SurvivalStats;
+	public final fun getDamageDealt ()Lpubgkt/SurvivalStats;
+	public final fun getDamageTaken ()Lpubgkt/SurvivalStats;
+	public final fun getDistanceBySwimming ()Lpubgkt/SurvivalStats;
+	public final fun getDistanceByVehicle ()Lpubgkt/SurvivalStats;
+	public final fun getDistanceOnFoot ()Lpubgkt/SurvivalStats;
+	public final fun getDistanceTotal ()Lpubgkt/SurvivalStats;
+	public final fun getEnemyCratesLooted ()Lpubgkt/SurvivalStats;
+	public final fun getHealed ()Lpubgkt/SurvivalStats;
+	public final fun getHotDropLandings ()I
+	public final fun getLevel ()I
+	public final fun getPlayerId ()Ljava/lang/String;
+	public final fun getPosition ()Lpubgkt/SurvivalStats;
+	public final fun getRevived ()Lpubgkt/SurvivalStats;
+	public final fun getTeammatesRevived ()Lpubgkt/SurvivalStats;
+	public final fun getThrowablesThrown ()Lpubgkt/SurvivalStats;
+	public final fun getTier ()I
+	public final fun getTimeSurvived ()Lpubgkt/SurvivalStats;
+	public final fun getTop10 ()I
+	public final fun getTotalMatchesPlayed ()I
+	public final fun getUniqueItemsLooted ()Lpubgkt/SurvivalStats;
+	public final fun getXp ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/SurvivalStats {
+	public fun <init> (DDDD)V
+	public final fun component1 ()D
+	public final fun component2 ()D
+	public final fun component3 ()D
+	public final fun component4 ()D
+	public final fun copy (DDDD)Lpubgkt/SurvivalStats;
+	public static synthetic fun copy$default (Lpubgkt/SurvivalStats;DDDDILjava/lang/Object;)Lpubgkt/SurvivalStats;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAverage ()D
+	public final fun getCareerBest ()D
+	public final fun getLastMatchValue ()D
+	public final fun getTotal ()D
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/WeaponMastery {
+	public fun <init> (Ljava/lang/String;Lpubgkt/Platform;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()Lpubgkt/WeaponSummary;
+	public final fun component11 ()Lpubgkt/WeaponSummary;
+	public final fun component12 ()Lpubgkt/WeaponSummary;
+	public final fun component13 ()Lpubgkt/WeaponSummary;
+	public final fun component14 ()Lpubgkt/WeaponSummary;
+	public final fun component15 ()Lpubgkt/WeaponSummary;
+	public final fun component16 ()Lpubgkt/WeaponSummary;
+	public final fun component17 ()Lpubgkt/WeaponSummary;
+	public final fun component18 ()Lpubgkt/WeaponSummary;
+	public final fun component19 ()Lpubgkt/WeaponSummary;
+	public final fun component2 ()Lpubgkt/Platform;
+	public final fun component20 ()Lpubgkt/WeaponSummary;
+	public final fun component21 ()Lpubgkt/WeaponSummary;
+	public final fun component22 ()Lpubgkt/WeaponSummary;
+	public final fun component23 ()Lpubgkt/WeaponSummary;
+	public final fun component24 ()Lpubgkt/WeaponSummary;
+	public final fun component25 ()Lpubgkt/WeaponSummary;
+	public final fun component26 ()Lpubgkt/WeaponSummary;
+	public final fun component27 ()Lpubgkt/WeaponSummary;
+	public final fun component28 ()Lpubgkt/WeaponSummary;
+	public final fun component29 ()Lpubgkt/WeaponSummary;
+	public final fun component3 ()Lpubgkt/WeaponSummary;
+	public final fun component30 ()Lpubgkt/WeaponSummary;
+	public final fun component31 ()Lpubgkt/WeaponSummary;
+	public final fun component32 ()Lpubgkt/WeaponSummary;
+	public final fun component33 ()Lpubgkt/WeaponSummary;
+	public final fun component34 ()Lpubgkt/WeaponSummary;
+	public final fun component35 ()Lpubgkt/WeaponSummary;
+	public final fun component36 ()Lpubgkt/WeaponSummary;
+	public final fun component37 ()Lpubgkt/WeaponSummary;
+	public final fun component38 ()Lpubgkt/WeaponSummary;
+	public final fun component39 ()Lpubgkt/WeaponSummary;
+	public final fun component4 ()Lpubgkt/WeaponSummary;
+	public final fun component40 ()Lpubgkt/WeaponSummary;
+	public final fun component41 ()Lpubgkt/WeaponSummary;
+	public final fun component42 ()Lpubgkt/WeaponSummary;
+	public final fun component43 ()Lpubgkt/WeaponSummary;
+	public final fun component44 ()Lpubgkt/WeaponSummary;
+	public final fun component45 ()Lpubgkt/WeaponSummary;
+	public final fun component46 ()Lpubgkt/WeaponSummary;
+	public final fun component47 ()Lpubgkt/WeaponSummary;
+	public final fun component48 ()Lpubgkt/WeaponSummary;
+	public final fun component49 ()Lpubgkt/WeaponSummary;
+	public final fun component5 ()Lpubgkt/WeaponSummary;
+	public final fun component50 ()Lpubgkt/WeaponSummary;
+	public final fun component51 ()Lpubgkt/WeaponSummary;
+	public final fun component52 ()Lpubgkt/WeaponSummary;
+	public final fun component53 ()Lpubgkt/WeaponSummary;
+	public final fun component54 ()Lpubgkt/WeaponSummary;
+	public final fun component55 ()Lpubgkt/WeaponSummary;
+	public final fun component56 ()Lpubgkt/WeaponSummary;
+	public final fun component57 ()Lpubgkt/WeaponSummary;
+	public final fun component58 ()Lpubgkt/WeaponSummary;
+	public final fun component59 ()Lpubgkt/WeaponSummary;
+	public final fun component6 ()Lpubgkt/WeaponSummary;
+	public final fun component60 ()Lpubgkt/WeaponSummary;
+	public final fun component61 ()Lpubgkt/WeaponSummary;
+	public final fun component62 ()Lpubgkt/WeaponSummary;
+	public final fun component7 ()Lpubgkt/WeaponSummary;
+	public final fun component8 ()Lpubgkt/WeaponSummary;
+	public final fun component9 ()Lpubgkt/WeaponSummary;
+	public final fun copy (Ljava/lang/String;Lpubgkt/Platform;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;)Lpubgkt/WeaponMastery;
+	public static synthetic fun copy$default (Lpubgkt/WeaponMastery;Ljava/lang/String;Lpubgkt/Platform;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;Lpubgkt/WeaponSummary;IILjava/lang/Object;)Lpubgkt/WeaponMastery;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAce32 ()Lpubgkt/WeaponSummary;
+	public final fun getAk47 ()Lpubgkt/WeaponSummary;
+	public final fun getAug ()Lpubgkt/WeaponSummary;
+	public final fun getAwm ()Lpubgkt/WeaponSummary;
+	public final fun getBeryl ()Lpubgkt/WeaponSummary;
+	public final fun getBizon ()Lpubgkt/WeaponSummary;
+	public final fun getBluezoneGrenade ()Lpubgkt/WeaponSummary;
+	public final fun getC4 ()Lpubgkt/WeaponSummary;
+	public final fun getCrossbow ()Lpubgkt/WeaponSummary;
+	public final fun getDesertEagle ()Lpubgkt/WeaponSummary;
+	public final fun getDp12 ()Lpubgkt/WeaponSummary;
+	public final fun getDp28 ()Lpubgkt/WeaponSummary;
+	public final fun getDragunov ()Lpubgkt/WeaponSummary;
+	public final fun getFamas ()Lpubgkt/WeaponSummary;
+	public final fun getG18 ()Lpubgkt/WeaponSummary;
+	public final fun getG36 ()Lpubgkt/WeaponSummary;
+	public final fun getGrenade ()Lpubgkt/WeaponSummary;
+	public final fun getGroza ()Lpubgkt/WeaponSummary;
+	public final fun getJs9 ()Lpubgkt/WeaponSummary;
+	public final fun getK2 ()Lpubgkt/WeaponSummary;
+	public final fun getKar98k ()Lpubgkt/WeaponSummary;
+	public final fun getLynx ()Lpubgkt/WeaponSummary;
+	public final fun getM16a4 ()Lpubgkt/WeaponSummary;
+	public final fun getM24 ()Lpubgkt/WeaponSummary;
+	public final fun getM249 ()Lpubgkt/WeaponSummary;
+	public final fun getM416 ()Lpubgkt/WeaponSummary;
+	public final fun getMg3 ()Lpubgkt/WeaponSummary;
+	public final fun getMini14 ()Lpubgkt/WeaponSummary;
+	public final fun getMk12 ()Lpubgkt/WeaponSummary;
+	public final fun getMk14 ()Lpubgkt/WeaponSummary;
+	public final fun getMolotov ()Lpubgkt/WeaponSummary;
+	public final fun getMortar ()Lpubgkt/WeaponSummary;
+	public final fun getMosinNagant ()Lpubgkt/WeaponSummary;
+	public final fun getMp5k ()Lpubgkt/WeaponSummary;
+	public final fun getMp9 ()Lpubgkt/WeaponSummary;
+	public final fun getMutant ()Lpubgkt/WeaponSummary;
+	public final fun getO12 ()Lpubgkt/WeaponSummary;
+	public final fun getP1911 ()Lpubgkt/WeaponSummary;
+	public final fun getP90 ()Lpubgkt/WeaponSummary;
+	public final fun getP92 ()Lpubgkt/WeaponSummary;
+	public final fun getPanzerfaust ()Lpubgkt/WeaponSummary;
+	public final fun getPlatform ()Lpubgkt/Platform;
+	public final fun getPlayerId ()Ljava/lang/String;
+	public final fun getQbu ()Lpubgkt/WeaponSummary;
+	public final fun getQbz ()Lpubgkt/WeaponSummary;
+	public final fun getR1895 ()Lpubgkt/WeaponSummary;
+	public final fun getR45 ()Lpubgkt/WeaponSummary;
+	public final fun getS12k ()Lpubgkt/WeaponSummary;
+	public final fun getS686 ()Lpubgkt/WeaponSummary;
+	public final fun getSawedOff ()Lpubgkt/WeaponSummary;
+	public final fun getScarl ()Lpubgkt/WeaponSummary;
+	public final fun getSkorpion ()Lpubgkt/WeaponSummary;
+	public final fun getSks ()Lpubgkt/WeaponSummary;
+	public final fun getSlr ()Lpubgkt/WeaponSummary;
+	public final fun getStickyBomb ()Lpubgkt/WeaponSummary;
+	public final fun getTommyGun ()Lpubgkt/WeaponSummary;
+	public final fun getUmp ()Lpubgkt/WeaponSummary;
+	public final fun getUzi ()Lpubgkt/WeaponSummary;
+	public final fun getVector ()Lpubgkt/WeaponSummary;
+	public final fun getVss ()Lpubgkt/WeaponSummary;
+	public final fun getWin94 ()Lpubgkt/WeaponSummary;
+	public final fun getWinchester ()Lpubgkt/WeaponSummary;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/WeaponOfficialStatsTotal {
+	public fun <init> (IIDIIIID)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun component3 ()D
+	public final fun component4 ()I
+	public final fun component5 ()I
+	public final fun component6 ()I
+	public final fun component7 ()I
+	public final fun component8 ()D
+	public final fun copy (IIDIIIID)Lpubgkt/WeaponOfficialStatsTotal;
+	public static synthetic fun copy$default (Lpubgkt/WeaponOfficialStatsTotal;IIDIIIIDILjava/lang/Object;)Lpubgkt/WeaponOfficialStatsTotal;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDamagePlayer ()D
+	public final fun getDefeats ()I
+	public final fun getGroggies ()I
+	public final fun getHeadShots ()I
+	public final fun getKills ()I
+	public final fun getLongestKill ()D
+	public final fun getMostDefeatsInAGame ()I
+	public final fun getMostKillsInAGame ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/WeaponStatsTotal {
+	public fun <init> (IIDDIIDIIIII)V
+	public final fun component1 ()I
+	public final fun component10 ()I
+	public final fun component11 ()I
+	public final fun component12 ()I
+	public final fun component2 ()I
+	public final fun component3 ()D
+	public final fun component4 ()D
+	public final fun component5 ()I
+	public final fun component6 ()I
+	public final fun component7 ()D
+	public final fun component8 ()I
+	public final fun component9 ()I
+	public final fun copy (IIDDIIDIIIII)Lpubgkt/WeaponStatsTotal;
+	public static synthetic fun copy$default (Lpubgkt/WeaponStatsTotal;IIDDIIDIIIIIILjava/lang/Object;)Lpubgkt/WeaponStatsTotal;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDamagePlayer ()D
+	public final fun getDefeats ()I
+	public final fun getGroggies ()I
+	public final fun getHeadShots ()I
+	public final fun getKills ()I
+	public final fun getLongRangeDefeats ()I
+	public final fun getLongestDefeat ()D
+	public final fun getMostDamagePlayerInAGame ()D
+	public final fun getMostDefeatsInAGame ()I
+	public final fun getMostGroggiesInAGame ()I
+	public final fun getMostHeadShotsInAGame ()I
+	public final fun getMostKillsInAGame ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/WeaponSummary {
+	public fun <init> (IIILpubgkt/WeaponStatsTotal;Lpubgkt/WeaponOfficialStatsTotal;Lpubgkt/WeaponOfficialStatsTotal;)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun component3 ()I
+	public final fun component4 ()Lpubgkt/WeaponStatsTotal;
+	public final fun component5 ()Lpubgkt/WeaponOfficialStatsTotal;
+	public final fun component6 ()Lpubgkt/WeaponOfficialStatsTotal;
+	public final fun copy (IIILpubgkt/WeaponStatsTotal;Lpubgkt/WeaponOfficialStatsTotal;Lpubgkt/WeaponOfficialStatsTotal;)Lpubgkt/WeaponSummary;
+	public static synthetic fun copy$default (Lpubgkt/WeaponSummary;IIILpubgkt/WeaponStatsTotal;Lpubgkt/WeaponOfficialStatsTotal;Lpubgkt/WeaponOfficialStatsTotal;ILjava/lang/Object;)Lpubgkt/WeaponSummary;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCompetitiveStatsTotal ()Lpubgkt/WeaponOfficialStatsTotal;
+	public final fun getCurrentLevel ()I
+	public final fun getCurrentTier ()I
+	public final fun getOfficialStatsTotal ()Lpubgkt/WeaponOfficialStatsTotal;
+	public final fun getStatsTotal ()Lpubgkt/WeaponStatsTotal;
+	public final fun getXpTotal ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+

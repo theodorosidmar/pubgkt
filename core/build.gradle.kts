@@ -7,6 +7,7 @@ kotlin {
         commonMain.dependencies {
             api(projects.clans)
             api(projects.matches)
+            api(projects.mastery)
             api(projects.players)
         }
     }
@@ -21,9 +22,12 @@ dependencies {
     dokka(projects.common)
     dokka(projects.clans)
     dokka(projects.matches)
+    dokka(projects.mastery)
     dokka(projects.players)
+
     kover(projects.common)
     kover(projects.clans)
     kover(projects.matches)
+    kover(projects.mastery)
     kover(projects.players)
 }

@@ -13,6 +13,7 @@ include(
     "common",
     "core",
     "matches",
+    "mastery",
     "players",
     "clans",
     "samples",
