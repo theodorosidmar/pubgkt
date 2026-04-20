@@ -27,8 +27,5 @@ internal var HttpRequestBuilder.requestPolicy: RequestPolicy
     get() = attributes[RequestPolicyKey]
     set(value) = attributes.put(RequestPolicyKey, value)
 
-internal val HttpRequestBuilder.requestPolicyOrDefault: RequestPolicy
-    get() = attributes.getOrNull(RequestPolicyKey) ?: DefaultRequestPolicy
-
 internal val Attributes.requestPolicyOrDefault: RequestPolicy
     get() = getOrNull(RequestPolicyKey) ?: DefaultRequestPolicy

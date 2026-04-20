@@ -9,7 +9,7 @@ internal val RequestPolicyPlugin = createClientPlugin("PubgktRequestPolicy", ::R
     val rateLimiter = pluginConfig.rateLimiter
 
     onRequest { request, _ ->
-        val policy = request.requestPolicyOrDefault
+        val policy = request.attributes.requestPolicyOrDefault
 
         if (policy.requiresAuth) {
             request.bearerAuth(apiKey)
