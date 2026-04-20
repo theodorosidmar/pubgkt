@@ -155,6 +155,10 @@ public final class pubgkt/SeasonState : java/lang/Enum {
 	public static fun values ()[Lpubgkt/SeasonState;
 }
 
+public final class pubgkt/StatusKt {
+	public static final fun isUp (Lpubgkt/PubgApi;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
 public final class pubgkt/UnauthorizedException : java/lang/Exception {
 	public fun <init> ()V
 }

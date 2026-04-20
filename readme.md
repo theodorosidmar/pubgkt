@@ -102,7 +102,6 @@ If the API returns HTTP 429 regardless (e.g. another instance shares your key),
 | Mastery        | ✓ Done  |
 | Clans          | ✓ Done  |
 | Leaderboards   | Planned |
-| Status         | Planned |
 
 ## Platform Roadmap
 
