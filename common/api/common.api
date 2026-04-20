@@ -1,12 +1,3 @@
-public final class pubgkt/BanType : java/lang/Enum {
-	public static final field Innocent Lpubgkt/BanType;
-	public static final field PermanentBan Lpubgkt/BanType;
-	public static final field TemporaryBan Lpubgkt/BanType;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lpubgkt/BanType;
-	public static fun values ()[Lpubgkt/BanType;
-}
-
 public final class pubgkt/ConcurrentDelayRateLimiter : pubgkt/DelayRateLimiter {
 	public fun <init> ()V
 	public fun <init> (Lkotlin/time/Clock;)V
@@ -21,65 +12,6 @@ public class pubgkt/DelayRateLimiter : pubgkt/RateLimiter {
 	protected final fun getClock ()Lkotlin/time/Clock;
 	public fun onResponse (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Long;)V
 	public fun throttle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class pubgkt/GameMode : java/lang/Enum {
-	public static final field CONQUEST_DUO Lpubgkt/GameMode;
-	public static final field CONQUEST_DUO_FPP Lpubgkt/GameMode;
-	public static final field CONQUEST_SOLO Lpubgkt/GameMode;
-	public static final field CONQUEST_SOLO_FPP Lpubgkt/GameMode;
-	public static final field CONQUEST_SQUAD Lpubgkt/GameMode;
-	public static final field CONQUEST_SQUAD_FPP Lpubgkt/GameMode;
-	public static final field DUO Lpubgkt/GameMode;
-	public static final field DUO_FPP Lpubgkt/GameMode;
-	public static final field ESPORTS_DUO Lpubgkt/GameMode;
-	public static final field ESPORTS_DUO_FPP Lpubgkt/GameMode;
-	public static final field ESPORTS_SOLO Lpubgkt/GameMode;
-	public static final field ESPORTS_SOLO_FPP Lpubgkt/GameMode;
-	public static final field ESPORTS_SQUAD Lpubgkt/GameMode;
-	public static final field ESPORTS_SQUAD_FPP Lpubgkt/GameMode;
-	public static final field LAB_FPP Lpubgkt/GameMode;
-	public static final field LAB_TPP Lpubgkt/GameMode;
-	public static final field NORMAL_DUO Lpubgkt/GameMode;
-	public static final field NORMAL_DUO_FPP Lpubgkt/GameMode;
-	public static final field NORMAL_SOLO Lpubgkt/GameMode;
-	public static final field NORMAL_SOLO_FPP Lpubgkt/GameMode;
-	public static final field NORMAL_SQUAD Lpubgkt/GameMode;
-	public static final field NORMAL_SQUAD_FPP Lpubgkt/GameMode;
-	public static final field SOLO Lpubgkt/GameMode;
-	public static final field SOLO_FPP Lpubgkt/GameMode;
-	public static final field SQUAD Lpubgkt/GameMode;
-	public static final field SQUAD_FPP Lpubgkt/GameMode;
-	public static final field TDM Lpubgkt/GameMode;
-	public static final field WAR_DUO Lpubgkt/GameMode;
-	public static final field WAR_DUO_FPP Lpubgkt/GameMode;
-	public static final field WAR_SOLO Lpubgkt/GameMode;
-	public static final field WAR_SOLO_FPP Lpubgkt/GameMode;
-	public static final field WAR_SQUAD Lpubgkt/GameMode;
-	public static final field WAR_SQUAD_FPP Lpubgkt/GameMode;
-	public static final field ZOMBIE_DUO Lpubgkt/GameMode;
-	public static final field ZOMBIE_DUO_FPP Lpubgkt/GameMode;
-	public static final field ZOMBIE_SOLO Lpubgkt/GameMode;
-	public static final field ZOMBIE_SOLO_FPP Lpubgkt/GameMode;
-	public static final field ZOMBIE_SQUAD Lpubgkt/GameMode;
-	public static final field ZOMBIE_SQUAD_FPP Lpubgkt/GameMode;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lpubgkt/GameMode;
-	public static fun values ()[Lpubgkt/GameMode;
-}
-
-public final class pubgkt/Map : java/lang/Enum {
-	public static final field BALTIC_MAIN Lpubgkt/Map;
-	public static final field DESERT_MAIN Lpubgkt/Map;
-	public static final field DIHOROTOK_MAIN Lpubgkt/Map;
-	public static final field ERANGEL_MAIN Lpubgkt/Map;
-	public static final field RANGE_MAIN Lpubgkt/Map;
-	public static final field SAVAGE_MAIN Lpubgkt/Map;
-	public static final field SUMMERLAND_MAIN Lpubgkt/Map;
-	public static final field TIGER_MAIN Lpubgkt/Map;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lpubgkt/Map;
-	public static fun values ()[Lpubgkt/Map;
 }
 
 public final class pubgkt/Platform : java/lang/Enum {
@@ -144,15 +76,6 @@ public abstract interface class pubgkt/RateLimiter {
 
 public final class pubgkt/RateLimiter$Companion {
 	public final fun getNone ()Lpubgkt/RateLimiter;
-}
-
-public final class pubgkt/SeasonState : java/lang/Enum {
-	public static final field CLOSED Lpubgkt/SeasonState;
-	public static final field PREPARE Lpubgkt/SeasonState;
-	public static final field PROGRESS Lpubgkt/SeasonState;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lpubgkt/SeasonState;
-	public static fun values ()[Lpubgkt/SeasonState;
 }
 
 public final class pubgkt/StatusKt {
