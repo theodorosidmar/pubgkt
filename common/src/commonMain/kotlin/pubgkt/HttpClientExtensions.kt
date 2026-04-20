@@ -5,7 +5,10 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 
 @PubgktInternal
-public suspend fun HttpClient.getWithPublicRequest(urlString: String): HttpResponse =
+public suspend fun HttpClient.get(
+    urlString: String,
+    policy: RequestPolicy = DefaultRequestPolicy,
+): HttpResponse =
     get(urlString) {
-        requestPolicy(PublicRequestPolicy)
+        requestPolicy = policy
     }

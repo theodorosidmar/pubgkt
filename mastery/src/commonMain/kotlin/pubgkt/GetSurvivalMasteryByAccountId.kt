@@ -1,7 +1,5 @@
 package pubgkt
 
-import io.ktor.client.request.get
-
 /**
  * Returns survival mastery information for a single player
  *

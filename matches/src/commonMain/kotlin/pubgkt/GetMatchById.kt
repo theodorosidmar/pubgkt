@@ -9,5 +9,5 @@ package pubgkt
  */
 public suspend fun PubgApi.getMatchById(matchId: String): Match =
     client
-        .getWithPublicRequest("$MATCHES_PATH/$matchId")
+        .get("$MATCHES_PATH/$matchId", policy = PublicRequestPolicy)
         .deserialize(MatchSerializer)

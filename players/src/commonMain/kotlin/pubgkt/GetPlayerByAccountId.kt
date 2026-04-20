@@ -1,7 +1,5 @@
 package pubgkt
 
-import io.ktor.client.request.get
-
 /**
  * Returns a single player by their account ID.
  *

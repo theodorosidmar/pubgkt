@@ -10,5 +10,5 @@ import io.ktor.http.HttpStatusCode
  */
 public suspend fun PubgApi.isUp(): Boolean =
     client
-        .getWithPublicRequest("https://$HOST/status")
+        .get("https://$HOST/status", policy = PublicRequestPolicy)
         .status == HttpStatusCode.OK

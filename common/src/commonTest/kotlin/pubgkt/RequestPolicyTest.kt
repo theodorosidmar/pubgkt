@@ -36,7 +36,7 @@ class RequestPolicyTest {
             rateLimiter = stubRateLimiter,
         )
 
-        api.client.getWithPublicRequest("test")
+        api.client.get("test", PublicRequestPolicy)
 
         val authorization = engine.lastRequest.headers["Authorization"]
 
@@ -65,8 +65,8 @@ class RequestPolicyTest {
             rateLimiter = stubRateLimiter,
         )
 
-        api.client.get("test")
-        api.client.getWithPublicRequest("test")
+        api.client.get("test", DefaultRequestPolicy)
+        api.client.get("test", PublicRequestPolicy)
 
         val firstRequest = engine.requestHistory.first()
         val secondRequest = engine.requestHistory.last()
