@@ -18,6 +18,7 @@ class JsonObjectExtensionsTest {
         put("nested", buildJsonObject { put("key", JsonPrimitive("value")) })
         put("items", buildJsonArray { add(JsonPrimitive(1)) })
         put("int", JsonPrimitive(1))
+        put("double", JsonPrimitive(1.0))
         put("boolean", JsonPrimitive(true))
         put("booleanString", JsonPrimitive("true"))
     }
@@ -96,6 +97,44 @@ class JsonObjectExtensionsTest {
     @Test
     fun `optionalInt returns null for JsonNull`() {
         assertNull(obj.optionalInt("nullable"))
+    }
+
+    // ── requiredDouble ──────────────────────────────────────────────────
+
+    @Test
+    fun `requiredDouble returns value when present`() {
+        assertEquals(1.0, obj.requiredDouble("double"))
+    }
+
+    @Test
+    fun `requiredDouble throws when key is missing`() {
+        assertFailsWith<SerializationException> {
+            obj.requiredDouble("missing")
+        }
+    }
+
+    @Test
+    fun `requiredDouble throws when value is null`() {
+        assertFailsWith<SerializationException> {
+            obj.requiredDouble("nullable")
+        }
+    }
+
+    // ── optionalDouble ──────────────────────────────────────────────────
+
+    @Test
+    fun `optionalDouble returns value when present`() {
+        assertEquals(1.0, obj.optionalDouble("double"))
+    }
+
+    @Test
+    fun `optionalDouble returns null when key is missing`() {
+        assertNull(obj.optionalDouble("missing"))
+    }
+
+    @Test
+    fun `optionalDouble returns null for JsonNull`() {
+        assertNull(obj.optionalDouble("nullable"))
     }
 
     // ── requiredBoolean ──────────────────────────────────────────────────

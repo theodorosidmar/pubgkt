@@ -39,10 +39,26 @@ public fun JsonObject.optionalArray(key: String): JsonArray? =
 public fun JsonObject.requiredString(key: String): String =
     optionalString(key) ?: throw SerializationException("Missing string field '$key'")
 
+/**
+ * Returns the [Int] value for the given [key], or throws
+ * [SerializationException] if the key is missing or null.
+ */
 @PubgktInternal
 public fun JsonObject.requiredInt(key: String): Int =
     optionalInt(key) ?: throw SerializationException("Missing int field '$key'")
 
+/**
+ * Returns the [Double] value for the given [key], or throws
+ * [SerializationException] if the key is missing or null.
+ */
+@PubgktInternal
+public fun JsonObject.requiredDouble(key: String): Double =
+    optionalDouble(key) ?: throw SerializationException("Missing double field '$key'")
+
+/**
+ * Returns the [Boolean] value for the given [key], or throws
+ * [SerializationException] if the key is missing or null.
+ */
 @PubgktInternal
 public fun JsonObject.requiredBoolean(key: String): Boolean =
     optionalBoolean(key) ?: throw SerializationException("Missing boolean field '$key'")
@@ -68,6 +84,18 @@ public fun JsonObject.optionalInt(key: String): Int? =
         ?.let { primitive ->
             if (primitive == JsonNull) null else primitive.content.toInt()
         }
+
+/**
+ * Returns the [Double] value for the given [key], or `null` when the key
+ * is absent, the value is [JsonNull], or not a primitive.
+ */
+@PubgktInternal
+public fun JsonObject.optionalDouble(key: String): Double? =
+    (this[key] as? JsonPrimitive)
+        ?.let { primitive ->
+            if (primitive == JsonNull) null else primitive.content.toDouble()
+        }
+
 /**
  * Returns the [Boolean] value for the given [key], or `null` when the key
  * is absent, the value is [JsonNull], or not a primitive.
