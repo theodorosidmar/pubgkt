@@ -18,6 +18,7 @@ public final class pubgkt/Clan {
 }
 
 public final class pubgkt/GetClanByIdKt {
-	public static final fun getClanById (Lpubgkt/PubgApi;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getClanById (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getClanById$default (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 

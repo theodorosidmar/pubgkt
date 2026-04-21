@@ -25,4 +25,9 @@ public enum class PlatformRegion {
     XBOX_NA, // North America
     XBOX_OC, // Oceania
     XBOX_SA; // South America
+
+    internal val path: String =
+        name
+            .lowercase()
+            .replace(oldValue = "_", newValue = "-")
 }

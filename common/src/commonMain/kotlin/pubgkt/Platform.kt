@@ -11,5 +11,7 @@ public enum class Platform {
     STADIA,
     STEAM,
     TOURNAMENT,
-    XBOX,
+    XBOX;
+
+    internal val path: String = name.lowercase()
 }

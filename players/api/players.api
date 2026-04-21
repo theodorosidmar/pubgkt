@@ -8,17 +8,22 @@ public final class pubgkt/BanType : java/lang/Enum {
 }
 
 public final class pubgkt/GetPlayerByAccountIdKt {
-	public static final fun getPlayerByAccountId (Lpubgkt/PubgApi;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getPlayerByAccountId (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getPlayerByAccountId$default (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class pubgkt/GetPlayersByIdKt {
-	public static final fun getPlayersById (Lpubgkt/PubgApi;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun getPlayersById (Lpubgkt/PubgApi;[Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getPlayersById (Lpubgkt/PubgApi;Ljava/util/List;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getPlayersById (Lpubgkt/PubgApi;[Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getPlayersById$default (Lpubgkt/PubgApi;Ljava/util/List;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun getPlayersById$default (Lpubgkt/PubgApi;[Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class pubgkt/GetPlayersByNameKt {
-	public static final fun getPlayersByNames (Lpubgkt/PubgApi;Ljava/util/List;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun getPlayersByNames (Lpubgkt/PubgApi;[Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getPlayersByNames (Lpubgkt/PubgApi;Ljava/util/List;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getPlayersByNames (Lpubgkt/PubgApi;[Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getPlayersByNames$default (Lpubgkt/PubgApi;Ljava/util/List;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun getPlayersByNames$default (Lpubgkt/PubgApi;[Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class pubgkt/Player {

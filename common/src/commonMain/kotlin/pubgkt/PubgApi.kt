@@ -28,25 +28,20 @@ import io.ktor.util.AttributeKey
  * underlying HTTP client is initialised lazily on first use.
  *
  * ```kotlin
- * val api = PubgApi(apiKey = "your-api-key", platform = Platform.STEAM)
- * val player = api.getPlayerByAccountId("account.abc123")
+ * val api = PubgApi(apiKey = "your-api-key")
+ * val player = api.getPlayerByAccountId("account.abc123", Platform.STEAM)
  * ```
  *
  * @param apiKey Your PUBG API key, obtained from the PUBG Developer Portal.
  * @param rateLimiter Controls request throughput. Defaults to [DelayRateLimiter],
  *   which proactively delays requests when the rate limit is exhausted.
  *   Pass [RateLimiter.None] to disable rate limiting entirely.
- * @param platform The platform shard used to scope all requests.
- *   Defaults to [Platform.STEAM]. Change this before making requests if you
- *   need to target a different platform.
- * @see Platform
  * @see RateLimiter
  * @see <a href="https://documentation.pubg.com/en/introduction.html">PUBG Developer Portal</a>
  */
 public class PubgApi @JvmOverloads constructor(
     private val apiKey: String,
     public val rateLimiter: RateLimiter = DelayRateLimiter(),
-    public var platform: Platform = Platform.STEAM,
 ) {
 
     private var _engineOverride: HttpClientEngine? = null
@@ -116,7 +111,6 @@ public class PubgApi @JvmOverloads constructor(
             url {
                 protocol = URLProtocol.HTTPS
                 host = HOST
-                url("shards/${platform.name.lowercase()}/")
             }
             contentType(
                 ContentType(
