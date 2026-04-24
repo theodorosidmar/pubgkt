@@ -8,6 +8,7 @@ internal const val PLAYER_RESPONSE_JSON = """
     "attributes": {
       "name": "PlayerOne",
       "banType": "Innocent",
+      "clanId": "clan-42",
       "patchVersion": "14.1",
       "titleId": "bluehole-pubg",
       "shardId": "steam"
@@ -63,31 +64,6 @@ internal const val PLAYERS_RESPONSE_JSON = """
       }
     }
   ]
-}
-"""
-
-/** Resource object only (no {"data": …} envelope), for direct deserializer testing. */
-internal const val PLAYER_RESOURCE_JSON = """
-{
-  "type": "player",
-  "id": "account.abc123",
-  "attributes": {
-    "name": "PlayerOne",
-    "banType": "Innocent",
-    "patchVersion": "14.1",
-    "titleId": "bluehole-pubg",
-    "shardId": "steam",
-    "clanId": "clan-42"
-  },
-  "relationships": {
-    "matches": {
-      "data": [
-        { "type": "match", "id": "match-id-1" },
-        { "type": "match", "id": "match-id-2" }
-      ]
-    },
-    "assets": { "data": [] }
-  }
 }
 """
 

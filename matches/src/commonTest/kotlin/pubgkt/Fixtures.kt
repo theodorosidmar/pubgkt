@@ -697,23 +697,3 @@ internal const val MATCH_TDM_RESPONSE_JSON = """
   "meta": {}
 }
 """
-
-internal const val MATCH_TDM_RESOURCE_JSON = """
-{
-    "type": "match",
-    "id": "a131e486-5bcf-4c2e-aa5a-515489ee57aa",
-    "attributes": {
-      "titleId": "bluehole-pubg",
-      "shardId": "steam",
-      "tags": null,
-      "isCustomMatch": false,
-      "matchType": "arcade",
-      "stats": null,
-      "gameMode": "tdm",
-      "mapName": "Tiger_Main",
-      "seasonState": "progress",
-      "createdAt": "2026-04-07T22:26:23Z",
-      "duration": 376
-    }
-  }
-"""

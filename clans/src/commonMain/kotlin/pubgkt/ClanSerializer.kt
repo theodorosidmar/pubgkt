@@ -1,5 +1,6 @@
 package pubgkt
 
+import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 
 internal object ClanSerializer : JsonApiResourceDeserializer<Clan>("pubgkt.Clan") {
@@ -7,6 +8,7 @@ internal object ClanSerializer : JsonApiResourceDeserializer<Clan>("pubgkt.Clan"
         attributes: JsonObject,
         id: String,
         relationships: JsonObject?,
+        included: JsonArray?,
     ): Clan = Clan(
         id = id,
         name = attributes.requiredString("clanName"),

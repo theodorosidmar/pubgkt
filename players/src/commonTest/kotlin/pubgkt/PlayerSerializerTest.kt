@@ -2,6 +2,8 @@ package pubgkt
 
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.decodeFromJsonElement
+import kotlinx.serialization.json.jsonObject
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -10,22 +12,8 @@ import kotlin.test.assertNull
 class PlayerSerializerTest {
 
     private fun deserialize(resourceJson: String): Player {
-        val element = Json.parseToJsonElement(resourceJson)
-        return json.decodeFromJsonElement(PlayerSerializer, element)
-    }
-
-    @Test
-    fun `maps all fields correctly`() {
-        val player = deserialize(PLAYER_RESOURCE_JSON)
-
-        assertEquals("account.abc123", player.id)
-        assertEquals("PlayerOne", player.name)
-        assertEquals(BanType.Innocent, player.banType)
-        assertEquals("clan-42", player.clanId)
-        assertEquals("14.1", player.patchVersion)
-        assertEquals("bluehole-pubg", player.titleId)
-        assertEquals("steam", player.shardId)
-        assertEquals(listOf("match-id-1", "match-id-2"), player.matches.map(PlayerMatch::id))
+        val resource = Json.parseToJsonElement(resourceJson).jsonObject
+        return PlayerSerializer.fromResource(resource)
     }
 
     @Test

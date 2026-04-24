@@ -7,6 +7,8 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
+import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.jsonObject
 
 class JsonApiResourceDeserializerTest {
 
@@ -15,6 +17,7 @@ class JsonApiResourceDeserializerTest {
         val id: String,
         val attrs: JsonObject,
         val rels: JsonObject?,
+        val included: JsonArray?,
     )
 
     private object StubDeserializer : JsonApiResourceDeserializer<Stub>("test.Stub") {
@@ -22,7 +25,13 @@ class JsonApiResourceDeserializerTest {
             attributes: JsonObject,
             id: String,
             relationships: JsonObject?,
-        ): Stub = Stub(id = id, attrs = attributes, rels = relationships)
+            included: JsonArray?,
+        ): Stub = Stub(
+            id = id,
+            attrs = attributes,
+            rels = relationships,
+            included = included,
+        )
     }
 
     private fun deserialize(resourceJson: String): Stub {
@@ -49,9 +58,21 @@ class JsonApiResourceDeserializerTest {
     }
 
     @Test
+    fun `extracts included as JsonArray`() {
+        val stub = deserialize(RESOURCE_JSON)
+        assertEquals("hello", stub.included?.first()?.jsonObject?.requiredString("field"))
+    }
+
+    @Test
     fun `relationships is null when absent`() {
         val stub = deserialize(RESOURCE_NO_RELATIONSHIPS_JSON)
         assertNull(stub.rels)
+    }
+
+    @Test
+    fun `included is null when absent`() {
+        val stub = deserialize(RESOURCE_NO_INCLUDED_JSON)
+        assertNull(stub.included)
     }
 
     @Test
@@ -67,9 +88,83 @@ class JsonApiResourceDeserializerTest {
             deserialize(RESOURCE_MISSING_ATTRIBUTES_JSON)
         }
     }
+
+    @Test
+    fun `fromResource extracts fields from resource object`() {
+        val resource = Json.parseToJsonElement(RESOURCE_OBJECT_JSON).jsonObject
+        val included = Json.parseToJsonElement(INCLUDED_JSON) as JsonArray
+
+        val stub = StubDeserializer.fromResource(resource, included)
+
+        assertEquals("abc-123", stub.id)
+        assertEquals("hello", stub.attrs.requiredString("field"))
+        assertEquals("value", stub.rels?.requiredString("rel"))
+        assertEquals("hello", stub.included?.first()?.jsonObject?.requiredString("field"))
+    }
+
+    @Test
+    fun `fromResource passes null included when omitted`() {
+        val resource = Json.parseToJsonElement(RESOURCE_OBJECT_JSON).jsonObject
+
+        val stub = StubDeserializer.fromResource(resource)
+
+        assertEquals("abc-123", stub.id)
+        assertNull(stub.included)
+    }
 }
 
 private const val RESOURCE_JSON = """
+{
+  "data": {
+    "type": "thing",
+    "id": "abc-123",
+    "attributes": { "field": "hello" },
+    "relationships": { "rel": "value" }
+  },
+  "included": [{ "field": "hello" }]
+}
+"""
+
+private const val RESOURCE_NO_RELATIONSHIPS_JSON = """
+{
+  "data": {
+    "type": "thing",
+    "id": "abc-123",
+    "attributes": { "field": "hello" }
+  }
+}
+"""
+
+private const val RESOURCE_NO_INCLUDED_JSON = """
+{
+  "data": {
+    "type": "thing",
+    "id": "abc-123",
+    "attributes": { "field": "hello" },
+    "relationships": { "rel": "value" }
+  }
+}
+"""
+
+private const val RESOURCE_MISSING_ID_JSON = """
+{
+  "data": {
+    "type": "thing",
+    "attributes": { "field": "hello" }
+  }
+}
+"""
+
+private const val RESOURCE_MISSING_ATTRIBUTES_JSON = """
+{
+  "data": {
+    "type": "thing",
+    "id": "abc-123"
+  }
+}
+"""
+
+private const val RESOURCE_OBJECT_JSON = """
 {
   "type": "thing",
   "id": "abc-123",
@@ -78,24 +173,6 @@ private const val RESOURCE_JSON = """
 }
 """
 
-private const val RESOURCE_NO_RELATIONSHIPS_JSON = """
-{
-  "type": "thing",
-  "id": "abc-123",
-  "attributes": { "field": "hello" }
-}
-"""
-
-private const val RESOURCE_MISSING_ID_JSON = """
-{
-  "type": "thing",
-  "attributes": { "field": "hello" }
-}
-"""
-
-private const val RESOURCE_MISSING_ATTRIBUTES_JSON = """
-{
-  "type": "thing",
-  "id": "abc-123"
-}
+private const val INCLUDED_JSON = """
+[{ "field": "hello" }]
 """

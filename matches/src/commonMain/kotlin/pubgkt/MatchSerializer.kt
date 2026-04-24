@@ -1,6 +1,7 @@
 package pubgkt
 
 import kotlin.time.Instant
+import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 
 internal object MatchSerializer : JsonApiResourceDeserializer<Match>("pubgkt.Match") {
@@ -8,6 +9,7 @@ internal object MatchSerializer : JsonApiResourceDeserializer<Match>("pubgkt.Mat
         attributes: JsonObject,
         id: String,
         relationships: JsonObject?,
+        included: JsonArray?,
     ): Match = Match(
         id = id,
         titleId = attributes.requiredString("titleId"),

@@ -8,19 +8,25 @@ suspend fun main(args: Array<String>) {
 
     val api = PubgApi(apiKey)
 
-    println("=== getPlayerByAccountId ===")
-    val player = api.getPlayerByAccountId(accountId)
-    println(player)
+    api.getLeaderboard(
+        "division.bro.official.pc-2018-41",
+        GameMode.SQUAD_FPP,
+        PlatformRegion.PC_SA
+    ).let(::println)
 
-    println("\n=== getPlayersById ===")
-    val byIds = api.getPlayersById(accountId)
-    byIds.forEach(::println)
-
-    println("\n=== getPlayersByNames ===")
-    val byNames = api.getPlayersByNames(playerName)
-    byNames.forEach(::println)
-
-    println("\n=== getClanById ===")
-    val clan = api.getClanById(clanId)
-    println(clan)
+//    println("=== getPlayerByAccountId ===")
+//    val player = api.getPlayerByAccountId(accountId)
+//    println(player)
+//
+//    println("\n=== getPlayersById ===")
+//    val byIds = api.getPlayersById(accountId)
+//    byIds.forEach(::println)
+//
+//    println("\n=== getPlayersByNames ===")
+//    val byNames = api.getPlayersByNames(playerName)
+//    byNames.forEach(::println)
+//
+//    println("\n=== getClanById ===")
+//    val clan = api.getClanById(clanId)
+//    println(clan)
 }

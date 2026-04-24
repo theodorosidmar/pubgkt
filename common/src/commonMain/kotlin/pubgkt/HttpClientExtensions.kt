@@ -98,7 +98,7 @@ public suspend fun HttpClient.get(
     platformRegion: PlatformRegion = PlatformRegion.PC_SA,
     policy: RequestPolicy = DefaultRequestPolicy,
 ): HttpResponse =
-    get(urlString) {
+    get {
         url("shards/${platformRegion.path}/$urlString")
         requestPolicy = policy
     }

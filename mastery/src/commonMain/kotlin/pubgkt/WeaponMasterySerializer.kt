@@ -1,5 +1,6 @@
 package pubgkt
 
+import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 
 internal object WeaponMasterySerializer :
@@ -10,6 +11,7 @@ internal object WeaponMasterySerializer :
         attributes: JsonObject,
         id: String,
         relationships: JsonObject?,
+        included: JsonArray?,
     ): WeaponMastery {
         val weaponsSummary = attributes.requiredObject("weaponSummaries")
         return WeaponMastery(

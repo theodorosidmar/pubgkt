@@ -1,6 +1,7 @@
 package pubgkt
 
 import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 
 internal object PlayerSerializer : JsonApiResourceDeserializer<Player>("pubgkt.Player") {
@@ -8,6 +9,7 @@ internal object PlayerSerializer : JsonApiResourceDeserializer<Player>("pubgkt.P
         attributes: JsonObject,
         id: String,
         relationships: JsonObject?,
+        included: JsonArray?,
     ): Player = Player(
         id = id,
         banType = attributes.requiredString("banType").toBanType(),

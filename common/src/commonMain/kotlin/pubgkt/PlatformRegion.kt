@@ -26,8 +26,16 @@ public enum class PlatformRegion {
     XBOX_OC, // Oceania
     XBOX_SA; // South America
 
-    internal val path: String =
+    @PubgktInternal
+    public val path: String =
         name
             .lowercase()
             .replace(oldValue = "_", newValue = "-")
+
+    @PubgktInternal
+    public companion object {
+        public fun of(name: String): PlatformRegion =
+            PlatformRegion
+                .valueOf(name.uppercase().replace(oldValue = "-", newValue = "_"))
+    }
 }

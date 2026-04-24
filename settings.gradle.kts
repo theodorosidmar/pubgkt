@@ -10,12 +10,13 @@ dependencyResolutionManagement {
 
 include(
     "bom",
+    "clans",
     "common",
     "core",
-    "matches",
+    "leaderboards",
     "mastery",
+    "matches",
     "players",
-    "clans",
     "samples",
     "test-support",
 )

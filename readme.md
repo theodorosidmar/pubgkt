@@ -9,8 +9,9 @@ Kotlin Multiplatform library for the official [PUBG API](https://documentation.p
 | `bom`                         | ✓   |         |     |         |
 | `clans`                       | ✓   |         |     |         |
 | `core` (All modules together) | ✓   |         |     |         |
-| `matches`                     | ✓   |         |     |         |
+| `leaderboards`                | ✓   |         |     |         |
 | `mastery`                     | ✓   |         |     |         |
+| `matches`                     | ✓   |         |     |         |
 | `players`                     | ✓   |         |     |         |
 
 ## Getting Started
@@ -101,7 +102,7 @@ If the API returns HTTP 429 regardless (e.g. another instance shares your key),
 | Lifetime stats | Planned |
 | Mastery        | ✓ Done  |
 | Clans          | ✓ Done  |
-| Leaderboards   | Planned |
+| Leaderboards   | ✓ Done  |
 
 ## Platform Roadmap
 

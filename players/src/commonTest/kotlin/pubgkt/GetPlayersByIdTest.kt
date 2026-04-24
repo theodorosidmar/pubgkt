@@ -2,7 +2,7 @@ package pubgkt
 
 class GetPlayersByIdTest : GetPlayersTest() {
 
-    override val queryParameterName = "filter[playerIds]"
+    override val queryParameterName = FILTER_PLAYER_IDS
 
     override suspend fun PubgApi.fetchPlayers(vararg values: String): List<Player> =
         getPlayersById(*values)

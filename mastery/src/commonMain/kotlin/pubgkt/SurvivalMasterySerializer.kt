@@ -1,5 +1,6 @@
 package pubgkt
 
+import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 
 internal object SurvivalMasterySerializer : JsonApiResourceDeserializer<SurvivalMastery>("pubgkt.SurivalMastery") {
@@ -7,6 +8,7 @@ internal object SurvivalMasterySerializer : JsonApiResourceDeserializer<Survival
         attributes: JsonObject,
         id: String,
         relationships: JsonObject?,
+        included: JsonArray?,
     ): SurvivalMastery {
         val stats = attributes.requiredObject("stats")
         return SurvivalMastery(

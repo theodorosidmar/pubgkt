@@ -1,0 +1,69 @@
+public final class pubgkt/GameMode : java/lang/Enum {
+	public static final field DUO Lpubgkt/GameMode;
+	public static final field DUO_FPP Lpubgkt/GameMode;
+	public static final field SOLO Lpubgkt/GameMode;
+	public static final field SOLO_FPP Lpubgkt/GameMode;
+	public static final field SQUAD Lpubgkt/GameMode;
+	public static final field SQUAD_FPP Lpubgkt/GameMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lpubgkt/GameMode;
+	public static fun values ()[Lpubgkt/GameMode;
+}
+
+public final class pubgkt/GetLeaderboardKt {
+	public static final fun getLeaderboard (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/GameMode;Lpubgkt/PlatformRegion;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getLeaderboard$default (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/GameMode;Lpubgkt/PlatformRegion;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class pubgkt/Leaderboard {
+	public fun <init> (Ljava/lang/String;Lpubgkt/GameMode;Lpubgkt/PlatformRegion;Ljava/util/List;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Lpubgkt/GameMode;
+	public final fun component3 ()Lpubgkt/PlatformRegion;
+	public final fun component4 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Lpubgkt/GameMode;Lpubgkt/PlatformRegion;Ljava/util/List;)Lpubgkt/Leaderboard;
+	public static synthetic fun copy$default (Lpubgkt/Leaderboard;Ljava/lang/String;Lpubgkt/GameMode;Lpubgkt/PlatformRegion;Ljava/util/List;ILjava/lang/Object;)Lpubgkt/Leaderboard;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getGameMode ()Lpubgkt/GameMode;
+	public final fun getPlacements ()Ljava/util/List;
+	public final fun getPlatformRegion ()Lpubgkt/PlatformRegion;
+	public final fun getSeasonId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/LeaderboardPlacement {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIIIIDDLjava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()D
+	public final fun component11 ()D
+	public final fun component12 ()Ljava/lang/String;
+	public final fun component13 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()I
+	public final fun component4 ()I
+	public final fun component5 ()I
+	public final fun component6 ()I
+	public final fun component7 ()I
+	public final fun component8 ()I
+	public final fun component9 ()I
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;IIIIIIIDDLjava/lang/String;Ljava/lang/String;)Lpubgkt/LeaderboardPlacement;
+	public static synthetic fun copy$default (Lpubgkt/LeaderboardPlacement;Ljava/lang/String;Ljava/lang/String;IIIIIIIDDLjava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lpubgkt/LeaderboardPlacement;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAverageDamage ()I
+	public final fun getAverageKill ()D
+	public final fun getAverageRank ()D
+	public final fun getGames ()I
+	public final fun getKda ()I
+	public final fun getKills ()I
+	public final fun getPlayerId ()Ljava/lang/String;
+	public final fun getPlayerName ()Ljava/lang/String;
+	public final fun getRank ()I
+	public final fun getRankPoints ()I
+	public final fun getSubTier ()Ljava/lang/String;
+	public final fun getTier ()Ljava/lang/String;
+	public final fun getWins ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
