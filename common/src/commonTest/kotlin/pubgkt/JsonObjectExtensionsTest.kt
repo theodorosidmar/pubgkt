@@ -217,6 +217,28 @@ class JsonObjectExtensionsTest {
         assertNull(obj.optionalObject("name"))
     }
 
+    // ── requiredArray ──────────────────────────────────────────────────
+
+    @Test
+    fun `requiredArray returns array when present`() {
+        val items = obj.requiredArray("items")
+        assertEquals(1, items.size)
+    }
+
+    @Test
+    fun `requiredArray throws when key is missing`() {
+        assertFailsWith<SerializationException> {
+            obj.requiredArray("missing")
+        }
+    }
+
+    @Test
+    fun `requiredArray throws when value is not an array`() {
+        assertFailsWith<SerializationException> {
+            obj.requiredArray("name")
+        }
+    }
+
     // ── optionalArray ───────────────────────────────────────────────────
 
     @Test

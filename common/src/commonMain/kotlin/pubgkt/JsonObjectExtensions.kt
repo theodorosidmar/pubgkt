@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions")
+
 package pubgkt
 
 import kotlinx.serialization.SerializationException
@@ -22,6 +24,14 @@ public fun JsonObject.requiredObject(key: String): JsonObject =
 @PubgktInternal
 public fun JsonObject.optionalObject(key: String): JsonObject? =
     this[key] as? JsonObject
+
+/**
+ * Returns the nested [JsonArray] for the given [key], or throws
+ * [SerializationException] if the key is missing or not an object.
+ */
+@PubgktInternal
+public fun JsonObject.requiredArray(key: String): JsonArray =
+    optionalArray(key) ?: throw SerializationException("Missing array field '$key'")
 
 /**
  * Returns the nested [JsonArray] for the given [key], or `null` when the key

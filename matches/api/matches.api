@@ -1,3 +1,14 @@
+public final class pubgkt/DeathType : java/lang/Enum {
+	public static final field ALIVE Lpubgkt/DeathType;
+	public static final field BYPLAYER Lpubgkt/DeathType;
+	public static final field BYZONE Lpubgkt/DeathType;
+	public static final field LOGOUT Lpubgkt/DeathType;
+	public static final field SUICIDE Lpubgkt/DeathType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lpubgkt/DeathType;
+	public static fun values ()[Lpubgkt/DeathType;
+}
+
 public final class pubgkt/GameMode : java/lang/Enum {
 	public static final field CONQUEST_DUO Lpubgkt/GameMode;
 	public static final field CONQUEST_DUO_FPP Lpubgkt/GameMode;
@@ -44,7 +55,8 @@ public final class pubgkt/GameMode : java/lang/Enum {
 }
 
 public final class pubgkt/GetMatchByIdKt {
-	public static final fun getMatchById (Lpubgkt/PubgApi;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun getMatchById (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getMatchById$default (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class pubgkt/Map : java/lang/Enum {
@@ -52,6 +64,7 @@ public final class pubgkt/Map : java/lang/Enum {
 	public static final field DESERT_MAIN Lpubgkt/Map;
 	public static final field DIHOROTOK_MAIN Lpubgkt/Map;
 	public static final field ERANGEL_MAIN Lpubgkt/Map;
+	public static final field NEON_MAIN Lpubgkt/Map;
 	public static final field RANGE_MAIN Lpubgkt/Map;
 	public static final field SAVAGE_MAIN Lpubgkt/Map;
 	public static final field SUMMERLAND_MAIN Lpubgkt/Map;
@@ -62,9 +75,10 @@ public final class pubgkt/Map : java/lang/Enum {
 }
 
 public final class pubgkt/Match {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/GameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;I)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/GameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;ILjava/util/List;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()I
+	public final fun component11 ()Ljava/util/List;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()Lpubgkt/Platform;
 	public final fun component4 ()Z
@@ -73,8 +87,8 @@ public final class pubgkt/Match {
 	public final fun component7 ()Lpubgkt/Map;
 	public final fun component8 ()Lpubgkt/SeasonState;
 	public final fun component9 ()Lkotlin/time/Instant;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/GameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;I)Lpubgkt/Match;
-	public static synthetic fun copy$default (Lpubgkt/Match;Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/GameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;IILjava/lang/Object;)Lpubgkt/Match;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/GameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;ILjava/util/List;)Lpubgkt/Match;
+	public static synthetic fun copy$default (Lpubgkt/Match;Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/GameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;ILjava/util/List;ILjava/lang/Object;)Lpubgkt/Match;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCreatedAt ()Lkotlin/time/Instant;
 	public final fun getDuration ()I
@@ -82,11 +96,84 @@ public final class pubgkt/Match {
 	public final fun getId ()Ljava/lang/String;
 	public final fun getMapName ()Lpubgkt/Map;
 	public final fun getMatchType ()Lpubgkt/MatchType;
+	public final fun getParticipants ()Ljava/util/List;
 	public final fun getPlatform ()Lpubgkt/Platform;
 	public final fun getSeasonState ()Lpubgkt/SeasonState;
 	public final fun getTitleId ()Ljava/lang/String;
 	public fun hashCode ()I
 	public final fun isCustomMatch ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/MatchParticipant {
+	public fun <init> (IIZLjava/util/List;)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun component3 ()Z
+	public final fun component4 ()Ljava/util/List;
+	public final fun copy (IIZLjava/util/List;)Lpubgkt/MatchParticipant;
+	public static synthetic fun copy$default (Lpubgkt/MatchParticipant;IIZLjava/util/List;ILjava/lang/Object;)Lpubgkt/MatchParticipant;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPlayers ()Ljava/util/List;
+	public final fun getRank ()I
+	public final fun getTeamId ()I
+	public final fun getWon ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/MatchPlayer {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;IIIDLpubgkt/DeathType;IIIIIDIDIDIIIDII)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()I
+	public final fun component11 ()I
+	public final fun component12 ()I
+	public final fun component13 ()D
+	public final fun component14 ()I
+	public final fun component15 ()D
+	public final fun component16 ()I
+	public final fun component17 ()D
+	public final fun component18 ()I
+	public final fun component19 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component20 ()I
+	public final fun component21 ()D
+	public final fun component22 ()I
+	public final fun component23 ()I
+	public final fun component3 ()I
+	public final fun component4 ()I
+	public final fun component5 ()I
+	public final fun component6 ()D
+	public final fun component7 ()Lpubgkt/DeathType;
+	public final fun component8 ()I
+	public final fun component9 ()I
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;IIIDLpubgkt/DeathType;IIIIIDIDIDIIIDII)Lpubgkt/MatchPlayer;
+	public static synthetic fun copy$default (Lpubgkt/MatchPlayer;Ljava/lang/String;Ljava/lang/String;IIIDLpubgkt/DeathType;IIIIIDIDIDIIIDIIILjava/lang/Object;)Lpubgkt/MatchPlayer;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAssists ()I
+	public final fun getBoosts ()I
+	public final fun getDamageDealt ()D
+	public final fun getDbnos ()I
+	public final fun getDeathType ()Lpubgkt/DeathType;
+	public final fun getHeadshotKills ()I
+	public final fun getHeals ()I
+	public final fun getId ()Ljava/lang/String;
+	public final fun getKillPlace ()I
+	public final fun getKillStreaks ()I
+	public final fun getKills ()I
+	public final fun getLongestKill ()D
+	public final fun getName ()Ljava/lang/String;
+	public final fun getRevives ()I
+	public final fun getRideDistance ()D
+	public final fun getRoadKills ()I
+	public final fun getSwimDistance ()D
+	public final fun getTeamKills ()I
+	public final fun getTimeSurvived ()I
+	public final fun getVehicleDestroys ()I
+	public final fun getWalkDistance ()D
+	public final fun getWeaponsAcquired ()I
+	public final fun getWinPlace ()I
+	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 

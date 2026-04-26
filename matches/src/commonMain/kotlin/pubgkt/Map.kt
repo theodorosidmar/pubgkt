@@ -9,4 +9,5 @@ public enum class Map {
     SAVAGE_MAIN,
     SUMMERLAND_MAIN,
     TIGER_MAIN,
+    NEON_MAIN,
 }

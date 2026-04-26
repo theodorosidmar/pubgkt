@@ -61,4 +61,10 @@ public data class Match(
      * Length of the match measured in seconds
      */
     val duration: Int,
+
+    /**
+     * List of participants of this match
+     * @see MatchParticipant
+     */
+    val participants: List<MatchParticipant>,
 )
