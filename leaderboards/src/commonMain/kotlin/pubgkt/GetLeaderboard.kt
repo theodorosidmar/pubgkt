@@ -1,6 +1,5 @@
 package pubgkt
 
-
 /**
  * Returns the [Leaderboard] by their season id, game mode and platform region.
  *
@@ -18,4 +17,3 @@ public suspend fun PubgApi.getLeaderboard(
     client
         .get("$LEADERBOARDS_PATH/$seasonId/${gameMode.path}", platformRegion)
         .deserialize(LeaderboardSerializer)
-

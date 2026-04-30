@@ -9,51 +9,6 @@ public final class pubgkt/DeathType : java/lang/Enum {
 	public static fun values ()[Lpubgkt/DeathType;
 }
 
-public final class pubgkt/GameMode : java/lang/Enum {
-	public static final field CONQUEST_DUO Lpubgkt/GameMode;
-	public static final field CONQUEST_DUO_FPP Lpubgkt/GameMode;
-	public static final field CONQUEST_SOLO Lpubgkt/GameMode;
-	public static final field CONQUEST_SOLO_FPP Lpubgkt/GameMode;
-	public static final field CONQUEST_SQUAD Lpubgkt/GameMode;
-	public static final field CONQUEST_SQUAD_FPP Lpubgkt/GameMode;
-	public static final field DUO Lpubgkt/GameMode;
-	public static final field DUO_FPP Lpubgkt/GameMode;
-	public static final field ESPORTS_DUO Lpubgkt/GameMode;
-	public static final field ESPORTS_DUO_FPP Lpubgkt/GameMode;
-	public static final field ESPORTS_SOLO Lpubgkt/GameMode;
-	public static final field ESPORTS_SOLO_FPP Lpubgkt/GameMode;
-	public static final field ESPORTS_SQUAD Lpubgkt/GameMode;
-	public static final field ESPORTS_SQUAD_FPP Lpubgkt/GameMode;
-	public static final field LAB_FPP Lpubgkt/GameMode;
-	public static final field LAB_TPP Lpubgkt/GameMode;
-	public static final field NORMAL_DUO Lpubgkt/GameMode;
-	public static final field NORMAL_DUO_FPP Lpubgkt/GameMode;
-	public static final field NORMAL_SOLO Lpubgkt/GameMode;
-	public static final field NORMAL_SOLO_FPP Lpubgkt/GameMode;
-	public static final field NORMAL_SQUAD Lpubgkt/GameMode;
-	public static final field NORMAL_SQUAD_FPP Lpubgkt/GameMode;
-	public static final field SOLO Lpubgkt/GameMode;
-	public static final field SOLO_FPP Lpubgkt/GameMode;
-	public static final field SQUAD Lpubgkt/GameMode;
-	public static final field SQUAD_FPP Lpubgkt/GameMode;
-	public static final field TDM Lpubgkt/GameMode;
-	public static final field WAR_DUO Lpubgkt/GameMode;
-	public static final field WAR_DUO_FPP Lpubgkt/GameMode;
-	public static final field WAR_SOLO Lpubgkt/GameMode;
-	public static final field WAR_SOLO_FPP Lpubgkt/GameMode;
-	public static final field WAR_SQUAD Lpubgkt/GameMode;
-	public static final field WAR_SQUAD_FPP Lpubgkt/GameMode;
-	public static final field ZOMBIE_DUO Lpubgkt/GameMode;
-	public static final field ZOMBIE_DUO_FPP Lpubgkt/GameMode;
-	public static final field ZOMBIE_SOLO Lpubgkt/GameMode;
-	public static final field ZOMBIE_SOLO_FPP Lpubgkt/GameMode;
-	public static final field ZOMBIE_SQUAD Lpubgkt/GameMode;
-	public static final field ZOMBIE_SQUAD_FPP Lpubgkt/GameMode;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lpubgkt/GameMode;
-	public static fun values ()[Lpubgkt/GameMode;
-}
-
 public final class pubgkt/GetMatchByIdKt {
 	public static final fun getMatchById (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getMatchById$default (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
@@ -75,7 +30,7 @@ public final class pubgkt/Map : java/lang/Enum {
 }
 
 public final class pubgkt/Match {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/GameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;ILjava/util/List;)V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/MatchGameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;ILjava/util/List;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()I
 	public final fun component11 ()Ljava/util/List;
@@ -83,16 +38,16 @@ public final class pubgkt/Match {
 	public final fun component3 ()Lpubgkt/Platform;
 	public final fun component4 ()Z
 	public final fun component5 ()Lpubgkt/MatchType;
-	public final fun component6 ()Lpubgkt/GameMode;
+	public final fun component6 ()Lpubgkt/MatchGameMode;
 	public final fun component7 ()Lpubgkt/Map;
 	public final fun component8 ()Lpubgkt/SeasonState;
 	public final fun component9 ()Lkotlin/time/Instant;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/GameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;ILjava/util/List;)Lpubgkt/Match;
-	public static synthetic fun copy$default (Lpubgkt/Match;Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/GameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;ILjava/util/List;ILjava/lang/Object;)Lpubgkt/Match;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/MatchGameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;ILjava/util/List;)Lpubgkt/Match;
+	public static synthetic fun copy$default (Lpubgkt/Match;Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;ZLpubgkt/MatchType;Lpubgkt/MatchGameMode;Lpubgkt/Map;Lpubgkt/SeasonState;Lkotlin/time/Instant;ILjava/util/List;ILjava/lang/Object;)Lpubgkt/Match;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getCreatedAt ()Lkotlin/time/Instant;
 	public final fun getDuration ()I
-	public final fun getGameMode ()Lpubgkt/GameMode;
+	public final fun getGameMode ()Lpubgkt/MatchGameMode;
 	public final fun getId ()Ljava/lang/String;
 	public final fun getMapName ()Lpubgkt/Map;
 	public final fun getMatchType ()Lpubgkt/MatchType;
@@ -103,6 +58,51 @@ public final class pubgkt/Match {
 	public fun hashCode ()I
 	public final fun isCustomMatch ()Z
 	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/MatchGameMode : java/lang/Enum {
+	public static final field CONQUEST_DUO Lpubgkt/MatchGameMode;
+	public static final field CONQUEST_DUO_FPP Lpubgkt/MatchGameMode;
+	public static final field CONQUEST_SOLO Lpubgkt/MatchGameMode;
+	public static final field CONQUEST_SOLO_FPP Lpubgkt/MatchGameMode;
+	public static final field CONQUEST_SQUAD Lpubgkt/MatchGameMode;
+	public static final field CONQUEST_SQUAD_FPP Lpubgkt/MatchGameMode;
+	public static final field DUO Lpubgkt/MatchGameMode;
+	public static final field DUO_FPP Lpubgkt/MatchGameMode;
+	public static final field ESPORTS_DUO Lpubgkt/MatchGameMode;
+	public static final field ESPORTS_DUO_FPP Lpubgkt/MatchGameMode;
+	public static final field ESPORTS_SOLO Lpubgkt/MatchGameMode;
+	public static final field ESPORTS_SOLO_FPP Lpubgkt/MatchGameMode;
+	public static final field ESPORTS_SQUAD Lpubgkt/MatchGameMode;
+	public static final field ESPORTS_SQUAD_FPP Lpubgkt/MatchGameMode;
+	public static final field LAB_FPP Lpubgkt/MatchGameMode;
+	public static final field LAB_TPP Lpubgkt/MatchGameMode;
+	public static final field NORMAL_DUO Lpubgkt/MatchGameMode;
+	public static final field NORMAL_DUO_FPP Lpubgkt/MatchGameMode;
+	public static final field NORMAL_SOLO Lpubgkt/MatchGameMode;
+	public static final field NORMAL_SOLO_FPP Lpubgkt/MatchGameMode;
+	public static final field NORMAL_SQUAD Lpubgkt/MatchGameMode;
+	public static final field NORMAL_SQUAD_FPP Lpubgkt/MatchGameMode;
+	public static final field SOLO Lpubgkt/MatchGameMode;
+	public static final field SOLO_FPP Lpubgkt/MatchGameMode;
+	public static final field SQUAD Lpubgkt/MatchGameMode;
+	public static final field SQUAD_FPP Lpubgkt/MatchGameMode;
+	public static final field TDM Lpubgkt/MatchGameMode;
+	public static final field WAR_DUO Lpubgkt/MatchGameMode;
+	public static final field WAR_DUO_FPP Lpubgkt/MatchGameMode;
+	public static final field WAR_SOLO Lpubgkt/MatchGameMode;
+	public static final field WAR_SOLO_FPP Lpubgkt/MatchGameMode;
+	public static final field WAR_SQUAD Lpubgkt/MatchGameMode;
+	public static final field WAR_SQUAD_FPP Lpubgkt/MatchGameMode;
+	public static final field ZOMBIE_DUO Lpubgkt/MatchGameMode;
+	public static final field ZOMBIE_DUO_FPP Lpubgkt/MatchGameMode;
+	public static final field ZOMBIE_SOLO Lpubgkt/MatchGameMode;
+	public static final field ZOMBIE_SOLO_FPP Lpubgkt/MatchGameMode;
+	public static final field ZOMBIE_SQUAD Lpubgkt/MatchGameMode;
+	public static final field ZOMBIE_SQUAD_FPP Lpubgkt/MatchGameMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lpubgkt/MatchGameMode;
+	public static fun values ()[Lpubgkt/MatchGameMode;
 }
 
 public final class pubgkt/MatchParticipant {

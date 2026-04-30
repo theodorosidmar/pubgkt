@@ -38,6 +38,18 @@ public final class pubgkt/ExponentialBackoff : pubgkt/BackoffStrategy {
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class pubgkt/GameMode : java/lang/Enum {
+	public static final field DUO Lpubgkt/GameMode;
+	public static final field DUO_FPP Lpubgkt/GameMode;
+	public static final field SOLO Lpubgkt/GameMode;
+	public static final field SOLO_FPP Lpubgkt/GameMode;
+	public static final field SQUAD Lpubgkt/GameMode;
+	public static final field SQUAD_FPP Lpubgkt/GameMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lpubgkt/GameMode;
+	public static fun values ()[Lpubgkt/GameMode;
+}
+
 public final class pubgkt/NoBackoff : pubgkt/BackoffStrategy {
 	public static final field INSTANCE Lpubgkt/NoBackoff;
 	public fun equals (Ljava/lang/Object;)Z
@@ -135,6 +147,29 @@ public final class pubgkt/Retry : pubgkt/RetryPolicy {
 
 public abstract interface class pubgkt/RetryPolicy {
 	public abstract fun getEnabled ()Z
+}
+
+public final class pubgkt/Season {
+	public fun <init> (Ljava/lang/String;ZZ)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Z
+	public final fun component3 ()Z
+	public final fun copy (Ljava/lang/String;ZZ)Lpubgkt/Season;
+	public static synthetic fun copy$default (Lpubgkt/Season;Ljava/lang/String;ZZILjava/lang/Object;)Lpubgkt/Season;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isCurrentSeason ()Z
+	public final fun isOffSeason ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/SeasonKt {
+	public static final fun currentOrNull (Ljava/util/List;)Lpubgkt/Season;
+	public static final fun seasons (Lpubgkt/PubgApi;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun seasons (Lpubgkt/PubgApi;Lpubgkt/PlatformRegion;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun seasons$default (Lpubgkt/PubgApi;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun seasons$default (Lpubgkt/PubgApi;Lpubgkt/PlatformRegion;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class pubgkt/StatusKt {

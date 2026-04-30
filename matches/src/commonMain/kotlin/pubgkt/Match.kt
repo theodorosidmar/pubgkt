@@ -36,9 +36,9 @@ public data class Match(
 
     /**
      * Game Mode
-     * @see GameMode
+     * @see MatchGameMode
      */
-    val gameMode: GameMode,
+    val gameMode: MatchGameMode,
 
     /**
      * Map of the match

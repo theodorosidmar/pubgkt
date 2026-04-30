@@ -10,6 +10,7 @@ kotlin {
             api(projects.mastery)
             api(projects.matches)
             api(projects.players)
+            api(projects.stats)
         }
     }
 }
@@ -26,6 +27,7 @@ dependencies {
     dokka(projects.mastery)
     dokka(projects.matches)
     dokka(projects.players)
+    dokka(projects.stats)
 
     kover(projects.clans)
     kover(projects.common)
@@ -33,4 +35,5 @@ dependencies {
     kover(projects.mastery)
     kover(projects.matches)
     kover(projects.players)
+    kover(projects.stats)
 }

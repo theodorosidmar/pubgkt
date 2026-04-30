@@ -18,5 +18,6 @@ include(
     "matches",
     "players",
     "samples",
+    "stats",
     "test-support",
 )

@@ -3,7 +3,7 @@ package pubgkt
 /**
  * PUBG Game Modes
  */
-public enum class GameMode {
+public enum class MatchGameMode {
     DUO,
     DUO_FPP,
     SOLO,

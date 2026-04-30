@@ -1,4 +1,4 @@
-- [ ] Stats module
+- [X] Stats module
 - [ ] Telemetry module??
 - [X] HTTP Retries??
 - [ ] Kotlin Rich errors
