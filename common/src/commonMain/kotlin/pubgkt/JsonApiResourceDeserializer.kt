@@ -57,7 +57,7 @@ public abstract class JsonApiResourceDeserializer<T>(
      */
     protected abstract fun deserializeResource(
         attributes: JsonObject,
-        id: String,
+        id: String?,
         relationships: JsonObject?,
         included: JsonArray?,
     ): T
@@ -80,7 +80,7 @@ public abstract class JsonApiResourceDeserializer<T>(
     ): T =
         deserializeResource(
             attributes = resource.requiredObject("attributes"),
-            id = resource.requiredString("id"),
+            id = resource.optionalString("id"),
             relationships = resource.optionalObject("relationships"),
             included = included,
         )

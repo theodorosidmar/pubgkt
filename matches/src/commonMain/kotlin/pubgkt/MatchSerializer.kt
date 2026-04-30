@@ -9,10 +9,11 @@ internal object MatchSerializer : JsonApiResourceDeserializer<Match>("pubgkt.Mat
     @Suppress("LongMethod")
     override fun deserializeResource(
         attributes: JsonObject,
-        id: String,
+        id: String?,
         relationships: JsonObject?,
         included: JsonArray?,
     ): Match {
+        requireId(id)
         val participants = included?.filter { it.jsonObject.requiredString("type") == "participant" }
         val rosters = included?.filter { it.jsonObject.requiredString("type") == "roster" }
 

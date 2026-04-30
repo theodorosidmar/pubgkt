@@ -6,7 +6,7 @@ import kotlinx.serialization.json.JsonObject
 internal object LeaderboardSerializer : JsonApiResourceDeserializer<Leaderboard>("pubgkt.Leaderboard") {
     override fun deserializeResource(
         attributes: JsonObject,
-        id: String,
+        id: String?,
         relationships: JsonObject?,
         included: JsonArray?,
     ): Leaderboard = Leaderboard(

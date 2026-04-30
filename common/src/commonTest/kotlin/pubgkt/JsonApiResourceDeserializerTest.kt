@@ -14,7 +14,7 @@ class JsonApiResourceDeserializerTest {
 
     /** Minimal stub that exposes the raw fields the base class extracts. */
     private data class Stub(
-        val id: String,
+        val id: String?,
         val attrs: JsonObject,
         val rels: JsonObject?,
         val included: JsonArray?,
@@ -23,7 +23,7 @@ class JsonApiResourceDeserializerTest {
     private object StubDeserializer : JsonApiResourceDeserializer<Stub>("test.Stub") {
         override fun deserializeResource(
             attributes: JsonObject,
-            id: String,
+            id: String?,
             relationships: JsonObject?,
             included: JsonArray?,
         ): Stub = Stub(
@@ -76,10 +76,9 @@ class JsonApiResourceDeserializerTest {
     }
 
     @Test
-    fun `throws when id is missing`() {
-        assertFailsWith<SerializationException> {
-            deserialize(RESOURCE_MISSING_ID_JSON)
-        }
+    fun `id is null when absent`() {
+        val stub = deserialize(RESOURCE_MISSING_ID_JSON)
+        assertNull(stub.id)
     }
 
     @Test

@@ -9,10 +9,11 @@ internal object WeaponMasterySerializer :
     @Suppress("LongMethod")
     override fun deserializeResource(
         attributes: JsonObject,
-        id: String,
+        id: String?,
         relationships: JsonObject?,
         included: JsonArray?,
     ): WeaponMastery {
+        requireId(id)
         val weaponsSummary = attributes.requiredObject("weaponSummaries")
         return WeaponMastery(
             playerId = id,

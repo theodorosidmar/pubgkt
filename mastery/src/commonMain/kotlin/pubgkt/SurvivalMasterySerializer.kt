@@ -6,10 +6,11 @@ import kotlinx.serialization.json.JsonObject
 internal object SurvivalMasterySerializer : JsonApiResourceDeserializer<SurvivalMastery>("pubgkt.SurivalMastery") {
     override fun deserializeResource(
         attributes: JsonObject,
-        id: String,
+        id: String?,
         relationships: JsonObject?,
         included: JsonArray?,
     ): SurvivalMastery {
+        requireId(id)
         val stats = attributes.requiredObject("stats")
         return SurvivalMastery(
             playerId = id,
