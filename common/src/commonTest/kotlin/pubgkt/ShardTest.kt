@@ -7,7 +7,7 @@ import kotlin.test.assertTrue
 
 class ShardTest {
     private val engine = mockEngine()
-    private val api = PubgApi(engine, apiKey = "")
+    private val api = PubgApi(engine)
 
     @Test
     fun `should use shard at requests`() = runTest {

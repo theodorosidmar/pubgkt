@@ -9,7 +9,7 @@ class GetClanByIdTest {
     private val engine = mockEngine {
         body = CLAN_RESPONSE_JSON
     }
-    private val api = PubgApi(engine = engine, apiKey = "")
+    private val api = PubgApi(engine = engine)
 
     @Test
     fun `sends request to the correct path`() = runTest {

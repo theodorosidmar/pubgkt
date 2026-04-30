@@ -9,7 +9,7 @@ class GetLeaderboardTest {
     private val engine = mockEngine {
         body = LEADERBOARD_RESPONSE_JSON
     }
-    private val api = PubgApi(engine = engine, apiKey = "")
+    private val api = PubgApi(engine = engine)
 
     @Test
     fun `sends request to the correct path`() = runTest {

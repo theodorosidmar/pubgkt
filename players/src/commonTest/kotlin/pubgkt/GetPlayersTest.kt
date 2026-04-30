@@ -16,7 +16,7 @@ abstract class GetPlayersTest {
     private val engine = mockEngine {
         body = PLAYERS_RESPONSE_JSON
     }
-    private val api = PubgApi(engine = engine, apiKey = "")
+    private val api = PubgApi(engine = engine)
 
     /** The query-parameter key used by the endpoint (e.g. `"filter[playerIds]"`). */
     protected abstract val queryParameterName: String

@@ -10,7 +10,7 @@ class GetMatchByIdTest {
     private val engine = mockEngine {
         body = MATCH_TDM_RESPONSE_JSON
     }
-    private val api = PubgApi(engine = engine, apiKey = "")
+    private val api = PubgApi(engine = engine)
 
     @Test
     fun `sends request to the correct path`() = runTest {
@@ -49,7 +49,7 @@ class GetMatchByIdTest {
         val engine = mockEngine {
             body = MATCH_SQUAD_RESPONSE_JSON
         }
-        val api = PubgApi(engine = engine, apiKey = "")
+        val api = PubgApi(engine = engine)
         val match = api.getMatchById("4a57679f-6b4b-4d4c-85ea-72e2e8272c77")
 
         assertEquals("4a57679f-6b4b-4d4c-85ea-72e2e8272c77", match.id)
@@ -101,7 +101,7 @@ class GetMatchByIdTest {
         val engine = mockEngine {
             body = MATCH_MISSING_INCLUDED_RESPONSE_JSON
         }
-        val api = PubgApi(engine = engine, apiKey = "")
+        val api = PubgApi(engine = engine)
         val match = api.getMatchById("4a57679f-6b4b-4d4c-85ea-72e2e8272c77")
 
         assertTrue(match.participants.isEmpty())

@@ -13,8 +13,8 @@ class RequestPolicyTest {
     fun `should rate limit and authorize when policy is default`() = runTest {
         val engine = mockEngine {}
         val api = PubgApi(
-            apiKey = "test",
             engine = engine,
+            apiKey = "test",
             rateLimiter = stubRateLimiter,
         )
 
@@ -31,8 +31,8 @@ class RequestPolicyTest {
     fun `should not rate limit and authorize when policy is public`() = runTest {
         val engine = mockEngine {}
         val api = PubgApi(
-            apiKey = "test",
             engine = engine,
+            apiKey = "test",
             rateLimiter = stubRateLimiter,
         )
 

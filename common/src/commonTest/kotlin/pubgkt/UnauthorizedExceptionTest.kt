@@ -15,7 +15,6 @@ class UnauthorizedExceptionTest {
                 body = ""
                 status = HttpStatusCode.Unauthorized
             },
-            apiKey = "",
         )
 
         assertFailsWith<UnauthorizedException> {

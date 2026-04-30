@@ -70,8 +70,8 @@ public class PubgApi @JvmOverloads constructor(
     @PubgktInternal
     public constructor(
         engine: HttpClientEngine,
-        rateLimiter: RateLimiter = RateLimiter.None,
         apiKey: String = "",
+        rateLimiter: RateLimiter = RateLimiter.None,
     ) : this(apiKey = apiKey, rateLimiter = rateLimiter) {
         _engineOverride = engine
     }
