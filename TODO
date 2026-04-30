@@ -1,0 +1,16 @@
+- [ ] Stats module
+- [ ] Telemetry module??
+- [ ] HTTP Retries??
+- [ ] Kotlin Rich errors
+- [ ] Gradle check must run detekt and tests
+- [ ] Add nodejs compilation
+- [ ] Add android compilation
+- [ ] Add native/macos compilation???
+- [ ] Add iOS compilation???
+- [ ] Improves samples module and documentation (a lot)
+- [ ] Dokka and Detekt badges? How can I leverage it?
+- [ ] Publish dokka documentation
+- [ ] Publish on Maven Central
+- [ ] Publish on npm
+- [ ] Publish at Kotlin Slack #feed
+- [ ] Sponsor the project on GitHub
