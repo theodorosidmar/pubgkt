@@ -1,6 +1,6 @@
 - [ ] Stats module
 - [ ] Telemetry module??
-- [ ] HTTP Retries??
+- [X] HTTP Retries??
 - [ ] Kotlin Rich errors
 - [ ] Gradle check must run detekt and tests
 - [ ] Add nodejs compilation

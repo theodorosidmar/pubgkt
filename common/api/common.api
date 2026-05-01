@@ -1,3 +1,7 @@
+public abstract interface class pubgkt/BackoffStrategy {
+	public abstract fun getEnabled ()Z
+}
+
 public final class pubgkt/ConcurrentDelayRateLimiter : pubgkt/DelayRateLimiter {
 	public fun <init> ()V
 	public fun <init> (Lkotlin/time/Clock;)V
@@ -12,6 +16,42 @@ public class pubgkt/DelayRateLimiter : pubgkt/RateLimiter {
 	protected final fun getClock ()Lkotlin/time/Clock;
 	public fun onResponse (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Long;)V
 	public fun throttle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class pubgkt/ExponentialBackoff : pubgkt/BackoffStrategy {
+	public fun <init> ()V
+	public fun <init> (DJJJ)V
+	public synthetic fun <init> (DJJJILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()D
+	public final fun component2 ()J
+	public final fun component3 ()J
+	public final fun component4 ()J
+	public final fun copy (DJJJ)Lpubgkt/ExponentialBackoff;
+	public static synthetic fun copy$default (Lpubgkt/ExponentialBackoff;DJJJILjava/lang/Object;)Lpubgkt/ExponentialBackoff;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBase ()D
+	public final fun getBaseDelayMs ()J
+	public fun getEnabled ()Z
+	public final fun getMaxDelayMs ()J
+	public final fun getRandomizationMs ()J
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/NoBackoff : pubgkt/BackoffStrategy {
+	public static final field INSTANCE Lpubgkt/NoBackoff;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getEnabled ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class pubgkt/NoRetry : pubgkt/RetryPolicy {
+	public static final field INSTANCE Lpubgkt/NoRetry;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getEnabled ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class pubgkt/Platform : java/lang/Enum {
@@ -56,8 +96,8 @@ public final class pubgkt/PlatformRegion : java/lang/Enum {
 public final class pubgkt/PubgApi {
 	public fun <init> (Ljava/lang/String;)V
 	public fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;)V
-	public synthetic fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public final fun getRateLimiter ()Lpubgkt/RateLimiter;
+	public fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;Lpubgkt/RetryPolicy;)V
+	public synthetic fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;Lpubgkt/RetryPolicy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
 public final class pubgkt/RateLimitExceededException : java/lang/Exception {
@@ -73,6 +113,28 @@ public abstract interface class pubgkt/RateLimiter {
 
 public final class pubgkt/RateLimiter$Companion {
 	public final fun getNone ()Lpubgkt/RateLimiter;
+}
+
+public final class pubgkt/Retry : pubgkt/RetryPolicy {
+	public fun <init> ()V
+	public fun <init> (ILpubgkt/BackoffStrategy;Ljava/util/List;)V
+	public synthetic fun <init> (ILpubgkt/BackoffStrategy;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()I
+	public final fun component2 ()Lpubgkt/BackoffStrategy;
+	public final fun component3 ()Ljava/util/List;
+	public final fun copy (ILpubgkt/BackoffStrategy;Ljava/util/List;)Lpubgkt/Retry;
+	public static synthetic fun copy$default (Lpubgkt/Retry;ILpubgkt/BackoffStrategy;Ljava/util/List;ILjava/lang/Object;)Lpubgkt/Retry;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getBackoff ()Lpubgkt/BackoffStrategy;
+	public fun getEnabled ()Z
+	public final fun getMaxRetries ()I
+	public final fun getRetryOnExceptions ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class pubgkt/RetryPolicy {
+	public abstract fun getEnabled ()Z
 }
 
 public final class pubgkt/StatusKt {

@@ -1,25 +1,7 @@
 package pubgkt
 
 import io.ktor.client.HttpClient
-import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngine
-import io.ktor.client.plugins.HttpResponseValidator
-import io.ktor.client.plugins.api.createClientPlugin
-import io.ktor.client.plugins.compression.ContentEncoding
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.defaultRequest
-import io.ktor.client.plugins.logging.DEFAULT
-import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logger
-import io.ktor.client.plugins.logging.Logging
-import io.ktor.client.request.HttpRequestBuilder
-import io.ktor.client.request.bearerAuth
-import io.ktor.http.ContentType
-import io.ktor.http.HttpStatusCode
-import io.ktor.http.URLProtocol
-import io.ktor.http.contentType
-import io.ktor.serialization.kotlinx.serialization
-import io.ktor.util.AttributeKey
 
 /**
  * Entry point for all PUBG API interactions.
@@ -36,12 +18,16 @@ import io.ktor.util.AttributeKey
  * @param rateLimiter Controls request throughput. Defaults to [DelayRateLimiter],
  *   which proactively delays requests when the rate limit is exhausted.
  *   Pass [RateLimiter.None] to disable rate limiting entirely.
+ * @param retry Controls automatic retry behavior. Defaults to [NoRetry].
+ *   Pass a [Retry] instance to enable retries with configurable backoff.
  * @see RateLimiter
+ * @see RetryPolicy
  * @see <a href="https://documentation.pubg.com/en/introduction.html">PUBG Developer Portal</a>
  */
 public class PubgApi @JvmOverloads constructor(
-    private val apiKey: String,
-    public val rateLimiter: RateLimiter = DelayRateLimiter(),
+    internal val apiKey: String,
+    internal val rateLimiter: RateLimiter = DelayRateLimiter(),
+    internal val retry: RetryPolicy = NoRetry,
 ) {
 
     private var _engineOverride: HttpClientEngine? = null
@@ -72,7 +58,12 @@ public class PubgApi @JvmOverloads constructor(
         engine: HttpClientEngine,
         apiKey: String = "",
         rateLimiter: RateLimiter = RateLimiter.None,
-    ) : this(apiKey = apiKey, rateLimiter = rateLimiter) {
+        retry: RetryPolicy = NoRetry,
+    ) : this(
+        apiKey = apiKey,
+        rateLimiter = rateLimiter,
+        retry = retry,
+    ) {
         _engineOverride = engine
     }
 
@@ -82,56 +73,6 @@ public class PubgApi @JvmOverloads constructor(
             HttpClient(override) { configureClient() }
         } else {
             HttpClient(engine) { configureClient() }
-        }
-    }
-
-    private fun HttpClientConfig<*>.configureClient() {
-        install(ContentNegotiation) {
-            serialization(
-                ContentType.Application.Json,
-                json,
-            )
-        }
-
-        install(ContentEncoding) {
-            gzip()
-        }
-
-        install(Logging) {
-            logger = Logger.DEFAULT
-            level = LogLevel.INFO
-        }
-
-        install(RequestPolicyPlugin) {
-            rateLimiter = this@PubgApi.rateLimiter
-            apiKey = this@PubgApi.apiKey
-        }
-
-        defaultRequest {
-            url {
-                protocol = URLProtocol.HTTPS
-                host = HOST
-            }
-            contentType(
-                ContentType(
-                    contentType = "application",
-                    contentSubtype = "vnd.api+json",
-                )
-            )
-        }
-
-        HttpResponseValidator {
-            validateResponse { response ->
-                if (response.status == HttpStatusCode.Unauthorized) {
-                    throw UnauthorizedException()
-                }
-
-                if (response.status == HttpStatusCode.TooManyRequests) {
-                    throw RateLimitExceededException(
-                        resetAtEpochSeconds = response.headers[HEADER_RATE_LIMIT_RESET]?.toLongOrNull(),
-                    )
-                }
-            }
         }
     }
 }
