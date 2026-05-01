@@ -5,9 +5,9 @@ import io.ktor.http.encodeURLParameter
 import kotlinx.coroutines.test.runTest
 import pubgkt.GameMode
 import pubgkt.PubgApi
-import pubgkt.lastRequest
-import pubgkt.mockEngine
 import pubgkt.stats.FILTER_PLAYER_IDS
+import pubgkt.test.lastRequest
+import pubgkt.test.mockEngine
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

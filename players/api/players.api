@@ -1,45 +1,45 @@
-public final class pubgkt/BanType : java/lang/Enum {
-	public static final field Innocent Lpubgkt/BanType;
-	public static final field PermanentBan Lpubgkt/BanType;
-	public static final field TemporaryBan Lpubgkt/BanType;
+public final class pubgkt/players/BanType : java/lang/Enum {
+	public static final field Innocent Lpubgkt/players/BanType;
+	public static final field PermanentBan Lpubgkt/players/BanType;
+	public static final field TemporaryBan Lpubgkt/players/BanType;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lpubgkt/BanType;
-	public static fun values ()[Lpubgkt/BanType;
+	public static fun valueOf (Ljava/lang/String;)Lpubgkt/players/BanType;
+	public static fun values ()[Lpubgkt/players/BanType;
 }
 
-public final class pubgkt/GetPlayerByAccountIdKt {
+public final class pubgkt/players/GetPlayerByAccountIdKt {
 	public static final fun getPlayerByAccountId (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getPlayerByAccountId$default (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public final class pubgkt/GetPlayersByIdKt {
+public final class pubgkt/players/GetPlayersByIdKt {
 	public static final fun getPlayersById (Lpubgkt/PubgApi;Ljava/util/List;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun getPlayersById (Lpubgkt/PubgApi;[Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getPlayersById$default (Lpubgkt/PubgApi;Ljava/util/List;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun getPlayersById$default (Lpubgkt/PubgApi;[Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public final class pubgkt/GetPlayersByNameKt {
+public final class pubgkt/players/GetPlayersByNameKt {
 	public static final fun getPlayersByNames (Lpubgkt/PubgApi;Ljava/util/List;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final fun getPlayersByNames (Lpubgkt/PubgApi;[Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static synthetic fun getPlayersByNames$default (Lpubgkt/PubgApi;Ljava/util/List;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 	public static synthetic fun getPlayersByNames$default (Lpubgkt/PubgApi;[Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public final class pubgkt/Player {
-	public fun <init> (Ljava/lang/String;Lpubgkt/BanType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
+public final class pubgkt/players/Player {
+	public fun <init> (Ljava/lang/String;Lpubgkt/players/BanType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Lpubgkt/BanType;
+	public final fun component2 ()Lpubgkt/players/BanType;
 	public final fun component3 ()Ljava/lang/String;
 	public final fun component4 ()Ljava/lang/String;
 	public final fun component5 ()Ljava/lang/String;
 	public final fun component6 ()Ljava/lang/String;
 	public final fun component7 ()Ljava/lang/String;
 	public final fun component8 ()Ljava/util/List;
-	public final fun copy (Ljava/lang/String;Lpubgkt/BanType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Lpubgkt/Player;
-	public static synthetic fun copy$default (Lpubgkt/Player;Ljava/lang/String;Lpubgkt/BanType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lpubgkt/Player;
+	public final fun copy (Ljava/lang/String;Lpubgkt/players/BanType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;)Lpubgkt/players/Player;
+	public static synthetic fun copy$default (Lpubgkt/players/Player;Ljava/lang/String;Lpubgkt/players/BanType;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/List;ILjava/lang/Object;)Lpubgkt/players/Player;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getBanType ()Lpubgkt/BanType;
+	public final fun getBanType ()Lpubgkt/players/BanType;
 	public final fun getClanId ()Ljava/lang/String;
 	public final fun getId ()Ljava/lang/String;
 	public final fun getMatches ()Ljava/util/List;
@@ -51,11 +51,11 @@ public final class pubgkt/Player {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class pubgkt/PlayerMatch {
+public final class pubgkt/players/PlayerMatch {
 	public fun <init> (Ljava/lang/String;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun copy (Ljava/lang/String;)Lpubgkt/PlayerMatch;
-	public static synthetic fun copy$default (Lpubgkt/PlayerMatch;Ljava/lang/String;ILjava/lang/Object;)Lpubgkt/PlayerMatch;
+	public final fun copy (Ljava/lang/String;)Lpubgkt/players/PlayerMatch;
+	public static synthetic fun copy$default (Lpubgkt/players/PlayerMatch;Ljava/lang/String;ILjava/lang/Object;)Lpubgkt/players/PlayerMatch;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getId ()Ljava/lang/String;
 	public fun hashCode ()I

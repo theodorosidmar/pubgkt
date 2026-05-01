@@ -1,0 +1,100 @@
+digraph KotlinPackageDependencies {
+rankdir=BT;
+layout=dot;
+ranksep=1.0;
+nodesep=0.45;
+splines=ortho;
+concentrate=true;
+newrank=true;
+compound=true;
+label="PUBGKT package dependencies (Tests)";
+labelloc=t;
+fontsize=20;
+node [shape=box];
+subgraph "cluster_clans" {
+label="Clans";
+style=rounded;
+color="#82B366";
+"pubgkt.clans";
+}
+subgraph "cluster_leaderboards" {
+label="Leaderboards";
+style=rounded;
+color="#82B366";
+"pubgkt.leaderboards";
+}
+subgraph "cluster_mastery" {
+label="Mastery";
+style=rounded;
+color="#82B366";
+"pubgkt.mastery";
+}
+subgraph "cluster_matches" {
+label="Matches";
+style=rounded;
+color="#82B366";
+"pubgkt.matches";
+}
+subgraph "cluster_players" {
+label="Players";
+style=rounded;
+color="#82B366";
+"pubgkt.players";
+}
+subgraph "cluster_shared" {
+label="Shared infrastructure";
+style=rounded;
+color="#6C8EBF";
+"pubgkt";
+"pubgkt.http";
+"pubgkt.jsonapi";
+"pubgkt.ratelimit";
+}
+subgraph "cluster_stats" {
+label="Stats";
+style=rounded;
+color="#82B366";
+"pubgkt.stats";
+"pubgkt.stats.lifetime";
+"pubgkt.stats.ranked";
+"pubgkt.stats.season";
+}
+subgraph "cluster_testing" {
+label="Testing";
+style=rounded;
+color="#B85450";
+"pubgkt.test";
+}
+{ rank=same; "pubgkt.clans"; "pubgkt.jsonapi"; "pubgkt.leaderboards"; "pubgkt.mastery"; "pubgkt.matches"; "pubgkt.players"; "pubgkt.stats.lifetime"; "pubgkt.stats.ranked"; "pubgkt.stats.season"; }
+{ rank=same; "pubgkt.http"; "pubgkt.stats"; }
+{ rank=same; "pubgkt.ratelimit"; }
+{ rank=same; "pubgkt"; }
+{ rank=same; "pubgkt.test"; }
+"pubgkt.stats.lifetime" -> "pubgkt";
+"pubgkt.stats.lifetime" -> "pubgkt.stats";
+"pubgkt.stats.lifetime" -> "pubgkt.test";
+"pubgkt.stats.ranked" -> "pubgkt";
+"pubgkt.stats.ranked" -> "pubgkt.test";
+"pubgkt.stats.season" -> "pubgkt";
+"pubgkt.stats.season" -> "pubgkt.test";
+"pubgkt.stats.season" -> "pubgkt.stats";
+"pubgkt.leaderboards" -> "pubgkt";
+"pubgkt.leaderboards" -> "pubgkt.test";
+"pubgkt.mastery" -> "pubgkt";
+"pubgkt.mastery" -> "pubgkt.test";
+"pubgkt.matches" -> "pubgkt";
+"pubgkt.matches" -> "pubgkt.test";
+"pubgkt.players" -> "pubgkt";
+"pubgkt.players" -> "pubgkt.test";
+"pubgkt.http" -> "pubgkt";
+"pubgkt.http" -> "pubgkt.ratelimit";
+"pubgkt.http" -> "pubgkt.test";
+"pubgkt.ratelimit" -> "pubgkt.test";
+"pubgkt.ratelimit" -> "pubgkt";
+"pubgkt" -> "pubgkt.test";
+"pubgkt" -> "pubgkt.ratelimit";
+"pubgkt" -> "pubgkt.http";
+"pubgkt.jsonapi" -> "pubgkt.http";
+"pubgkt.clans" -> "pubgkt";
+"pubgkt.clans" -> "pubgkt.test";
+}

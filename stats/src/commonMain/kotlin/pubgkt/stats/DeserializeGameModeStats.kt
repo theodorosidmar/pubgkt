@@ -1,8 +1,8 @@
 package pubgkt.stats
 
 import kotlinx.serialization.json.JsonObject
-import pubgkt.requiredDouble
-import pubgkt.requiredInt
+import pubgkt.jsonapi.requiredDouble
+import pubgkt.jsonapi.requiredInt
 
 internal fun deserializeGameModeStats(stats: JsonObject): GameModeStats =
     GameModeStats(

@@ -1,8 +1,8 @@
 package pubgkt.stats.ranked
 
 import kotlinx.serialization.json.JsonObject
-import pubgkt.requiredInt
-import pubgkt.requiredString
+import pubgkt.jsonapi.requiredInt
+import pubgkt.jsonapi.requiredString
 
 public data class Tier(
     val tier: String,

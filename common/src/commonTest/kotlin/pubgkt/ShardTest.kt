@@ -4,6 +4,9 @@ import io.ktor.http.fullPath
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertTrue
+import pubgkt.http.get
+import pubgkt.test.lastRequest
+import pubgkt.test.mockEngine
 
 class ShardTest {
     private val engine = mockEngine()

@@ -2,6 +2,11 @@ package pubgkt
 
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
+import pubgkt.http.deserializeList
+import pubgkt.http.get
+import pubgkt.jsonapi.JsonApiResourceDeserializer
+import pubgkt.jsonapi.requireId
+import pubgkt.jsonapi.requiredBoolean
 
 public data class Season(
     val id: String,

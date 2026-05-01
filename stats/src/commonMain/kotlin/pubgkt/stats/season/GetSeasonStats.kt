@@ -4,9 +4,9 @@ import io.ktor.client.request.parameter
 import pubgkt.GameMode
 import pubgkt.Platform
 import pubgkt.PubgApi
-import pubgkt.deserialize
-import pubgkt.deserializeList
-import pubgkt.get
+import pubgkt.http.deserialize
+import pubgkt.http.deserializeList
+import pubgkt.http.get
 import pubgkt.stats.FILTER_PLAYER_IDS
 import pubgkt.stats.MAX_PLAYERS_COUNT
 

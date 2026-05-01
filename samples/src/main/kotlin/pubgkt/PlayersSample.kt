@@ -1,6 +1,7 @@
 package pubgkt
 
 import pubgkt.stats.season.getSeasonStatsByGameModeAndPlayers
+import pubgkt.players.getPlayersByNames
 
 suspend fun main(args: Array<String>) {
     val apiKey = args.getOrNull(0) ?: error("Usage: PlayersSample <api-key> [accountId] [playerName]")

@@ -2,22 +2,6 @@ public abstract interface class pubgkt/BackoffStrategy {
 	public abstract fun getEnabled ()Z
 }
 
-public final class pubgkt/ConcurrentDelayRateLimiter : pubgkt/DelayRateLimiter {
-	public fun <init> ()V
-	public fun <init> (Lkotlin/time/Clock;)V
-	public synthetic fun <init> (Lkotlin/time/Clock;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	public fun throttle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public class pubgkt/DelayRateLimiter : pubgkt/RateLimiter {
-	public fun <init> ()V
-	public fun <init> (Lkotlin/time/Clock;)V
-	public synthetic fun <init> (Lkotlin/time/Clock;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-	protected final fun getClock ()Lkotlin/time/Clock;
-	public fun onResponse (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Long;)V
-	public fun throttle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
 public final class pubgkt/ExponentialBackoff : pubgkt/BackoffStrategy {
 	public fun <init> ()V
 	public fun <init> (DJJJ)V
@@ -107,24 +91,9 @@ public final class pubgkt/PlatformRegion : java/lang/Enum {
 
 public final class pubgkt/PubgApi {
 	public fun <init> (Ljava/lang/String;)V
-	public fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;)V
-	public fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;Lpubgkt/RetryPolicy;)V
-	public synthetic fun <init> (Ljava/lang/String;Lpubgkt/RateLimiter;Lpubgkt/RetryPolicy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
-}
-
-public final class pubgkt/RateLimitExceededException : java/lang/Exception {
-	public fun <init> (Ljava/lang/Long;)V
-	public final fun getResetAtEpochSeconds ()Ljava/lang/Long;
-}
-
-public abstract interface class pubgkt/RateLimiter {
-	public static final field Companion Lpubgkt/RateLimiter$Companion;
-	public abstract fun onResponse (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Long;)V
-	public abstract fun throttle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class pubgkt/RateLimiter$Companion {
-	public final fun getNone ()Lpubgkt/RateLimiter;
+	public fun <init> (Ljava/lang/String;Lpubgkt/ratelimit/RateLimiter;)V
+	public fun <init> (Ljava/lang/String;Lpubgkt/ratelimit/RateLimiter;Lpubgkt/RetryPolicy;)V
+	public synthetic fun <init> (Ljava/lang/String;Lpubgkt/ratelimit/RateLimiter;Lpubgkt/RetryPolicy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
 public final class pubgkt/Retry : pubgkt/RetryPolicy {
@@ -176,7 +145,38 @@ public final class pubgkt/StatusKt {
 	public static final fun isUp (Lpubgkt/PubgApi;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class pubgkt/UnauthorizedException : java/lang/Exception {
+public final class pubgkt/http/UnauthorizedException : java/lang/Exception {
 	public fun <init> ()V
+}
+
+public final class pubgkt/ratelimit/ConcurrentDelayRateLimiter : pubgkt/ratelimit/DelayRateLimiter {
+	public fun <init> ()V
+	public fun <init> (Lkotlin/time/Clock;)V
+	public synthetic fun <init> (Lkotlin/time/Clock;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun throttle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public class pubgkt/ratelimit/DelayRateLimiter : pubgkt/ratelimit/RateLimiter {
+	public fun <init> ()V
+	public fun <init> (Lkotlin/time/Clock;)V
+	public synthetic fun <init> (Lkotlin/time/Clock;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	protected final fun getClock ()Lkotlin/time/Clock;
+	public fun onResponse (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Long;)V
+	public fun throttle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class pubgkt/ratelimit/RateLimitExceededException : java/lang/Exception {
+	public fun <init> (Ljava/lang/Long;)V
+	public final fun getResetAtEpochSeconds ()Ljava/lang/Long;
+}
+
+public abstract interface class pubgkt/ratelimit/RateLimiter {
+	public static final field Companion Lpubgkt/ratelimit/RateLimiter$Companion;
+	public abstract fun onResponse (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Long;)V
+	public abstract fun throttle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class pubgkt/ratelimit/RateLimiter$Companion {
+	public final fun getNone ()Lpubgkt/ratelimit/RateLimiter;
 }
 

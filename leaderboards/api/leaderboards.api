@@ -1,18 +1,30 @@
-public final class pubgkt/GetLeaderboardKt {
-	public static final fun getLeaderboard (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/GameMode;Lpubgkt/PlatformRegion;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun getLeaderboard$default (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/GameMode;Lpubgkt/PlatformRegion;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+public final class pubgkt/leaderboards/GameMode : java/lang/Enum {
+	public static final field DUO Lpubgkt/leaderboards/GameMode;
+	public static final field DUO_FPP Lpubgkt/leaderboards/GameMode;
+	public static final field SOLO Lpubgkt/leaderboards/GameMode;
+	public static final field SOLO_FPP Lpubgkt/leaderboards/GameMode;
+	public static final field SQUAD Lpubgkt/leaderboards/GameMode;
+	public static final field SQUAD_FPP Lpubgkt/leaderboards/GameMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lpubgkt/leaderboards/GameMode;
+	public static fun values ()[Lpubgkt/leaderboards/GameMode;
 }
 
-public final class pubgkt/Leaderboard {
-	public fun <init> (Ljava/lang/String;Lpubgkt/GameMode;Lpubgkt/PlatformRegion;Ljava/util/List;)V
+public final class pubgkt/leaderboards/GetLeaderboardKt {
+	public static final fun getLeaderboard (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/leaderboards/GameMode;Lpubgkt/PlatformRegion;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getLeaderboard$default (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/leaderboards/GameMode;Lpubgkt/PlatformRegion;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class pubgkt/leaderboards/Leaderboard {
+	public fun <init> (Ljava/lang/String;Lpubgkt/leaderboards/GameMode;Lpubgkt/PlatformRegion;Ljava/util/List;)V
 	public final fun component1 ()Ljava/lang/String;
-	public final fun component2 ()Lpubgkt/GameMode;
+	public final fun component2 ()Lpubgkt/leaderboards/GameMode;
 	public final fun component3 ()Lpubgkt/PlatformRegion;
 	public final fun component4 ()Ljava/util/List;
-	public final fun copy (Ljava/lang/String;Lpubgkt/GameMode;Lpubgkt/PlatformRegion;Ljava/util/List;)Lpubgkt/Leaderboard;
-	public static synthetic fun copy$default (Lpubgkt/Leaderboard;Ljava/lang/String;Lpubgkt/GameMode;Lpubgkt/PlatformRegion;Ljava/util/List;ILjava/lang/Object;)Lpubgkt/Leaderboard;
+	public final fun copy (Ljava/lang/String;Lpubgkt/leaderboards/GameMode;Lpubgkt/PlatformRegion;Ljava/util/List;)Lpubgkt/leaderboards/Leaderboard;
+	public static synthetic fun copy$default (Lpubgkt/leaderboards/Leaderboard;Ljava/lang/String;Lpubgkt/leaderboards/GameMode;Lpubgkt/PlatformRegion;Ljava/util/List;ILjava/lang/Object;)Lpubgkt/leaderboards/Leaderboard;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getGameMode ()Lpubgkt/GameMode;
+	public final fun getGameMode ()Lpubgkt/leaderboards/GameMode;
 	public final fun getPlacements ()Ljava/util/List;
 	public final fun getPlatformRegion ()Lpubgkt/PlatformRegion;
 	public final fun getSeasonId ()Ljava/lang/String;
@@ -20,7 +32,7 @@ public final class pubgkt/Leaderboard {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class pubgkt/LeaderboardPlacement {
+public final class pubgkt/leaderboards/LeaderboardPlacement {
 	public fun <init> (Ljava/lang/String;Ljava/lang/String;IIIIIIIDDLjava/lang/String;Ljava/lang/String;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()D
@@ -35,8 +47,8 @@ public final class pubgkt/LeaderboardPlacement {
 	public final fun component7 ()I
 	public final fun component8 ()I
 	public final fun component9 ()I
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;IIIIIIIDDLjava/lang/String;Ljava/lang/String;)Lpubgkt/LeaderboardPlacement;
-	public static synthetic fun copy$default (Lpubgkt/LeaderboardPlacement;Ljava/lang/String;Ljava/lang/String;IIIIIIIDDLjava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lpubgkt/LeaderboardPlacement;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;IIIIIIIDDLjava/lang/String;Ljava/lang/String;)Lpubgkt/leaderboards/LeaderboardPlacement;
+	public static synthetic fun copy$default (Lpubgkt/leaderboards/LeaderboardPlacement;Ljava/lang/String;Ljava/lang/String;IIIIIIIDDLjava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lpubgkt/leaderboards/LeaderboardPlacement;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAverageDamage ()I
 	public final fun getAverageKill ()D

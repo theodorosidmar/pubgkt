@@ -1,6 +1,8 @@
 package pubgkt
 
 import io.ktor.http.HttpStatusCode
+import pubgkt.http.PublicRequestPolicy
+import pubgkt.http.get
 
 /**
  * Returns the status of the PUBG API.

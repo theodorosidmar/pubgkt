@@ -2,8 +2,8 @@ package pubgkt.stats.ranked
 
 import pubgkt.Platform
 import pubgkt.PubgApi
-import pubgkt.deserialize
-import pubgkt.get
+import pubgkt.http.deserialize
+import pubgkt.http.get
 
 /**
  * Returns the ranked stats for a single player by their account ID for a given [platform] and [seasonId].

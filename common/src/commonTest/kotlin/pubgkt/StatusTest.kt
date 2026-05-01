@@ -5,6 +5,9 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.test.runTest
+import pubgkt.ratelimit.StubRateLimiter
+import pubgkt.test.lastRequest
+import pubgkt.test.mockEngine
 
 class StatusTest {
     private val engine = mockEngine()

@@ -7,8 +7,8 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.test.runTest
 import pubgkt.PubgApi
-import pubgkt.lastRequest
-import pubgkt.mockEngine
+import pubgkt.test.lastRequest
+import pubgkt.test.mockEngine
 
 class GetLifetimePlayerStatsTest {
 

@@ -35,7 +35,6 @@ public enum class PlatformRegion {
     @PubgktInternal
     public companion object {
         public fun of(name: String): PlatformRegion =
-            PlatformRegion
-                .valueOf(name.uppercase().replace(oldValue = "-", newValue = "_"))
+            valueOf(name.uppercase().replace(oldValue = "-", newValue = "_"))
     }
 }
