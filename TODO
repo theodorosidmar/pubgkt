@@ -3,6 +3,7 @@
 - [ ] Telemetry module??
 - [X] HTTP Retries??
 - [X] Leverage Detekt
+- [ ] Leverage Kover
 - [ ] Kotlin Rich errors
 - [X] Gradle check must run detekt and tests
 - [ ] Add nodejs compilation
