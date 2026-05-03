@@ -1,16 +1,15 @@
 package pubgkt.jsonapi
 
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertFailsWith
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonArray
 import kotlinx.serialization.json.buildJsonObject
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 
 class JsonApiResourceDeserializerUtilsTest {
-
     @Test
     fun `requireId throws when id is null`() {
         assertFailsWith<SerializationException> {
@@ -37,9 +36,10 @@ class JsonApiResourceDeserializerUtilsTest {
 
     @Test
     fun `requireRelationships allows using relationships as non-null after call`() {
-        val relationships = buildJsonObject {
-            put("player", buildJsonObject { })
-        }
+        val relationships =
+            buildJsonObject {
+                put("player", buildJsonObject { })
+            }
 
         val nullableRelationships: JsonObject? = relationships
 
@@ -58,9 +58,10 @@ class JsonApiResourceDeserializerUtilsTest {
 
     @Test
     fun `requireIncluded allows using included as non-null after call`() {
-        val included = buildJsonArray {
-            add(buildJsonObject { })
-        }
+        val included =
+            buildJsonArray {
+                add(buildJsonObject { })
+            }
 
         val nullableIncluded: JsonArray? = included
 

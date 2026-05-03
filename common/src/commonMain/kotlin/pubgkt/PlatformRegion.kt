@@ -2,7 +2,9 @@ package pubgkt
 
 /**
  * PUBG Platform Region shard
- * @see <a href="https://documentation.pubg.com/en/making-requests.html#platforms-and-regions">PUBG Developer Portal - Platform & Regions</a>
+ * @see <a href="
+ * https://documentation.pubg.com/en/making-requests.html#platforms-and-regions">
+ * PUBG Developer Portal - Platform & Regions</a>
  */
 public enum class PlatformRegion {
     PC_AS, // Asia
@@ -24,7 +26,8 @@ public enum class PlatformRegion {
     XBOX_EU, // Europe
     XBOX_NA, // North America
     XBOX_OC, // Oceania
-    XBOX_SA; // South America
+    XBOX_SA, // South America
+    ;
 
     @PubgktInternal
     public val path: String =
@@ -34,7 +37,6 @@ public enum class PlatformRegion {
 
     @PubgktInternal
     public companion object {
-        public fun of(name: String): PlatformRegion =
-            valueOf(name.uppercase().replace(oldValue = "-", newValue = "_"))
+        public fun of(name: String): PlatformRegion = valueOf(name.uppercase().replace(oldValue = "-", newValue = "_"))
     }
 }

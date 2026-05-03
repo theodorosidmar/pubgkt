@@ -1,19 +1,20 @@
 package pubgkt.mastery
 
 import kotlinx.coroutines.test.runTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
 import pubgkt.Platform
 import pubgkt.PubgApi
 import pubgkt.test.lastRequest
 import pubgkt.test.mockEngine
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 class GetWeaponMasteryByAccountIdTest {
-    private val engine = mockEngine {
-        body = WEAPON_MASTERY_RESPONSE_JSON
-    }
+    private val engine =
+        mockEngine {
+            body = WEAPON_MASTERY_RESPONSE_JSON
+        }
     private val api = PubgApi(engine = engine)
 
     @Test

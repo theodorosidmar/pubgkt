@@ -2,21 +2,21 @@ package pubgkt.stats.lifetime
 
 import io.ktor.http.HttpMethod
 import io.ktor.http.encodeURLParameter
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 import kotlinx.coroutines.test.runTest
 import pubgkt.GameMode
 import pubgkt.PubgApi
 import pubgkt.stats.FILTER_PLAYER_IDS
 import pubgkt.test.lastRequest
 import pubgkt.test.mockEngine
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class GetLifetimeGameModeStatsTest {
-
-    private val engine = mockEngine {
-        body = LIFETIME_GAME_MODE_RESPONSE_JSON
-    }
+    private val engine =
+        mockEngine {
+            body = LIFETIME_GAME_MODE_RESPONSE_JSON
+        }
     private val api = PubgApi(engine = engine)
 
     @Test
@@ -41,17 +41,19 @@ class GetLifetimeGameModeStatsTest {
                 .url
                 .encodedQuery
                 .endsWith(
-                    FILTER_PLAYER_IDS.encodeURLParameter() + "=" + "account.abc123,account.abc456".encodeURLParameter()
+                    FILTER_PLAYER_IDS.encodeURLParameter() + "=" +
+                        "account.abc123,account.abc456".encodeURLParameter(),
                 ),
         )
     }
 
     @Test
     fun `deserializes a lifetime game mode stats response`() = runTest {
-        val lifetimeGameModeStats = api.getLifetimeStatsByGameModeAndPlayers(
-            gameMode = GameMode.SQUAD_FPP,
-            accountIds = listOf("account.abc123")
-        )
+        val lifetimeGameModeStats =
+            api.getLifetimeStatsByGameModeAndPlayers(
+                gameMode = GameMode.SQUAD_FPP,
+                accountIds = listOf("account.abc123"),
+            )
 
         assertEquals(2, lifetimeGameModeStats.size)
         assertEquals(lifetimeGameModeStats.first(), lifetimeGameModeStats.last())

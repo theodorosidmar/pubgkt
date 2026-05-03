@@ -11,12 +11,11 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 class GetSeasonPlayerStatsTest {
-
-    private val engine = mockEngine {
-        body = SEASON_PLAYER_RESPONSE_JSON
-    }
+    private val engine =
+        mockEngine {
+            body = SEASON_PLAYER_RESPONSE_JSON
+        }
     private val api = PubgApi(engine)
-
 
     @Test
     fun `sends request to the correct path`() = runTest {

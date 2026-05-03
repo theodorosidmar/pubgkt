@@ -37,8 +37,8 @@ mavenPublishing {
         configure(
             KotlinMultiplatform(
                 JavadocJar.Dokka("dokkaGeneratePublicationHtml"),
-                sourcesJar = SourcesJar.Sources()
-            )
+                sourcesJar = SourcesJar.Sources(),
+            ),
         )
     } else if (plugins.hasPlugin("org.jetbrains.kotlin.jvm")) {
         configure(KotlinJvm(JavadocJar.Dokka("dokkaGeneratePublicationHtml"), sourcesJar = SourcesJar.Sources()))

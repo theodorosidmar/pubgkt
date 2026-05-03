@@ -1,8 +1,8 @@
 package pubgkt.ratelimit
 
-import kotlin.time.Clock
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlin.time.Clock
 
 /**
  * A [DelayRateLimiter] variant that serializes [throttle] calls across coroutines.
@@ -23,9 +23,7 @@ import kotlinx.coroutines.sync.withLock
  * @see RateLimiter
  * @see RateLimitExceededException
  */
-public class ConcurrentDelayRateLimiter(
-    clock: Clock = Clock.System,
-) : DelayRateLimiter(clock) {
+public class ConcurrentDelayRateLimiter(clock: Clock = Clock.System) : DelayRateLimiter(clock) {
     private val mutex = Mutex()
 
     override suspend fun throttle() {

@@ -1,17 +1,18 @@
 package pubgkt.mastery
 
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 import kotlinx.coroutines.test.runTest
 import pubgkt.PubgApi
 import pubgkt.test.lastRequest
 import pubgkt.test.mockEngine
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class GetSurvivalMasteryByAccountIdTest {
-    private val engine = mockEngine {
-        body = SURVIVAL_MASTERY_RESPONSE_JSON
-    }
+    private val engine =
+        mockEngine {
+            body = SURVIVAL_MASTERY_RESPONSE_JSON
+        }
     private val api = PubgApi(engine = engine)
 
     @Test

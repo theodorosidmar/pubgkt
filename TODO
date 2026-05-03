@@ -2,15 +2,15 @@
 - [X] Create packages per module/domain
 - [ ] Telemetry module??
 - [X] HTTP Retries??
+- [X] Leverage Detekt
 - [ ] Kotlin Rich errors
-- [ ] Gradle check must run detekt and tests
+- [X] Gradle check must run detekt and tests
 - [ ] Add nodejs compilation
 - [ ] Add android compilation
 - [ ] Add native/macos compilation???
 - [ ] Add iOS compilation???
 - [ ] Improves samples module and documentation (a lot)
-- [ ] Dokka and Detekt badges? How can I leverage it?
-- [ ] Publish dokka documentation
+- [ ] Dokka badge? How can I leverage it? Publish Dokka documentation on GitHub Pages?
 - [ ] Publish on Maven Central
 - [ ] Publish on npm
 - [ ] Publish at Kotlin Slack #feed

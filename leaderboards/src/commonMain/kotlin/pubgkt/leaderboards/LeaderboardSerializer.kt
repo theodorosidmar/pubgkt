@@ -2,12 +2,12 @@ package pubgkt.leaderboards
 
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
+import pubgkt.PlatformRegion
 import pubgkt.jsonapi.JsonApiResourceDeserializer
 import pubgkt.jsonapi.requiredDouble
 import pubgkt.jsonapi.requiredInt
 import pubgkt.jsonapi.requiredObject
 import pubgkt.jsonapi.requiredString
-import pubgkt.PlatformRegion
 
 internal object LeaderboardSerializer : JsonApiResourceDeserializer<Leaderboard>("pubgkt.leaderboards.Leaderboard") {
     override fun deserializeResource(
@@ -19,7 +19,8 @@ internal object LeaderboardSerializer : JsonApiResourceDeserializer<Leaderboard>
         seasonId = attributes.requiredString("seasonId"),
         gameMode = attributes.requiredString("gameMode").let(GameMode::of),
         platformRegion = attributes.requiredString("shardId").let(PlatformRegion.Companion::of),
-        placements = included
+        placements =
+        included
             ?.filterIsInstance<JsonObject>()
             ?.filter { it.requiredString("type") == "player" }
             ?.map { player ->

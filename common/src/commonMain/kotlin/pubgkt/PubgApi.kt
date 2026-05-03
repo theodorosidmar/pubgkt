@@ -28,13 +28,14 @@ import pubgkt.ratelimit.RateLimiter
  * @see RetryPolicy
  * @see <a href="https://documentation.pubg.com/en/introduction.html">PUBG Developer Portal</a>
  */
-public class PubgApi @JvmOverloads constructor(
+public class PubgApi
+@JvmOverloads
+constructor(
     internal val apiKey: String,
     internal val rateLimiter: RateLimiter = DelayRateLimiter(),
     internal val retry: RetryPolicy = NoRetry,
 ) {
-
-    private var _engineOverride: HttpClientEngine? = null
+    private var engineOverride: HttpClientEngine? = null
 
     /**
      * The underlying Ktor [HttpClient] used for all API requests.
@@ -68,11 +69,11 @@ public class PubgApi @JvmOverloads constructor(
         rateLimiter = rateLimiter,
         retry = retry,
     ) {
-        _engineOverride = engine
+        engineOverride = engine
     }
 
     private fun createHttpClient(): HttpClient {
-        val override = _engineOverride
+        val override = engineOverride
         return if (override != null) {
             HttpClient(override) { configureClient() }
         } else {

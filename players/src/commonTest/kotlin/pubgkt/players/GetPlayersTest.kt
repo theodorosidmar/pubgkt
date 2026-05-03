@@ -1,12 +1,12 @@
 package pubgkt.players
 
 import kotlinx.coroutines.test.runTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 import pubgkt.PubgApi
 import pubgkt.test.lastRequest
 import pubgkt.test.mockEngine
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 /**
  * Shared test behaviour for batch player endpoints (`getPlayersById`, `getPlayersByNames`).
@@ -15,10 +15,10 @@ import pubgkt.test.mockEngine
  * appropriate [pubgkt.PubgApi] extension function.
  */
 abstract class GetPlayersTest {
-
-    private val engine = mockEngine {
-        body = PLAYERS_RESPONSE_JSON
-    }
+    private val engine =
+        mockEngine {
+            body = PLAYERS_RESPONSE_JSON
+        }
     private val api = PubgApi(engine = engine)
 
     /** The query-parameter key used by the endpoint (e.g. `"filter[playerIds]"`). */
@@ -58,7 +58,9 @@ abstract class GetPlayersTest {
         val values = (1..15).map { "value$it" }
         api.fetchPlayers(values)
 
-        val sent = engine.lastRequest.url.parameters[queryParameterName]!!.split(",")
+        val sent =
+            engine.lastRequest.url.parameters[queryParameterName]!!
+                .split(",")
         assertEquals(10, sent.size)
     }
 
@@ -66,6 +68,9 @@ abstract class GetPlayersTest {
     fun `uses correct query parameter`() = runTest {
         api.fetchPlayers("value1")
 
-        assertTrue(engine.lastRequest.url.parameters.contains(queryParameterName))
+        assertTrue(
+            engine.lastRequest.url.parameters
+                .contains(queryParameterName),
+        )
     }
 }

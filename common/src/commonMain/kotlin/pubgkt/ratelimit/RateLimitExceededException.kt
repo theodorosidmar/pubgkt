@@ -12,11 +12,10 @@ package pubgkt.ratelimit
  *   the header was absent.
  * @see RateLimiter
  */
-public class RateLimitExceededException(
-    public val resetAtEpochSeconds: Long?,
-) : Exception(
-    buildString {
-        append("PUBG API rate limit exceeded (HTTP 429).")
-        if (resetAtEpochSeconds != null) append(" Resets at epoch second: $resetAtEpochSeconds.")
-    }
-)
+public class RateLimitExceededException(public val resetAtEpochSeconds: Long?) :
+    Exception(
+        buildString {
+            append("PUBG API rate limit exceeded (HTTP 429).")
+            if (resetAtEpochSeconds != null) append(" Resets at epoch second: $resetAtEpochSeconds.")
+        },
+    )

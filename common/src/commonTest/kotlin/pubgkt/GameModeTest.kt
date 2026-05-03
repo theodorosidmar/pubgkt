@@ -4,7 +4,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class GameModeTest {
-
     @Test
     fun `should transform pubg jsonapi game mode string into GameMode`() {
         assertEquals(GameMode.SOLO, GameMode.of("solo"))

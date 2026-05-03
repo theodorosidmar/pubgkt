@@ -23,32 +23,37 @@ val workingDirectory: File = File(System.getProperty("user.dir")).canonicalFile
 val projectRoot = findProjectRoot(workingDirectory)
 val scriptFile = resolvePath(__FILE__.path, projectRoot)
 val scriptDir: File? = scriptFile.parentFile
-val root = args.getOrNull(0)
-    ?.let { path -> resolvePath(path, workingDirectory) }
-    ?: projectRoot
-val outputBasePath = args.getOrNull(1)
-    ?.let { path -> resolvePath(path, workingDirectory) }
-    ?: scriptDir?.resolve("packages")
+val root =
+    args
+        .getOrNull(0)
+        ?.let { path -> resolvePath(path, workingDirectory) }
+        ?: projectRoot
+val outputBasePath =
+    args
+        .getOrNull(1)
+        ?.let { path -> resolvePath(path, workingDirectory) }
+        ?: scriptDir?.resolve("packages")
 
 require(root.exists() && root.isDirectory) {
     "Root directory does not exist or is not a directory: ${root.absolutePath}"
 }
 
 val sourceFiles = collectSourceFiles(root)
-val targets = listOf(
-    GraphTarget(
-        scope = SourceScope.PRODUCTION,
-        label = "production",
-        dotFile = File("${outputBasePath?.absolutePath}-production.dot"),
-        pngFile = File("${outputBasePath?.absolutePath}-production.png"),
-    ),
-    GraphTarget(
-        scope = SourceScope.TEST,
-        label = "tests",
-        dotFile = File("${outputBasePath?.absolutePath}-test.dot"),
-        pngFile = File("${outputBasePath?.absolutePath}-test.png"),
-    ),
-)
+val targets =
+    listOf(
+        GraphTarget(
+            scope = SourceScope.PRODUCTION,
+            label = "production",
+            dotFile = File("${outputBasePath?.absolutePath}-production.dot"),
+            pngFile = File("${outputBasePath?.absolutePath}-production.png"),
+        ),
+        GraphTarget(
+            scope = SourceScope.TEST,
+            label = "tests",
+            dotFile = File("${outputBasePath?.absolutePath}-test.dot"),
+            pngFile = File("${outputBasePath?.absolutePath}-test.png"),
+        ),
+    )
 
 targets.forEach { target ->
     val fileTree = buildFileTree(sourceFiles, target.scope)
@@ -62,7 +67,10 @@ targets.forEach { target ->
     println("${target.label.replaceFirstChar(Char::uppercaseChar)} PNG written: ${target.pngFile.absolutePath}")
 }
 
-fun resolvePath(path: String, baseDir: File): File =
+fun resolvePath(
+    path: String,
+    baseDir: File,
+): File =
     File(path).let { file ->
         if (file.isAbsolute) file.canonicalFile else baseDir.resolve(path).canonicalFile
     }
@@ -71,19 +79,22 @@ fun findProjectRoot(startDir: File): File {
     generateSequence(startDir) { it.parentFile }
         .firstOrNull { candidate ->
             candidate.resolve("settings.gradle.kts").isFile || candidate.resolve("gradlew").isFile
-        }
-        ?.let { return it }
+        }?.let { return it }
 
     return startDir
 }
 
 fun collectSourceFiles(rootDir: File): List<File> =
-    rootDir.walkTopDown()
+    rootDir
+        .walkTopDown()
         .onEnter { dir -> !isBuildDir(dir, rootDir) && !isExcludedTopLevelDir(dir, rootDir) }
         .filter { file -> file.isFile && file.extension == "kt" && classifySourceScope(file, rootDir) != null }
         .toList()
 
-fun isExcludedTopLevelDir(dir: File, rootDir: File): Boolean {
+fun isExcludedTopLevelDir(
+    dir: File,
+    rootDir: File,
+): Boolean {
     if (!dir.isDirectory) return false
     val rel = dir.relativeTo(rootDir).invariantSeparatorsPath
     if (rel.isEmpty() || rel == ".") return false
@@ -91,14 +102,21 @@ fun isExcludedTopLevelDir(dir: File, rootDir: File): Boolean {
     return topLevel in excludedTopLevelDirectories
 }
 
-fun buildFileTree(files: List<File>, scope: SourceScope): Map<String, Set<String>> =
-    files.asSequence()
+fun buildFileTree(
+    files: List<File>,
+    scope: SourceScope,
+): Map<String, Set<String>> =
+    files
+        .asSequence()
         .filter { file -> classifySourceScope(file, root) == scope }
         .map { file -> file.extractPackageAndImports() }
         .groupingBy { it.first }
         .fold(emptySet()) { acc, (_, importedPackages) -> acc + importedPackages }
 
-fun classifySourceScope(file: File, rootDir: File): SourceScope? {
+fun classifySourceScope(
+    file: File,
+    rootDir: File,
+): SourceScope? {
     val path = file.relativeTo(rootDir).invariantSeparatorsPath
     val srcIndex = path.indexOf("/src/")
     if (srcIndex == -1) return null
@@ -111,7 +129,10 @@ fun classifySourceScope(file: File, rootDir: File): SourceScope? {
     }
 }
 
-fun isBuildDir(dir: File, rootDir: File): Boolean {
+fun isBuildDir(
+    dir: File,
+    rootDir: File,
+): Boolean {
     if (!dir.isDirectory) return false
     val rel = dir.relativeTo(rootDir).invariantSeparatorsPath
     return rel == "build" || rel.endsWith("/build")
@@ -120,33 +141,41 @@ fun isBuildDir(dir: File, rootDir: File): Boolean {
 fun File.extractPackageAndImports(): Pair<String, Set<String>> {
     val lines = readLines()
 
-    val packageName = lines.firstNotNullOfOrNull { line ->
-        packagePattern.matcher(line).takeIf { it.find() }?.group(1)
-    } ?: "<root>"
+    val packageName =
+        lines.firstNotNullOfOrNull { line ->
+            packagePattern.matcher(line).takeIf { it.find() }?.group(1)
+        } ?: "<root>"
 
-    val importedPackages = lines.mapNotNull { line ->
-        val m = importPattern.matcher(line)
-        if (!m.find()) return@mapNotNull null
-        val fqName = m.group(1)
-        if (!fqName.startsWith("pubgkt.")) return@mapNotNull null
-        fqName.substringBeforeLast('.', missingDelimiterValue = fqName)
-    }.toSet()
+    val importedPackages =
+        lines
+            .mapNotNull { line ->
+                val m = importPattern.matcher(line)
+                if (!m.find()) return@mapNotNull null
+                val fqName = m.group(1)
+                if (!fqName.startsWith("pubgkt.")) return@mapNotNull null
+                fqName.substringBeforeLast('.', missingDelimiterValue = fqName)
+            }.toSet()
 
     return packageName to importedPackages
 }
 
-fun generateDotFile(dotFile: File, fileTree: Map<String, Set<String>>, graphLabel: String) {
+fun generateDotFile(
+    dotFile: File,
+    fileTree: Map<String, Set<String>>,
+    graphLabel: String,
+) {
     dotFile.printWriter().use { out ->
         val allPackages = (fileTree.keys + fileTree.values.flatten()).toSortedSet()
         val packagesByCluster = allPackages.groupBy(::clusterIdForPackage).toSortedMap()
-        val edges = buildList {
-            fileTree.forEach { (pkg, imports) ->
-                imports.forEach { importedPkg ->
-                    // Keep the semantic direction: dependent -> dependency.
-                    add(pkg to importedPkg)
+        val edges =
+            buildList {
+                fileTree.forEach { (pkg, imports) ->
+                    imports.forEach { importedPkg ->
+                        // Keep the semantic direction: dependent -> dependency.
+                        add(pkg to importedPkg)
+                    }
                 }
             }
-        }
         val layers = computeLayers(allPackages, edges)
 
         out.println("digraph KotlinPackageDependencies {")
@@ -192,7 +221,10 @@ fun generateDotFile(dotFile: File, fileTree: Map<String, Set<String>>, graphLabe
     }
 }
 
-fun computeLayers(nodes: Set<String>, edges: List<Pair<String, String>>): Map<String, Int> {
+fun computeLayers(
+    nodes: Set<String>,
+    edges: List<Pair<String, String>>,
+): Map<String, Int> {
     val predecessors = nodes.associateWith { mutableSetOf<String>() }
     edges.forEach { (from, to) ->
         predecessors.getValue(to).add(from)
@@ -200,16 +232,21 @@ fun computeLayers(nodes: Set<String>, edges: List<Pair<String, String>>): Map<St
 
     val memo = mutableMapOf<String, Int>()
 
-    fun depth(node: String, visiting: MutableSet<String>): Int {
+    fun depth(
+        node: String,
+        visiting: MutableSet<String>,
+    ): Int {
         memo[node]?.let { return it }
         if (!visiting.add(node)) {
             // Break cycles gracefully; DOT will still render the cycle.
             return 0
         }
 
-        val parentDepth = predecessors.getValue(node)
-            .maxOfOrNull { parent -> depth(parent, visiting) + 1 }
-            ?: 0
+        val parentDepth =
+            predecessors
+                .getValue(node)
+                .maxOfOrNull { parent -> depth(parent, visiting) + 1 }
+                ?: 0
 
         visiting.remove(node)
         memo[node] = parentDepth
@@ -223,32 +260,48 @@ fun computeLayers(nodes: Set<String>, edges: List<Pair<String, String>>): Map<St
     return memo
 }
 
-fun clusterIdForPackage(packageName: String): String = when {
-    packageName == "<root>" -> "misc"
-    packageName == "pubgkt" || packageName.startsWith("pubgkt.http") || packageName.startsWith("pubgkt.jsonapi") || packageName.startsWith("pubgkt.ratelimit") -> "shared"
-    packageName.startsWith("pubgkt.test") -> "testing"
-    packageName.startsWith("pubgkt.") -> packageName.substringAfter("pubgkt.").substringBefore('.')
-    else -> "misc"
-}
+fun clusterIdForPackage(packageName: String): String =
+    when {
+        packageName == "<root>" -> "misc"
 
-fun clusterLabel(clusterId: String): String = when (clusterId) {
-    "shared" -> "Shared infrastructure"
-    "testing" -> "Testing"
-    "misc" -> "Misc"
-    else -> clusterId.replaceFirstChar(Char::uppercaseChar)
-}
+        packageName == "pubgkt" || packageName.startsWith("pubgkt.http") || packageName.startsWith("pubgkt.jsonapi") ||
+            packageName.startsWith("pubgkt.ratelimit") -> "shared"
 
-fun clusterColor(clusterId: String): String = when (clusterId) {
-    "shared" -> "#6C8EBF"
-    "testing" -> "#B85450"
-    "misc" -> "#999999"
-    else -> "#82B366"
-}
+        packageName.startsWith("pubgkt.test") -> "testing"
 
-fun createImageOutput(dotFile: File, outputPngFile: File) {
-    val process = ProcessBuilder(
-        "dot", "-Tpng", dotFile.absolutePath, "-o", outputPngFile.absolutePath
-    ).redirectErrorStream(true).start()
+        packageName.startsWith("pubgkt.") -> packageName.substringAfter("pubgkt.").substringBefore('.')
+
+        else -> "misc"
+    }
+
+fun clusterLabel(clusterId: String): String =
+    when (clusterId) {
+        "shared" -> "Shared infrastructure"
+        "testing" -> "Testing"
+        "misc" -> "Misc"
+        else -> clusterId.replaceFirstChar(Char::uppercaseChar)
+    }
+
+fun clusterColor(clusterId: String): String =
+    when (clusterId) {
+        "shared" -> "#6C8EBF"
+        "testing" -> "#B85450"
+        "misc" -> "#999999"
+        else -> "#82B366"
+    }
+
+fun createImageOutput(
+    dotFile: File,
+    outputPngFile: File,
+) {
+    val process =
+        ProcessBuilder(
+            "dot",
+            "-Tpng",
+            dotFile.absolutePath,
+            "-o",
+            outputPngFile.absolutePath,
+        ).redirectErrorStream(true).start()
 
     val output = process.inputStream.bufferedReader().readText()
     val exit = process.waitFor()

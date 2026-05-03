@@ -12,14 +12,8 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 
 class JsonApiResourceDeserializerTest {
-
     /** Minimal stub that exposes the raw fields the base class extracts. */
-    private data class Stub(
-        val id: String?,
-        val attrs: JsonObject,
-        val rels: JsonObject?,
-        val included: JsonArray?,
-    )
+    private data class Stub(val id: String?, val attrs: JsonObject, val rels: JsonObject?, val included: JsonArray?)
 
     private object StubDeserializer : JsonApiResourceDeserializer<Stub>("test.Stub") {
         override fun deserializeResource(
@@ -61,7 +55,13 @@ class JsonApiResourceDeserializerTest {
     @Test
     fun `extracts included as JsonArray`() {
         val stub = deserialize(RESOURCE_JSON)
-        assertEquals("hello", stub.included?.first()?.jsonObject?.requiredString("field"))
+        assertEquals(
+            "hello",
+            stub.included
+                ?.first()
+                ?.jsonObject
+                ?.requiredString("field"),
+        )
     }
 
     @Test
@@ -99,7 +99,13 @@ class JsonApiResourceDeserializerTest {
         assertEquals("abc-123", stub.id)
         assertEquals("hello", stub.attrs.requiredString("field"))
         assertEquals("value", stub.rels?.requiredString("rel"))
-        assertEquals("hello", stub.included?.first()?.jsonObject?.requiredString("field"))
+        assertEquals(
+            "hello",
+            stub.included
+                ?.first()
+                ?.jsonObject
+                ?.requiredString("field"),
+        )
     }
 
     @Test

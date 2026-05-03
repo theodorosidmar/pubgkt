@@ -15,15 +15,15 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertTrue
 
 class HttpRetryTest {
-
     @Test
     fun `stops retrying after reaching max retry attempts`() = runTest {
         val maxRetries = 3
         val engine = mockEngineWithHandler { respond("", HttpStatusCode.InternalServerError) }
-        val api = PubgApi(
-            engine = engine,
-            retry = Retry(maxRetries = maxRetries, backoff = NoBackoff),
-        )
+        val api =
+            PubgApi(
+                engine = engine,
+                retry = Retry(maxRetries = maxRetries, backoff = NoBackoff),
+            )
 
         runCatching { api.isUp() }
 
@@ -34,22 +34,26 @@ class HttpRetryTest {
     fun `applies exponential backoff delay between retry attempts`() = runTest {
         val maxRetries = 3
         val timestamps = mutableListOf<Long>()
-        val engine = mockEngineWithHandler {
-            timestamps.add(testScheduler.currentTime)
-            respond("", HttpStatusCode.InternalServerError)
-        }
-        val api = PubgApi(
-            engine = engine,
-            retry = Retry(
-                maxRetries = maxRetries,
-                backoff = ExponentialBackoff(
-                    base = 2.0,
-                    baseDelayMs = 100,
-                    maxDelayMs = 5_000,
-                    randomizationMs = 0,
+        val engine =
+            mockEngineWithHandler {
+                timestamps.add(testScheduler.currentTime)
+                respond("", HttpStatusCode.InternalServerError)
+            }
+        val api =
+            PubgApi(
+                engine = engine,
+                retry =
+                Retry(
+                    maxRetries = maxRetries,
+                    backoff =
+                    ExponentialBackoff(
+                        base = 2.0,
+                        baseDelayMs = 100,
+                        maxDelayMs = 5_000,
+                        randomizationMs = 0,
+                    ),
                 ),
-            ),
-        )
+            )
 
         runCatching { api.isUp() }
 
@@ -79,18 +83,21 @@ class HttpRetryTest {
 
         var requestCount = 0
         val maxRetries = 2
-        val engine = mockEngineWithHandler {
-            requestCount++
-            throw RetryableException()
-        }
-        val api = PubgApi(
-            engine = engine,
-            retry = Retry(
-                maxRetries = maxRetries,
-                backoff = NoBackoff,
-                retryOnExceptions = listOf(RetryableException::class),
-            ),
-        )
+        val engine =
+            mockEngineWithHandler {
+                requestCount++
+                throw RetryableException()
+            }
+        val api =
+            PubgApi(
+                engine = engine,
+                retry =
+                Retry(
+                    maxRetries = maxRetries,
+                    backoff = NoBackoff,
+                    retryOnExceptions = listOf(RetryableException::class),
+                ),
+            )
 
         assertFailsWith<RetryableException> { api.isUp() }
         assertEquals(maxRetries + 1, requestCount)
@@ -99,21 +106,25 @@ class HttpRetryTest {
     @Test
     fun `does not retry when thrown exception is not in configured types`() = runTest {
         class NonRetryableException : Throwable()
+
         class ConfiguredException : Throwable()
 
         var requestCount = 0
-        val engine = mockEngineWithHandler {
-            requestCount++
-            throw NonRetryableException()
-        }
-        val api = PubgApi(
-            engine = engine,
-            retry = Retry(
-                maxRetries = 3,
-                backoff = NoBackoff,
-                retryOnExceptions = listOf(ConfiguredException::class),
-            ),
-        )
+        val engine =
+            mockEngineWithHandler {
+                requestCount++
+                throw NonRetryableException()
+            }
+        val api =
+            PubgApi(
+                engine = engine,
+                retry =
+                Retry(
+                    maxRetries = 3,
+                    backoff = NoBackoff,
+                    retryOnExceptions = listOf(ConfiguredException::class),
+                ),
+            )
 
         assertFailsWith<NonRetryableException> { api.isUp() }
         assertEquals(1, requestCount)

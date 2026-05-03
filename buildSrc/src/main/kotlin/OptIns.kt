@@ -1,4 +1,5 @@
-val pubgktOptIns = listOf(
-    "pubgkt.PubgktInternal",
-    "kotlinx.coroutines.ExperimentalCoroutinesApi",
-)
+val pubgktOptIns =
+    listOf(
+        "pubgkt.PubgktInternal",
+        "kotlinx.coroutines.ExperimentalCoroutinesApi",
+    )

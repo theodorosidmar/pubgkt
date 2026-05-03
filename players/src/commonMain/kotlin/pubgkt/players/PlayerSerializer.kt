@@ -26,7 +26,8 @@ internal object PlayerSerializer : JsonApiResourceDeserializer<Player>("pubgkt.p
             titleId = attributes.requiredString("titleId"),
             shardId = attributes.requiredString("shardId"),
             patchVersion = attributes.optionalString("patchVersion"),
-            matches = relationships
+            matches =
+            relationships
                 ?.optionalObject("matches")
                 ?.optionalArray("data")
                 ?.filterIsInstance<JsonObject>()
@@ -37,6 +38,5 @@ internal object PlayerSerializer : JsonApiResourceDeserializer<Player>("pubgkt.p
     }
 }
 
-private fun String.toBanType(): BanType =
-    BanType.entries.firstOrNull { it.name.equals(this, ignoreCase = true) }
-        ?: throw SerializationException("Unknown banType '$this'")
+private fun String.toBanType(): BanType = BanType.entries.firstOrNull { it.name.equals(this, ignoreCase = true) }
+    ?: throw SerializationException("Unknown banType '$this'")

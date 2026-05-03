@@ -1,15 +1,15 @@
 package pubgkt.http
 
 import io.ktor.client.request.get
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNull
 import kotlinx.coroutines.test.runTest
 import pubgkt.PubgApi
 import pubgkt.ratelimit.StubRateLimiter
 import pubgkt.test.lastRequest
 import pubgkt.test.mockEngine
 import pubgkt.test.mockResponse
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class RequestPolicyTest {
     private val stubRateLimiter = StubRateLimiter()
@@ -17,11 +17,12 @@ class RequestPolicyTest {
     @Test
     fun `should rate limit and authorize when policy is default`() = runTest {
         val engine = mockEngine {}
-        val api = PubgApi(
-            engine = engine,
-            apiKey = "test",
-            rateLimiter = stubRateLimiter,
-        )
+        val api =
+            PubgApi(
+                engine = engine,
+                apiKey = "test",
+                rateLimiter = stubRateLimiter,
+            )
 
         api.client.get("test")
 
@@ -35,11 +36,12 @@ class RequestPolicyTest {
     @Test
     fun `should not rate limit and authorize when policy is public`() = runTest {
         val engine = mockEngine {}
-        val api = PubgApi(
-            engine = engine,
-            apiKey = "test",
-            rateLimiter = stubRateLimiter,
-        )
+        val api =
+            PubgApi(
+                engine = engine,
+                apiKey = "test",
+                rateLimiter = stubRateLimiter,
+            )
 
         api.client.get("test", PublicRequestPolicy)
 
@@ -56,19 +58,21 @@ class RequestPolicyTest {
         val expectedLimit = 10
         val expectedReset = 1L
 
-        val firstResponse = mockResponse {
-            remaining = expectedRemaining
-            limit = expectedLimit
-            reset = expectedReset
-        }
+        val firstResponse =
+            mockResponse {
+                remaining = expectedRemaining
+                limit = expectedLimit
+                reset = expectedReset
+            }
         val secondResponse = mockResponse {}
 
         val engine = mockEngine(firstResponse, secondResponse)
-        val api = PubgApi(
-            engine = engine,
-            apiKey = "test",
-            rateLimiter = stubRateLimiter,
-        )
+        val api =
+            PubgApi(
+                engine = engine,
+                apiKey = "test",
+                rateLimiter = stubRateLimiter,
+            )
 
         api.client.get("test", DefaultRequestPolicy)
         api.client.get("test", PublicRequestPolicy)

@@ -11,7 +11,6 @@ import pubgkt.stats.deserializeGameModeStats
 
 internal object LifetimePlayerStatsSerializer :
     JsonApiResourceDeserializer<LifetimePlayerStats>("pubgkt.stats.lifetime.LifetimePlayerStats") {
-
     override fun deserializeResource(
         attributes: JsonObject,
         id: String?,

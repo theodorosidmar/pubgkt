@@ -9,7 +9,6 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 
 class PlayerSerializerTest {
-
     private fun deserialize(resourceJson: String): Player {
         val resource = Json.parseToJsonElement(resourceJson).jsonObject
         return PlayerSerializer.fromResource(resource)

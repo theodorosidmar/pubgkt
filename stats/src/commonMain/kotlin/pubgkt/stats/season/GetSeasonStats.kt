@@ -17,16 +17,17 @@ import pubgkt.stats.MAX_PLAYERS_COUNT
  * @param seasonId The [pubgkt.Season] id (e.g. `"division.bro.official.pc-2018-41"`).
  * @param platform The shard platform to query. Defaults to [Platform.STEAM].
  * @return The [SeasonPlayerStats] for the given account ID.
- * @see <a href="https://documentation.pubg.com/en/seasons-endpoint.html#/Season_Stats/get_players__accountId__seasons__seasonId_">PUBG Developer Portal – Get season information for a single player.</a>
+ * @see <a href="
+ * https://documentation.pubg.com/en/seasons-endpoint.html#/Season_Stats/get_players__accountId__seasons__seasonId_">
+ * PUBG Developer Portal – Get season information for a single player.</a>
  */
 public suspend fun PubgApi.getSeasonStatsByAccountId(
     accountId: String,
     seasonId: String,
     platform: Platform = Platform.STEAM,
-): SeasonPlayerStats =
-    client
-        .get("players/$accountId/seasons/$seasonId", platform)
-        .deserialize(SeasonPlayerStatsSerializer)
+): SeasonPlayerStats = client
+    .get("players/$accountId/seasons/$seasonId", platform)
+    .deserialize(SeasonPlayerStatsSerializer)
 
 /**
  * Returns season stats for up to 10 players for the given [platform].
@@ -37,7 +38,10 @@ public suspend fun PubgApi.getSeasonStatsByAccountId(
  * @param gameMode - Game mode to query
  * @param accountIds Account IDs to query.
  * @param platform - Platform shard used for this request. Defaults to [Platform.STEAM]
- * @see <a href="https://documentation.pubg.com/en/seasons-endpoint.html#/Season_Stats/get_seasons__seasonId__gameMode__gameMode__players">PUBG Developer Portal – Get season information for up to 10 players.</a>
+ * @see <a href="
+ * https://documentation.pubg.com/en/seasons-endpoint.html#/Season_Stats/
+ * get_seasons__seasonId__gameMode__gameMode__players">
+ * PUBG Developer Portal – Get season information for up to 10 players.</a>
  */
 public suspend fun PubgApi.getSeasonStatsByGameModeAndPlayers(
     seasonId: String,
@@ -52,6 +56,5 @@ public suspend fun PubgApi.getSeasonStatsByGameModeAndPlayers(
                 key = FILTER_PLAYER_IDS,
                 value = accountIds.take(MAX_PLAYERS_COUNT).joinToString(separator = ","),
             )
-        }
-        .deserializeList(SeasonGameModeStatsSerializer)
+        }.deserializeList(SeasonGameModeStatsSerializer)
 }

@@ -1,20 +1,20 @@
 package pubgkt.stats.lifetime
 
 import io.ktor.http.HttpMethod
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
-import kotlin.test.assertTrue
 import kotlinx.coroutines.test.runTest
 import pubgkt.PubgApi
 import pubgkt.test.lastRequest
 import pubgkt.test.mockEngine
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 class GetLifetimePlayerStatsTest {
-
-    private val engine = mockEngine {
-        body = LIFETIME_PLAYER_RESPONSE_JSON
-    }
+    private val engine =
+        mockEngine {
+            body = LIFETIME_PLAYER_RESPONSE_JSON
+        }
     private val api = PubgApi(engine = engine)
 
     @Test

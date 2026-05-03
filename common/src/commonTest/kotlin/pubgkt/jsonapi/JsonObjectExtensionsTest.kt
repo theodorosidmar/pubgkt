@@ -11,17 +11,17 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 
 class JsonObjectExtensionsTest {
-
-    private val obj = buildJsonObject {
-        put("name", JsonPrimitive("Alice"))
-        put("nullable", JsonNull)
-        put("nested", buildJsonObject { put("key", JsonPrimitive("value")) })
-        put("items", buildJsonArray { add(JsonPrimitive(1)) })
-        put("int", JsonPrimitive(1))
-        put("double", JsonPrimitive(1.0))
-        put("boolean", JsonPrimitive(true))
-        put("booleanString", JsonPrimitive("true"))
-    }
+    private val obj =
+        buildJsonObject {
+            put("name", JsonPrimitive("Alice"))
+            put("nullable", JsonNull)
+            put("nested", buildJsonObject { put("key", JsonPrimitive("value")) })
+            put("items", buildJsonArray { add(JsonPrimitive(1)) })
+            put("int", JsonPrimitive(1))
+            put("double", JsonPrimitive(1.0))
+            put("boolean", JsonPrimitive(true))
+            put("booleanString", JsonPrimitive("true"))
+        }
 
     // ── requiredString ──────────────────────────────────────────────────
 

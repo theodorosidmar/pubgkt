@@ -43,11 +43,11 @@ public suspend fun <T> HttpResponse.deserialize(deserializer: JsonApiResourceDes
 @PubgktInternal
 public suspend fun <T> HttpResponse.deserializeList(deserializer: JsonApiResourceDeserializer<T>): List<T> {
     val root = root()
-    val data = root["data"] as? JsonArray
-        ?: throw SerializationException("Missing 'data' array")
+    val data =
+        root["data"] as? JsonArray
+            ?: throw SerializationException("Missing 'data' array")
     val included = root.optionalArray("included")
     return data.map { deserializer.fromResource(it.jsonObject, included) }
 }
 
-private suspend fun HttpResponse.root(): JsonObject =
-    json.parseToJsonElement(bodyAsText()).jsonObject
+private suspend fun HttpResponse.root(): JsonObject = json.parseToJsonElement(bodyAsText()).jsonObject

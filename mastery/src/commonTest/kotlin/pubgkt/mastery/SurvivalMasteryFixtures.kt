@@ -1,11 +1,12 @@
 package pubgkt.mastery
 
-internal val zeroedSurvivalStats = SurvivalStats(
-    total = 0.0,
-    average = 0.0,
-    careerBest = 0.0,
-    lastMatchValue = 0.0,
-)
+internal val zeroedSurvivalStats =
+    SurvivalStats(
+        total = 0.0,
+        average = 0.0,
+        careerBest = 0.0,
+        lastMatchValue = 0.0,
+    )
 
 internal const val SURVIVAL_MASTERY_RESPONSE_JSON: String = """
 {

@@ -2,17 +2,17 @@ package pubgkt
 
 import io.ktor.http.HttpMethod
 import kotlinx.coroutines.test.runTest
+import pubgkt.test.lastRequest
+import pubgkt.test.mockEngine
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
-import pubgkt.test.lastRequest
-import pubgkt.test.mockEngine
 
 class SeasonTest {
-
-    private val engine = mockEngine {
-        body = SEASONS_RESPONSE_JSON
-    }
+    private val engine =
+        mockEngine {
+            body = SEASONS_RESPONSE_JSON
+        }
     private val api = PubgApi(engine)
 
     @Test

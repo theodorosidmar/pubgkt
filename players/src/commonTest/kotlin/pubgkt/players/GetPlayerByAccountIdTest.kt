@@ -1,18 +1,18 @@
 package pubgkt.players
 
 import kotlinx.coroutines.test.runTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 import pubgkt.PubgApi
 import pubgkt.test.lastRequest
 import pubgkt.test.mockEngine
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class GetPlayerByAccountIdTest {
-
-    private val engine = mockEngine {
-        body = PLAYER_RESPONSE_JSON
-    }
+    private val engine =
+        mockEngine {
+            body = PLAYER_RESPONSE_JSON
+        }
     private val api = PubgApi(engine = engine)
 
     @Test
@@ -20,7 +20,8 @@ class GetPlayerByAccountIdTest {
         api.getPlayerByAccountId("account.abc123")
 
         assertTrue(
-            engine.lastRequest.url.encodedPath.endsWith("players/account.abc123"),
+            engine.lastRequest.url.encodedPath
+                .endsWith("players/account.abc123"),
         )
     }
 

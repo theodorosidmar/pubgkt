@@ -19,8 +19,7 @@ import pubgkt.http.get
 public suspend fun PubgApi.getPlayersByNames(
     vararg playerNames: String,
     platform: Platform = Platform.STEAM,
-): List<Player> =
-    getPlayersByNames(playerNames.toList(), platform)
+): List<Player> = getPlayersByNames(playerNames.toList(), platform)
 
 /**
  * Returns players filtered by in-game names for the given [platform].
@@ -34,16 +33,14 @@ public suspend fun PubgApi.getPlayersByNames(
 public suspend fun PubgApi.getPlayersByNames(
     playerNames: List<String>,
     platform: Platform = Platform.STEAM,
-): List<Player> =
-    if (playerNames.isEmpty()) {
-        emptyList()
-    } else {
-        client
-            .get(PLAYERS_PATH, platform) {
-                parameter(
-                    key = FILTER_PLAYER_NAMES,
-                    value = playerNames.take(MAX_PLAYERS_COUNT).joinToString(","),
-                )
-            }
-            .deserializeList(PlayerSerializer)
-    }
+): List<Player> = if (playerNames.isEmpty()) {
+    emptyList()
+} else {
+    client
+        .get(PLAYERS_PATH, platform) {
+            parameter(
+                key = FILTER_PLAYER_NAMES,
+                value = playerNames.take(MAX_PLAYERS_COUNT).joinToString(","),
+            )
+        }.deserializeList(PlayerSerializer)
+}

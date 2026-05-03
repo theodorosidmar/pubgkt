@@ -2,8 +2,8 @@ package pubgkt.mastery
 
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
-import pubgkt.jsonapi.JsonApiResourceDeserializer
 import pubgkt.Platform
+import pubgkt.jsonapi.JsonApiResourceDeserializer
 import pubgkt.jsonapi.optionalObject
 import pubgkt.jsonapi.requireId
 import pubgkt.jsonapi.requiredDouble
@@ -13,7 +13,6 @@ import pubgkt.jsonapi.requiredString
 
 internal object WeaponMasterySerializer :
     JsonApiResourceDeserializer<WeaponMastery>("pubgkt.mastery.WeaponMastery") {
-
     @Suppress("LongMethod")
     override fun deserializeResource(
         attributes: JsonObject,
@@ -33,7 +32,9 @@ internal object WeaponMasterySerializer :
             s686 = weaponsSummary.optionalObject("Item_Weapon_Berreta686_C")?.let(::deserializeWeaponSummary),
             beryl = weaponsSummary.optionalObject("Item_Weapon_BerylM762_C")?.let(::deserializeWeaponSummary),
             bizon = weaponsSummary.optionalObject("Item_Weapon_BizonPP19_C")?.let(::deserializeWeaponSummary),
-            bluezoneGrenade = weaponsSummary.optionalObject("Item_Weapon_BluezoneGrenade_C")
+            bluezoneGrenade =
+            weaponsSummary
+                .optionalObject("Item_Weapon_BluezoneGrenade_C")
                 ?.let(::deserializeWeaponSummary),
             c4 = weaponsSummary.optionalObject("Item_Weapon_C4_C")?.let(::deserializeWeaponSummary),
             crossbow = weaponsSummary.optionalObject("Item_Weapon_Crossbow_C")?.let(::deserializeWeaponSummary),
@@ -70,7 +71,9 @@ internal object WeaponMasterySerializer :
             r1895 = weaponsSummary.optionalObject("Item_Weapon_NagantM1895_C")?.let(::deserializeWeaponSummary),
             o12 = weaponsSummary.optionalObject("Item_Weapon_OriginS12_C")?.let(::deserializeWeaponSummary),
             p90 = weaponsSummary.optionalObject("Item_Weapon_P90_C")?.let(::deserializeWeaponSummary),
-            panzerfaust = weaponsSummary.optionalObject("Item_Weapon_PanzerFaust100M_C")
+            panzerfaust =
+            weaponsSummary
+                .optionalObject("Item_Weapon_PanzerFaust100M_C")
                 ?.let(::deserializeWeaponSummary),
             qbu = weaponsSummary.optionalObject("Item_Weapon_QBU88_C")?.let(::deserializeWeaponSummary),
             qbz = weaponsSummary.optionalObject("Item_Weapon_QBZ95_C")?.let(::deserializeWeaponSummary),
@@ -91,33 +94,35 @@ internal object WeaponMasterySerializer :
         )
     }
 
-    private fun deserializeWeaponSummary(weaponSummary: JsonObject): WeaponSummary =
-        WeaponSummary(
-            xpTotal = weaponSummary.requiredInt("XPTotal"),
-            currentLevel = weaponSummary.requiredInt("LevelCurrent"),
-            currentTier = weaponSummary.requiredInt("TierCurrent"),
-            statsTotal = weaponSummary.requiredObject("StatsTotal").let(::deserializeWeaponStatsTotal),
-            officialStatsTotal = weaponSummary.requiredObject("OfficialStatsTotal")
-                .let(::deserializeWeaponOfficialStatsTotal),
-            competitiveStatsTotal = weaponSummary.requiredObject("CompetitiveStatsTotal")
-                .let(::deserializeWeaponOfficialStatsTotal),
-        )
+    private fun deserializeWeaponSummary(weaponSummary: JsonObject): WeaponSummary = WeaponSummary(
+        xpTotal = weaponSummary.requiredInt("XPTotal"),
+        currentLevel = weaponSummary.requiredInt("LevelCurrent"),
+        currentTier = weaponSummary.requiredInt("TierCurrent"),
+        statsTotal = weaponSummary.requiredObject("StatsTotal").let(::deserializeWeaponStatsTotal),
+        officialStatsTotal =
+        weaponSummary
+            .requiredObject("OfficialStatsTotal")
+            .let(::deserializeWeaponOfficialStatsTotal),
+        competitiveStatsTotal =
+        weaponSummary
+            .requiredObject("CompetitiveStatsTotal")
+            .let(::deserializeWeaponOfficialStatsTotal),
+    )
 
-    private fun deserializeWeaponStatsTotal(statsTotal: JsonObject): WeaponStatsTotal =
-        WeaponStatsTotal(
-            mostDefeatsInAGame = statsTotal.requiredInt("MostDefeatsInAGame"),
-            defeats = statsTotal.requiredInt("Defeats"),
-            mostDamagePlayerInAGame = statsTotal.requiredDouble("MostDamagePlayerInAGame"),
-            damagePlayer = statsTotal.requiredDouble("DamagePlayer"),
-            mostHeadShotsInAGame = statsTotal.requiredInt("MostHeadShotsInAGame"),
-            headShots = statsTotal.requiredInt("HeadShots"),
-            longestDefeat = statsTotal.requiredDouble("LongestDefeat"),
-            longRangeDefeats = statsTotal.requiredInt("LongRangeDefeats"),
-            kills = statsTotal.requiredInt("Kills"),
-            mostKillsInAGame = statsTotal.requiredInt("MostKillsInAGame"),
-            groggies = statsTotal.requiredInt("Groggies"),
-            mostGroggiesInAGame = statsTotal.requiredInt("MostGroggiesInAGame"),
-        )
+    private fun deserializeWeaponStatsTotal(statsTotal: JsonObject): WeaponStatsTotal = WeaponStatsTotal(
+        mostDefeatsInAGame = statsTotal.requiredInt("MostDefeatsInAGame"),
+        defeats = statsTotal.requiredInt("Defeats"),
+        mostDamagePlayerInAGame = statsTotal.requiredDouble("MostDamagePlayerInAGame"),
+        damagePlayer = statsTotal.requiredDouble("DamagePlayer"),
+        mostHeadShotsInAGame = statsTotal.requiredInt("MostHeadShotsInAGame"),
+        headShots = statsTotal.requiredInt("HeadShots"),
+        longestDefeat = statsTotal.requiredDouble("LongestDefeat"),
+        longRangeDefeats = statsTotal.requiredInt("LongRangeDefeats"),
+        kills = statsTotal.requiredInt("Kills"),
+        mostKillsInAGame = statsTotal.requiredInt("MostKillsInAGame"),
+        groggies = statsTotal.requiredInt("Groggies"),
+        mostGroggiesInAGame = statsTotal.requiredInt("MostGroggiesInAGame"),
+    )
 
     private fun deserializeWeaponOfficialStatsTotal(officialStatsTotal: JsonObject): WeaponOfficialStatsTotal =
         WeaponOfficialStatsTotal(

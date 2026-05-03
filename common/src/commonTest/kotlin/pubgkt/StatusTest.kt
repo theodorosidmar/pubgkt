@@ -1,21 +1,22 @@
 package pubgkt
 
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
 import kotlinx.coroutines.test.runTest
 import pubgkt.ratelimit.StubRateLimiter
 import pubgkt.test.lastRequest
 import pubgkt.test.mockEngine
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 class StatusTest {
     private val engine = mockEngine()
     private val stubRateLimiter = StubRateLimiter()
-    private val api = PubgApi(
-        engine = engine,
-        rateLimiter = stubRateLimiter
-    )
+    private val api =
+        PubgApi(
+            engine = engine,
+            rateLimiter = stubRateLimiter,
+        )
 
     @Test
     fun `returns true when status is OK`() = runTest {

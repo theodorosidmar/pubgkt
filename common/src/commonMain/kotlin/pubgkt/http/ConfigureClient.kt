@@ -16,13 +16,13 @@ import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.serialization
 import pubgkt.ExponentialBackoff
-import pubgkt.HOST
 import pubgkt.HEADER_RATE_LIMIT_RESET
+import pubgkt.HOST
 import pubgkt.NoRetry
 import pubgkt.PubgApi
+import pubgkt.Retry
 import pubgkt.ratelimit.RateLimitExceededException
 import pubgkt.ratelimit.RateLimiter
-import pubgkt.Retry
 
 context(
     pubgApi: PubgApi,
@@ -75,7 +75,7 @@ private fun HttpClientConfig<*>.configureDefaultRequest() {
             ContentType(
                 contentType = "application",
                 contentSubtype = "vnd.api+json",
-            )
+            ),
         )
     }
 }

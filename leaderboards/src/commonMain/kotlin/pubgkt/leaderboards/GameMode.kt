@@ -9,7 +9,8 @@ public enum class GameMode {
     DUO,
     DUO_FPP,
     SQUAD,
-    SQUAD_FPP;
+    SQUAD_FPP,
+    ;
 
     internal val path: String =
         name
@@ -17,7 +18,6 @@ public enum class GameMode {
             .replace(oldValue = "_", newValue = "-")
 
     internal companion object {
-        fun of(value: String): GameMode =
-            valueOf(value.uppercase().replace(oldValue = "-", newValue = "_"))
+        fun of(value: String): GameMode = valueOf(value.uppercase().replace(oldValue = "-", newValue = "_"))
     }
 }

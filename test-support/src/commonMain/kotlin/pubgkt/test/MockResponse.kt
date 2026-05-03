@@ -7,8 +7,7 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.http.headers
 import io.ktor.http.headersOf
 
-fun mockResponse(builder: MockResponse.Builder.() -> Unit): MockResponse =
-    MockResponse.Builder().apply(builder).build()
+fun mockResponse(builder: MockResponse.Builder.() -> Unit): MockResponse = MockResponse.Builder().apply(builder).build()
 
 class MockResponse private constructor(
     val body: String = "",
@@ -38,17 +37,22 @@ class MockResponse private constructor(
                 field = value
             }
 
-        private fun headers(key: String, value: String) {
-            this.headers = headers {
-                appendAll(this@Builder.headers)
-                append(key, value)
-            }
+        private fun headers(
+            key: String,
+            value: String,
+        ) {
+            this.headers =
+                headers {
+                    appendAll(this@Builder.headers)
+                    append(key, value)
+                }
         }
 
-        internal fun build(): MockResponse = MockResponse(
-            body = body,
-            status = status,
-            headers = headers,
-        )
+        internal fun build(): MockResponse =
+            MockResponse(
+                body = body,
+                status = status,
+                headers = headers,
+            )
     }
 }

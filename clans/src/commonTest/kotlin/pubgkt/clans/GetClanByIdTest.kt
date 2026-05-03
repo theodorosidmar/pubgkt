@@ -1,17 +1,18 @@
 package pubgkt.clans
 
 import kotlinx.coroutines.test.runTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 import pubgkt.PubgApi
 import pubgkt.test.lastRequest
 import pubgkt.test.mockEngine
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class GetClanByIdTest {
-    private val engine = mockEngine {
-        body = CLAN_RESPONSE_JSON
-    }
+    private val engine =
+        mockEngine {
+            body = CLAN_RESPONSE_JSON
+        }
     private val api = PubgApi(engine = engine)
 
     @Test
@@ -19,7 +20,8 @@ class GetClanByIdTest {
         api.getClanById("clan.d52aad6adcfb4c4783a85eb250f6e822")
 
         assertTrue(
-            engine.lastRequest.url.encodedPath.endsWith("clans/clan.d52aad6adcfb4c4783a85eb250f6e822"),
+            engine.lastRequest.url.encodedPath
+                .endsWith("clans/clan.d52aad6adcfb4c4783a85eb250f6e822"),
         )
     }
 

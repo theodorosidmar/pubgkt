@@ -1,18 +1,19 @@
 package pubgkt.leaderboards
 
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 import kotlinx.coroutines.test.runTest
 import pubgkt.PlatformRegion
 import pubgkt.PubgApi
 import pubgkt.test.lastRequest
 import pubgkt.test.mockEngine
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class GetLeaderboardTest {
-    private val engine = mockEngine {
-        body = LEADERBOARD_RESPONSE_JSON
-    }
+    private val engine =
+        mockEngine {
+            body = LEADERBOARD_RESPONSE_JSON
+        }
     private val api = PubgApi(engine = engine)
 
     @Test
@@ -34,11 +35,12 @@ class GetLeaderboardTest {
 
     @Test
     fun `deserializes single-resource response`() = runTest {
-        val leaderboard = api.getLeaderboard(
-            seasonId = "seasonId",
-            gameMode = GameMode.SQUAD,
-            platformRegion = PlatformRegion.PC_SA,
-        )
+        val leaderboard =
+            api.getLeaderboard(
+                seasonId = "seasonId",
+                gameMode = GameMode.SQUAD,
+                platformRegion = PlatformRegion.PC_SA,
+            )
 
         assertEquals("division.bro.official.pc-2018-41", leaderboard.seasonId)
         assertEquals(GameMode.SQUAD, leaderboard.gameMode)

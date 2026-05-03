@@ -2,12 +2,12 @@
 
 package pubgkt.jsonapi
 
-import kotlin.contracts.ExperimentalContracts
-import kotlin.contracts.contract
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import pubgkt.PubgktInternal
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.contract
 
 /**
  * Asserts that the JSON:API resource `id` is present, smart-casting it to [String]

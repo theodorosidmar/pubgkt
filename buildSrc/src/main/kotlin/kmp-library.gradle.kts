@@ -1,5 +1,6 @@
 import dev.detekt.gradle.Detekt
 import dev.detekt.gradle.extensions.FailOnSeverity.Warning
+import dev.detekt.gradle.report.ReportMergeTask
 import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
@@ -41,9 +42,14 @@ kotlin {
     }
 }
 
+dependencies {
+    detektPlugins("dev.detekt:detekt-rules-ktlint-wrapper:2.0.0-alpha.3")
+}
+
 detekt {
     config.setFrom(rootProject.file("detekt/detekt.yml"))
     buildUponDefaultConfig = false
+    autoCorrect = true
     parallel = true
     debug = false
     ignoreFailures = false
@@ -58,5 +64,20 @@ tasks {
             sarif.required.set(true)
             markdown.required.set(true)
         }
+    }
+
+    check {
+        dependsOn(
+            detektCommonMainSourceSet,
+            detektCommonTestSourceSet,
+        )
+    }
+
+    val detektMergeReport by registering(ReportMergeTask::class) {
+        output.set(rootProject.layout.buildDirectory.file("reports/detekt/merge.sarif"))
+    }
+
+    detektMergeReport {
+        input.from(withType<Detekt>().map { it.reports.sarif.outputLocation })
     }
 }

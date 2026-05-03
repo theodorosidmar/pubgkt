@@ -13,10 +13,10 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class GetSeasonGameModeStatsTest {
-
-    private val engine = mockEngine {
-        body = SEASON_GAME_MODE_RESPONSE_JSON
-    }
+    private val engine =
+        mockEngine {
+            body = SEASON_GAME_MODE_RESPONSE_JSON
+        }
     private val api = PubgApi(engine = engine)
 
     @Test
@@ -42,18 +42,20 @@ class GetSeasonGameModeStatsTest {
                 .url
                 .encodedQuery
                 .endsWith(
-                    FILTER_PLAYER_IDS.encodeURLParameter() + "=" + "account.abc123,account.abc456".encodeURLParameter()
+                    FILTER_PLAYER_IDS.encodeURLParameter() + "=" +
+                        "account.abc123,account.abc456".encodeURLParameter(),
                 ),
         )
     }
 
     @Test
     fun `deserializes a lifetime game mode stats response`() = runTest {
-        val lifetimeGameModeStats = api.getSeasonStatsByGameModeAndPlayers(
-            seasonId = "season123",
-            gameMode = GameMode.SQUAD_FPP,
-            accountIds = listOf("account.abc123"),
-        )
+        val lifetimeGameModeStats =
+            api.getSeasonStatsByGameModeAndPlayers(
+                seasonId = "season123",
+                gameMode = GameMode.SQUAD_FPP,
+                accountIds = listOf("account.abc123"),
+            )
 
         assertEquals(2, lifetimeGameModeStats.size)
         assertEquals(lifetimeGameModeStats.first(), lifetimeGameModeStats.last())

@@ -19,8 +19,7 @@ import pubgkt.http.get
 public suspend fun PubgApi.getPlayersById(
     vararg accountIds: String,
     platform: Platform = Platform.STEAM,
-): List<Player> =
-    getPlayersById(accountIds.toList(), platform)
+): List<Player> = getPlayersById(accountIds.toList(), platform)
 
 /**
  * Returns players filtered by account IDs for the given [platform].
@@ -34,16 +33,14 @@ public suspend fun PubgApi.getPlayersById(
 public suspend fun PubgApi.getPlayersById(
     accountIds: List<String>,
     platform: Platform = Platform.STEAM,
-): List<Player> =
-    if (accountIds.isEmpty()) {
-        emptyList()
-    } else {
-        client
-            .get(PLAYERS_PATH, platform) {
-                parameter(
-                    key = FILTER_PLAYER_IDS,
-                    value = accountIds.take(MAX_PLAYERS_COUNT).joinToString(","),
-                )
-            }
-            .deserializeList(PlayerSerializer)
-    }
+): List<Player> = if (accountIds.isEmpty()) {
+    emptyList()
+} else {
+    client
+        .get(PLAYERS_PATH, platform) {
+            parameter(
+                key = FILTER_PLAYER_IDS,
+                value = accountIds.take(MAX_PLAYERS_COUNT).joinToString(","),
+            )
+        }.deserializeList(PlayerSerializer)
+}

@@ -48,9 +48,7 @@ fun mockEngine(vararg responses: MockResponse): MockEngine = mockEngine(response
  * Creates a [MockEngine] with a raw request handler, allowing full control over the response
  * (including throwing exceptions to simulate network failures).
  */
-fun mockEngineWithHandler(
-    handler: suspend MockRequestHandleScope.(HttpRequestData) -> HttpResponseData,
-): MockEngine = MockEngine(handler)
+fun mockEngineWithHandler(handler: suspend MockRequestHandleScope.(HttpRequestData) -> HttpResponseData): MockEngine = MockEngine(handler)
 
 val MockEngine.lastRequest: HttpRequestData
     get() = requestHistory.last()

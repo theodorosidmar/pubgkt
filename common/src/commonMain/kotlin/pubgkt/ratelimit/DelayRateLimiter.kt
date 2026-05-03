@@ -23,9 +23,7 @@ import kotlin.time.Instant
  * @see RateLimiter
  * @see RateLimitExceededException
  */
-public open class DelayRateLimiter(
-    protected val clock: Clock = Clock.System,
-) : RateLimiter {
+public open class DelayRateLimiter(protected val clock: Clock = Clock.System) : RateLimiter {
     private var remaining: Int = Int.MAX_VALUE
     private var resetAt: Instant = Instant.fromEpochSeconds(0L)
 

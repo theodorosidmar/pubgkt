@@ -4,7 +4,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class PlatformRegionTest {
-
     @Test
     fun `should transform pubg jsonapi platform region shard string into PlatformRegion`() {
         assertEquals(PlatformRegion.PC_AS, PlatformRegion.of("pc-as"))

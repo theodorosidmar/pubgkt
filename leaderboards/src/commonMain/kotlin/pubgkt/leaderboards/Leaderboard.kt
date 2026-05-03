@@ -10,20 +10,16 @@ public data class Leaderboard(
      * The season id of the leaderboard.
      */
     val seasonId: String,
-
     /**
      * The game mode of the leaderboard.
      */
     val gameMode: GameMode,
-
     /**
      * The platform region of the leaderboard.
      */
     val platformRegion: PlatformRegion,
-
     /**
      * The list of players in the leaderboard.
      */
     val placements: List<LeaderboardPlacement>,
 )
-

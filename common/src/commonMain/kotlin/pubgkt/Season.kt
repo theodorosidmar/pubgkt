@@ -8,11 +8,7 @@ import pubgkt.jsonapi.JsonApiResourceDeserializer
 import pubgkt.jsonapi.requireId
 import pubgkt.jsonapi.requiredBoolean
 
-public data class Season(
-    val id: String,
-    val isCurrentSeason: Boolean,
-    val isOffSeason: Boolean,
-)
+public data class Season(val id: String, val isCurrentSeason: Boolean, val isOffSeason: Boolean)
 
 /**
  * Returns the current season among a list of available [Season] or null.
@@ -43,14 +39,13 @@ internal object SeasonSerializer : JsonApiResourceDeserializer<Season>("pubgkt.S
  *
  * @param platform The platform
  * @return A list of available [Season].
- * @see <a href="https://documentation.pubg.com/en/seasons-endpoint.html#/Seasons/get_seasons">PUBG Developer Portal – Get seasons</a>
+ * @see <a href="
+ * https://documentation.pubg.com/en/seasons-endpoint.html#/Seasons/get_seasons">
+ * PUBG Developer Portal – Get seasons</a>
  */
-public suspend fun PubgApi.seasons(
-   platform: Platform = Platform.STEAM,
-): List<Season> =
-    client
-        .get("seasons", platform)
-        .deserializeList(SeasonSerializer)
+public suspend fun PubgApi.seasons(platform: Platform = Platform.STEAM): List<Season> = client
+    .get("seasons", platform)
+    .deserializeList(SeasonSerializer)
 
 /**
  * Returns the list of available [Season] by platform-region.
@@ -60,12 +55,10 @@ public suspend fun PubgApi.seasons(
  *
  * @param platformRegion The platform region
  * @return A list of available [Season].
- * @see <a href="https://documentation.pubg.com/en/seasons-endpoint.html#/Seasons/get_seasons">PUBG Developer Portal – Get seasons</a>
+ * @see <a href="
+ * https://documentation.pubg.com/en/seasons-endpoint.html#/Seasons/get_seasons">
+ * PUBG Developer Portal – Get seasons</a>
  */
-public suspend fun PubgApi.seasons(
-    platformRegion: PlatformRegion = PlatformRegion.PC_SA,
-): List<Season> =
-    client
-        .get("seasons", platformRegion)
-        .deserializeList(SeasonSerializer)
-
+public suspend fun PubgApi.seasons(platformRegion: PlatformRegion = PlatformRegion.PC_SA): List<Season> = client
+    .get("seasons", platformRegion)
+    .deserializeList(SeasonSerializer)

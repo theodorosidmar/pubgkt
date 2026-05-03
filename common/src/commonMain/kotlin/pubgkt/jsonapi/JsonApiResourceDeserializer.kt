@@ -41,10 +41,7 @@ import pubgkt.PubgktInternal
  *   class name of the target type (e.g. `"pubgkt.Player"`).
  */
 @PubgktInternal
-public abstract class JsonApiResourceDeserializer<T>(
-    serialName: String,
-) : DeserializationStrategy<T> {
-
+public abstract class JsonApiResourceDeserializer<T>(serialName: String) : DeserializationStrategy<T> {
     override val descriptor: SerialDescriptor =
         buildClassSerialDescriptor(serialName)
 
@@ -75,16 +72,12 @@ public abstract class JsonApiResourceDeserializer<T>(
      *   resources in a response. Pass `null` when the response has no side-loaded data.
      */
     @PubgktInternal
-    public fun fromResource(
-        resource: JsonObject,
-        included: JsonArray? = null,
-    ): T =
-        deserializeResource(
-            attributes = resource.requiredObject("attributes"),
-            id = resource.optionalString("id"),
-            relationships = resource.optionalObject("relationships"),
-            included = included,
-        )
+    public fun fromResource(resource: JsonObject, included: JsonArray? = null): T = deserializeResource(
+        attributes = resource.requiredObject("attributes"),
+        id = resource.optionalString("id"),
+        relationships = resource.optionalObject("relationships"),
+        included = included,
+    )
 
     /**
      * [DeserializationStrategy] entry point.

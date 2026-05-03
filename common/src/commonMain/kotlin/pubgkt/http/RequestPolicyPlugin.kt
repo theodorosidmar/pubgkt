@@ -7,31 +7,32 @@ import pubgkt.HEADER_RATE_LIMIT_LIMIT
 import pubgkt.HEADER_RATE_LIMIT_REMAINING
 import pubgkt.HEADER_RATE_LIMIT_RESET
 
-internal val RequestPolicyPlugin = createClientPlugin("PubgktRequestPolicy", ::RequestPolicyPluginConfig) {
-    val apiKey = pluginConfig.apiKey
-    val rateLimiter = pluginConfig.rateLimiter
+internal val RequestPolicyPlugin =
+    createClientPlugin("PubgktRequestPolicy", ::RequestPolicyPluginConfig) {
+        val apiKey = pluginConfig.apiKey
+        val rateLimiter = pluginConfig.rateLimiter
 
-    onRequest { request, _ ->
-        val policy = request.attributes.requestPolicyOrDefault
+        onRequest { request, _ ->
+            val policy = request.attributes.requestPolicyOrDefault
 
-        if (policy.requiresAuth) {
-            request.bearerAuth(apiKey)
+            if (policy.requiresAuth) {
+                request.bearerAuth(apiKey)
+            }
+
+            if (policy.isRateLimited) {
+                rateLimiter.throttle()
+            }
         }
 
-        if (policy.isRateLimited) {
-            rateLimiter.throttle()
+        onResponse { response ->
+            val policy = response.request.attributes.requestPolicyOrDefault
+
+            if (policy.isRateLimited) {
+                rateLimiter.onResponse(
+                    limit = response.headers[HEADER_RATE_LIMIT_LIMIT]?.toInt(),
+                    remaining = response.headers[HEADER_RATE_LIMIT_REMAINING]?.toInt(),
+                    reset = response.headers[HEADER_RATE_LIMIT_RESET]?.toLong(),
+                )
+            }
         }
     }
-
-    onResponse { response ->
-        val policy = response.request.attributes.requestPolicyOrDefault
-
-        if (policy.isRateLimited) {
-            rateLimiter.onResponse(
-                limit = response.headers[HEADER_RATE_LIMIT_LIMIT]?.toInt(),
-                remaining = response.headers[HEADER_RATE_LIMIT_REMAINING]?.toInt(),
-                reset = response.headers[HEADER_RATE_LIMIT_RESET]?.toLong(),
-            )
-        }
-    }
-}

@@ -1,7 +1,7 @@
 package pubgkt
 
-import pubgkt.stats.season.getSeasonStatsByGameModeAndPlayers
 import pubgkt.players.getPlayersByNames
+import pubgkt.stats.season.getSeasonStatsByGameModeAndPlayers
 
 suspend fun main(args: Array<String>) {
     val apiKey = args.getOrNull(0) ?: error("Usage: PlayersSample <api-key> [accountId] [playerName]")
@@ -11,11 +11,13 @@ suspend fun main(args: Array<String>) {
 
     val api = PubgApi(apiKey)
     val playerIds = api.getPlayersByNames("sparkingg", "TGLTN").map { it.id }
-    println(api.getSeasonStatsByGameModeAndPlayers(
-        seasonId = "division.bro.official.pc-2018-41",
-        gameMode = GameMode.SQUAD_FPP,
-        accountIds = playerIds,
-    ))
+    println(
+        api.getSeasonStatsByGameModeAndPlayers(
+            seasonId = "division.bro.official.pc-2018-41",
+            gameMode = GameMode.SQUAD_FPP,
+            accountIds = playerIds,
+        ),
+    )
 
 //    println("=== getPlayerByAccountId ===")
 //    val player = api.getPlayerByAccountId(accountId)

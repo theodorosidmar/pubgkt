@@ -10,10 +10,10 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class GetRankedStatsTest {
-
-    private val engine = mockEngine {
-        body = RANKED_RESPONSE_JSON
-    }
+    private val engine =
+        mockEngine {
+            body = RANKED_RESPONSE_JSON
+        }
     private val api = PubgApi(engine = engine)
 
     @Test

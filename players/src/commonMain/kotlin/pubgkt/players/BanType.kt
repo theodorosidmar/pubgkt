@@ -6,5 +6,5 @@ package pubgkt.players
 public enum class BanType {
     Innocent,
     TemporaryBan,
-    PermanentBan;
+    PermanentBan,
 }

@@ -9,7 +9,8 @@ public enum class GameMode {
     DUO,
     DUO_FPP,
     SQUAD,
-    SQUAD_FPP;
+    SQUAD_FPP,
+    ;
 
     @PubgktInternal
     public val path: String =
@@ -20,7 +21,6 @@ public enum class GameMode {
     @PubgktInternal
     public companion object {
         @PubgktInternal
-        public fun of(value: String): GameMode =
-            valueOf(value.uppercase().replace(oldValue = "-", newValue = "_"))
+        public fun of(value: String): GameMode = valueOf(value.uppercase().replace(oldValue = "-", newValue = "_"))
     }
 }

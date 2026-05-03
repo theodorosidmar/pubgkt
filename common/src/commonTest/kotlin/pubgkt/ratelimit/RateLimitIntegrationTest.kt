@@ -15,18 +15,18 @@ import kotlin.test.assertFailsWith
 abstract class RateLimitIntegrationTest {
     protected abstract val rateLimiter: RateLimiter
 
-    private fun createSubject(vararg responses: MockResponse): PubgApi =
-        PubgApi(
-            engine = mockEngine(*responses),
-            rateLimiter = rateLimiter,
-        )
+    private fun createSubject(vararg responses: MockResponse): PubgApi = PubgApi(
+        engine = mockEngine(*responses),
+        rateLimiter = rateLimiter,
+    )
 
     @Test
     fun `first request is never delayed`() = runTest {
-        val mockEngine = mockResponse {
-            remaining = 5
-            reset = 2000L
-        }
+        val mockEngine =
+            mockResponse {
+                remaining = 5
+                reset = 2000L
+            }
         val api = createSubject(mockEngine)
 
         api.client.get("test")
@@ -36,14 +36,16 @@ abstract class RateLimitIntegrationTest {
 
     @Test
     fun `no delay when remaining is positive`() = runTest {
-        val mockFirstResponse = mockResponse {
-            remaining = 5
-            reset = 2000L
-        }
-        val mockSecondResponse = mockResponse {
-            remaining = 4
-            reset = 2000L
-        }
+        val mockFirstResponse =
+            mockResponse {
+                remaining = 5
+                reset = 2000L
+            }
+        val mockSecondResponse =
+            mockResponse {
+                remaining = 4
+                reset = 2000L
+            }
 
         val api = createSubject(mockFirstResponse, mockSecondResponse)
 
@@ -55,14 +57,16 @@ abstract class RateLimitIntegrationTest {
 
     @Test
     fun `delays next request when remaining is zero and reset is in the future`() = runTest {
-        val mockFirstResponse = mockResponse {
-            remaining = 0
-            reset = 1005L
-        }
-        val mockSecondResponse = mockResponse {
-            remaining = 10
-            reset = 2000L
-        }
+        val mockFirstResponse =
+            mockResponse {
+                remaining = 0
+                reset = 1005L
+            }
+        val mockSecondResponse =
+            mockResponse {
+                remaining = 10
+                reset = 2000L
+            }
 
         val api = createSubject(mockFirstResponse, mockSecondResponse)
 
@@ -75,15 +79,17 @@ abstract class RateLimitIntegrationTest {
 
     @Test
     fun `throws RateLimitExceededException on HTTP 429`() = runTest {
-        val mockEngine = mockResponse {
-            status = HttpStatusCode.TooManyRequests
-            reset = 1005L
-        }
+        val mockEngine =
+            mockResponse {
+                status = HttpStatusCode.TooManyRequests
+                reset = 1005L
+            }
         val api = createSubject(mockEngine)
 
-        val exception = assertFailsWith<RateLimitExceededException> {
-            api.client.get("test")
-        }
+        val exception =
+            assertFailsWith<RateLimitExceededException> {
+                api.client.get("test")
+            }
 
         assertEquals(1005L, exception.resetAtEpochSeconds)
     }

@@ -12,7 +12,6 @@ import pubgkt.stats.deserializeGameModeStats
 
 internal object SeasonGameModeStatsSerializer :
     JsonApiResourceDeserializer<SeasonGameModeStats>("pubgkt.stats.season.SeasonGameModeStats") {
-
     override fun deserializeResource(
         attributes: JsonObject,
         id: String?,
@@ -27,7 +26,7 @@ internal object SeasonGameModeStatsSerializer :
             seasonId = relationships.requiredObject("season").requiredObject("data").requiredString("id"),
             bestRankPoint = attributes.requiredDouble("bestRankPoint"),
             gameMode = gameMode,
-            stats = deserializeGameModeStats(attributes.requiredObject("gameModeStats").requiredObject(gameModeString))
+            stats = deserializeGameModeStats(attributes.requiredObject("gameModeStats").requiredObject(gameModeString)),
         )
     }
 }

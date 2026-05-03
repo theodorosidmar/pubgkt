@@ -1,18 +1,19 @@
 package pubgkt.matches
 
 import kotlinx.coroutines.test.runTest
+import pubgkt.PubgApi
+import pubgkt.test.lastRequest
+import pubgkt.test.mockEngine
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
-import pubgkt.PubgApi
-import pubgkt.test.lastRequest
-import pubgkt.test.mockEngine
 
 class GetMatchByIdTest {
-    private val engine = mockEngine {
-        body = MATCH_TDM_RESPONSE_JSON
-    }
+    private val engine =
+        mockEngine {
+            body = MATCH_TDM_RESPONSE_JSON
+        }
     private val api = PubgApi(engine = engine)
 
     @Test
@@ -26,7 +27,7 @@ class GetMatchByIdTest {
                 .endsWith("/shards/steam/matches/a131e486-5bcf-4c2e-aa5a-515489ee57aa"),
         )
         assertFalse(
-            engine.lastRequest.headers.contains("Authorization")
+            engine.lastRequest.headers.contains("Authorization"),
         )
     }
 
@@ -49,9 +50,10 @@ class GetMatchByIdTest {
 
     @Test
     fun `deserializes a squad match response`() = runTest {
-        val engine = mockEngine {
-            body = MATCH_SQUAD_RESPONSE_JSON
-        }
+        val engine =
+            mockEngine {
+                body = MATCH_SQUAD_RESPONSE_JSON
+            }
         val api = PubgApi(engine = engine)
         val match = api.getMatchById("4a57679f-6b4b-4d4c-85ea-72e2e8272c77")
 
@@ -86,7 +88,7 @@ class GetMatchByIdTest {
         assertEquals(15, playerToBeTested.kills)
         assertEquals(199.76648, playerToBeTested.longestKill)
         assertEquals("sparkingg", playerToBeTested.name)
-        assertEquals( "account.91186dcca3cb4ad198fac1e4ab1d5b80", playerToBeTested.id)
+        assertEquals("account.91186dcca3cb4ad198fac1e4ab1d5b80", playerToBeTested.id)
         assertEquals(1, playerToBeTested.revives)
         assertEquals(8827.315, playerToBeTested.rideDistance)
         assertEquals(0, playerToBeTested.roadKills)
@@ -101,9 +103,10 @@ class GetMatchByIdTest {
 
     @Test
     fun `deserializes null when included is not present`() = runTest {
-        val engine = mockEngine {
-            body = MATCH_MISSING_INCLUDED_RESPONSE_JSON
-        }
+        val engine =
+            mockEngine {
+                body = MATCH_MISSING_INCLUDED_RESPONSE_JSON
+            }
         val api = PubgApi(engine = engine)
         val match = api.getMatchById("4a57679f-6b4b-4d4c-85ea-72e2e8272c77")
 
