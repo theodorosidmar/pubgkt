@@ -14,7 +14,7 @@ import kotlin.time.Instant
  * allowing the next request.
  *
  * This prevents [RateLimitExceededException] under normal single-instance usage.
- * If multiple [PubgApi] instances share the same API key, 429 responses can still
+ * If multiple [pubgkt.PubgApi] instances share the same API key, 429 responses can still
  * occur and will be surfaced as [RateLimitExceededException].
  *
  * This implementation is not designed for high-concurrency scenarios where many

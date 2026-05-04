@@ -7,7 +7,7 @@ package pubgkt.ratelimit
  * Exceeding this results in an HTTP 429 response.
  *
  * Implement this interface to provide custom throttling behaviour and pass the
- * implementation to the [PubgApi] constructor. The default implementation is
+ * implementation to the [pubgkt.PubgApi] constructor. The default implementation is
  * [DelayRateLimiter], which proactively delays requests based on response headers.
  *
  * To disable rate limiting entirely (e.g. when you manage it externally), use [RateLimiter.None].

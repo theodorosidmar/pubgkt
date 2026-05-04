@@ -4,7 +4,7 @@ package pubgkt.ratelimit
  * Thrown when the PUBG API returns HTTP 429 (Too Many Requests).
  *
  * This exception is thrown even when a [RateLimiter] is in use, as a 429 can still
- * occur if multiple [PubgApi] instances share the same API key, or if the rate limit
+ * occur if multiple [pubgkt.PubgApi] instances share the same API key, or if the rate limit
  * was consumed externally.
  *
  * @property resetAtEpochSeconds The UNIX timestamp at which the rate-limit window

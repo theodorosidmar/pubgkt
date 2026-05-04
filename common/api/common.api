@@ -90,8 +90,6 @@ public final class pubgkt/PlatformRegion : java/lang/Enum {
 }
 
 public final class pubgkt/PubgApi {
-	public fun <init> (Ljava/lang/String;)V
-	public fun <init> (Ljava/lang/String;Lpubgkt/ratelimit/RateLimiter;)V
 	public fun <init> (Ljava/lang/String;Lpubgkt/ratelimit/RateLimiter;Lpubgkt/RetryPolicy;)V
 	public synthetic fun <init> (Ljava/lang/String;Lpubgkt/ratelimit/RateLimiter;Lpubgkt/RetryPolicy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }

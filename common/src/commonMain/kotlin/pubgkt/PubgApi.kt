@@ -28,9 +28,7 @@ import pubgkt.ratelimit.RateLimiter
  * @see RetryPolicy
  * @see <a href="https://documentation.pubg.com/en/introduction.html">PUBG Developer Portal</a>
  */
-public class PubgApi
-@JvmOverloads
-constructor(
+public class PubgApi(
     internal val apiKey: String,
     internal val rateLimiter: RateLimiter = DelayRateLimiter(),
     internal val retry: RetryPolicy = NoRetry,
@@ -55,7 +53,7 @@ constructor(
      * production code. The full client pipeline (plugins, validators,
      * default-request) is preserved; only the engine is swapped.
      *
-     * @param engine A pre-configured [HttpClientEngine], typically a [io.ktor.client.engine.mock.MockEngine].
+     * @param engine A pre-configured [HttpClientEngine], typically an io.ktor.client.engine.mock.MockEngine.
      * @param rateLimiter Controls request throughput. Defaults to [RateLimiter.None].
      */
     @PubgktInternal

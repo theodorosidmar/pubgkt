@@ -12,7 +12,7 @@ import kotlin.time.Clock
  * wait logic at a time.
  *
  * Use this limiter when many coroutines can issue requests concurrently from the same
- * [PubgApi] instance and you want to avoid race conditions around shared rate-limit
+ * [pubgkt.PubgApi] instance and you want to avoid race conditions around shared rate-limit
  * state.
  *
  * Like [DelayRateLimiter], this class relies on rate-limit headers provided via

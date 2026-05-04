@@ -41,7 +41,12 @@ mavenPublishing {
             ),
         )
     } else if (plugins.hasPlugin("org.jetbrains.kotlin.jvm")) {
-        configure(KotlinJvm(JavadocJar.Dokka("dokkaGeneratePublicationHtml"), sourcesJar = SourcesJar.Sources()))
+        configure(
+            KotlinJvm(
+                JavadocJar.Dokka("dokkaGeneratePublicationHtml"),
+                sourcesJar = SourcesJar.Sources(),
+            ),
+        )
     }
 }
 
