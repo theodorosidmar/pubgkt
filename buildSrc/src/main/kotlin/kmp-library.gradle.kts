@@ -24,12 +24,12 @@ kotlin {
         enabled.set(true)
         filters {
             exclude {
-                annotatedWith.add("pubgkt.PubgktInternal")
-                byNames.add("pubgkt.PubgktInternal")
+                annotatedWith.add("dev.pubgkt.PubgktInternal")
+                byNames.add("dev.pubgkt.PubgktInternal")
             }
 
             include {
-                byNames.add("pubgkt.**")
+                byNames.add("dev.pubgkt.**")
             }
         }
     }

@@ -15,86 +15,89 @@ subgraph "cluster_clans" {
 label="Clans";
 style=rounded;
 color="#82B366";
-"pubgkt.clans";
+"dev.pubgkt.clans";
 }
 subgraph "cluster_leaderboards" {
 label="Leaderboards";
 style=rounded;
 color="#82B366";
-"pubgkt.leaderboards";
+"dev.pubgkt.leaderboards";
 }
 subgraph "cluster_mastery" {
 label="Mastery";
 style=rounded;
 color="#82B366";
-"pubgkt.mastery";
+"dev.pubgkt.mastery";
 }
 subgraph "cluster_matches" {
 label="Matches";
 style=rounded;
 color="#82B366";
-"pubgkt.matches";
+"dev.pubgkt.matches";
 }
 subgraph "cluster_players" {
 label="Players";
 style=rounded;
 color="#82B366";
-"pubgkt.players";
+"dev.pubgkt.players";
 }
 subgraph "cluster_shared" {
 label="Shared infrastructure";
 style=rounded;
 color="#6C8EBF";
-"pubgkt";
-"pubgkt.http";
-"pubgkt.jsonapi";
-"pubgkt.ratelimit";
+"dev.pubgkt";
+"dev.pubgkt.http";
+"dev.pubgkt.jsonapi";
+"dev.pubgkt.ratelimit";
 }
 subgraph "cluster_stats" {
 label="Stats";
 style=rounded;
 color="#82B366";
-"pubgkt.stats";
-"pubgkt.stats.lifetime";
-"pubgkt.stats.ranked";
-"pubgkt.stats.season";
+"dev.pubgkt.stats";
+"dev.pubgkt.stats.lifetime";
+"dev.pubgkt.stats.ranked";
+"dev.pubgkt.stats.season";
 }
 subgraph "cluster_testing" {
 label="Testing";
 style=rounded;
 color="#B85450";
-"pubgkt.test";
+"dev.pubgkt.test";
 }
-{ rank=same; "pubgkt.clans"; "pubgkt.jsonapi"; "pubgkt.leaderboards"; "pubgkt.mastery"; "pubgkt.matches"; "pubgkt.players"; "pubgkt.stats.lifetime"; "pubgkt.stats.ranked"; "pubgkt.stats.season"; }
-{ rank=same; "pubgkt.http"; "pubgkt.stats"; }
-{ rank=same; "pubgkt.ratelimit"; }
-{ rank=same; "pubgkt"; }
-{ rank=same; "pubgkt.test"; }
-"pubgkt.stats.lifetime" -> "pubgkt";
-"pubgkt.stats.lifetime" -> "pubgkt.stats";
-"pubgkt.stats.lifetime" -> "pubgkt.test";
-"pubgkt.stats.ranked" -> "pubgkt";
-"pubgkt.stats.ranked" -> "pubgkt.test";
-"pubgkt.stats.season" -> "pubgkt";
-"pubgkt.stats.season" -> "pubgkt.test";
-"pubgkt.stats.season" -> "pubgkt.stats";
-"pubgkt.leaderboards" -> "pubgkt";
-"pubgkt.leaderboards" -> "pubgkt.test";
-"pubgkt.mastery" -> "pubgkt";
-"pubgkt.mastery" -> "pubgkt.test";
-"pubgkt.matches" -> "pubgkt";
-"pubgkt.matches" -> "pubgkt.test";
-"pubgkt.players" -> "pubgkt";
-"pubgkt.players" -> "pubgkt.test";
-"pubgkt.http" -> "pubgkt";
-"pubgkt.http" -> "pubgkt.ratelimit";
-"pubgkt.http" -> "pubgkt.test";
-"pubgkt.ratelimit" -> "pubgkt.test";
-"pubgkt.ratelimit" -> "pubgkt";
-"pubgkt" -> "pubgkt.test";
-"pubgkt" -> "pubgkt.ratelimit";
-"pubgkt" -> "pubgkt.http";
-"pubgkt.jsonapi" -> "pubgkt.http";
-"pubgkt.clans" -> "pubgkt";
-"pubgkt.clans" -> "pubgkt.test";
+{ rank=same; "dev.pubgkt.clans"; "dev.pubgkt.jsonapi"; "dev.pubgkt.leaderboards"; "dev.pubgkt.mastery"; "dev.pubgkt.matches"; "dev.pubgkt.players"; }
+{ rank=same; "dev.pubgkt.http"; "dev.pubgkt.stats.lifetime"; "dev.pubgkt.stats.ranked"; "dev.pubgkt.stats.season"; }
+{ rank=same; "dev.pubgkt.ratelimit"; "dev.pubgkt.stats"; }
+{ rank=same; "dev.pubgkt"; }
+{ rank=same; "dev.pubgkt.test"; }
+"dev.pubgkt.stats.lifetime" -> "dev.pubgkt";
+"dev.pubgkt.stats.lifetime" -> "dev.pubgkt.stats";
+"dev.pubgkt.stats.lifetime" -> "dev.pubgkt.stats.lifetime";
+"dev.pubgkt.stats.lifetime" -> "dev.pubgkt.test";
+"dev.pubgkt.stats.ranked" -> "dev.pubgkt";
+"dev.pubgkt.stats.ranked" -> "dev.pubgkt.stats.ranked";
+"dev.pubgkt.stats.ranked" -> "dev.pubgkt.test";
+"dev.pubgkt.stats.season" -> "dev.pubgkt";
+"dev.pubgkt.stats.season" -> "dev.pubgkt.stats.season";
+"dev.pubgkt.stats.season" -> "dev.pubgkt.test";
+"dev.pubgkt.stats.season" -> "dev.pubgkt.stats";
+"dev.pubgkt.leaderboards" -> "dev.pubgkt";
+"dev.pubgkt.leaderboards" -> "dev.pubgkt.test";
+"dev.pubgkt.mastery" -> "dev.pubgkt";
+"dev.pubgkt.mastery" -> "dev.pubgkt.test";
+"dev.pubgkt.matches" -> "dev.pubgkt";
+"dev.pubgkt.matches" -> "dev.pubgkt.test";
+"dev.pubgkt.players" -> "dev.pubgkt";
+"dev.pubgkt.players" -> "dev.pubgkt.test";
+"dev.pubgkt.http" -> "dev.pubgkt";
+"dev.pubgkt.http" -> "dev.pubgkt.ratelimit";
+"dev.pubgkt.http" -> "dev.pubgkt.test";
+"dev.pubgkt.ratelimit" -> "dev.pubgkt.test";
+"dev.pubgkt.ratelimit" -> "dev.pubgkt";
+"dev.pubgkt" -> "dev.pubgkt.test";
+"dev.pubgkt" -> "dev.pubgkt.ratelimit";
+"dev.pubgkt" -> "dev.pubgkt.http";
+"dev.pubgkt.jsonapi" -> "dev.pubgkt.http";
+"dev.pubgkt.clans" -> "dev.pubgkt";
+"dev.pubgkt.clans" -> "dev.pubgkt.test";
 }

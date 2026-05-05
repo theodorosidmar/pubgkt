@@ -1,4 +1,4 @@
-public final class pubgkt/stats/GameModeStats {
+public final class dev/pubgkt/stats/GameModeStats {
 	public fun <init> (IIIIIDIIIIDDIIDIDIIIIDIDIIDIIII)V
 	public final fun component1 ()I
 	public final fun component10 ()I
@@ -31,8 +31,8 @@ public final class pubgkt/stats/GameModeStats {
 	public final fun component7 ()I
 	public final fun component8 ()I
 	public final fun component9 ()I
-	public final fun copy (IIIIIDIIIIDDIIDIDIIIIDIDIIDIIII)Lpubgkt/stats/GameModeStats;
-	public static synthetic fun copy$default (Lpubgkt/stats/GameModeStats;IIIIIDIIIIDDIIDIDIIIIDIDIIDIIIIILjava/lang/Object;)Lpubgkt/stats/GameModeStats;
+	public final fun copy (IIIIIDIIIIDDIIDIDIIIIDIDIIDIIII)Ldev/pubgkt/stats/GameModeStats;
+	public static synthetic fun copy$default (Ldev/pubgkt/stats/GameModeStats;IIIIIDIIIIDDIIDIDIIIIDIDIIDIIIIILjava/lang/Object;)Ldev/pubgkt/stats/GameModeStats;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAssists ()I
 	public final fun getBoosts ()I
@@ -69,62 +69,62 @@ public final class pubgkt/stats/GameModeStats {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class pubgkt/stats/lifetime/GetLifetimeStatsKt {
-	public static final fun getLifetimeStatsByAccountId (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun getLifetimeStatsByAccountId$default (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public static final fun getLifetimeStatsByGameModeAndPlayers (Lpubgkt/PubgApi;Lpubgkt/GameMode;Ljava/util/List;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun getLifetimeStatsByGameModeAndPlayers$default (Lpubgkt/PubgApi;Lpubgkt/GameMode;Ljava/util/List;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+public final class dev/pubgkt/stats/lifetime/GetLifetimeStatsKt {
+	public static final fun getLifetimeStatsByAccountId (Ldev/pubgkt/PubgApi;Ljava/lang/String;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getLifetimeStatsByAccountId$default (Ldev/pubgkt/PubgApi;Ljava/lang/String;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun getLifetimeStatsByGameModeAndPlayers (Ldev/pubgkt/PubgApi;Ldev/pubgkt/GameMode;Ljava/util/List;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getLifetimeStatsByGameModeAndPlayers$default (Ldev/pubgkt/PubgApi;Ldev/pubgkt/GameMode;Ljava/util/List;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public final class pubgkt/stats/lifetime/LifetimeGameModeStats {
-	public fun <init> (Ljava/lang/String;DLpubgkt/GameMode;Lpubgkt/stats/GameModeStats;)V
+public final class dev/pubgkt/stats/lifetime/LifetimeGameModeStats {
+	public fun <init> (Ljava/lang/String;DLdev/pubgkt/GameMode;Ldev/pubgkt/stats/GameModeStats;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()D
-	public final fun component3 ()Lpubgkt/GameMode;
-	public final fun component4 ()Lpubgkt/stats/GameModeStats;
-	public final fun copy (Ljava/lang/String;DLpubgkt/GameMode;Lpubgkt/stats/GameModeStats;)Lpubgkt/stats/lifetime/LifetimeGameModeStats;
-	public static synthetic fun copy$default (Lpubgkt/stats/lifetime/LifetimeGameModeStats;Ljava/lang/String;DLpubgkt/GameMode;Lpubgkt/stats/GameModeStats;ILjava/lang/Object;)Lpubgkt/stats/lifetime/LifetimeGameModeStats;
+	public final fun component3 ()Ldev/pubgkt/GameMode;
+	public final fun component4 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun copy (Ljava/lang/String;DLdev/pubgkt/GameMode;Ldev/pubgkt/stats/GameModeStats;)Ldev/pubgkt/stats/lifetime/LifetimeGameModeStats;
+	public static synthetic fun copy$default (Ldev/pubgkt/stats/lifetime/LifetimeGameModeStats;Ljava/lang/String;DLdev/pubgkt/GameMode;Ldev/pubgkt/stats/GameModeStats;ILjava/lang/Object;)Ldev/pubgkt/stats/lifetime/LifetimeGameModeStats;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBestRankPoint ()D
-	public final fun getGameMode ()Lpubgkt/GameMode;
+	public final fun getGameMode ()Ldev/pubgkt/GameMode;
 	public final fun getPlayerId ()Ljava/lang/String;
-	public final fun getStats ()Lpubgkt/stats/GameModeStats;
+	public final fun getStats ()Ldev/pubgkt/stats/GameModeStats;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class pubgkt/stats/lifetime/LifetimePlayerStats {
-	public fun <init> (Ljava/lang/String;DLpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;)V
+public final class dev/pubgkt/stats/lifetime/LifetimePlayerStats {
+	public fun <init> (Ljava/lang/String;DLdev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()D
-	public final fun component3 ()Lpubgkt/stats/GameModeStats;
-	public final fun component4 ()Lpubgkt/stats/GameModeStats;
-	public final fun component5 ()Lpubgkt/stats/GameModeStats;
-	public final fun component6 ()Lpubgkt/stats/GameModeStats;
-	public final fun component7 ()Lpubgkt/stats/GameModeStats;
-	public final fun component8 ()Lpubgkt/stats/GameModeStats;
-	public final fun copy (Ljava/lang/String;DLpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;)Lpubgkt/stats/lifetime/LifetimePlayerStats;
-	public static synthetic fun copy$default (Lpubgkt/stats/lifetime/LifetimePlayerStats;Ljava/lang/String;DLpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;ILjava/lang/Object;)Lpubgkt/stats/lifetime/LifetimePlayerStats;
+	public final fun component3 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun component4 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun component5 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun component6 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun component7 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun component8 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun copy (Ljava/lang/String;DLdev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;)Ldev/pubgkt/stats/lifetime/LifetimePlayerStats;
+	public static synthetic fun copy$default (Ldev/pubgkt/stats/lifetime/LifetimePlayerStats;Ljava/lang/String;DLdev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;ILjava/lang/Object;)Ldev/pubgkt/stats/lifetime/LifetimePlayerStats;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBestRankPoint ()D
-	public final fun getDuoFpp ()Lpubgkt/stats/GameModeStats;
-	public final fun getDuoTpp ()Lpubgkt/stats/GameModeStats;
+	public final fun getDuoFpp ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun getDuoTpp ()Ldev/pubgkt/stats/GameModeStats;
 	public final fun getPlayerId ()Ljava/lang/String;
-	public final fun getSoloFpp ()Lpubgkt/stats/GameModeStats;
-	public final fun getSoloTpp ()Lpubgkt/stats/GameModeStats;
-	public final fun getSquadFpp ()Lpubgkt/stats/GameModeStats;
-	public final fun getSquadTpp ()Lpubgkt/stats/GameModeStats;
+	public final fun getSoloFpp ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun getSoloTpp ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun getSquadFpp ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun getSquadTpp ()Ldev/pubgkt/stats/GameModeStats;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class pubgkt/stats/ranked/GetRankedStatsKt {
-	public static final fun getRankedStatsByAccountIdAndSeasonId (Lpubgkt/PubgApi;Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun getRankedStatsByAccountIdAndSeasonId$default (Lpubgkt/PubgApi;Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+public final class dev/pubgkt/stats/ranked/GetRankedStatsKt {
+	public static final fun getRankedStatsByAccountIdAndSeasonId (Ldev/pubgkt/PubgApi;Ljava/lang/String;Ljava/lang/String;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getRankedStatsByAccountIdAndSeasonId$default (Ldev/pubgkt/PubgApi;Ljava/lang/String;Ljava/lang/String;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public final class pubgkt/stats/ranked/RankedStats {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;IILpubgkt/stats/ranked/Tier;Lpubgkt/stats/ranked/Tier;IDDDIIDDIIDI)V
+public final class dev/pubgkt/stats/ranked/RankedStats {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;IILdev/pubgkt/stats/ranked/Tier;Ldev/pubgkt/stats/ranked/Tier;IDDDIIDDIIDI)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component10 ()D
 	public final fun component11 ()I
@@ -138,21 +138,21 @@ public final class pubgkt/stats/ranked/RankedStats {
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()I
 	public final fun component4 ()I
-	public final fun component5 ()Lpubgkt/stats/ranked/Tier;
-	public final fun component6 ()Lpubgkt/stats/ranked/Tier;
+	public final fun component5 ()Ldev/pubgkt/stats/ranked/Tier;
+	public final fun component6 ()Ldev/pubgkt/stats/ranked/Tier;
 	public final fun component7 ()I
 	public final fun component8 ()D
 	public final fun component9 ()D
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;IILpubgkt/stats/ranked/Tier;Lpubgkt/stats/ranked/Tier;IDDDIIDDIIDI)Lpubgkt/stats/ranked/RankedStats;
-	public static synthetic fun copy$default (Lpubgkt/stats/ranked/RankedStats;Ljava/lang/String;Ljava/lang/String;IILpubgkt/stats/ranked/Tier;Lpubgkt/stats/ranked/Tier;IDDDIIDDIIDIILjava/lang/Object;)Lpubgkt/stats/ranked/RankedStats;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;IILdev/pubgkt/stats/ranked/Tier;Ldev/pubgkt/stats/ranked/Tier;IDDDIIDDIIDI)Ldev/pubgkt/stats/ranked/RankedStats;
+	public static synthetic fun copy$default (Ldev/pubgkt/stats/ranked/RankedStats;Ljava/lang/String;Ljava/lang/String;IILdev/pubgkt/stats/ranked/Tier;Ldev/pubgkt/stats/ranked/Tier;IDDDIIDDIIDIILjava/lang/Object;)Ldev/pubgkt/stats/ranked/RankedStats;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getAssists ()I
 	public final fun getAvgKill ()D
 	public final fun getAvgRank ()D
 	public final fun getBestRankPoint ()I
-	public final fun getBestTier ()Lpubgkt/stats/ranked/Tier;
+	public final fun getBestTier ()Ldev/pubgkt/stats/ranked/Tier;
 	public final fun getCurrentRankPoint ()I
-	public final fun getCurrentTier ()Lpubgkt/stats/ranked/Tier;
+	public final fun getCurrentTier ()Ldev/pubgkt/stats/ranked/Tier;
 	public final fun getDamageDealt ()D
 	public final fun getDbnos ()I
 	public final fun getDeaths ()I
@@ -168,12 +168,12 @@ public final class pubgkt/stats/ranked/RankedStats {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class pubgkt/stats/ranked/Tier {
+public final class dev/pubgkt/stats/ranked/Tier {
 	public fun <init> (Ljava/lang/String;I)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()I
-	public final fun copy (Ljava/lang/String;I)Lpubgkt/stats/ranked/Tier;
-	public static synthetic fun copy$default (Lpubgkt/stats/ranked/Tier;Ljava/lang/String;IILjava/lang/Object;)Lpubgkt/stats/ranked/Tier;
+	public final fun copy (Ljava/lang/String;I)Ldev/pubgkt/stats/ranked/Tier;
+	public static synthetic fun copy$default (Ldev/pubgkt/stats/ranked/Tier;Ljava/lang/String;IILjava/lang/Object;)Ldev/pubgkt/stats/ranked/Tier;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getSubTier ()I
 	public final fun getTier ()Ljava/lang/String;
@@ -181,55 +181,55 @@ public final class pubgkt/stats/ranked/Tier {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class pubgkt/stats/season/GetSeasonStatsKt {
-	public static final fun getSeasonStatsByAccountId (Lpubgkt/PubgApi;Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun getSeasonStatsByAccountId$default (Lpubgkt/PubgApi;Ljava/lang/String;Ljava/lang/String;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public static final fun getSeasonStatsByGameModeAndPlayers (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/GameMode;Ljava/util/List;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun getSeasonStatsByGameModeAndPlayers$default (Lpubgkt/PubgApi;Ljava/lang/String;Lpubgkt/GameMode;Ljava/util/List;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+public final class dev/pubgkt/stats/season/GetSeasonStatsKt {
+	public static final fun getSeasonStatsByAccountId (Ldev/pubgkt/PubgApi;Ljava/lang/String;Ljava/lang/String;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getSeasonStatsByAccountId$default (Ldev/pubgkt/PubgApi;Ljava/lang/String;Ljava/lang/String;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static final fun getSeasonStatsByGameModeAndPlayers (Ldev/pubgkt/PubgApi;Ljava/lang/String;Ldev/pubgkt/GameMode;Ljava/util/List;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getSeasonStatsByGameModeAndPlayers$default (Ldev/pubgkt/PubgApi;Ljava/lang/String;Ldev/pubgkt/GameMode;Ljava/util/List;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public final class pubgkt/stats/season/SeasonGameModeStats {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;DLpubgkt/GameMode;Lpubgkt/stats/GameModeStats;)V
+public final class dev/pubgkt/stats/season/SeasonGameModeStats {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;DLdev/pubgkt/GameMode;Ldev/pubgkt/stats/GameModeStats;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()D
-	public final fun component4 ()Lpubgkt/GameMode;
-	public final fun component5 ()Lpubgkt/stats/GameModeStats;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;DLpubgkt/GameMode;Lpubgkt/stats/GameModeStats;)Lpubgkt/stats/season/SeasonGameModeStats;
-	public static synthetic fun copy$default (Lpubgkt/stats/season/SeasonGameModeStats;Ljava/lang/String;Ljava/lang/String;DLpubgkt/GameMode;Lpubgkt/stats/GameModeStats;ILjava/lang/Object;)Lpubgkt/stats/season/SeasonGameModeStats;
+	public final fun component4 ()Ldev/pubgkt/GameMode;
+	public final fun component5 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;DLdev/pubgkt/GameMode;Ldev/pubgkt/stats/GameModeStats;)Ldev/pubgkt/stats/season/SeasonGameModeStats;
+	public static synthetic fun copy$default (Ldev/pubgkt/stats/season/SeasonGameModeStats;Ljava/lang/String;Ljava/lang/String;DLdev/pubgkt/GameMode;Ldev/pubgkt/stats/GameModeStats;ILjava/lang/Object;)Ldev/pubgkt/stats/season/SeasonGameModeStats;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBestRankPoint ()D
-	public final fun getGameMode ()Lpubgkt/GameMode;
+	public final fun getGameMode ()Ldev/pubgkt/GameMode;
 	public final fun getPlayerId ()Ljava/lang/String;
 	public final fun getSeasonId ()Ljava/lang/String;
-	public final fun getStats ()Lpubgkt/stats/GameModeStats;
+	public final fun getStats ()Ldev/pubgkt/stats/GameModeStats;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class pubgkt/stats/season/SeasonPlayerStats {
-	public fun <init> (Ljava/lang/String;Ljava/lang/String;DLpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;)V
+public final class dev/pubgkt/stats/season/SeasonPlayerStats {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;DLdev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Ljava/lang/String;
 	public final fun component3 ()D
-	public final fun component4 ()Lpubgkt/stats/GameModeStats;
-	public final fun component5 ()Lpubgkt/stats/GameModeStats;
-	public final fun component6 ()Lpubgkt/stats/GameModeStats;
-	public final fun component7 ()Lpubgkt/stats/GameModeStats;
-	public final fun component8 ()Lpubgkt/stats/GameModeStats;
-	public final fun component9 ()Lpubgkt/stats/GameModeStats;
-	public final fun copy (Ljava/lang/String;Ljava/lang/String;DLpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;)Lpubgkt/stats/season/SeasonPlayerStats;
-	public static synthetic fun copy$default (Lpubgkt/stats/season/SeasonPlayerStats;Ljava/lang/String;Ljava/lang/String;DLpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;Lpubgkt/stats/GameModeStats;ILjava/lang/Object;)Lpubgkt/stats/season/SeasonPlayerStats;
+	public final fun component4 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun component5 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun component6 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun component7 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun component8 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun component9 ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;DLdev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;)Ldev/pubgkt/stats/season/SeasonPlayerStats;
+	public static synthetic fun copy$default (Ldev/pubgkt/stats/season/SeasonPlayerStats;Ljava/lang/String;Ljava/lang/String;DLdev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;Ldev/pubgkt/stats/GameModeStats;ILjava/lang/Object;)Ldev/pubgkt/stats/season/SeasonPlayerStats;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBestRankPoint ()D
-	public final fun getDuoFpp ()Lpubgkt/stats/GameModeStats;
-	public final fun getDuoTpp ()Lpubgkt/stats/GameModeStats;
+	public final fun getDuoFpp ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun getDuoTpp ()Ldev/pubgkt/stats/GameModeStats;
 	public final fun getPlayerId ()Ljava/lang/String;
 	public final fun getSeasonId ()Ljava/lang/String;
-	public final fun getSoloFpp ()Lpubgkt/stats/GameModeStats;
-	public final fun getSoloTpp ()Lpubgkt/stats/GameModeStats;
-	public final fun getSquadFpp ()Lpubgkt/stats/GameModeStats;
-	public final fun getSquadTpp ()Lpubgkt/stats/GameModeStats;
+	public final fun getSoloFpp ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun getSoloTpp ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun getSquadFpp ()Ldev/pubgkt/stats/GameModeStats;
+	public final fun getSquadTpp ()Ldev/pubgkt/stats/GameModeStats;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }

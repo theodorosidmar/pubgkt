@@ -1,8 +1,8 @@
-public abstract interface class pubgkt/BackoffStrategy {
+public abstract interface class dev/pubgkt/BackoffStrategy {
 	public abstract fun getEnabled ()Z
 }
 
-public final class pubgkt/ExponentialBackoff : pubgkt/BackoffStrategy {
+public final class dev/pubgkt/ExponentialBackoff : dev/pubgkt/BackoffStrategy {
 	public fun <init> ()V
 	public fun <init> (DJJJ)V
 	public synthetic fun <init> (DJJJILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -10,8 +10,8 @@ public final class pubgkt/ExponentialBackoff : pubgkt/BackoffStrategy {
 	public final fun component2 ()J
 	public final fun component3 ()J
 	public final fun component4 ()J
-	public final fun copy (DJJJ)Lpubgkt/ExponentialBackoff;
-	public static synthetic fun copy$default (Lpubgkt/ExponentialBackoff;DJJJILjava/lang/Object;)Lpubgkt/ExponentialBackoff;
+	public final fun copy (DJJJ)Ldev/pubgkt/ExponentialBackoff;
+	public static synthetic fun copy$default (Ldev/pubgkt/ExponentialBackoff;DJJJILjava/lang/Object;)Ldev/pubgkt/ExponentialBackoff;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getBase ()D
 	public final fun getBaseDelayMs ()J
@@ -22,89 +22,89 @@ public final class pubgkt/ExponentialBackoff : pubgkt/BackoffStrategy {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class pubgkt/GameMode : java/lang/Enum {
-	public static final field DUO Lpubgkt/GameMode;
-	public static final field DUO_FPP Lpubgkt/GameMode;
-	public static final field SOLO Lpubgkt/GameMode;
-	public static final field SOLO_FPP Lpubgkt/GameMode;
-	public static final field SQUAD Lpubgkt/GameMode;
-	public static final field SQUAD_FPP Lpubgkt/GameMode;
+public final class dev/pubgkt/GameMode : java/lang/Enum {
+	public static final field DUO Ldev/pubgkt/GameMode;
+	public static final field DUO_FPP Ldev/pubgkt/GameMode;
+	public static final field SOLO Ldev/pubgkt/GameMode;
+	public static final field SOLO_FPP Ldev/pubgkt/GameMode;
+	public static final field SQUAD Ldev/pubgkt/GameMode;
+	public static final field SQUAD_FPP Ldev/pubgkt/GameMode;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lpubgkt/GameMode;
-	public static fun values ()[Lpubgkt/GameMode;
+	public static fun valueOf (Ljava/lang/String;)Ldev/pubgkt/GameMode;
+	public static fun values ()[Ldev/pubgkt/GameMode;
 }
 
-public final class pubgkt/NoBackoff : pubgkt/BackoffStrategy {
-	public static final field INSTANCE Lpubgkt/NoBackoff;
+public final class dev/pubgkt/NoBackoff : dev/pubgkt/BackoffStrategy {
+	public static final field INSTANCE Ldev/pubgkt/NoBackoff;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getEnabled ()Z
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class pubgkt/NoRetry : pubgkt/RetryPolicy {
-	public static final field INSTANCE Lpubgkt/NoRetry;
+public final class dev/pubgkt/NoRetry : dev/pubgkt/RetryPolicy {
+	public static final field INSTANCE Ldev/pubgkt/NoRetry;
 	public fun equals (Ljava/lang/Object;)Z
 	public fun getEnabled ()Z
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class pubgkt/Platform : java/lang/Enum {
-	public static final field CONSOLE Lpubgkt/Platform;
-	public static final field KAKAO Lpubgkt/Platform;
-	public static final field PSN Lpubgkt/Platform;
-	public static final field STADIA Lpubgkt/Platform;
-	public static final field STEAM Lpubgkt/Platform;
-	public static final field TOURNAMENT Lpubgkt/Platform;
-	public static final field XBOX Lpubgkt/Platform;
+public final class dev/pubgkt/Platform : java/lang/Enum {
+	public static final field CONSOLE Ldev/pubgkt/Platform;
+	public static final field KAKAO Ldev/pubgkt/Platform;
+	public static final field PSN Ldev/pubgkt/Platform;
+	public static final field STADIA Ldev/pubgkt/Platform;
+	public static final field STEAM Ldev/pubgkt/Platform;
+	public static final field TOURNAMENT Ldev/pubgkt/Platform;
+	public static final field XBOX Ldev/pubgkt/Platform;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lpubgkt/Platform;
-	public static fun values ()[Lpubgkt/Platform;
+	public static fun valueOf (Ljava/lang/String;)Ldev/pubgkt/Platform;
+	public static fun values ()[Ldev/pubgkt/Platform;
 }
 
-public final class pubgkt/PlatformRegion : java/lang/Enum {
-	public static final field PC_AS Lpubgkt/PlatformRegion;
-	public static final field PC_EU Lpubgkt/PlatformRegion;
-	public static final field PC_JP Lpubgkt/PlatformRegion;
-	public static final field PC_KAKAO Lpubgkt/PlatformRegion;
-	public static final field PC_KRJP Lpubgkt/PlatformRegion;
-	public static final field PC_NA Lpubgkt/PlatformRegion;
-	public static final field PC_OC Lpubgkt/PlatformRegion;
-	public static final field PC_RU Lpubgkt/PlatformRegion;
-	public static final field PC_SA Lpubgkt/PlatformRegion;
-	public static final field PC_SEA Lpubgkt/PlatformRegion;
-	public static final field PC_TOURNAMENT Lpubgkt/PlatformRegion;
-	public static final field PSN_AS Lpubgkt/PlatformRegion;
-	public static final field PSN_EU Lpubgkt/PlatformRegion;
-	public static final field PSN_NA Lpubgkt/PlatformRegion;
-	public static final field PSN_OC Lpubgkt/PlatformRegion;
-	public static final field XBOX_AS Lpubgkt/PlatformRegion;
-	public static final field XBOX_EU Lpubgkt/PlatformRegion;
-	public static final field XBOX_NA Lpubgkt/PlatformRegion;
-	public static final field XBOX_OC Lpubgkt/PlatformRegion;
-	public static final field XBOX_SA Lpubgkt/PlatformRegion;
+public final class dev/pubgkt/PlatformRegion : java/lang/Enum {
+	public static final field PC_AS Ldev/pubgkt/PlatformRegion;
+	public static final field PC_EU Ldev/pubgkt/PlatformRegion;
+	public static final field PC_JP Ldev/pubgkt/PlatformRegion;
+	public static final field PC_KAKAO Ldev/pubgkt/PlatformRegion;
+	public static final field PC_KRJP Ldev/pubgkt/PlatformRegion;
+	public static final field PC_NA Ldev/pubgkt/PlatformRegion;
+	public static final field PC_OC Ldev/pubgkt/PlatformRegion;
+	public static final field PC_RU Ldev/pubgkt/PlatformRegion;
+	public static final field PC_SA Ldev/pubgkt/PlatformRegion;
+	public static final field PC_SEA Ldev/pubgkt/PlatformRegion;
+	public static final field PC_TOURNAMENT Ldev/pubgkt/PlatformRegion;
+	public static final field PSN_AS Ldev/pubgkt/PlatformRegion;
+	public static final field PSN_EU Ldev/pubgkt/PlatformRegion;
+	public static final field PSN_NA Ldev/pubgkt/PlatformRegion;
+	public static final field PSN_OC Ldev/pubgkt/PlatformRegion;
+	public static final field XBOX_AS Ldev/pubgkt/PlatformRegion;
+	public static final field XBOX_EU Ldev/pubgkt/PlatformRegion;
+	public static final field XBOX_NA Ldev/pubgkt/PlatformRegion;
+	public static final field XBOX_OC Ldev/pubgkt/PlatformRegion;
+	public static final field XBOX_SA Ldev/pubgkt/PlatformRegion;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lpubgkt/PlatformRegion;
-	public static fun values ()[Lpubgkt/PlatformRegion;
+	public static fun valueOf (Ljava/lang/String;)Ldev/pubgkt/PlatformRegion;
+	public static fun values ()[Ldev/pubgkt/PlatformRegion;
 }
 
-public final class pubgkt/PubgApi {
-	public fun <init> (Ljava/lang/String;Lpubgkt/ratelimit/RateLimiter;Lpubgkt/RetryPolicy;)V
-	public synthetic fun <init> (Ljava/lang/String;Lpubgkt/ratelimit/RateLimiter;Lpubgkt/RetryPolicy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+public final class dev/pubgkt/PubgApi {
+	public fun <init> (Ljava/lang/String;Ldev/pubgkt/ratelimit/RateLimiter;Ldev/pubgkt/RetryPolicy;)V
+	public synthetic fun <init> (Ljava/lang/String;Ldev/pubgkt/ratelimit/RateLimiter;Ldev/pubgkt/RetryPolicy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }
 
-public final class pubgkt/Retry : pubgkt/RetryPolicy {
+public final class dev/pubgkt/Retry : dev/pubgkt/RetryPolicy {
 	public fun <init> ()V
-	public fun <init> (ILpubgkt/BackoffStrategy;Ljava/util/List;)V
-	public synthetic fun <init> (ILpubgkt/BackoffStrategy;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (ILdev/pubgkt/BackoffStrategy;Ljava/util/List;)V
+	public synthetic fun <init> (ILdev/pubgkt/BackoffStrategy;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()I
-	public final fun component2 ()Lpubgkt/BackoffStrategy;
+	public final fun component2 ()Ldev/pubgkt/BackoffStrategy;
 	public final fun component3 ()Ljava/util/List;
-	public final fun copy (ILpubgkt/BackoffStrategy;Ljava/util/List;)Lpubgkt/Retry;
-	public static synthetic fun copy$default (Lpubgkt/Retry;ILpubgkt/BackoffStrategy;Ljava/util/List;ILjava/lang/Object;)Lpubgkt/Retry;
+	public final fun copy (ILdev/pubgkt/BackoffStrategy;Ljava/util/List;)Ldev/pubgkt/Retry;
+	public static synthetic fun copy$default (Ldev/pubgkt/Retry;ILdev/pubgkt/BackoffStrategy;Ljava/util/List;ILjava/lang/Object;)Ldev/pubgkt/Retry;
 	public fun equals (Ljava/lang/Object;)Z
-	public final fun getBackoff ()Lpubgkt/BackoffStrategy;
+	public final fun getBackoff ()Ldev/pubgkt/BackoffStrategy;
 	public fun getEnabled ()Z
 	public final fun getMaxRetries ()I
 	public final fun getRetryOnExceptions ()Ljava/util/List;
@@ -112,17 +112,17 @@ public final class pubgkt/Retry : pubgkt/RetryPolicy {
 	public fun toString ()Ljava/lang/String;
 }
 
-public abstract interface class pubgkt/RetryPolicy {
+public abstract interface class dev/pubgkt/RetryPolicy {
 	public abstract fun getEnabled ()Z
 }
 
-public final class pubgkt/Season {
+public final class dev/pubgkt/Season {
 	public fun <init> (Ljava/lang/String;ZZ)V
 	public final fun component1 ()Ljava/lang/String;
 	public final fun component2 ()Z
 	public final fun component3 ()Z
-	public final fun copy (Ljava/lang/String;ZZ)Lpubgkt/Season;
-	public static synthetic fun copy$default (Lpubgkt/Season;Ljava/lang/String;ZZILjava/lang/Object;)Lpubgkt/Season;
+	public final fun copy (Ljava/lang/String;ZZ)Ldev/pubgkt/Season;
+	public static synthetic fun copy$default (Ldev/pubgkt/Season;Ljava/lang/String;ZZILjava/lang/Object;)Ldev/pubgkt/Season;
 	public fun equals (Ljava/lang/Object;)Z
 	public final fun getId ()Ljava/lang/String;
 	public fun hashCode ()I
@@ -131,30 +131,30 @@ public final class pubgkt/Season {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class pubgkt/SeasonKt {
-	public static final fun currentOrNull (Ljava/util/List;)Lpubgkt/Season;
-	public static final fun seasons (Lpubgkt/PubgApi;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static final fun seasons (Lpubgkt/PubgApi;Lpubgkt/PlatformRegion;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public static synthetic fun seasons$default (Lpubgkt/PubgApi;Lpubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
-	public static synthetic fun seasons$default (Lpubgkt/PubgApi;Lpubgkt/PlatformRegion;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+public final class dev/pubgkt/SeasonKt {
+	public static final fun currentOrNull (Ljava/util/List;)Ldev/pubgkt/Season;
+	public static final fun seasons (Ldev/pubgkt/PubgApi;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static final fun seasons (Ldev/pubgkt/PubgApi;Ldev/pubgkt/PlatformRegion;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun seasons$default (Ldev/pubgkt/PubgApi;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public static synthetic fun seasons$default (Ldev/pubgkt/PubgApi;Ldev/pubgkt/PlatformRegion;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
 }
 
-public final class pubgkt/StatusKt {
-	public static final fun isUp (Lpubgkt/PubgApi;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+public final class dev/pubgkt/StatusKt {
+	public static final fun isUp (Ldev/pubgkt/PubgApi;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class pubgkt/http/UnauthorizedException : java/lang/Exception {
+public final class dev/pubgkt/http/UnauthorizedException : java/lang/Exception {
 	public fun <init> ()V
 }
 
-public final class pubgkt/ratelimit/ConcurrentDelayRateLimiter : pubgkt/ratelimit/DelayRateLimiter {
+public final class dev/pubgkt/ratelimit/ConcurrentDelayRateLimiter : dev/pubgkt/ratelimit/DelayRateLimiter {
 	public fun <init> ()V
 	public fun <init> (Lkotlin/time/Clock;)V
 	public synthetic fun <init> (Lkotlin/time/Clock;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun throttle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public class pubgkt/ratelimit/DelayRateLimiter : pubgkt/ratelimit/RateLimiter {
+public class dev/pubgkt/ratelimit/DelayRateLimiter : dev/pubgkt/ratelimit/RateLimiter {
 	public fun <init> ()V
 	public fun <init> (Lkotlin/time/Clock;)V
 	public synthetic fun <init> (Lkotlin/time/Clock;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
@@ -163,18 +163,18 @@ public class pubgkt/ratelimit/DelayRateLimiter : pubgkt/ratelimit/RateLimiter {
 	public fun throttle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class pubgkt/ratelimit/RateLimitExceededException : java/lang/Exception {
+public final class dev/pubgkt/ratelimit/RateLimitExceededException : java/lang/Exception {
 	public fun <init> (Ljava/lang/Long;)V
 	public final fun getResetAtEpochSeconds ()Ljava/lang/Long;
 }
 
-public abstract interface class pubgkt/ratelimit/RateLimiter {
-	public static final field Companion Lpubgkt/ratelimit/RateLimiter$Companion;
+public abstract interface class dev/pubgkt/ratelimit/RateLimiter {
+	public static final field Companion Ldev/pubgkt/ratelimit/RateLimiter$Companion;
 	public abstract fun onResponse (Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/Long;)V
 	public abstract fun throttle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public final class pubgkt/ratelimit/RateLimiter$Companion {
-	public final fun getNone ()Lpubgkt/ratelimit/RateLimiter;
+public final class dev/pubgkt/ratelimit/RateLimiter$Companion {
+	public final fun getNone ()Ldev/pubgkt/ratelimit/RateLimiter;
 }
 

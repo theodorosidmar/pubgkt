@@ -152,7 +152,7 @@ fun File.extractPackageAndImports(): Pair<String, Set<String>> {
                 val m = importPattern.matcher(line)
                 if (!m.find()) return@mapNotNull null
                 val fqName = m.group(1)
-                if (!fqName.startsWith("pubgkt.")) return@mapNotNull null
+                if (!fqName.startsWith("dev.pubgkt.")) return@mapNotNull null
                 fqName.substringBeforeLast('.', missingDelimiterValue = fqName)
             }.toSet()
 
@@ -264,12 +264,12 @@ fun clusterIdForPackage(packageName: String): String =
     when {
         packageName == "<root>" -> "misc"
 
-        packageName == "pubgkt" || packageName.startsWith("pubgkt.http") || packageName.startsWith("pubgkt.jsonapi") ||
-            packageName.startsWith("pubgkt.ratelimit") -> "shared"
+        packageName == "dev.pubgkt" || packageName.startsWith("dev.pubgkt.http") || packageName.startsWith("dev.pubgkt.jsonapi") ||
+            packageName.startsWith("dev.pubgkt.ratelimit") -> "shared"
 
-        packageName.startsWith("pubgkt.test") -> "testing"
+        packageName.startsWith("dev.pubgkt.test") -> "testing"
 
-        packageName.startsWith("pubgkt.") -> packageName.substringAfter("pubgkt.").substringBefore('.')
+        packageName.startsWith("dev.pubgkt.") -> packageName.substringAfter("dev.pubgkt.").substringBefore('.')
 
         else -> "misc"
     }
