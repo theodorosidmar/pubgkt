@@ -1,0 +1,61 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    env:
+      GRADLE_OPTS: -Dorg.gradle.daemon=false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: 25
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+        with:
+          cache-encryption-key: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
+
+      - name: Build & Test
+        run: ./gradlew check
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          body: |
+            ## Installation
+
+            ### Gradle Kotlin DSL
+            ```kotlin
+            dependencies {
+                implementation(platform("dev.pubgkt:bom:${{ github.ref_name }}"))
+                implementation("dev.pubgkt:core")
+            }
+            ```
+
+            ### Maven
+            ```xml
+            <dependency>
+                <groupId>dev.pubgkt</groupId>
+                <artifactId>core-jvm</artifactId>
+                <version>${{ github.ref_name }}</version>
+            </dependency>
+            ```
+
+            ## Documentation
+            https://theodorosidmar.github.io/pubgkt/

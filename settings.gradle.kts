@@ -17,7 +17,7 @@ include(
     "mastery",
     "matches",
     "players",
-    "samples",
+    "samples:jvm",
     "stats",
     "test-support",
 )

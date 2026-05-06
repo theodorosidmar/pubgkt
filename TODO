@@ -3,15 +3,15 @@
 - [ ] Telemetry module??
 - [X] HTTP Retries??
 - [X] Leverage Detekt
-- [ ] Leverage Kover
+- [X] Leverage Kover
 - [ ] Kotlin Rich errors
 - [X] Gradle check must run detekt and tests
 - [ ] Add nodejs compilation
 - [ ] Add android compilation
 - [ ] Add native/macos compilation???
 - [ ] Add iOS compilation???
-- [ ] Improves samples module and documentation (a lot)
-- [ ] Dokka badge? How can I leverage it? Publish Dokka documentation on GitHub Pages?
+- [X] Improves samples module and documentation (a lot)
+- [X] Dokka badge? How can I leverage it? Publish Dokka documentation on GitHub Pages?
 - [ ] Publish on Maven Central
 - [ ] Publish on npm
 - [ ] Publish at Kotlin Slack #feed

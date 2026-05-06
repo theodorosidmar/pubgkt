@@ -1,0 +1,106 @@
+name: Deploy Docs & Coverage Badges
+
+on:
+  push:
+    branches: [main]
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-docs:
+    name: Build Dokka & Coverage
+    runs-on: ubuntu-latest
+    env:
+      GRADLE_OPTS: -Dorg.gradle.daemon=false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: 25
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+        with:
+          cache-encryption-key: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
+
+      - name: Generate Dokka HTML
+        run: ./gradlew :core:dokkaGeneratePublicationHtml
+
+      - name: Generate Kover XML reports
+        run: ./gradlew koverXmlReport
+
+      - name: Generate coverage badges
+        run: |
+          mkdir -p core/build/dokka/html/coverage
+          for module in common players clans matches leaderboards mastery stats; do
+            REPORT="$module/build/reports/kover/report.xml"
+            if [ -f "$REPORT" ]; then
+              COVERED=$(grep -oP 'type="LINE"[^/]*covered="\K[0-9]+' "$REPORT" | head -1)
+              MISSED=$(grep -oP 'type="LINE"[^/]*missed="\K[0-9]+' "$REPORT" | head -1)
+              if [ -n "$COVERED" ] && [ -n "$MISSED" ]; then
+                TOTAL=$((COVERED + MISSED))
+                PCT=$((COVERED * 100 / TOTAL))
+              else
+                PCT=0
+              fi
+              if [ "$PCT" -ge 80 ]; then COLOR="brightgreen";
+              elif [ "$PCT" -ge 60 ]; then COLOR="green";
+              elif [ "$PCT" -ge 40 ]; then COLOR="yellowgreen";
+              elif [ "$PCT" -ge 20 ]; then COLOR="orange";
+              else COLOR="red"; fi
+              echo "{\"schemaVersion\":1,\"label\":\"coverage\",\"message\":\"${PCT}%\",\"color\":\"${COLOR}\"}" \
+                > core/build/dokka/html/coverage/${module}.json
+            fi
+          done
+
+          REPORT="core/build/reports/kover/report.xml"
+          if [ -f "$REPORT" ]; then
+            COVERED=$(grep -oP 'type="LINE"[^/]*covered="\K[0-9]+' "$REPORT" | head -1)
+            MISSED=$(grep -oP 'type="LINE"[^/]*missed="\K[0-9]+' "$REPORT" | head -1)
+            if [ -n "$COVERED" ] && [ -n "$MISSED" ]; then
+              TOTAL=$((COVERED + MISSED))
+              PCT=$((COVERED * 100 / TOTAL))
+            else
+              PCT=0
+            fi
+            if [ "$PCT" -ge 80 ]; then COLOR="brightgreen";
+            elif [ "$PCT" -ge 60 ]; then COLOR="green";
+            elif [ "$PCT" -ge 40 ]; then COLOR="yellowgreen";
+            elif [ "$PCT" -ge 20 ]; then COLOR="orange";
+            else COLOR="red"; fi
+            echo "{\"schemaVersion\":1,\"label\":\"coverage\",\"message\":\"${PCT}%\",\"color\":\"${COLOR}\"}" \
+              > core/build/dokka/html/coverage/core.json
+          fi
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: core/build/dokka/html
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build-docs
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

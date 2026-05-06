@@ -1,83 +1,139 @@
+![CI](https://github.com/theodorosidmar/pubgkt/actions/workflows/ci.yml/badge.svg)
+![Coverage](https://img.shields.io/endpoint?url=https://theodorosidmar.github.io/pubgkt/coverage/core.json)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
 # pubgkt
 
-Kotlin Multiplatform library for the official [PUBG API](https://documentation.pubg.com/en/introduction.html).
+Kotlin Multiplatform client for the official [PUBG API](https://documentation.pubg.com/en/introduction.html).
 
-## Supported Platforms
-
-| Module                        | JVM | Android | iOS | JS/Node |
-|-------------------------------|:---:|:-------:|:---:|:-------:|
-| `bom`                         | ✓   |         |     |         |
-| `clans`                       | ✓   |         |     |         |
-| `core` (All modules together) | ✓   |         |     |         |
-| `leaderboards`                | ✓   |         |     |         |
-| `mastery`                     | ✓   |         |     |         |
-| `matches`                     | ✓   |         |     |         |
-| `players`                     | ✓   |         |     |         |
-| `stats`                       | ✓   |         |     |         |
-
-## Getting Started
+## Installation
 
 ### Obtain an API key
 
 Register at the [PUBG Developer Portal](https://developer.pubg.com) to get your API key.
 
-### Add the dependency
+### Gradle Kotlin DSL
 
-**Gradle (Kotlin DSL)**
 ```kotlin
 repositories {
-    mavenLocal() // during development
+    mavenCentral()
 }
 
 dependencies {
-    implementation("pubgkt:players:0.1.0-SNAPSHOT")
+    // Using the BOM (recommended)
+    implementation(platform("dev.pubgkt:bom:1.0.0"))
+    implementation("dev.pubgkt:core") // all modules
+    // or pick individual modules
+    implementation("dev.pubgkt:players")
+    implementation("dev.pubgkt:stats")
 }
 ```
 
-**Maven**
-```xml
-<dependency>
-    <groupId>pubgkt</groupId>
-    <artifactId>players-jvm</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
-</dependency>
+### Gradle Groovy
+
+```groovy
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Using the BOM (recommended)
+    implementation platform('dev.pubgkt:bom:1.0.0')
+    implementation 'dev.pubgkt:core' // all modules
+    // or pick individual modules
+    implementation 'dev.pubgkt:players'
+    implementation 'dev.pubgkt:stats'
+}
 ```
 
-### Usage — Kotlin
+### Maven
+
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>dev.pubgkt</groupId>
+            <artifactId>bom</artifactId>
+            <version>1.0.0</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+<dependencies>
+    <!-- All modules -->
+    <dependency>
+        <groupId>dev.pubgkt</groupId>
+        <artifactId>core-jvm</artifactId>
+    </dependency>
+    <!-- Or pick individual modules -->
+    <dependency>
+        <groupId>dev.pubgkt</groupId>
+        <artifactId>players-jvm</artifactId>
+    </dependency>
+</dependencies>
+```
+
+> **Note:** Maven artifacts use the `-jvm` suffix (e.g. `players-jvm`). Gradle Kotlin DSL resolves the correct variant automatically.
+
+## Quick Start
+
+### Kotlin
 
 ```kotlin
-val api = PubgApi(apiKey = "your-api-key", platform = Platform.STEAM)
+import dev.pubgkt.PubgApi
+import dev.pubgkt.Platform
+import dev.pubgkt.players.getPlayersByNames
+import dev.pubgkt.stats.lifetime.getLifetimeStatsByAccountId
 
-// Single player by account ID
-val player = api.getPlayerByAccountId("account.abc123")
+val api = PubgApi(apiKey = "your-api-key")
 
-// Multiple players by account IDs (up to 10)
-val players = api.getPlayersById("account.abc123", "account.def456")
+// Find players by display name
+val players = api.getPlayersByNames("sparkingg", "TGLTN")
 
-// Multiple players by display names (up to 10)
-val named = api.getPlayersByNames("sparkingg", "TGLTN")
+// Get lifetime stats
+val stats = api.getLifetimeStatsByAccountId(players.first().id)
+println("Squad FPP — ${stats.squadFpp.wins} wins, ${stats.squadFpp.kills} kills")
 ```
 
-### Usage — Java
+### Java
 
 ```java
-PubgApi api = new PubgApi("your-api-key");
-api.setPlatform(Platform.STEAM);
+import dev.pubgkt.PubgApi;
+import dev.pubgkt.Platform;
+import dev.pubgkt.players.GetPlayersByNameKt;
+import dev.pubgkt.players.Player;
+import kotlinx.coroutines.BuildersKt;
+import kotlin.coroutines.EmptyCoroutineContext;
 
-// Bridge suspend functions with runBlocking
-Player player = BuildersKt.runBlocking(
-    EmptyCoroutineContext.INSTANCE,
-    (scope, cont) -> GetPlayerByAccountIdKt.getPlayerByAccountId(api, "account.abc123", cont)
+PubgApi api = new PubgApi("your-api-key");
+
+List<Player> players = BuildersKt.runBlocking(
+        EmptyCoroutineContext.INSTANCE,
+        (_, cont) -> GetPlayersByNameKt.getPlayersByNames(api, List.of("sparkingg"), Platform.STEAM, cont)
 );
 ```
 
+## Modules
+
+| Module | Description | Docs |
+|--------|-------------|------|
+| [`common`](common/readme.md) | Core client, platform enums, seasons, rate limiting, retry | [API](https://theodorosidmar.github.io/pubgkt/common/) |
+| [`players`](players/readme.md) | Player lookup by ID or name | [API](https://theodorosidmar.github.io/pubgkt/players/) |
+| [`clans`](clans/readme.md) | Clan information | [API](https://theodorosidmar.github.io/pubgkt/clans/) |
+| [`matches`](matches/readme.md) | Match details with participants and stats | [API](https://theodorosidmar.github.io/pubgkt/matches/) |
+| [`leaderboards`](leaderboards/readme.md) | Leaderboard rankings | [API](https://theodorosidmar.github.io/pubgkt/leaderboards/) |
+| [`mastery`](mastery/readme.md) | Weapon and survival mastery | [API](https://theodorosidmar.github.io/pubgkt/mastery/) |
+| [`stats`](stats/readme.md) | Lifetime, season, and ranked stats | [API](https://theodorosidmar.github.io/pubgkt/stats/) |
+| `core` | All modules bundled together | [API](https://theodorosidmar.github.io/pubgkt/) |
+| `bom` | Bill of Materials for version alignment | — |
+
 ## Rate Limiting
 
-The PUBG API enforces a default limit of **10 requests per minute** per API key. pubgkt handles
-this automatically via the `RateLimiter` interface.
+The PUBG API enforces a default limit of **10 requests per minute** per API key. pubgkt handles this automatically via the `RateLimiter` interface.
 
-The default implementation is `DelayRateLimiter`, which reads the `X-RateLimit-Remaining` and
-`X-RateLimit-Reset` response headers and delays subsequent requests when the limit is exhausted.
+The default implementation (`DelayRateLimiter`) reads the `X-RateLimit-Remaining` and `X-RateLimit-Reset` response headers and delays subsequent requests when the limit is exhausted.
 
 ```kotlin
 // Default — proactive delay when the limit is about to be hit
@@ -86,42 +142,61 @@ val api = PubgApi("your-api-key")
 // No rate limiting — manage it yourself
 val api = PubgApi("your-api-key", rateLimiter = RateLimiter.None)
 
-// Custom implementation
-val api = PubgApi("your-api-key", rateLimiter = MyRateLimiter())
+// Thread-safe rate limiter for concurrent usage
+val api = PubgApi("your-api-key", rateLimiter = ConcurrentDelayRateLimiter())
 ```
 
-If the API returns HTTP 429 regardless (e.g. another instance shares your key),
-`RateLimitExceededException` is thrown with the reset timestamp.
+If the API returns HTTP 429 regardless (e.g. another instance shares your key), `RateLimitExceededException` is thrown with the reset timestamp.
 
-## API Coverage
+## Retry & Backoff
 
-| Endpoint group | Status  |
-|----------------|---------|
-| Clans          | ✓ Done  |
-| Leaderboards   | ✓ Done  |
-| Mastery        | ✓ Done  |
-| Matches        | ✓ Done  |
-| Players        | ✓ Done  |
-| Stats          | ✓ Done  |
+```kotlin
+import dev.pubgkt.Retry
+import dev.pubgkt.ExponentialBackoff
 
-## Platform Roadmap
+val api = PubgApi(
+    apiKey = "your-api-key",
+    retry = Retry(
+        maxRetries = 5,
+        backoff = ExponentialBackoff(
+            base = 2.0,
+            baseDelayMs = 1_000,
+            maxDelayMs = 60_000,
+        ),
+    ),
+)
+```
 
-| Platform | Engine  | Status  |
-|----------|---------|---------|
-| JVM      | CIO     | ✓ Done  |
-| Android  | OkHttp  | Planned |
-| iOS      | Darwin  | Planned |
-| JS/Node  | Js      | Planned |
+## API Documentation
+
+Full API reference is available at [theodorosidmar.github.io/pubgkt](https://theodorosidmar.github.io/pubgkt/).
 
 ## Samples
 
-```bash
-# Kotlin
-./gradlew :samples:run --args="<api-key> [accountId] [playerName]"
+The `samples` module contains runnable examples in both Kotlin and Java:
 
-# Java
-./gradlew :samples:runJava --args="<api-key> [accountId] [playerName]"
+```bash
+# Run any Kotlin sample
+./gradlew :samples:jvm:runPlayersKotlin -Pargs="<api-key>"
+./gradlew :samples:jvm:runStatsKotlin -Pargs="<api-key>"
+./gradlew :samples:jvm:runMatchesKotlin -Pargs="<api-key>"
+
+# Run any Java sample
+./gradlew :samples:jvm:runPlayersJava -Pargs="<api-key>"
+./gradlew :samples:jvm:runStatsJava -Pargs="<api-key>"
+./gradlew :samples:jvm:runMatchesJava -Pargs="<api-key>"
 ```
+
+Available modules: `Common`, `Players`, `Clans`, `Matches`, `Leaderboards`, `Mastery`, `Stats`
+
+## Supported Platforms
+
+| Platform | Status  |
+|----------|---------|
+| JVM      | Done    |
+| Android  | Planned |
+| iOS      | Planned |
+| JS/Node  | Planned |
 
 ## License
 
