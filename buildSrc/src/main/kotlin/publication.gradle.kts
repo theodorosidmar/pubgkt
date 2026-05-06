@@ -8,28 +8,40 @@ plugins {
 }
 
 mavenPublishing {
-    coordinates(Library.GROUP, project.name, Library.VERSION)
+    coordinates(
+        groupId = Library.GROUP,
+        artifactId = project.name,
+        version = Library.VERSION,
+    )
+
+    if (project.hasProperty("release")) {
+        signAllPublications()
+        publishToMavenCentral(automaticRelease = true)
+    }
 
     pom {
-        name.set("${Library.NAME}:${project.name}")
-        description.set("${Library.DESCRIPTION} – ${project.name} module")
-        url.set(Library.PROJECT_URL)
+        name = "${Library.NAME}:${project.name}"
+        description = "${Library.DESCRIPTION} – ${project.name} module"
+        url = Library.PROJECT_URL
+
         licenses {
             license {
-                name.set("MIT License")
-                url.set("https://opensource.org/licenses/MIT")
+                name = "MIT"
+                url = "https://opensource.org/licenses/MIT"
             }
         }
+
         developers {
             developer {
-                id.set("theodorosidmar")
-                name.set("Sidmar Theodoro")
-                url.set("https://github.com/theodorosidmar")
+                id = "theodorosidmar"
+                name = "Sidmar Theodoro"
+                url = "https://github.com/theodorosidmar"
             }
         }
+
         issueManagement {
-            system.set("GitHub Issues")
-            url.set("${Library.PROJECT_URL}/issues")
+            system = "GitHub Issues"
+            url = "${Library.PROJECT_URL}/issues"
         }
     }
 
