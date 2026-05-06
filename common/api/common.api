@@ -90,6 +90,8 @@ public final class dev/pubgkt/PlatformRegion : java/lang/Enum {
 }
 
 public final class dev/pubgkt/PubgApi {
+	public fun <init> (Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;Ldev/pubgkt/ratelimit/RateLimiter;)V
 	public fun <init> (Ljava/lang/String;Ldev/pubgkt/ratelimit/RateLimiter;Ldev/pubgkt/RetryPolicy;)V
 	public synthetic fun <init> (Ljava/lang/String;Ldev/pubgkt/ratelimit/RateLimiter;Ldev/pubgkt/RetryPolicy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 }

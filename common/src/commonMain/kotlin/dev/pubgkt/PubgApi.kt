@@ -28,7 +28,7 @@ import io.ktor.client.engine.HttpClientEngine
  * @see RetryPolicy
  * @see <a href="https://documentation.pubg.com/en/introduction.html">PUBG Developer Portal</a>
  */
-public class PubgApi(
+public class PubgApi @JvmOverloads constructor(
     internal val apiKey: String,
     internal val rateLimiter: RateLimiter = DelayRateLimiter(),
     internal val retry: RetryPolicy = NoRetry,
