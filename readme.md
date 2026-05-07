@@ -14,6 +14,11 @@ Kotlin Multiplatform client for the official [PUBG API](https://documentation.pu
 
 Register at the [PUBG Developer Portal](https://developer.pubg.com) to get your API key.
 
+## Getting Started By Platform
+
+<details>
+<summary><strong>JVM</strong> (Kotlin and Java)</summary>
+
 ### Gradle Kotlin DSL
 
 ```kotlin
@@ -78,6 +83,43 @@ dependencies {
 ```
 
 > **Note:** Maven artifacts use the `-jvm` suffix (e.g. `players-jvm`). Gradle Kotlin DSL resolves the correct variant automatically.
+
+</details>
+
+<details>
+<summary><strong>iOS/watchOS</strong> (Swift)</summary>
+
+### Swift Package Manager
+
+Use `Package.swift` from this repository:
+
+```swift
+.package(url: "https://github.com/theodorosidmar/pubgkt.git", from: "1.0.0")
+```
+
+Then add one of the products:
+
+```swift
+.product(name: "pubgkt", package: "pubgkt")
+```
+
+> **Important:** Every release must update the checksum in `Package.swift` to match the uploaded `pubgkt.xcframework.zip` asset.
+
+</details>
+
+<details>
+<summary><strong>Android</strong> (Planned)</summary>
+
+Android onboarding will be added in a future release.
+
+</details>
+
+<details>
+<summary><strong>Node.js</strong> (Planned)</summary>
+
+Node.js onboarding will be added in a future release.
+
+</details>
 
 ## Quick Start
 
@@ -196,8 +238,9 @@ Available modules: `Common`, `Players`, `Clans`, `Matches`, `Leaderboards`, `Mas
 | Platform | Status  |
 |----------|---------|
 | JVM      | Done    |
+| iOS      | Done    |
+| watchOS  | Done    |
 | Android  | Planned |
-| iOS      | Planned |
 | JS/Node  | Planned |
 
 ## License

@@ -1,15 +1,19 @@
 name: Release
 
 on:
-  push:
-    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release version without v prefix (example: 1.0.0)"
+        required: true
+        type: string
 
 permissions:
   contents: write
 
 jobs:
-  release:
-    name: Create GitHub Release
+  build-jvm-assets:
+    name: Build JVM artifacts
     runs-on: ubuntu-latest
     env:
       GRADLE_OPTS: -Dorg.gradle.daemon=false
@@ -30,20 +34,215 @@ jobs:
         with:
           cache-encryption-key: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
 
-      - name: Build & Test
-        run: ./gradlew check
+      - name: Build JVM module jars
+        run: >-
+          ./gradlew
+          :common:jvmJar
+          :players:jvmJar
+          :clans:jvmJar
+          :matches:jvmJar
+          :leaderboards:jvmJar
+          :mastery:jvmJar
+          :stats:jvmJar
+          :core:jvmJar
+
+      - name: Collect JVM release assets
+        run: |
+          set -euo pipefail
+          mkdir -p release-assets/jvm
+          for module in common players clans matches leaderboards mastery stats core; do
+            cp "$module/build/libs/$module-jvm.jar" "release-assets/jvm/$module-jvm.jar"
+          done
+
+      - name: Upload JVM release assets
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-jvm-assets
+          path: release-assets/jvm/*.jar
+          if-no-files-found: error
+
+  build-apple-assets:
+    name: Build Apple XCFramework assets
+    runs-on: macos-latest
+    env:
+      GRADLE_OPTS: -Dorg.gradle.daemon=false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: 25
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+        with:
+          cache-encryption-key: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
+
+      - name: Build Apple XCFrameworks
+        run: >-
+          ./gradlew
+          :core:assemblePubgktReleaseXCFramework
+
+      - name: Collect Apple release assets
+        run: |
+          set -euo pipefail
+          mkdir -p release-assets/apple
+          xcf_count="$(find core/build/XCFrameworks -type d -path '*/release/pubgkt.xcframework' | wc -l | tr -d ' ')"
+          xcf_path="$(find core/build/XCFrameworks -type d -path '*/release/pubgkt.xcframework' | head -n 1)"
+
+          if [ "$xcf_count" -eq 0 ]; then
+            echo "No release XCFramework found for module: core"
+            find core/build -type d -name '*.xcframework' || true
+            exit 1
+          fi
+          if [ "$xcf_count" -gt 1 ]; then
+            echo "Multiple release XCFramework candidates found for module: core"
+            find core/build/XCFrameworks -type d -path '*/release/pubgkt.xcframework' | sort
+            exit 1
+          fi
+
+          ditto -c -k --sequesterRsrc --keepParent \
+            "$xcf_path" \
+            "release-assets/apple/pubgkt.xcframework.zip"
+
+      - name: Upload Apple release assets
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-apple-assets
+          path: release-assets/apple/*.zip
+          if-no-files-found: error
+
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs:
+      - build-jvm-assets
+      - build-apple-assets
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+
+      - name: Normalize version from workflow input
+        id: version
+        run: |
+          set -euo pipefail
+          version="${{ github.event.inputs.version }}"
+          tag="v$version"
+          echo "value=$version" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Download JVM release assets
+        uses: actions/download-artifact@v4
+        with:
+          name: release-jvm-assets
+          path: release-assets/jvm
+
+      - name: Download Apple release assets
+        uses: actions/download-artifact@v4
+        with:
+          name: release-apple-assets
+          path: release-assets/apple
+
+      - name: Generate Package.swift checksums
+        run: |
+          set -euo pipefail
+
+          out_file="release-assets/apple/package-swift-checksums.txt"
+          checksum_file="release-assets/apple/package-swift-checksum.txt"
+          : > "$out_file"
+          : > "$checksum_file"
+
+          zip_path="release-assets/apple/pubgkt.xcframework.zip"
+          if [ ! -f "$zip_path" ]; then
+            echo "Missing expected asset: $zip_path"
+            exit 1
+          fi
+
+          checksum="$(shasum -a 256 "$zip_path" | awk '{print $1}')"
+          printf '%s\n' "$checksum" > "$checksum_file"
+          printf '%s\n' "url: \"https://github.com/theodorosidmar/pubgkt/releases/download/${{ steps.version.outputs.tag }}/pubgkt.xcframework.zip\"," >> "$out_file"
+          printf '%s\n' "checksum: \"$checksum\"" >> "$out_file"
+
+          {
+            echo "## Package.swift checksums"
+            echo
+            echo "Copy/paste values from: \`release-assets/apple/package-swift-checksums.txt\`"
+            echo
+            echo '```text'
+            cat "$out_file"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Update Package.swift with release URLs and checksums
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import pathlib
+          import re
+
+          tag = "${{ steps.version.outputs.tag }}"
+          checksum = pathlib.Path("release-assets/apple/package-swift-checksum.txt").read_text().strip()
+          package_file = pathlib.Path("Package.swift")
+
+          text = package_file.read_text()
+          pattern = (
+              r'(name: "pubgkt",\n\s+url: "https://github.com/theodorosidmar/pubgkt/releases/download/)'
+              r'v[^/]+(/pubgkt\.xcframework\.zip",\n\s+checksum: ")[0-9a-f]{64}("\n)'
+          )
+          new_url_part = f'https://github.com/theodorosidmar/pubgkt/releases/download/{tag}/pubgkt.xcframework.zip'
+          replacement = lambda m: f'{m.group(1)}{tag}{m.group(2)}{checksum}{m.group(3)}'
+          text, count = re.subn(pattern, replacement, text)
+          if count != 1:
+              raise SystemExit("Failed to update target 'pubgkt' in Package.swift")
+
+          package_file.write_text(text)
+          PY
+
+      - name: Commit Package.swift update
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- Package.swift; then
+            echo "Package.swift already up-to-date"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Package.swift
+          git commit -m "chore(release): update Package.swift checksums for ${{ steps.version.outputs.tag }}"
+          git push origin "${{ github.event.repository.default_branch }}"
+
+      - name: Upload checksum helper
+        uses: actions/upload-artifact@v7
+        with:
+          name: package-swift-checksums
+          path: release-assets/apple/package-swift-checksums.txt
+          if-no-files-found: error
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v3
         with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          target_commitish: ${{ github.event.repository.default_branch }}
           generate_release_notes: true
+          files: |
+            release-assets/jvm/*.jar
+            release-assets/apple/*.zip
           body: |
             ## Installation
 
             ### Gradle Kotlin DSL
             ```kotlin
             dependencies {
-                implementation(platform("dev.pubgkt:bom:${{ github.ref_name }}"))
+                implementation(platform("dev.pubgkt:bom:${{ steps.version.outputs.value }}"))
                 implementation("dev.pubgkt:core")
             }
             ```
@@ -53,9 +252,15 @@ jobs:
             <dependency>
                 <groupId>dev.pubgkt</groupId>
                 <artifactId>core-jvm</artifactId>
-                <version>${{ github.ref_name }}</version>
+                <version>${{ steps.version.outputs.value }}</version>
             </dependency>
             ```
+
+            ### Swift (iOS/watchOS)
+            Download `pubgkt.xcframework.zip` from this release assets section.
+            
+            - The Apple distribution is a single umbrella XCFramework exported from `core`.
+            - Import it in Swift as `pubgkt`.
 
             ## Documentation
             https://theodorosidmar.github.io/pubgkt/

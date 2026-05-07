@@ -1,10 +1,32 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+
 plugins {
     `kmp-library`
 }
 
 kotlin {
+    val xcf = XCFramework("pubgkt")
+    targets.withType<KotlinNativeTarget>().configureEach {
+        if (!konanTarget.family.isAppleFamily) return@configureEach
+
+        binaries.framework {
+            baseName = "pubgkt"
+            isStatic = true
+            export(projects.common)
+            export(projects.players)
+            export(projects.clans)
+            export(projects.matches)
+            export(projects.leaderboards)
+            export(projects.mastery)
+            export(projects.stats)
+            xcf.add(this)
+        }
+    }
+
     sourceSets {
         commonMain.dependencies {
+            api(projects.common)
             api(projects.clans)
             api(projects.leaderboards)
             api(projects.mastery)

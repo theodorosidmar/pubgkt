@@ -6,6 +6,7 @@ import dev.pubgkt.ratelimit.DelayRateLimiter
 import dev.pubgkt.ratelimit.RateLimiter
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
+import kotlin.jvm.JvmOverloads
 
 /**
  * Entry point for all PUBG API interactions.

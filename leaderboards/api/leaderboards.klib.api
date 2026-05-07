@@ -1,0 +1,95 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64, watchosArm32, watchosArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <pubgkt:leaderboards>
+final enum class dev.pubgkt.leaderboards/GameMode : kotlin/Enum<dev.pubgkt.leaderboards/GameMode> { // dev.pubgkt.leaderboards/GameMode|null[0]
+    enum entry DUO // dev.pubgkt.leaderboards/GameMode.DUO|null[0]
+    enum entry DUO_FPP // dev.pubgkt.leaderboards/GameMode.DUO_FPP|null[0]
+    enum entry SOLO // dev.pubgkt.leaderboards/GameMode.SOLO|null[0]
+    enum entry SOLO_FPP // dev.pubgkt.leaderboards/GameMode.SOLO_FPP|null[0]
+    enum entry SQUAD // dev.pubgkt.leaderboards/GameMode.SQUAD|null[0]
+    enum entry SQUAD_FPP // dev.pubgkt.leaderboards/GameMode.SQUAD_FPP|null[0]
+
+    final val entries // dev.pubgkt.leaderboards/GameMode.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.pubgkt.leaderboards/GameMode> // dev.pubgkt.leaderboards/GameMode.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.pubgkt.leaderboards/GameMode // dev.pubgkt.leaderboards/GameMode.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.pubgkt.leaderboards/GameMode> // dev.pubgkt.leaderboards/GameMode.values|values#static(){}[0]
+}
+
+final class dev.pubgkt.leaderboards/Leaderboard { // dev.pubgkt.leaderboards/Leaderboard|null[0]
+    constructor <init>(kotlin/String, dev.pubgkt.leaderboards/GameMode, dev.pubgkt/PlatformRegion, kotlin.collections/List<dev.pubgkt.leaderboards/LeaderboardPlacement>) // dev.pubgkt.leaderboards/Leaderboard.<init>|<init>(kotlin.String;dev.pubgkt.leaderboards.GameMode;dev.pubgkt.PlatformRegion;kotlin.collections.List<dev.pubgkt.leaderboards.LeaderboardPlacement>){}[0]
+
+    final val gameMode // dev.pubgkt.leaderboards/Leaderboard.gameMode|{}gameMode[0]
+        final fun <get-gameMode>(): dev.pubgkt.leaderboards/GameMode // dev.pubgkt.leaderboards/Leaderboard.gameMode.<get-gameMode>|<get-gameMode>(){}[0]
+    final val placements // dev.pubgkt.leaderboards/Leaderboard.placements|{}placements[0]
+        final fun <get-placements>(): kotlin.collections/List<dev.pubgkt.leaderboards/LeaderboardPlacement> // dev.pubgkt.leaderboards/Leaderboard.placements.<get-placements>|<get-placements>(){}[0]
+    final val platformRegion // dev.pubgkt.leaderboards/Leaderboard.platformRegion|{}platformRegion[0]
+        final fun <get-platformRegion>(): dev.pubgkt/PlatformRegion // dev.pubgkt.leaderboards/Leaderboard.platformRegion.<get-platformRegion>|<get-platformRegion>(){}[0]
+    final val seasonId // dev.pubgkt.leaderboards/Leaderboard.seasonId|{}seasonId[0]
+        final fun <get-seasonId>(): kotlin/String // dev.pubgkt.leaderboards/Leaderboard.seasonId.<get-seasonId>|<get-seasonId>(){}[0]
+
+    final fun component1(): kotlin/String // dev.pubgkt.leaderboards/Leaderboard.component1|component1(){}[0]
+    final fun component2(): dev.pubgkt.leaderboards/GameMode // dev.pubgkt.leaderboards/Leaderboard.component2|component2(){}[0]
+    final fun component3(): dev.pubgkt/PlatformRegion // dev.pubgkt.leaderboards/Leaderboard.component3|component3(){}[0]
+    final fun component4(): kotlin.collections/List<dev.pubgkt.leaderboards/LeaderboardPlacement> // dev.pubgkt.leaderboards/Leaderboard.component4|component4(){}[0]
+    final fun copy(kotlin/String = ..., dev.pubgkt.leaderboards/GameMode = ..., dev.pubgkt/PlatformRegion = ..., kotlin.collections/List<dev.pubgkt.leaderboards/LeaderboardPlacement> = ...): dev.pubgkt.leaderboards/Leaderboard // dev.pubgkt.leaderboards/Leaderboard.copy|copy(kotlin.String;dev.pubgkt.leaderboards.GameMode;dev.pubgkt.PlatformRegion;kotlin.collections.List<dev.pubgkt.leaderboards.LeaderboardPlacement>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.pubgkt.leaderboards/Leaderboard.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.pubgkt.leaderboards/Leaderboard.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.pubgkt.leaderboards/Leaderboard.toString|toString(){}[0]
+}
+
+final class dev.pubgkt.leaderboards/LeaderboardPlacement { // dev.pubgkt.leaderboards/LeaderboardPlacement|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/Int, kotlin/Int, kotlin/Int, kotlin/Int, kotlin/Int, kotlin/Int, kotlin/Int, kotlin/Double, kotlin/Double, kotlin/String, kotlin/String) // dev.pubgkt.leaderboards/LeaderboardPlacement.<init>|<init>(kotlin.String;kotlin.String;kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Double;kotlin.Double;kotlin.String;kotlin.String){}[0]
+
+    final val averageDamage // dev.pubgkt.leaderboards/LeaderboardPlacement.averageDamage|{}averageDamage[0]
+        final fun <get-averageDamage>(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.averageDamage.<get-averageDamage>|<get-averageDamage>(){}[0]
+    final val averageKill // dev.pubgkt.leaderboards/LeaderboardPlacement.averageKill|{}averageKill[0]
+        final fun <get-averageKill>(): kotlin/Double // dev.pubgkt.leaderboards/LeaderboardPlacement.averageKill.<get-averageKill>|<get-averageKill>(){}[0]
+    final val averageRank // dev.pubgkt.leaderboards/LeaderboardPlacement.averageRank|{}averageRank[0]
+        final fun <get-averageRank>(): kotlin/Double // dev.pubgkt.leaderboards/LeaderboardPlacement.averageRank.<get-averageRank>|<get-averageRank>(){}[0]
+    final val games // dev.pubgkt.leaderboards/LeaderboardPlacement.games|{}games[0]
+        final fun <get-games>(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.games.<get-games>|<get-games>(){}[0]
+    final val kda // dev.pubgkt.leaderboards/LeaderboardPlacement.kda|{}kda[0]
+        final fun <get-kda>(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.kda.<get-kda>|<get-kda>(){}[0]
+    final val kills // dev.pubgkt.leaderboards/LeaderboardPlacement.kills|{}kills[0]
+        final fun <get-kills>(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.kills.<get-kills>|<get-kills>(){}[0]
+    final val playerId // dev.pubgkt.leaderboards/LeaderboardPlacement.playerId|{}playerId[0]
+        final fun <get-playerId>(): kotlin/String // dev.pubgkt.leaderboards/LeaderboardPlacement.playerId.<get-playerId>|<get-playerId>(){}[0]
+    final val playerName // dev.pubgkt.leaderboards/LeaderboardPlacement.playerName|{}playerName[0]
+        final fun <get-playerName>(): kotlin/String // dev.pubgkt.leaderboards/LeaderboardPlacement.playerName.<get-playerName>|<get-playerName>(){}[0]
+    final val rank // dev.pubgkt.leaderboards/LeaderboardPlacement.rank|{}rank[0]
+        final fun <get-rank>(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.rank.<get-rank>|<get-rank>(){}[0]
+    final val rankPoints // dev.pubgkt.leaderboards/LeaderboardPlacement.rankPoints|{}rankPoints[0]
+        final fun <get-rankPoints>(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.rankPoints.<get-rankPoints>|<get-rankPoints>(){}[0]
+    final val subTier // dev.pubgkt.leaderboards/LeaderboardPlacement.subTier|{}subTier[0]
+        final fun <get-subTier>(): kotlin/String // dev.pubgkt.leaderboards/LeaderboardPlacement.subTier.<get-subTier>|<get-subTier>(){}[0]
+    final val tier // dev.pubgkt.leaderboards/LeaderboardPlacement.tier|{}tier[0]
+        final fun <get-tier>(): kotlin/String // dev.pubgkt.leaderboards/LeaderboardPlacement.tier.<get-tier>|<get-tier>(){}[0]
+    final val wins // dev.pubgkt.leaderboards/LeaderboardPlacement.wins|{}wins[0]
+        final fun <get-wins>(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.wins.<get-wins>|<get-wins>(){}[0]
+
+    final fun component1(): kotlin/String // dev.pubgkt.leaderboards/LeaderboardPlacement.component1|component1(){}[0]
+    final fun component10(): kotlin/Double // dev.pubgkt.leaderboards/LeaderboardPlacement.component10|component10(){}[0]
+    final fun component11(): kotlin/Double // dev.pubgkt.leaderboards/LeaderboardPlacement.component11|component11(){}[0]
+    final fun component12(): kotlin/String // dev.pubgkt.leaderboards/LeaderboardPlacement.component12|component12(){}[0]
+    final fun component13(): kotlin/String // dev.pubgkt.leaderboards/LeaderboardPlacement.component13|component13(){}[0]
+    final fun component2(): kotlin/String // dev.pubgkt.leaderboards/LeaderboardPlacement.component2|component2(){}[0]
+    final fun component3(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.component3|component3(){}[0]
+    final fun component4(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.component4|component4(){}[0]
+    final fun component5(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.component5|component5(){}[0]
+    final fun component6(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.component6|component6(){}[0]
+    final fun component7(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.component7|component7(){}[0]
+    final fun component8(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.component8|component8(){}[0]
+    final fun component9(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.component9|component9(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin/Double = ..., kotlin/Double = ..., kotlin/String = ..., kotlin/String = ...): dev.pubgkt.leaderboards/LeaderboardPlacement // dev.pubgkt.leaderboards/LeaderboardPlacement.copy|copy(kotlin.String;kotlin.String;kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Double;kotlin.Double;kotlin.String;kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.pubgkt.leaderboards/LeaderboardPlacement.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.pubgkt.leaderboards/LeaderboardPlacement.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.pubgkt.leaderboards/LeaderboardPlacement.toString|toString(){}[0]
+}
+
+final suspend fun (dev.pubgkt/PubgApi).dev.pubgkt.leaderboards/getLeaderboard(kotlin/String, dev.pubgkt.leaderboards/GameMode, dev.pubgkt/PlatformRegion = ...): dev.pubgkt.leaderboards/Leaderboard // dev.pubgkt.leaderboards/getLeaderboard|getLeaderboard@dev.pubgkt.PubgApi(kotlin.String;dev.pubgkt.leaderboards.GameMode;dev.pubgkt.PlatformRegion){}[0]

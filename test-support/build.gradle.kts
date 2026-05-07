@@ -8,5 +8,9 @@ kotlin {
             api(libs.bundles.test.common)
             api(libs.ktor.client.mock)
         }
+
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+        }
     }
 }

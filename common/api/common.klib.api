@@ -1,0 +1,205 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64, watchosArm32, watchosArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <pubgkt:common>
+final enum class dev.pubgkt/GameMode : kotlin/Enum<dev.pubgkt/GameMode> { // dev.pubgkt/GameMode|null[0]
+    enum entry DUO // dev.pubgkt/GameMode.DUO|null[0]
+    enum entry DUO_FPP // dev.pubgkt/GameMode.DUO_FPP|null[0]
+    enum entry SOLO // dev.pubgkt/GameMode.SOLO|null[0]
+    enum entry SOLO_FPP // dev.pubgkt/GameMode.SOLO_FPP|null[0]
+    enum entry SQUAD // dev.pubgkt/GameMode.SQUAD|null[0]
+    enum entry SQUAD_FPP // dev.pubgkt/GameMode.SQUAD_FPP|null[0]
+
+    final val entries // dev.pubgkt/GameMode.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.pubgkt/GameMode> // dev.pubgkt/GameMode.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.pubgkt/GameMode // dev.pubgkt/GameMode.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.pubgkt/GameMode> // dev.pubgkt/GameMode.values|values#static(){}[0]
+}
+
+final enum class dev.pubgkt/Platform : kotlin/Enum<dev.pubgkt/Platform> { // dev.pubgkt/Platform|null[0]
+    enum entry CONSOLE // dev.pubgkt/Platform.CONSOLE|null[0]
+    enum entry KAKAO // dev.pubgkt/Platform.KAKAO|null[0]
+    enum entry PSN // dev.pubgkt/Platform.PSN|null[0]
+    enum entry STADIA // dev.pubgkt/Platform.STADIA|null[0]
+    enum entry STEAM // dev.pubgkt/Platform.STEAM|null[0]
+    enum entry TOURNAMENT // dev.pubgkt/Platform.TOURNAMENT|null[0]
+    enum entry XBOX // dev.pubgkt/Platform.XBOX|null[0]
+
+    final val entries // dev.pubgkt/Platform.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.pubgkt/Platform> // dev.pubgkt/Platform.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.pubgkt/Platform // dev.pubgkt/Platform.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.pubgkt/Platform> // dev.pubgkt/Platform.values|values#static(){}[0]
+}
+
+final enum class dev.pubgkt/PlatformRegion : kotlin/Enum<dev.pubgkt/PlatformRegion> { // dev.pubgkt/PlatformRegion|null[0]
+    enum entry PC_AS // dev.pubgkt/PlatformRegion.PC_AS|null[0]
+    enum entry PC_EU // dev.pubgkt/PlatformRegion.PC_EU|null[0]
+    enum entry PC_JP // dev.pubgkt/PlatformRegion.PC_JP|null[0]
+    enum entry PC_KAKAO // dev.pubgkt/PlatformRegion.PC_KAKAO|null[0]
+    enum entry PC_KRJP // dev.pubgkt/PlatformRegion.PC_KRJP|null[0]
+    enum entry PC_NA // dev.pubgkt/PlatformRegion.PC_NA|null[0]
+    enum entry PC_OC // dev.pubgkt/PlatformRegion.PC_OC|null[0]
+    enum entry PC_RU // dev.pubgkt/PlatformRegion.PC_RU|null[0]
+    enum entry PC_SA // dev.pubgkt/PlatformRegion.PC_SA|null[0]
+    enum entry PC_SEA // dev.pubgkt/PlatformRegion.PC_SEA|null[0]
+    enum entry PC_TOURNAMENT // dev.pubgkt/PlatformRegion.PC_TOURNAMENT|null[0]
+    enum entry PSN_AS // dev.pubgkt/PlatformRegion.PSN_AS|null[0]
+    enum entry PSN_EU // dev.pubgkt/PlatformRegion.PSN_EU|null[0]
+    enum entry PSN_NA // dev.pubgkt/PlatformRegion.PSN_NA|null[0]
+    enum entry PSN_OC // dev.pubgkt/PlatformRegion.PSN_OC|null[0]
+    enum entry XBOX_AS // dev.pubgkt/PlatformRegion.XBOX_AS|null[0]
+    enum entry XBOX_EU // dev.pubgkt/PlatformRegion.XBOX_EU|null[0]
+    enum entry XBOX_NA // dev.pubgkt/PlatformRegion.XBOX_NA|null[0]
+    enum entry XBOX_OC // dev.pubgkt/PlatformRegion.XBOX_OC|null[0]
+    enum entry XBOX_SA // dev.pubgkt/PlatformRegion.XBOX_SA|null[0]
+
+    final val entries // dev.pubgkt/PlatformRegion.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.pubgkt/PlatformRegion> // dev.pubgkt/PlatformRegion.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.pubgkt/PlatformRegion // dev.pubgkt/PlatformRegion.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.pubgkt/PlatformRegion> // dev.pubgkt/PlatformRegion.values|values#static(){}[0]
+}
+
+abstract interface dev.pubgkt.ratelimit/RateLimiter { // dev.pubgkt.ratelimit/RateLimiter|null[0]
+    abstract fun onResponse(kotlin/Int?, kotlin/Int?, kotlin/Long?) // dev.pubgkt.ratelimit/RateLimiter.onResponse|onResponse(kotlin.Int?;kotlin.Int?;kotlin.Long?){}[0]
+    abstract suspend fun throttle() // dev.pubgkt.ratelimit/RateLimiter.throttle|throttle(){}[0]
+
+    final object Companion { // dev.pubgkt.ratelimit/RateLimiter.Companion|null[0]
+        final val None // dev.pubgkt.ratelimit/RateLimiter.Companion.None|{}None[0]
+            final fun <get-None>(): dev.pubgkt.ratelimit/RateLimiter // dev.pubgkt.ratelimit/RateLimiter.Companion.None.<get-None>|<get-None>(){}[0]
+    }
+}
+
+sealed interface dev.pubgkt/BackoffStrategy { // dev.pubgkt/BackoffStrategy|null[0]
+    abstract val enabled // dev.pubgkt/BackoffStrategy.enabled|{}enabled[0]
+        abstract fun <get-enabled>(): kotlin/Boolean // dev.pubgkt/BackoffStrategy.enabled.<get-enabled>|<get-enabled>(){}[0]
+}
+
+sealed interface dev.pubgkt/RetryPolicy { // dev.pubgkt/RetryPolicy|null[0]
+    abstract val enabled // dev.pubgkt/RetryPolicy.enabled|{}enabled[0]
+        abstract fun <get-enabled>(): kotlin/Boolean // dev.pubgkt/RetryPolicy.enabled.<get-enabled>|<get-enabled>(){}[0]
+}
+
+final class dev.pubgkt.http/UnauthorizedException : kotlin/Exception { // dev.pubgkt.http/UnauthorizedException|null[0]
+    constructor <init>() // dev.pubgkt.http/UnauthorizedException.<init>|<init>(){}[0]
+}
+
+final class dev.pubgkt.ratelimit/ConcurrentDelayRateLimiter : dev.pubgkt.ratelimit/DelayRateLimiter { // dev.pubgkt.ratelimit/ConcurrentDelayRateLimiter|null[0]
+    constructor <init>(kotlin.time/Clock = ...) // dev.pubgkt.ratelimit/ConcurrentDelayRateLimiter.<init>|<init>(kotlin.time.Clock){}[0]
+
+    final suspend fun throttle() // dev.pubgkt.ratelimit/ConcurrentDelayRateLimiter.throttle|throttle(){}[0]
+}
+
+final class dev.pubgkt.ratelimit/RateLimitExceededException : kotlin/Exception { // dev.pubgkt.ratelimit/RateLimitExceededException|null[0]
+    constructor <init>(kotlin/Long?) // dev.pubgkt.ratelimit/RateLimitExceededException.<init>|<init>(kotlin.Long?){}[0]
+
+    final val resetAtEpochSeconds // dev.pubgkt.ratelimit/RateLimitExceededException.resetAtEpochSeconds|{}resetAtEpochSeconds[0]
+        final fun <get-resetAtEpochSeconds>(): kotlin/Long? // dev.pubgkt.ratelimit/RateLimitExceededException.resetAtEpochSeconds.<get-resetAtEpochSeconds>|<get-resetAtEpochSeconds>(){}[0]
+}
+
+final class dev.pubgkt/ExponentialBackoff : dev.pubgkt/BackoffStrategy { // dev.pubgkt/ExponentialBackoff|null[0]
+    constructor <init>(kotlin/Double = ..., kotlin/Long = ..., kotlin/Long = ..., kotlin/Long = ...) // dev.pubgkt/ExponentialBackoff.<init>|<init>(kotlin.Double;kotlin.Long;kotlin.Long;kotlin.Long){}[0]
+
+    final val base // dev.pubgkt/ExponentialBackoff.base|{}base[0]
+        final fun <get-base>(): kotlin/Double // dev.pubgkt/ExponentialBackoff.base.<get-base>|<get-base>(){}[0]
+    final val baseDelayMs // dev.pubgkt/ExponentialBackoff.baseDelayMs|{}baseDelayMs[0]
+        final fun <get-baseDelayMs>(): kotlin/Long // dev.pubgkt/ExponentialBackoff.baseDelayMs.<get-baseDelayMs>|<get-baseDelayMs>(){}[0]
+    final val enabled // dev.pubgkt/ExponentialBackoff.enabled|{}enabled[0]
+        final fun <get-enabled>(): kotlin/Boolean // dev.pubgkt/ExponentialBackoff.enabled.<get-enabled>|<get-enabled>(){}[0]
+    final val maxDelayMs // dev.pubgkt/ExponentialBackoff.maxDelayMs|{}maxDelayMs[0]
+        final fun <get-maxDelayMs>(): kotlin/Long // dev.pubgkt/ExponentialBackoff.maxDelayMs.<get-maxDelayMs>|<get-maxDelayMs>(){}[0]
+    final val randomizationMs // dev.pubgkt/ExponentialBackoff.randomizationMs|{}randomizationMs[0]
+        final fun <get-randomizationMs>(): kotlin/Long // dev.pubgkt/ExponentialBackoff.randomizationMs.<get-randomizationMs>|<get-randomizationMs>(){}[0]
+
+    final fun component1(): kotlin/Double // dev.pubgkt/ExponentialBackoff.component1|component1(){}[0]
+    final fun component2(): kotlin/Long // dev.pubgkt/ExponentialBackoff.component2|component2(){}[0]
+    final fun component3(): kotlin/Long // dev.pubgkt/ExponentialBackoff.component3|component3(){}[0]
+    final fun component4(): kotlin/Long // dev.pubgkt/ExponentialBackoff.component4|component4(){}[0]
+    final fun copy(kotlin/Double = ..., kotlin/Long = ..., kotlin/Long = ..., kotlin/Long = ...): dev.pubgkt/ExponentialBackoff // dev.pubgkt/ExponentialBackoff.copy|copy(kotlin.Double;kotlin.Long;kotlin.Long;kotlin.Long){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.pubgkt/ExponentialBackoff.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.pubgkt/ExponentialBackoff.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.pubgkt/ExponentialBackoff.toString|toString(){}[0]
+}
+
+final class dev.pubgkt/PubgApi { // dev.pubgkt/PubgApi|null[0]
+    constructor <init>(kotlin/String, dev.pubgkt.ratelimit/RateLimiter = ..., dev.pubgkt/RetryPolicy = ...) // dev.pubgkt/PubgApi.<init>|<init>(kotlin.String;dev.pubgkt.ratelimit.RateLimiter;dev.pubgkt.RetryPolicy){}[0]
+}
+
+final class dev.pubgkt/Retry : dev.pubgkt/RetryPolicy { // dev.pubgkt/Retry|null[0]
+    constructor <init>(kotlin/Int = ..., dev.pubgkt/BackoffStrategy = ..., kotlin.collections/List<kotlin.reflect/KClass<out kotlin/Throwable>> = ...) // dev.pubgkt/Retry.<init>|<init>(kotlin.Int;dev.pubgkt.BackoffStrategy;kotlin.collections.List<kotlin.reflect.KClass<out|kotlin.Throwable>>){}[0]
+
+    final val backoff // dev.pubgkt/Retry.backoff|{}backoff[0]
+        final fun <get-backoff>(): dev.pubgkt/BackoffStrategy // dev.pubgkt/Retry.backoff.<get-backoff>|<get-backoff>(){}[0]
+    final val enabled // dev.pubgkt/Retry.enabled|{}enabled[0]
+        final fun <get-enabled>(): kotlin/Boolean // dev.pubgkt/Retry.enabled.<get-enabled>|<get-enabled>(){}[0]
+    final val maxRetries // dev.pubgkt/Retry.maxRetries|{}maxRetries[0]
+        final fun <get-maxRetries>(): kotlin/Int // dev.pubgkt/Retry.maxRetries.<get-maxRetries>|<get-maxRetries>(){}[0]
+    final val retryOnExceptions // dev.pubgkt/Retry.retryOnExceptions|{}retryOnExceptions[0]
+        final fun <get-retryOnExceptions>(): kotlin.collections/List<kotlin.reflect/KClass<out kotlin/Throwable>> // dev.pubgkt/Retry.retryOnExceptions.<get-retryOnExceptions>|<get-retryOnExceptions>(){}[0]
+
+    final fun component1(): kotlin/Int // dev.pubgkt/Retry.component1|component1(){}[0]
+    final fun component2(): dev.pubgkt/BackoffStrategy // dev.pubgkt/Retry.component2|component2(){}[0]
+    final fun component3(): kotlin.collections/List<kotlin.reflect/KClass<out kotlin/Throwable>> // dev.pubgkt/Retry.component3|component3(){}[0]
+    final fun copy(kotlin/Int = ..., dev.pubgkt/BackoffStrategy = ..., kotlin.collections/List<kotlin.reflect/KClass<out kotlin/Throwable>> = ...): dev.pubgkt/Retry // dev.pubgkt/Retry.copy|copy(kotlin.Int;dev.pubgkt.BackoffStrategy;kotlin.collections.List<kotlin.reflect.KClass<out|kotlin.Throwable>>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.pubgkt/Retry.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.pubgkt/Retry.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.pubgkt/Retry.toString|toString(){}[0]
+}
+
+final class dev.pubgkt/Season { // dev.pubgkt/Season|null[0]
+    constructor <init>(kotlin/String, kotlin/Boolean, kotlin/Boolean) // dev.pubgkt/Season.<init>|<init>(kotlin.String;kotlin.Boolean;kotlin.Boolean){}[0]
+
+    final val id // dev.pubgkt/Season.id|{}id[0]
+        final fun <get-id>(): kotlin/String // dev.pubgkt/Season.id.<get-id>|<get-id>(){}[0]
+    final val isCurrentSeason // dev.pubgkt/Season.isCurrentSeason|{}isCurrentSeason[0]
+        final fun <get-isCurrentSeason>(): kotlin/Boolean // dev.pubgkt/Season.isCurrentSeason.<get-isCurrentSeason>|<get-isCurrentSeason>(){}[0]
+    final val isOffSeason // dev.pubgkt/Season.isOffSeason|{}isOffSeason[0]
+        final fun <get-isOffSeason>(): kotlin/Boolean // dev.pubgkt/Season.isOffSeason.<get-isOffSeason>|<get-isOffSeason>(){}[0]
+
+    final fun component1(): kotlin/String // dev.pubgkt/Season.component1|component1(){}[0]
+    final fun component2(): kotlin/Boolean // dev.pubgkt/Season.component2|component2(){}[0]
+    final fun component3(): kotlin/Boolean // dev.pubgkt/Season.component3|component3(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/Boolean = ..., kotlin/Boolean = ...): dev.pubgkt/Season // dev.pubgkt/Season.copy|copy(kotlin.String;kotlin.Boolean;kotlin.Boolean){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.pubgkt/Season.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.pubgkt/Season.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.pubgkt/Season.toString|toString(){}[0]
+}
+
+open class dev.pubgkt.ratelimit/DelayRateLimiter : dev.pubgkt.ratelimit/RateLimiter { // dev.pubgkt.ratelimit/DelayRateLimiter|null[0]
+    constructor <init>(kotlin.time/Clock = ...) // dev.pubgkt.ratelimit/DelayRateLimiter.<init>|<init>(kotlin.time.Clock){}[0]
+
+    final val clock // dev.pubgkt.ratelimit/DelayRateLimiter.clock|{}clock[0]
+        final fun <get-clock>(): kotlin.time/Clock // dev.pubgkt.ratelimit/DelayRateLimiter.clock.<get-clock>|<get-clock>(){}[0]
+
+    open fun onResponse(kotlin/Int?, kotlin/Int?, kotlin/Long?) // dev.pubgkt.ratelimit/DelayRateLimiter.onResponse|onResponse(kotlin.Int?;kotlin.Int?;kotlin.Long?){}[0]
+    open suspend fun throttle() // dev.pubgkt.ratelimit/DelayRateLimiter.throttle|throttle(){}[0]
+}
+
+final object dev.pubgkt/NoBackoff : dev.pubgkt/BackoffStrategy { // dev.pubgkt/NoBackoff|null[0]
+    final val enabled // dev.pubgkt/NoBackoff.enabled|{}enabled[0]
+        final fun <get-enabled>(): kotlin/Boolean // dev.pubgkt/NoBackoff.enabled.<get-enabled>|<get-enabled>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.pubgkt/NoBackoff.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.pubgkt/NoBackoff.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.pubgkt/NoBackoff.toString|toString(){}[0]
+}
+
+final object dev.pubgkt/NoRetry : dev.pubgkt/RetryPolicy { // dev.pubgkt/NoRetry|null[0]
+    final val enabled // dev.pubgkt/NoRetry.enabled|{}enabled[0]
+        final fun <get-enabled>(): kotlin/Boolean // dev.pubgkt/NoRetry.enabled.<get-enabled>|<get-enabled>(){}[0]
+
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.pubgkt/NoRetry.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.pubgkt/NoRetry.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.pubgkt/NoRetry.toString|toString(){}[0]
+}
+
+final fun (kotlin.collections/List<dev.pubgkt/Season>).dev.pubgkt/currentOrNull(): dev.pubgkt/Season? // dev.pubgkt/currentOrNull|currentOrNull@kotlin.collections.List<dev.pubgkt.Season>(){}[0]
+final suspend fun (dev.pubgkt/PubgApi).dev.pubgkt/isUp(): kotlin/Boolean // dev.pubgkt/isUp|isUp@dev.pubgkt.PubgApi(){}[0]
+final suspend fun (dev.pubgkt/PubgApi).dev.pubgkt/seasons(dev.pubgkt/Platform = ...): kotlin.collections/List<dev.pubgkt/Season> // dev.pubgkt/seasons|seasons@dev.pubgkt.PubgApi(dev.pubgkt.Platform){}[0]
+final suspend fun (dev.pubgkt/PubgApi).dev.pubgkt/seasons(dev.pubgkt/PlatformRegion = ...): kotlin.collections/List<dev.pubgkt/Season> // dev.pubgkt/seasons|seasons@dev.pubgkt.PubgApi(dev.pubgkt.PlatformRegion){}[0]

@@ -1,0 +1,34 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64, watchosArm32, watchosArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <pubgkt:clans>
+final class dev.pubgkt.clans/Clan { // dev.pubgkt.clans/Clan|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/String, kotlin/Int, kotlin/Int) // dev.pubgkt.clans/Clan.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.Int;kotlin.Int){}[0]
+
+    final val id // dev.pubgkt.clans/Clan.id|{}id[0]
+        final fun <get-id>(): kotlin/String // dev.pubgkt.clans/Clan.id.<get-id>|<get-id>(){}[0]
+    final val level // dev.pubgkt.clans/Clan.level|{}level[0]
+        final fun <get-level>(): kotlin/Int // dev.pubgkt.clans/Clan.level.<get-level>|<get-level>(){}[0]
+    final val memberCount // dev.pubgkt.clans/Clan.memberCount|{}memberCount[0]
+        final fun <get-memberCount>(): kotlin/Int // dev.pubgkt.clans/Clan.memberCount.<get-memberCount>|<get-memberCount>(){}[0]
+    final val name // dev.pubgkt.clans/Clan.name|{}name[0]
+        final fun <get-name>(): kotlin/String // dev.pubgkt.clans/Clan.name.<get-name>|<get-name>(){}[0]
+    final val tag // dev.pubgkt.clans/Clan.tag|{}tag[0]
+        final fun <get-tag>(): kotlin/String // dev.pubgkt.clans/Clan.tag.<get-tag>|<get-tag>(){}[0]
+
+    final fun component1(): kotlin/String // dev.pubgkt.clans/Clan.component1|component1(){}[0]
+    final fun component2(): kotlin/String // dev.pubgkt.clans/Clan.component2|component2(){}[0]
+    final fun component3(): kotlin/String // dev.pubgkt.clans/Clan.component3|component3(){}[0]
+    final fun component4(): kotlin/Int // dev.pubgkt.clans/Clan.component4|component4(){}[0]
+    final fun component5(): kotlin/Int // dev.pubgkt.clans/Clan.component5|component5(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/Int = ..., kotlin/Int = ...): dev.pubgkt.clans/Clan // dev.pubgkt.clans/Clan.copy|copy(kotlin.String;kotlin.String;kotlin.String;kotlin.Int;kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.pubgkt.clans/Clan.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.pubgkt.clans/Clan.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.pubgkt.clans/Clan.toString|toString(){}[0]
+}
+
+final suspend fun (dev.pubgkt/PubgApi).dev.pubgkt.clans/getClanById(kotlin/String, dev.pubgkt/Platform = ...): dev.pubgkt.clans/Clan // dev.pubgkt.clans/getClanById|getClanById@dev.pubgkt.PubgApi(kotlin.String;dev.pubgkt.Platform){}[0]

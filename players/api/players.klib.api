@@ -1,0 +1,72 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, iosX64, watchosArm32, watchosArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <pubgkt:players>
+final enum class dev.pubgkt.players/BanType : kotlin/Enum<dev.pubgkt.players/BanType> { // dev.pubgkt.players/BanType|null[0]
+    enum entry Innocent // dev.pubgkt.players/BanType.Innocent|null[0]
+    enum entry PermanentBan // dev.pubgkt.players/BanType.PermanentBan|null[0]
+    enum entry TemporaryBan // dev.pubgkt.players/BanType.TemporaryBan|null[0]
+
+    final val entries // dev.pubgkt.players/BanType.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<dev.pubgkt.players/BanType> // dev.pubgkt.players/BanType.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): dev.pubgkt.players/BanType // dev.pubgkt.players/BanType.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<dev.pubgkt.players/BanType> // dev.pubgkt.players/BanType.values|values#static(){}[0]
+}
+
+final class dev.pubgkt.players/Player { // dev.pubgkt.players/Player|null[0]
+    constructor <init>(kotlin/String, dev.pubgkt.players/BanType, kotlin/String?, kotlin/String, kotlin/String, kotlin/String, kotlin/String?, kotlin.collections/List<dev.pubgkt.players/PlayerMatch>) // dev.pubgkt.players/Player.<init>|<init>(kotlin.String;dev.pubgkt.players.BanType;kotlin.String?;kotlin.String;kotlin.String;kotlin.String;kotlin.String?;kotlin.collections.List<dev.pubgkt.players.PlayerMatch>){}[0]
+
+    final val banType // dev.pubgkt.players/Player.banType|{}banType[0]
+        final fun <get-banType>(): dev.pubgkt.players/BanType // dev.pubgkt.players/Player.banType.<get-banType>|<get-banType>(){}[0]
+    final val clanId // dev.pubgkt.players/Player.clanId|{}clanId[0]
+        final fun <get-clanId>(): kotlin/String? // dev.pubgkt.players/Player.clanId.<get-clanId>|<get-clanId>(){}[0]
+    final val id // dev.pubgkt.players/Player.id|{}id[0]
+        final fun <get-id>(): kotlin/String // dev.pubgkt.players/Player.id.<get-id>|<get-id>(){}[0]
+    final val matches // dev.pubgkt.players/Player.matches|{}matches[0]
+        final fun <get-matches>(): kotlin.collections/List<dev.pubgkt.players/PlayerMatch> // dev.pubgkt.players/Player.matches.<get-matches>|<get-matches>(){}[0]
+    final val name // dev.pubgkt.players/Player.name|{}name[0]
+        final fun <get-name>(): kotlin/String // dev.pubgkt.players/Player.name.<get-name>|<get-name>(){}[0]
+    final val patchVersion // dev.pubgkt.players/Player.patchVersion|{}patchVersion[0]
+        final fun <get-patchVersion>(): kotlin/String? // dev.pubgkt.players/Player.patchVersion.<get-patchVersion>|<get-patchVersion>(){}[0]
+    final val shardId // dev.pubgkt.players/Player.shardId|{}shardId[0]
+        final fun <get-shardId>(): kotlin/String // dev.pubgkt.players/Player.shardId.<get-shardId>|<get-shardId>(){}[0]
+    final val titleId // dev.pubgkt.players/Player.titleId|{}titleId[0]
+        final fun <get-titleId>(): kotlin/String // dev.pubgkt.players/Player.titleId.<get-titleId>|<get-titleId>(){}[0]
+
+    final fun component1(): kotlin/String // dev.pubgkt.players/Player.component1|component1(){}[0]
+    final fun component2(): dev.pubgkt.players/BanType // dev.pubgkt.players/Player.component2|component2(){}[0]
+    final fun component3(): kotlin/String? // dev.pubgkt.players/Player.component3|component3(){}[0]
+    final fun component4(): kotlin/String // dev.pubgkt.players/Player.component4|component4(){}[0]
+    final fun component5(): kotlin/String // dev.pubgkt.players/Player.component5|component5(){}[0]
+    final fun component6(): kotlin/String // dev.pubgkt.players/Player.component6|component6(){}[0]
+    final fun component7(): kotlin/String? // dev.pubgkt.players/Player.component7|component7(){}[0]
+    final fun component8(): kotlin.collections/List<dev.pubgkt.players/PlayerMatch> // dev.pubgkt.players/Player.component8|component8(){}[0]
+    final fun copy(kotlin/String = ..., dev.pubgkt.players/BanType = ..., kotlin/String? = ..., kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/String? = ..., kotlin.collections/List<dev.pubgkt.players/PlayerMatch> = ...): dev.pubgkt.players/Player // dev.pubgkt.players/Player.copy|copy(kotlin.String;dev.pubgkt.players.BanType;kotlin.String?;kotlin.String;kotlin.String;kotlin.String;kotlin.String?;kotlin.collections.List<dev.pubgkt.players.PlayerMatch>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.pubgkt.players/Player.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.pubgkt.players/Player.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.pubgkt.players/Player.toString|toString(){}[0]
+}
+
+final class dev.pubgkt.players/PlayerMatch { // dev.pubgkt.players/PlayerMatch|null[0]
+    constructor <init>(kotlin/String) // dev.pubgkt.players/PlayerMatch.<init>|<init>(kotlin.String){}[0]
+
+    final val id // dev.pubgkt.players/PlayerMatch.id|{}id[0]
+        final fun <get-id>(): kotlin/String // dev.pubgkt.players/PlayerMatch.id.<get-id>|<get-id>(){}[0]
+
+    final fun component1(): kotlin/String // dev.pubgkt.players/PlayerMatch.component1|component1(){}[0]
+    final fun copy(kotlin/String = ...): dev.pubgkt.players/PlayerMatch // dev.pubgkt.players/PlayerMatch.copy|copy(kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.pubgkt.players/PlayerMatch.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.pubgkt.players/PlayerMatch.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.pubgkt.players/PlayerMatch.toString|toString(){}[0]
+}
+
+final suspend fun (dev.pubgkt/PubgApi).dev.pubgkt.players/getPlayerByAccountId(kotlin/String, dev.pubgkt/Platform = ...): dev.pubgkt.players/Player // dev.pubgkt.players/getPlayerByAccountId|getPlayerByAccountId@dev.pubgkt.PubgApi(kotlin.String;dev.pubgkt.Platform){}[0]
+final suspend fun (dev.pubgkt/PubgApi).dev.pubgkt.players/getPlayersById(kotlin.collections/List<kotlin/String>, dev.pubgkt/Platform = ...): kotlin.collections/List<dev.pubgkt.players/Player> // dev.pubgkt.players/getPlayersById|getPlayersById@dev.pubgkt.PubgApi(kotlin.collections.List<kotlin.String>;dev.pubgkt.Platform){}[0]
+final suspend fun (dev.pubgkt/PubgApi).dev.pubgkt.players/getPlayersById(kotlin/Array<out kotlin/String>..., dev.pubgkt/Platform = ...): kotlin.collections/List<dev.pubgkt.players/Player> // dev.pubgkt.players/getPlayersById|getPlayersById@dev.pubgkt.PubgApi(kotlin.Array<out|kotlin.String>...;dev.pubgkt.Platform){}[0]
+final suspend fun (dev.pubgkt/PubgApi).dev.pubgkt.players/getPlayersByNames(kotlin.collections/List<kotlin/String>, dev.pubgkt/Platform = ...): kotlin.collections/List<dev.pubgkt.players/Player> // dev.pubgkt.players/getPlayersByNames|getPlayersByNames@dev.pubgkt.PubgApi(kotlin.collections.List<kotlin.String>;dev.pubgkt.Platform){}[0]
+final suspend fun (dev.pubgkt/PubgApi).dev.pubgkt.players/getPlayersByNames(kotlin/Array<out kotlin/String>..., dev.pubgkt/Platform = ...): kotlin.collections/List<dev.pubgkt.players/Player> // dev.pubgkt.players/getPlayersByNames|getPlayersByNames@dev.pubgkt.PubgApi(kotlin.Array<out|kotlin.String>...;dev.pubgkt.Platform){}[0]

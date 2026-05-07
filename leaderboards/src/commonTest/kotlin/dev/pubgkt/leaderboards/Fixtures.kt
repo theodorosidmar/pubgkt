@@ -1,3 +1,5 @@
 package dev.pubgkt.leaderboards
 
-internal expect val LEADERBOARD_RESPONSE_JSON: String
+import dev.pubgkt.test.readJsonResourceFile
+
+internal val LEADERBOARD_RESPONSE_JSON: String = readJsonResourceFile("leaderboard_response")
