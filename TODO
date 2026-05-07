@@ -12,7 +12,8 @@
 - [ ] Add iOS compilation???
 - [X] Improves samples module and documentation (a lot)
 - [X] Dokka badge? How can I leverage it? Publish Dokka documentation on GitHub Pages?
-- [ ] Publish on Maven Central
+- [X] Publish on Maven Central
 - [ ] Publish on npm
-- [ ] Publish at Kotlin Slack #feed
+- [X] Publish at Kotlin Slack #feed
 - [ ] Sponsor the project on GitHub
+- [ ] Leverage Coroutine Scope on PubgApi
