@@ -1,3 +1,5 @@
+name: Detekt Analysis
+
 on:
   push:
     branches: [main]
