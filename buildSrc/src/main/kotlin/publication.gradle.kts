@@ -43,6 +43,12 @@ mavenPublishing {
             system = "GitHub Issues"
             url = "${Library.PROJECT_URL}/issues"
         }
+
+        scm {
+            connection ="scm:git:ssh://github.com/theodorosidmar/pubgkt.git"
+            developerConnection = "scm:git:ssh://github.com/theodorosidmar/pubgkt.git"
+            url = Library.PROJECT_URL
+        }
     }
 
     if (plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
