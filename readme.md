@@ -1,3 +1,4 @@
+[![Download](https://img.shields.io/maven-central/v/dev.pubgkt/common.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/dev.pubgkt/common)
 ![CI](https://github.com/theodorosidmar/pubgkt/actions/workflows/ci.yml/badge.svg)
 ![Detekt](https://github.com/theodorosidmar/pubgkt/actions/workflows/detekt.yml/badge.svg)
 ![Coverage](https://img.shields.io/endpoint?url=https://theodorosidmar.github.io/pubgkt/coverage/core.json)
