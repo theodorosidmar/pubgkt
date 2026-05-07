@@ -48,8 +48,8 @@ jobs:
           for module in common players clans matches leaderboards mastery stats; do
             REPORT="$module/build/reports/kover/report.xml"
             if [ -f "$REPORT" ]; then
-              COVERED=$(grep -oP 'type="LINE"[^/]*covered="\K[0-9]+' "$REPORT" | head -1)
-              MISSED=$(grep -oP 'type="LINE"[^/]*missed="\K[0-9]+' "$REPORT" | head -1)
+              COVERED=$(grep -oP 'type="LINE"[^/]*covered="\K[0-9]+' "$REPORT" | tail -1)
+              MISSED=$(grep -oP 'type="LINE"[^/]*missed="\K[0-9]+' "$REPORT" | tail -1)
               if [ -n "$COVERED" ] && [ -n "$MISSED" ]; then
                 TOTAL=$((COVERED + MISSED))
                 PCT=$((COVERED * 100 / TOTAL))
@@ -68,8 +68,8 @@ jobs:
 
           REPORT="core/build/reports/kover/report.xml"
           if [ -f "$REPORT" ]; then
-            COVERED=$(grep -oP 'type="LINE"[^/]*covered="\K[0-9]+' "$REPORT" | head -1)
-            MISSED=$(grep -oP 'type="LINE"[^/]*missed="\K[0-9]+' "$REPORT" | head -1)
+            COVERED=$(grep -oP 'type="LINE"[^/]*covered="\K[0-9]+' "$REPORT" | tail -1)
+            MISSED=$(grep -oP 'type="LINE"[^/]*missed="\K[0-9]+' "$REPORT" | tail -1)
             if [ -n "$COVERED" ] && [ -n "$MISSED" ]; then
               TOTAL=$((COVERED + MISSED))
               PCT=$((COVERED * 100 / TOTAL))
@@ -86,10 +86,10 @@ jobs:
           fi
 
       - name: Configure Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: core/build/dokka/html
 
@@ -103,4 +103,4 @@ jobs:
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
