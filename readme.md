@@ -108,9 +108,43 @@ Then add one of the products:
 </details>
 
 <details>
-<summary><strong>Android</strong> (Planned)</summary>
+<summary><strong>Android</strong></summary>
 
-Android onboarding will be added in a future release.
+### Gradle Kotlin DSL
+
+```kotlin
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Using the BOM (recommended)
+    implementation(platform("dev.pubgkt:bom:1.0.0"))
+    implementation("dev.pubgkt:core") // all modules
+    // or pick individual modules
+    implementation("dev.pubgkt:players")
+    implementation("dev.pubgkt:stats")
+}
+```
+
+### Gradle Groovy
+
+```groovy
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Using the BOM (recommended)
+    implementation platform('dev.pubgkt:bom:1.0.0')
+    implementation 'dev.pubgkt:core' // all modules
+    // or pick individual modules
+    implementation 'dev.pubgkt:players'
+    implementation 'dev.pubgkt:stats'
+}
+```
+
+> **Note:** Gradle resolves the correct `-android` variant automatically via Kotlin Multiplatform metadata. No `-android` suffix needed in the dependency declaration.
 
 </details>
 
@@ -240,7 +274,7 @@ Available modules: `Common`, `Players`, `Clans`, `Matches`, `Leaderboards`, `Mas
 | JVM      | Done    |
 | iOS      | Done    |
 | watchOS  | Done    |
-| Android  | Planned |
+| Android  | Done    |
 | JS/Node  | Planned |
 
 ## License

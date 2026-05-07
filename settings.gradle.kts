@@ -5,6 +5,7 @@ rootProject.name = "pubgkt"
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
+        google()
     }
 }
 

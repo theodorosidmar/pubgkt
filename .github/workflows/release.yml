@@ -117,12 +117,62 @@ jobs:
           path: release-assets/apple/*.zip
           if-no-files-found: error
 
+  build-android-assets:
+    name: Build Android artifacts
+    runs-on: ubuntu-latest
+    env:
+      GRADLE_OPTS: -Dorg.gradle.daemon=false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: 25
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+        with:
+          cache-encryption-key: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
+
+      - name: Build Android module AARs
+        run: >-
+          ./gradlew
+          :common:bundleAndroidMainAar
+          :players:bundleAndroidMainAar
+          :clans:bundleAndroidMainAar
+          :matches:bundleAndroidMainAar
+          :leaderboards:bundleAndroidMainAar
+          :mastery:bundleAndroidMainAar
+          :stats:bundleAndroidMainAar
+          :core:bundleAndroidMainAar
+
+      - name: Collect Android release assets
+        run: |
+          set -euo pipefail
+          mkdir -p release-assets/android
+          for module in common players clans matches leaderboards mastery stats core; do
+            cp "$module/build/outputs/aar/${module}.aar" "release-assets/android/${module}-android.aar"
+          done
+
+      - name: Upload Android release assets
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-android-assets
+          path: release-assets/android/*.aar
+          if-no-files-found: error
+
   release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
     needs:
       - build-jvm-assets
       - build-apple-assets
+      - build-android-assets
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -150,6 +200,12 @@ jobs:
         with:
           name: release-apple-assets
           path: release-assets/apple
+
+      - name: Download Android release assets
+        uses: actions/download-artifact@v4
+        with:
+          name: release-android-assets
+          path: release-assets/android
 
       - name: Generate Package.swift checksums
         run: |
@@ -236,6 +292,7 @@ jobs:
           files: |
             release-assets/jvm/*.jar
             release-assets/apple/*.zip
+            release-assets/android/*.aar
           body: |
             ## Installation
 
@@ -256,9 +313,17 @@ jobs:
             </dependency>
             ```
 
+            ### Android
+            ```kotlin
+            dependencies {
+                implementation(platform("dev.pubgkt:bom:${{ steps.version.outputs.value }}"))
+                implementation("dev.pubgkt:core")
+            }
+            ```
+
             ### Swift (iOS/watchOS)
             Download `pubgkt.xcframework.zip` from this release assets section.
-            
+
             - The Apple distribution is a single umbrella XCFramework exported from `core`.
             - Import it in Swift as `pubgkt`.
 

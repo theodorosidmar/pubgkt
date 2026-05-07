@@ -4,9 +4,12 @@ import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeSimulatorTes
 
 plugins {
     kotlin("multiplatform")
+    id("com.android.kotlin.multiplatform.library")
 }
 
 kotlin {
+    withSourcesJar(publish = true)
+
     compilerOptions {
         allWarningsAsErrors = true
         progressiveMode = true
@@ -29,6 +32,17 @@ kotlin {
     iosSimulatorArm64()
     watchosArm64()
     watchosArm32()
+
+    android {
+        namespace = Library.GROUP
+        compileSdk = 36
+        minSdk = 24
+        withHostTest {}
+        withDeviceTest {}
+        compilerOptions {
+            jvmTarget.set(JVM_17)
+        }
+    }
 }
 
 tasks {

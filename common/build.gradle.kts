@@ -20,5 +20,9 @@ kotlin {
         appleMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
+
+        androidMain.dependencies {
+            implementation(libs.ktor.client.android)
+        }
     }
 }
