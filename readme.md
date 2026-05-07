@@ -1,4 +1,5 @@
 ![CI](https://github.com/theodorosidmar/pubgkt/actions/workflows/ci.yml/badge.svg)
+![Detekt](https://github.com/theodorosidmar/pubgkt/actions/workflows/detekt.yml/badge.svg)
 ![Coverage](https://img.shields.io/endpoint?url=https://theodorosidmar.github.io/pubgkt/coverage/core.json)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
