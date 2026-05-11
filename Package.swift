@@ -14,7 +14,7 @@ let package = Package(
         .binaryTarget(
             name: "pubgkt",
             url: "https://github.com/theodorosidmar/pubgkt/releases/download/v1.0.1/pubgkt.xcframework.zip",
-            checksum: "b16df214e9ba26e32bf982a78be43d323d02adea86b6c48fa5f35abf9be3b799"
+            checksum: "2e5747cce427b310f60124e7d21f487aef77baf27032d56c381388efd0430f7b"
         ),
     ]
 )
