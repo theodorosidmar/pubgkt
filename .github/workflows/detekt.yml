@@ -28,7 +28,7 @@ jobs:
           cache-encryption-key: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
 
       - name: Run detekt
-        run: ./gradlew detektMain detektTest detektMergeReport --info
+        run: ./gradlew detektMainJvm detektMainAndroid detektTestJvm detektHostTestAndroid detektMergeReport --info
 
       - name: Upload SARIF to GitHub using the upload-sarif action
         uses: github/codeql-action/upload-sarif@v4
