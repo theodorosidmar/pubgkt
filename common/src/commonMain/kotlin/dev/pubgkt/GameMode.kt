@@ -1,8 +1,11 @@
 package dev.pubgkt
 
+import kotlin.js.JsExport
+
 /**
  * PUBG Game Mode used for leaderboards and stats
  */
+@JsExport
 public enum class GameMode {
     SOLO,
     SOLO_FPP,

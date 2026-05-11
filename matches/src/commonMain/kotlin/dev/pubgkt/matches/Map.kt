@@ -1,5 +1,8 @@
 package dev.pubgkt.matches
 
+import kotlin.js.JsExport
+
+@JsExport
 public enum class Map {
     BALTIC_MAIN,
     DESERT_MAIN,

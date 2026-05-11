@@ -3,7 +3,10 @@ package dev.pubgkt.stats.ranked
 import dev.pubgkt.jsonapi.requiredInt
 import dev.pubgkt.jsonapi.requiredString
 import kotlinx.serialization.json.JsonObject
+import kotlin.js.JsExport
 
+@Suppress("NON_EXPORTABLE_TYPE")
+@JsExport
 public data class Tier(val tier: String, val subTier: Int) {
     internal companion object {
         fun fromJsonObject(jsonObject: JsonObject): Tier = Tier(

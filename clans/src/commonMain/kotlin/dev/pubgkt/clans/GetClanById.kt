@@ -4,6 +4,7 @@ import dev.pubgkt.Platform
 import dev.pubgkt.PubgApi
 import dev.pubgkt.http.deserialize
 import dev.pubgkt.http.get
+import kotlin.js.JsExport
 
 /**
  * Returns a single [Clan] by their clan ID.
@@ -15,6 +16,7 @@ import dev.pubgkt.http.get
  *     PUBG Developer Portal – Get clan by clan ID
  * </a>
  */
+@JsExport
 public suspend fun PubgApi.getClanById(clanId: String, platform: Platform = Platform.STEAM): Clan = client
     .get("$CLANS_PATH/$clanId", platform)
     .deserialize(ClanSerializer)

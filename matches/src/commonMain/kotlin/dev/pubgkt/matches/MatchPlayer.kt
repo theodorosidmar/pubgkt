@@ -1,8 +1,11 @@
 package dev.pubgkt.matches
 
+import kotlin.js.JsExport
+
 /**
  * Represents a player in a specific match
  */
+@JsExport
 public data class MatchPlayer(
     /**
      * Account ID of the player associated with this participant

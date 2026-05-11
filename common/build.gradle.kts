@@ -17,6 +17,10 @@ kotlin {
             implementation(libs.ktor.client.cio)
         }
 
+        jsMain.dependencies {
+            implementation(libs.ktor.client.js)
+        }
+
         appleMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }

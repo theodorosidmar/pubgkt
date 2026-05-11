@@ -1,5 +1,8 @@
 package dev.pubgkt.clans
 
+import kotlin.js.JsExport
+
+@JsExport
 public data class Clan(
     /**
      * Clan id

@@ -1,11 +1,14 @@
 package dev.pubgkt.matches
 
+import kotlin.js.JsExport
+
 /**
  * [MatchParticipant] track the scores of each opposing group of participants.
  * [players] can have one or many participants depending on the game mode.
  * [MatchParticipant] objects are only meaningful within the context of a match and are
  * not exposed as a standalone resource
  */
+@JsExport
 public data class MatchParticipant(
     /**
      * An arbitrary ID assigned to this participant within the match

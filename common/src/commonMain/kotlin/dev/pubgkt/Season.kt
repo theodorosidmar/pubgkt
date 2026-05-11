@@ -7,7 +7,10 @@ import dev.pubgkt.jsonapi.requireId
 import dev.pubgkt.jsonapi.requiredBoolean
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
+import kotlin.js.JsExport
+import kotlin.js.JsName
 
+@JsExport
 public data class Season(val id: String, val isCurrentSeason: Boolean, val isOffSeason: Boolean)
 
 /**
@@ -43,6 +46,8 @@ internal object SeasonSerializer : JsonApiResourceDeserializer<Season>("pubgkt.S
  * https://documentation.pubg.com/en/seasons-endpoint.html#/Seasons/get_seasons">
  * PUBG Developer Portal – Get seasons</a>
  */
+@JsExport
+@JsName("getSeasonsByPlatform")
 public suspend fun PubgApi.seasons(platform: Platform = Platform.STEAM): List<Season> = client
     .get("seasons", platform)
     .deserializeList(SeasonSerializer)
@@ -59,6 +64,8 @@ public suspend fun PubgApi.seasons(platform: Platform = Platform.STEAM): List<Se
  * https://documentation.pubg.com/en/seasons-endpoint.html#/Seasons/get_seasons">
  * PUBG Developer Portal – Get seasons</a>
  */
+@JsExport
+@JsName("getSeasonsByPlatformRegion")
 public suspend fun PubgApi.seasons(platformRegion: PlatformRegion = PlatformRegion.PC_SA): List<Season> = client
     .get("seasons", platformRegion)
     .deserializeList(SeasonSerializer)

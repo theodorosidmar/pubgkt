@@ -149,9 +149,25 @@ dependencies {
 </details>
 
 <details>
-<summary><strong>Node.js</strong> (Planned)</summary>
+<summary><strong>Node.js</strong> (JavaScript/TypeScript)</summary>
 
-Node.js onboarding will be added in a future release.
+```bash
+npm install @pubgkt/common @pubgkt/players @pubgkt/stats
+```
+
+Available packages:
+
+| npm package | Contents |
+|-------------|----------|
+| `@pubgkt/common` | `PubgApi`, `Platform`, `PlatformRegion`, `GameMode`, seasons |
+| `@pubgkt/players` | Player lookup by name or ID |
+| `@pubgkt/clans` | Clan information |
+| `@pubgkt/matches` | Match details with participants and stats |
+| `@pubgkt/leaderboards` | Leaderboard rankings |
+| `@pubgkt/mastery` | Weapon and survival mastery |
+| `@pubgkt/stats` | Lifetime, season, and ranked stats |
+
+> **Note:** Kotlin `List<T>` is exposed as `KtList` — call `.asJsReadonlyArrayView()` to get a standard `ReadonlyArray<T>`, or use `KtList.fromJsArray()` to convert a JS array into a `KtList`.
 
 </details>
 
@@ -192,6 +208,26 @@ List<Player> players = BuildersKt.runBlocking(
         (_, cont) -> GetPlayersByNameKt.getPlayersByNames(api, List.of("sparkingg"), Platform.STEAM, cont)
 );
 ```
+
+### Node.js
+
+```typescript
+import { PubgApi, Platform, KtList } from "@pubgkt/common";
+import { getPlayersByNames } from "@pubgkt/players";
+import { getLifetimeStatsByAccountId } from "@pubgkt/stats";
+
+const api = new PubgApi("your-api-key");
+
+// Find players by display name
+const players = await getPlayersByNames(api, KtList.fromJsArray(["sparkingg", "TGLTN"]), Platform.STEAM);
+const list = players.asJsReadonlyArrayView();
+
+// Get lifetime stats
+const stats = await getLifetimeStatsByAccountId(api, list[0].id);
+console.log(`Squad FPP — ${stats.squadFpp.wins} wins, ${stats.squadFpp.kills} kills`);
+```
+
+> **Note:** All async API functions return `Promise`. Extension functions take the `PubgApi` instance as the first argument.
 
 ## Modules
 
@@ -267,6 +303,23 @@ The `samples` module contains runnable examples in both Kotlin and Java:
 
 Available modules: `Common`, `Players`, `Clans`, `Matches`, `Leaderboards`, `Mastery`, `Stats`
 
+### Node.js
+
+```bash
+# Build the npm packages first
+./gradlew :core:assembleNpmPackages
+
+# Install dependencies
+cd samples/nodejs && npm install
+
+# Run any sample
+PUBG_API_KEY=your-key npm run players
+PUBG_API_KEY=your-key npm run stats
+PUBG_API_KEY=your-key npm run matches
+```
+
+Available modules: `common`, `players`, `clans`, `matches`, `leaderboards`, `mastery`, `stats`
+
 ## Supported Platforms
 
 | Platform | Status  |
@@ -275,7 +328,7 @@ Available modules: `Common`, `Players`, `Clans`, `Matches`, `Leaderboards`, `Mas
 | iOS      | Done    |
 | watchOS  | Done    |
 | Android  | Done    |
-| JS/Node  | Planned |
+| JS/Node  | Done    |
 
 ## License
 

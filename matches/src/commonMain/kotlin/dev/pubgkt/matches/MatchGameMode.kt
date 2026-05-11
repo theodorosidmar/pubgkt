@@ -1,8 +1,11 @@
 package dev.pubgkt.matches
 
+import kotlin.js.JsExport
+
 /**
  * PUBG Game Modes
  */
+@JsExport
 public enum class MatchGameMode {
     DUO,
     DUO_FPP,

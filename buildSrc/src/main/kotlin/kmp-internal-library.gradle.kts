@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_3
+import org.jetbrains.kotlin.gradle.targets.js.testing.KotlinJsTest
 import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeTest
 
 plugins {
@@ -27,6 +28,19 @@ kotlin {
         }
     }
 
+    js {
+        nodejs()
+        generateTypeScriptDefinitions()
+        useEsModules()
+        binaries.library()
+        compilerOptions {
+            freeCompilerArgs.addAll(
+                "-Xenable-suspend-function-exporting",
+                "-Xes-long-as-bigint",
+            )
+        }
+    }
+
     macosArm64()
     iosArm64()
     iosX64()
@@ -51,5 +65,10 @@ tasks {
         val moduleDir = project.projectDir.absolutePath
         environment("PUBGKT_TEST_MODULE_DIR", moduleDir)
         environment("SIMCTL_CHILD_PUBGKT_TEST_MODULE_DIR", moduleDir)
+    }
+
+    withType<KotlinJsTest>().configureEach {
+        val moduleDir = project.projectDir.absolutePath
+        environment("PUBGKT_TEST_MODULE_DIR", moduleDir)
     }
 }

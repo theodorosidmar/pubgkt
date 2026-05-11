@@ -1,5 +1,8 @@
 package dev.pubgkt.stats.ranked
 
+import kotlin.js.JsExport
+
+@JsExport
 public data class RankedStats(
     /**
      * Account ID of the player associated with this stats

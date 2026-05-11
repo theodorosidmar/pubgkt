@@ -1,8 +1,11 @@
 package dev.pubgkt.leaderboards
 
+import kotlin.js.JsExport
+
 /**
  * Leaderboard game mode
  */
+@JsExport
 public enum class GameMode {
     SOLO,
     SOLO_FPP,

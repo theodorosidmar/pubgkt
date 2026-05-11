@@ -1,0 +1,6 @@
+package dev.pubgkt.http
+
+import io.ktor.client.engine.HttpClientEngineFactory
+import io.ktor.client.engine.js.Js
+
+internal actual val engine: HttpClientEngineFactory<*> = Js

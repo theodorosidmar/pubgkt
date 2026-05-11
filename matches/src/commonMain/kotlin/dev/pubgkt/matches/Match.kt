@@ -1,8 +1,11 @@
 package dev.pubgkt.matches
 
 import dev.pubgkt.Platform
+import kotlin.js.JsExport
 import kotlin.time.Instant
 
+@Suppress("NON_EXPORTABLE_TYPE")
+@JsExport
 public data class Match(
     /**
      * Match id (e.g: a131e486-5bcf-4c2e-aa5a-515489ee57aa)

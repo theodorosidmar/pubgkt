@@ -5,6 +5,7 @@ import com.vanniktech.maven.publish.SourcesJar
 
 plugins {
     id("com.vanniktech.maven.publish")
+    kotlin("npm-publish")
 }
 
 mavenPublishing {
@@ -45,7 +46,7 @@ mavenPublishing {
         }
 
         scm {
-            connection ="scm:git:ssh://github.com/theodorosidmar/pubgkt.git"
+            connection = "scm:git:ssh://github.com/theodorosidmar/pubgkt.git"
             developerConnection = "scm:git:ssh://github.com/theodorosidmar/pubgkt.git"
             url = Library.PROJECT_URL
         }
@@ -68,3 +69,40 @@ mavenPublishing {
     }
 }
 
+if (plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
+    npmPublish {
+        organization.set(Library.NAME)
+        version.set(Library.VERSION)
+
+        packages {
+            named("js") {
+                packageName.set(project.name)
+                readme.set(project.file("readme.md"))
+                packageJson {
+                    "license" by "MIT"
+                    "homepage" by Library.PROJECT_URL
+                    "description" by Library.DESCRIPTION
+                    "author" by "theodorosidmar"
+                    "keywords" by arrayOf("pubg", "pubg-api", "kotlin", "multiplatform", "kmp")
+                    "types" by "pubgkt-${project.name}.d.mts"
+                    "repository" by
+                        mapOf(
+                            "type" to "git",
+                            "url" to "git+${Library.PROJECT_URL}.git",
+                        )
+                    "bugs" by
+                        mapOf(
+                            "url" to "${Library.PROJECT_URL}/issues",
+                        )
+                }
+            }
+        }
+
+        registries {
+            register("npmjs") {
+                uri.set("https://registry.npmjs.org")
+                authToken.set(providers.environmentVariable("NPM_TOKEN"))
+            }
+        }
+    }
+}

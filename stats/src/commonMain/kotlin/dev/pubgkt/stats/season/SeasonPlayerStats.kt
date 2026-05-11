@@ -1,7 +1,9 @@
 package dev.pubgkt.stats.season
 
 import dev.pubgkt.stats.GameModeStats
+import kotlin.js.JsExport
 
+@JsExport
 public data class SeasonPlayerStats(
     /**
      * Account ID of the player associated with this stats

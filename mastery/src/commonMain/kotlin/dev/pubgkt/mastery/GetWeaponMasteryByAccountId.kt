@@ -4,6 +4,7 @@ import dev.pubgkt.Platform
 import dev.pubgkt.PubgApi
 import dev.pubgkt.http.deserialize
 import dev.pubgkt.http.get
+import kotlin.js.JsExport
 
 /**
  * Returns weapon mastery information for a single player
@@ -15,6 +16,7 @@ import dev.pubgkt.http.get
  * https://documentation.pubg.com/en/mastery-endpoint.html#/Weapon_Mastery/get_players__accountId__weapon_mastery">
  * PUBG Developer Portal – Get weapon mastery by account ID</a>
  */
+@JsExport
 public suspend fun PubgApi.getWeaponMasteryByAccountId(
     accountId: String,
     platform: Platform = Platform.STEAM,

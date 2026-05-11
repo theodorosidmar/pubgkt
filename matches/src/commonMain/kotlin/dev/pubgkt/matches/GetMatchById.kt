@@ -5,6 +5,7 @@ import dev.pubgkt.PubgApi
 import dev.pubgkt.http.PublicRequestPolicy
 import dev.pubgkt.http.deserialize
 import dev.pubgkt.http.get
+import kotlin.js.JsExport
 
 /**
  * Returns a single [Match] by their match ID.
@@ -16,6 +17,7 @@ import dev.pubgkt.http.get
  * https://documentation.pubg.com/en/matches-endpoint.html#/Matches/get_matches__id_">
  * PUBG Developer Portal – Get a single match</a>
  */
+@JsExport
 public suspend fun PubgApi.getMatchById(matchId: String, platform: Platform = Platform.STEAM): Match = client
     .get("$MATCHES_PATH/$matchId", platform, policy = PublicRequestPolicy)
     .deserialize(MatchSerializer)

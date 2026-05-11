@@ -6,6 +6,7 @@ import dev.pubgkt.ratelimit.DelayRateLimiter
 import dev.pubgkt.ratelimit.RateLimiter
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
+import kotlin.js.JsExport
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -29,6 +30,7 @@ import kotlin.jvm.JvmOverloads
  * @see RetryPolicy
  * @see <a href="https://documentation.pubg.com/en/introduction.html">PUBG Developer Portal</a>
  */
+@JsExport
 public class PubgApi @JvmOverloads constructor(
     internal val apiKey: String,
     internal val rateLimiter: RateLimiter = DelayRateLimiter(),
@@ -43,6 +45,7 @@ public class PubgApi @JvmOverloads constructor(
      * in application code.
      */
     @PubgktInternal
+    @JsExport.Ignore
     public val client: HttpClient by lazy {
         createHttpClient()
     }
@@ -58,6 +61,7 @@ public class PubgApi @JvmOverloads constructor(
      * @param rateLimiter Controls request throughput. Defaults to [RateLimiter.None].
      */
     @PubgktInternal
+    @JsExport.Ignore
     public constructor(
         engine: HttpClientEngine,
         apiKey: String = "",

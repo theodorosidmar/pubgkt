@@ -4,6 +4,7 @@ import dev.pubgkt.Platform
 import dev.pubgkt.PubgApi
 import dev.pubgkt.http.deserialize
 import dev.pubgkt.http.get
+import kotlin.js.JsExport
 
 /**
  * Returns survival mastery information for a single player
@@ -15,6 +16,7 @@ import dev.pubgkt.http.get
  * https://documentation.pubg.com/en/mastery-endpoint.html#/Survival_Mastery/get_players__accountId__survival_mastery">
  * PUBG Developer Portal – Get survival mastery by account ID</a>
  */
+@JsExport
 public suspend fun PubgApi.getSurvivalMasteryByAccountId(
     accountId: String,
     platform: Platform = Platform.STEAM,

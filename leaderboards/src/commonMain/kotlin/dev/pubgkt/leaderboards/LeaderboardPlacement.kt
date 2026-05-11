@@ -1,5 +1,8 @@
 package dev.pubgkt.leaderboards
 
+import kotlin.js.JsExport
+
+@JsExport
 public data class LeaderboardPlacement(
     /**
      * The id of the player in the leaderboard.

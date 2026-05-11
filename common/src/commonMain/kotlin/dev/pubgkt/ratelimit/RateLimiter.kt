@@ -1,5 +1,7 @@
 package dev.pubgkt.ratelimit
 
+import kotlin.js.JsExport
+
 /**
  * Controls request throughput to stay within PUBG API rate limits.
  *
@@ -15,6 +17,7 @@ package dev.pubgkt.ratelimit
  * @see DelayRateLimiter
  * @see <a href="https://documentation.pubg.com/en/rate-limiting.html">PUBG Developer Portal – Rate Limiting</a>
  */
+@JsExport
 public interface RateLimiter {
     /**
      * Called before each outbound request. Implementations should suspend here if
@@ -39,11 +42,13 @@ public interface RateLimiter {
          * Use this when you manage rate limiting yourself or when running tests that
          * should not introduce artificial delays.
          */
-        public val None: RateLimiter =
-            object : RateLimiter {
-                override suspend fun throttle() = Unit
-
-                override fun onResponse(limit: Int?, remaining: Int?, reset: Long?) = Unit
-            }
+        public val None: RateLimiter = NoOpRateLimiter()
     }
+}
+
+@JsExport
+private class NoOpRateLimiter : RateLimiter {
+    override suspend fun throttle() = Unit
+
+    override fun onResponse(limit: Int?, remaining: Int?, reset: Long?) = Unit
 }

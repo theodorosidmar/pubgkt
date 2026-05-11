@@ -5,6 +5,7 @@ import dev.pubgkt.PubgApi
 import dev.pubgkt.http.deserializeList
 import dev.pubgkt.http.get
 import io.ktor.client.request.parameter
+import kotlin.js.JsExport
 
 /**
  * Returns players filtered by account IDs for the given [platform].
@@ -30,6 +31,7 @@ public suspend fun PubgApi.getPlayersById(
  * @param platform Platform shard used for this request. Defaults to [Platform.STEAM].
  * @return A list of matching [Player], or an empty list when [accountIds] is empty.
  */
+@JsExport
 public suspend fun PubgApi.getPlayersById(
     accountIds: List<String>,
     platform: Platform = Platform.STEAM,

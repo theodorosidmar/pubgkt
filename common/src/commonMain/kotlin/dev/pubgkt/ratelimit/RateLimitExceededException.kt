@@ -1,5 +1,7 @@
 package dev.pubgkt.ratelimit
 
+import kotlin.js.JsExport
+
 /**
  * Thrown when the PUBG API returns HTTP 429 (Too Many Requests).
  *
@@ -12,6 +14,7 @@ package dev.pubgkt.ratelimit
  *   the header was absent.
  * @see RateLimiter
  */
+@JsExport
 public class RateLimitExceededException(public val resetAtEpochSeconds: Long?) :
     Exception(
         buildString {

@@ -1,7 +1,9 @@
 package dev.pubgkt.mastery
 
 import dev.pubgkt.Platform
+import kotlin.js.JsExport
 
+@JsExport
 public data class WeaponMastery(
     /**
      * ID of the player owner of the mastery

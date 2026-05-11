@@ -1,5 +1,8 @@
 package dev.pubgkt.mastery
 
+import kotlin.js.JsExport
+
+@JsExport
 public data class SurvivalStats(
     /**
      * Career total

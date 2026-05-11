@@ -1,6 +1,4 @@
 - [ ] Kotlin Rich errors
-- [ ] Add nodejs compilation
-- [ ] Publish on npm
 - [ ] Sponsor the project on GitHub
 - [ ] Telemetry module (?)
 - [ ] Add native/macos compilation (?)

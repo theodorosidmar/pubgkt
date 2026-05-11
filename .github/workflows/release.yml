@@ -166,6 +166,46 @@ jobs:
           path: release-assets/android/*.aar
           if-no-files-found: error
 
+  build-js-assets:
+    name: Build Node.js npm packages
+    runs-on: ubuntu-latest
+    env:
+      GRADLE_OPTS: -Dorg.gradle.daemon=false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: 25
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+        with:
+          cache-encryption-key: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}
+
+      - name: Build npm packages
+        run: ./gradlew :core:assembleNpmPackages
+
+      - name: Collect JS release assets
+        run: |
+          set -euo pipefail
+          mkdir -p release-assets/js
+          for module in common players clans matches leaderboards mastery stats; do
+            cp "core/build/npmPackages/$module/"*.tgz "release-assets/js/"
+          done
+
+      - name: Upload JS release assets
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-js-assets
+          path: release-assets/js/*.tgz
+          if-no-files-found: error
+
   release:
     name: Create GitHub Release
     runs-on: ubuntu-latest
@@ -173,6 +213,7 @@ jobs:
       - build-jvm-assets
       - build-apple-assets
       - build-android-assets
+      - build-js-assets
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -206,6 +247,12 @@ jobs:
         with:
           name: release-android-assets
           path: release-assets/android
+
+      - name: Download JS release assets
+        uses: actions/download-artifact@v4
+        with:
+          name: release-js-assets
+          path: release-assets/js
 
       - name: Generate Package.swift checksums
         run: |
@@ -293,6 +340,7 @@ jobs:
             release-assets/jvm/*.jar
             release-assets/apple/*.zip
             release-assets/android/*.aar
+            release-assets/js/*.tgz
           body: |
             ## Installation
 
@@ -326,6 +374,19 @@ jobs:
 
             - The Apple distribution is a single umbrella XCFramework exported from `core`.
             - Import it in Swift as `pubgkt`.
+
+            ### Node.js / TypeScript
+            ```bash
+            npm install @pubgkt/common @pubgkt/players @pubgkt/clans @pubgkt/matches @pubgkt/leaderboards @pubgkt/mastery @pubgkt/stats
+            ```
+
+            ```typescript
+            import { PubgApi, Platform, KtList } from "@pubgkt/common";
+            import { getPlayersByNames } from "@pubgkt/players";
+
+            const api = new PubgApi("your-api-key");
+            const players = await getPlayersByNames(api, KtList.fromJsArray(["sparkingg"]), Platform.STEAM);
+            ```
 
             ## Documentation
             https://theodorosidmar.github.io/pubgkt/

@@ -1,6 +1,8 @@
 package dev.pubgkt.ratelimit
 
 import kotlinx.coroutines.delay
+import kotlin.js.JsExport
+import kotlin.js.JsName
 import kotlin.time.Clock
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Instant
@@ -23,7 +25,17 @@ import kotlin.time.Instant
  * @see RateLimiter
  * @see RateLimitExceededException
  */
-public open class DelayRateLimiter(protected val clock: Clock = Clock.System) : RateLimiter {
+@JsExport
+public open class DelayRateLimiter @JsExport.Ignore constructor(protected val clock: Clock = Clock.System) :
+    RateLimiter {
+
+    /**
+     * [kotlin.time.Clock] is not exported to JavaScript.
+     * This secondary constructor allows JavaScript consumers to instantiate [DelayRateLimiter]
+     */
+    @JsName("create")
+    public constructor() : this(clock = Clock.System)
+
     private var remaining: Int = Int.MAX_VALUE
     private var resetAt: Instant = Instant.fromEpochSeconds(0L)
 

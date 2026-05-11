@@ -9,6 +9,7 @@ import dev.pubgkt.http.get
 import dev.pubgkt.stats.FILTER_PLAYER_IDS
 import dev.pubgkt.stats.MAX_PLAYERS_COUNT
 import io.ktor.client.request.parameter
+import kotlin.js.JsExport
 
 /**
  * Returns the lifetime stats for a single player by their account ID for a given [platform].
@@ -20,6 +21,7 @@ import io.ktor.client.request.parameter
  * "https://documentation.pubg.com/en/lifetime-stats.html#/Lifetime_Stats/get_players__accountId__seasons_lifetime">
  * PUBG Developer Portal – Get lifetime stats by account ID</a>
  */
+@JsExport
 public suspend fun PubgApi.getLifetimeStatsByAccountId(
     accountId: String,
     platform: Platform = Platform.STEAM,
@@ -39,6 +41,7 @@ public suspend fun PubgApi.getLifetimeStatsByAccountId(
  * "https://documentation.pubg.com/en/lifetime-stats.html#/Lifetime_Stats/
  * get_seasons_lifetime_gameMode__gameMode__players">PUBG Developer Portal – Get lifetime stats for up to 10 players</a>
  */
+@JsExport
 public suspend fun PubgApi.getLifetimeStatsByGameModeAndPlayers(
     gameMode: GameMode,
     accountIds: List<String>,
@@ -49,9 +52,11 @@ public suspend fun PubgApi.getLifetimeStatsByGameModeAndPlayers(
         .get("seasons/lifetime/gameMode/${gameMode.path}/players", platform) {
             parameter(
                 key = FILTER_PLAYER_IDS,
-                value = accountIds.take(
-                    MAX_PLAYERS_COUNT,
-                ).joinToString(separator = ","),
+                value =
+                accountIds
+                    .take(
+                        MAX_PLAYERS_COUNT,
+                    ).joinToString(separator = ","),
             )
         }.deserializeList(LifetimeGameModeStatsSerializer)
 }

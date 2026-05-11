@@ -98,6 +98,8 @@ public final class dev/pubgkt/PubgApi {
 
 public final class dev/pubgkt/Retry : dev/pubgkt/RetryPolicy {
 	public fun <init> ()V
+	public fun <init> (ILdev/pubgkt/BackoffStrategy;)V
+	public synthetic fun <init> (ILdev/pubgkt/BackoffStrategy;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public fun <init> (ILdev/pubgkt/BackoffStrategy;Ljava/util/List;)V
 	public synthetic fun <init> (ILdev/pubgkt/BackoffStrategy;Ljava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun component1 ()I

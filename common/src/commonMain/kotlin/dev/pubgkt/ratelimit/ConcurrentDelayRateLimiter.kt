@@ -2,6 +2,8 @@ package dev.pubgkt.ratelimit
 
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlin.js.JsExport
+import kotlin.js.JsName
 import kotlin.time.Clock
 
 /**
@@ -23,7 +25,17 @@ import kotlin.time.Clock
  * @see RateLimiter
  * @see RateLimitExceededException
  */
-public class ConcurrentDelayRateLimiter(clock: Clock = Clock.System) : DelayRateLimiter(clock) {
+@JsExport
+public class ConcurrentDelayRateLimiter @JsExport.Ignore constructor(clock: Clock = Clock.System) :
+    DelayRateLimiter(clock) {
+
+    /**
+     * [kotlin.time.Clock] is not exported to JavaScript.
+     * This secondary constructor allows JavaScript consumers to instantiate [ConcurrentDelayRateLimiter]
+     */
+    @JsName("create")
+    public constructor() : this(clock = Clock.System)
+
     private val mutex = Mutex()
 
     override suspend fun throttle() {

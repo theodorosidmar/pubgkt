@@ -4,6 +4,7 @@ import dev.pubgkt.Platform
 import dev.pubgkt.PubgApi
 import dev.pubgkt.http.deserialize
 import dev.pubgkt.http.get
+import kotlin.js.JsExport
 
 /**
  * Returns the ranked stats for a single player by their account ID for a given [platform] and [seasonId].
@@ -16,6 +17,7 @@ import dev.pubgkt.http.get
  * Ranked_Stats/get_players__accountId__seasons__seasonId__ranked">
  * PUBG Developer Portal – Get ranked stats for a single player.</a>
  */
+@JsExport
 public suspend fun PubgApi.getRankedStatsByAccountIdAndSeasonId(
     accountId: String,
     seasonId: String,

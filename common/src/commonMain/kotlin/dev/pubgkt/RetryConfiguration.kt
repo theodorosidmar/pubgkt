@@ -1,5 +1,7 @@
 package dev.pubgkt
 
+import kotlin.js.JsExport
+import kotlin.js.JsName
 import kotlin.reflect.KClass
 
 /**
@@ -12,6 +14,7 @@ import kotlin.reflect.KClass
  * @see Retry
  * @see NoRetry
  */
+@JsExport
 public sealed interface RetryPolicy {
     /** Whether retry logic is active. */
     public val enabled: Boolean
@@ -22,6 +25,7 @@ public sealed interface RetryPolicy {
  *
  * This is the default [RetryPolicy] used by [PubgApi].
  */
+@JsExport
 public data object NoRetry : RetryPolicy {
     override val enabled: Boolean = false
 }
@@ -49,11 +53,30 @@ public data object NoRetry : RetryPolicy {
  *   Only exact type matches or subclasses are considered.
  * @see BackoffStrategy
  */
-public data class Retry(
+@Suppress("NON_EXPORTABLE_TYPE")
+@JsExport
+public data class Retry @JsExport.Ignore constructor(
     val maxRetries: Int = 5,
     val backoff: BackoffStrategy = NoBackoff,
+    @JsExport.Ignore
     val retryOnExceptions: List<KClass<out Throwable>> = emptyList(),
 ) : RetryPolicy {
+
+    /**
+     * `List<KClass<out Throwable>>` cannot be exported to JavaScript.
+     * This secondary constructor allows JavaScript consumers to instantiate [Retry]
+     * meanwhile [retryOnExceptions] property is fully ignored.
+     */
+    @JsName("create")
+    public constructor(
+        maxRetries: Int = 5,
+        backoff: BackoffStrategy = NoBackoff,
+    ) : this(
+        maxRetries = maxRetries,
+        backoff = backoff,
+        retryOnExceptions = emptyList(),
+    )
+
     override val enabled: Boolean = true
 }
 
@@ -66,6 +89,7 @@ public data class Retry(
  * @see ExponentialBackoff
  * @see NoBackoff
  */
+@JsExport
 public sealed interface BackoffStrategy {
     /** Whether a backoff delay is applied between retries. */
     public val enabled: Boolean
@@ -74,6 +98,7 @@ public sealed interface BackoffStrategy {
 /**
  * No delay between retry attempts. Retries are issued immediately.
  */
+@JsExport
 public data object NoBackoff : BackoffStrategy {
     override val enabled: Boolean = false
 }
@@ -89,6 +114,7 @@ public data object NoBackoff : BackoffStrategy {
  * @param maxDelayMs The maximum delay in milliseconds, capping exponential growth. Defaults to `60000`.
  * @param randomizationMs Random jitter added to each delay to avoid thundering herd. Defaults to `1000`.
  */
+@JsExport
 public data class ExponentialBackoff(
     val base: Double = 2.0,
     val baseDelayMs: Long = 1_000,

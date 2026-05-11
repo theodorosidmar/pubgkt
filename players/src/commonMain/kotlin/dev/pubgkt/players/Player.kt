@@ -1,9 +1,12 @@
 package dev.pubgkt.players
 
+import kotlin.js.JsExport
+
 /**
  * Player objects contain information about a player and a list of their recent matches
  * (up to 14 days old). Note: player objects are specific to platform shards.
  */
+@JsExport
 public data class Player(
     /**
      * Player id

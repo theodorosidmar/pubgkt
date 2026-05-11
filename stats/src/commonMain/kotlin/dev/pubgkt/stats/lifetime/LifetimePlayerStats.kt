@@ -1,7 +1,9 @@
 package dev.pubgkt.stats.lifetime
 
 import dev.pubgkt.stats.GameModeStats
+import kotlin.js.JsExport
 
+@JsExport
 public data class LifetimePlayerStats(
     /**
      * Account ID of the player associated with this stats

@@ -9,6 +9,7 @@ import dev.pubgkt.http.get
 import dev.pubgkt.stats.FILTER_PLAYER_IDS
 import dev.pubgkt.stats.MAX_PLAYERS_COUNT
 import io.ktor.client.request.parameter
+import kotlin.js.JsExport
 
 /**
  * Returns the season stats for a single player by their account ID for a given [platform] and [seasonId].
@@ -21,6 +22,7 @@ import io.ktor.client.request.parameter
  * https://documentation.pubg.com/en/seasons-endpoint.html#/Season_Stats/get_players__accountId__seasons__seasonId_">
  * PUBG Developer Portal – Get season information for a single player.</a>
  */
+@JsExport
 public suspend fun PubgApi.getSeasonStatsByAccountId(
     accountId: String,
     seasonId: String,
@@ -42,6 +44,7 @@ public suspend fun PubgApi.getSeasonStatsByAccountId(
  * get_seasons__seasonId__gameMode__gameMode__players">
  * PUBG Developer Portal – Get season information for up to 10 players.</a>
  */
+@JsExport
 public suspend fun PubgApi.getSeasonStatsByGameModeAndPlayers(
     seasonId: String,
     gameMode: GameMode,
@@ -53,9 +56,11 @@ public suspend fun PubgApi.getSeasonStatsByGameModeAndPlayers(
         .get("seasons/$seasonId/gameMode/${gameMode.path}/players", platform) {
             parameter(
                 key = FILTER_PLAYER_IDS,
-                value = accountIds.take(
-                    MAX_PLAYERS_COUNT,
-                ).joinToString(separator = ","),
+                value =
+                accountIds
+                    .take(
+                        MAX_PLAYERS_COUNT,
+                    ).joinToString(separator = ","),
             )
         }.deserializeList(SeasonGameModeStatsSerializer)
 }

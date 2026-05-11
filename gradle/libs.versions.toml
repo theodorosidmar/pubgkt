@@ -6,6 +6,7 @@ android = "9.2.0"
 dokka = "2.2.0"
 vanniktech = "0.36.0"
 detekt = "2.0.0-alpha.3"
+npm-publish = "3.7.0"
 kover = "0.9.8"
 
 [libraries]
@@ -17,6 +18,7 @@ ktor-client-encoding = { module = "io.ktor:ktor-client-encoding", version.ref = 
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
+ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
 ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
 # Ktor plugins
@@ -39,6 +41,7 @@ gradle-kover = { module = "org.jetbrains.kotlinx:kover-gradle-plugin", version.r
 gradle-dokka = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version.ref = "dokka" }
 gradle-vanniktech = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "vanniktech" }
 gradle-detekt = { module = "dev.detekt:dev.detekt.gradle.plugin", version.ref = "detekt" }
+gradle-npm-publish = { module = "org.jetbrains.kotlin.npm-publish:org.jetbrains.kotlin.npm-publish.gradle.plugin", version.ref = "npm-publish" }
 
 [bundles]
 test-common = ["kotlin-test", "kotlin-test-annotations", "coroutines-test"]

@@ -1,10 +1,12 @@
 package dev.pubgkt.leaderboards
 
 import dev.pubgkt.PlatformRegion
+import kotlin.js.JsExport
 
 /**
  * Leaderboard objects show the current rank of the top 500 players for a game mode.
  */
+@JsExport
 public data class Leaderboard(
     /**
      * The season id of the leaderboard.

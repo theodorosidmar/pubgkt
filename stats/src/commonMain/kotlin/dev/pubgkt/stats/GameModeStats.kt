@@ -1,8 +1,11 @@
 package dev.pubgkt.stats
 
+import kotlin.js.JsExport
+
 /**
  * Game Mode stats objects contain a player's aggregated stats for a game mode in the context of a season
  */
+@JsExport
 public data class GameModeStats(
     /**
      * Number of enemy players this player damaged that were killed by teammates

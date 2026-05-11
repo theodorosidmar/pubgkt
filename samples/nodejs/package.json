@@ -1,0 +1,31 @@
+{
+  "name": "pubgkt-nodejs-samples",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:packages": "cd ../.. && ./gradlew :core:assembleNpmPackages",
+    "common": "tsx src/common.ts",
+    "players": "tsx src/players.ts",
+    "clans": "tsx src/clans.ts",
+    "matches": "tsx src/matches.ts",
+    "leaderboards": "tsx src/leaderboards.ts",
+    "mastery": "tsx src/mastery.ts",
+    "stats": "tsx src/stats.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "tsx": "^4",
+    "typescript": "~5.8"
+  },
+  "dependencies": {
+    "@pubgkt/common": "file:../../core/build/npmPackages/common/pubgkt-common-1.0.1.tgz",
+    "@pubgkt/players": "file:../../core/build/npmPackages/players/pubgkt-players-1.0.1.tgz",
+    "@pubgkt/clans": "file:../../core/build/npmPackages/clans/pubgkt-clans-1.0.1.tgz",
+    "@pubgkt/matches": "file:../../core/build/npmPackages/matches/pubgkt-matches-1.0.1.tgz",
+    "@pubgkt/leaderboards": "file:../../core/build/npmPackages/leaderboards/pubgkt-leaderboards-1.0.1.tgz",
+    "@pubgkt/mastery": "file:../../core/build/npmPackages/mastery/pubgkt-mastery-1.0.1.tgz",
+    "@pubgkt/stats": "file:../../core/build/npmPackages/stats/pubgkt-stats-1.0.1.tgz"
+  }
+}

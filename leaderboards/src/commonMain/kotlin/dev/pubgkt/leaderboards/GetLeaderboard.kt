@@ -4,6 +4,7 @@ import dev.pubgkt.PlatformRegion
 import dev.pubgkt.PubgApi
 import dev.pubgkt.http.deserialize
 import dev.pubgkt.http.get
+import kotlin.js.JsExport
 
 /**
  * Returns the [Leaderboard] by their season id, game mode and platform region.
@@ -16,6 +17,7 @@ import dev.pubgkt.http.get
  * https://documentation.pubg.com/en/leaderboards-endpoint.html#/Leaderboards/get_leaderboards__seasonId___gameMode_">
  * PUBG Developer Portal – Get the leaderboard for a game mode</a>
  */
+@JsExport
 public suspend fun PubgApi.getLeaderboard(
     seasonId: String,
     gameMode: GameMode,

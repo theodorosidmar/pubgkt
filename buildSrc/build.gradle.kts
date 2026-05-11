@@ -10,4 +10,5 @@ dependencies {
     api(libs.gradle.dokka)
     api(libs.gradle.vanniktech)
     api(libs.gradle.detekt)
+    api(libs.gradle.npm.publish)
 }

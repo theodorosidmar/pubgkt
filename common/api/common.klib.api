@@ -1,5 +1,5 @@
 // Klib ABI Dump
-// Targets: [iosArm64, iosSimulatorArm64, iosX64, macosArm64, watchosArm32, watchosArm64]
+// Targets: [iosArm64, iosSimulatorArm64, iosX64, js, macosArm64, watchosArm32, watchosArm64]
 // Rendering settings:
 // - Signature version: 2
 // - Show manifest properties: true
@@ -91,6 +91,7 @@ final class dev.pubgkt.http/UnauthorizedException : kotlin/Exception { // dev.pu
 }
 
 final class dev.pubgkt.ratelimit/ConcurrentDelayRateLimiter : dev.pubgkt.ratelimit/DelayRateLimiter { // dev.pubgkt.ratelimit/ConcurrentDelayRateLimiter|null[0]
+    constructor <init>() // dev.pubgkt.ratelimit/ConcurrentDelayRateLimiter.<init>|<init>(){}[0]
     constructor <init>(kotlin.time/Clock = ...) // dev.pubgkt.ratelimit/ConcurrentDelayRateLimiter.<init>|<init>(kotlin.time.Clock){}[0]
 
     final suspend fun throttle() // dev.pubgkt.ratelimit/ConcurrentDelayRateLimiter.throttle|throttle(){}[0]
@@ -132,6 +133,7 @@ final class dev.pubgkt/PubgApi { // dev.pubgkt/PubgApi|null[0]
 }
 
 final class dev.pubgkt/Retry : dev.pubgkt/RetryPolicy { // dev.pubgkt/Retry|null[0]
+    constructor <init>(kotlin/Int = ..., dev.pubgkt/BackoffStrategy = ...) // dev.pubgkt/Retry.<init>|<init>(kotlin.Int;dev.pubgkt.BackoffStrategy){}[0]
     constructor <init>(kotlin/Int = ..., dev.pubgkt/BackoffStrategy = ..., kotlin.collections/List<kotlin.reflect/KClass<out kotlin/Throwable>> = ...) // dev.pubgkt/Retry.<init>|<init>(kotlin.Int;dev.pubgkt.BackoffStrategy;kotlin.collections.List<kotlin.reflect.KClass<out|kotlin.Throwable>>){}[0]
 
     final val backoff // dev.pubgkt/Retry.backoff|{}backoff[0]
@@ -172,6 +174,7 @@ final class dev.pubgkt/Season { // dev.pubgkt/Season|null[0]
 }
 
 open class dev.pubgkt.ratelimit/DelayRateLimiter : dev.pubgkt.ratelimit/RateLimiter { // dev.pubgkt.ratelimit/DelayRateLimiter|null[0]
+    constructor <init>() // dev.pubgkt.ratelimit/DelayRateLimiter.<init>|<init>(){}[0]
     constructor <init>(kotlin.time/Clock = ...) // dev.pubgkt.ratelimit/DelayRateLimiter.<init>|<init>(kotlin.time.Clock){}[0]
 
     final val clock // dev.pubgkt.ratelimit/DelayRateLimiter.clock|{}clock[0]
