@@ -1,19 +1,8 @@
-- [X] Stats module
-- [X] Create packages per module/domain
-- [ ] Telemetry module??
-- [X] HTTP Retries??
-- [X] Leverage Detekt
-- [X] Leverage Kover
 - [ ] Kotlin Rich errors
-- [X] Gradle check must run detekt and tests
 - [ ] Add nodejs compilation
-- [ ] Add android compilation
-- [ ] Add native/macos compilation???
-- [ ] Add iOS compilation???
-- [X] Improves samples module and documentation (a lot)
-- [X] Dokka badge? How can I leverage it? Publish Dokka documentation on GitHub Pages?
-- [X] Publish on Maven Central
 - [ ] Publish on npm
-- [X] Publish at Kotlin Slack #feed
+- [ ] Add android compilation
 - [ ] Sponsor the project on GitHub
-- [ ] Leverage Coroutine Scope on PubgApi
+- [ ] Telemetry module (?)
+- [ ] Add native/macos compilation (?)
+- [ ] Leverage Coroutine Scope on PubgApi (?)
