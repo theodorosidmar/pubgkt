@@ -12,7 +12,7 @@ Core module providing the `PubgApi` client, platform enums, seasons, rate limiti
 
 ```kotlin
 dependencies {
-    implementation("dev.pubgkt:common:1.0.0")
+    implementation("dev.pubgkt:common:1.0.1")
 }
 ```
 
@@ -20,7 +20,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    implementation 'dev.pubgkt:common:1.0.0'
+    implementation 'dev.pubgkt:common:1.0.1'
 }
 ```
 
@@ -30,7 +30,7 @@ dependencies {
 <dependency>
     <groupId>dev.pubgkt</groupId>
     <artifactId>common-jvm</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 

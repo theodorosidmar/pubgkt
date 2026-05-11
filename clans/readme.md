@@ -12,7 +12,7 @@ Retrieve clan information by clan ID.
 
 ```kotlin
 dependencies {
-    implementation("dev.pubgkt:clans:1.0.0")
+    implementation("dev.pubgkt:clans:1.0.1")
 }
 ```
 
@@ -20,7 +20,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    implementation 'dev.pubgkt:clans:1.0.0'
+    implementation 'dev.pubgkt:clans:1.0.1'
 }
 ```
 
@@ -30,7 +30,7 @@ dependencies {
 <dependency>
     <groupId>dev.pubgkt</groupId>
     <artifactId>clans-jvm</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 

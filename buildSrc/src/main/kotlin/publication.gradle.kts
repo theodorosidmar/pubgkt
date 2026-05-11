@@ -68,8 +68,3 @@ mavenPublishing {
     }
 }
 
-publishing {
-    repositories {
-        mavenLocal()
-    }
-}

@@ -28,7 +28,7 @@ repositories {
 
 dependencies {
     // Using the BOM (recommended)
-    implementation(platform("dev.pubgkt:bom:1.0.0"))
+    implementation(platform("dev.pubgkt:bom:1.0.1"))
     implementation("dev.pubgkt:core") // all modules
     // or pick individual modules
     implementation("dev.pubgkt:players")
@@ -45,7 +45,7 @@ repositories {
 
 dependencies {
     // Using the BOM (recommended)
-    implementation platform('dev.pubgkt:bom:1.0.0')
+    implementation platform('dev.pubgkt:bom:1.0.1')
     implementation 'dev.pubgkt:core' // all modules
     // or pick individual modules
     implementation 'dev.pubgkt:players'
@@ -61,7 +61,7 @@ dependencies {
         <dependency>
             <groupId>dev.pubgkt</groupId>
             <artifactId>bom</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -94,7 +94,7 @@ dependencies {
 Use `Package.swift` from this repository:
 
 ```swift
-.package(url: "https://github.com/theodorosidmar/pubgkt.git", from: "1.0.0")
+.package(url: "https://github.com/theodorosidmar/pubgkt.git", from: "1.0.1")
 ```
 
 Then add one of the products:
@@ -119,7 +119,7 @@ repositories {
 
 dependencies {
     // Using the BOM (recommended)
-    implementation(platform("dev.pubgkt:bom:1.0.0"))
+    implementation(platform("dev.pubgkt:bom:1.0.1"))
     implementation("dev.pubgkt:core") // all modules
     // or pick individual modules
     implementation("dev.pubgkt:players")
@@ -136,7 +136,7 @@ repositories {
 
 dependencies {
     // Using the BOM (recommended)
-    implementation platform('dev.pubgkt:bom:1.0.0')
+    implementation platform('dev.pubgkt:bom:1.0.1')
     implementation 'dev.pubgkt:core' // all modules
     // or pick individual modules
     implementation 'dev.pubgkt:players'

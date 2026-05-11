@@ -12,7 +12,7 @@ Retrieve leaderboard rankings by season, game mode, and platform region.
 
 ```kotlin
 dependencies {
-    implementation("dev.pubgkt:leaderboards:1.0.0")
+    implementation("dev.pubgkt:leaderboards:1.0.1")
 }
 ```
 
@@ -20,7 +20,7 @@ dependencies {
 
 ```groovy
 dependencies {
-    implementation 'dev.pubgkt:leaderboards:1.0.0'
+    implementation 'dev.pubgkt:leaderboards:1.0.1'
 }
 ```
 
@@ -30,7 +30,7 @@ dependencies {
 <dependency>
     <groupId>dev.pubgkt</groupId>
     <artifactId>leaderboards-jvm</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
