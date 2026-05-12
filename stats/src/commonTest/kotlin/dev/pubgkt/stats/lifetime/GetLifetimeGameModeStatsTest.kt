@@ -3,7 +3,6 @@ package dev.pubgkt.stats.lifetime
 import dev.pubgkt.GameMode
 import dev.pubgkt.PubgApi
 import dev.pubgkt.stats.FILTER_PLAYER_IDS
-import dev.pubgkt.stats.lifetime.getLifetimeStatsByGameModeAndPlayers
 import dev.pubgkt.test.lastRequest
 import dev.pubgkt.test.mockEngine
 import io.ktor.http.HttpMethod

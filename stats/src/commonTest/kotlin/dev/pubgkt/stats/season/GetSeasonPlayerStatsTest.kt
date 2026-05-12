@@ -1,7 +1,6 @@
 package dev.pubgkt.stats.season
 
 import dev.pubgkt.PubgApi
-import dev.pubgkt.stats.season.getSeasonStatsByAccountId
 import dev.pubgkt.test.lastRequest
 import dev.pubgkt.test.mockEngine
 import io.ktor.http.HttpMethod

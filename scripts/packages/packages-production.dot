@@ -17,6 +17,12 @@ style=rounded;
 color="#82B366";
 "dev.pubgkt.clans";
 }
+subgraph "cluster_core" {
+label="Core";
+style=rounded;
+color="#82B366";
+"dev.pubgkt.core";
+}
 subgraph "cluster_leaderboards" {
 label="Leaderboards";
 style=rounded;
@@ -71,43 +77,43 @@ style=rounded;
 color="#B85450";
 "dev.pubgkt.test";
 }
-{ rank=same; "<root>"; "dev.pubgkt.clans"; "dev.pubgkt.leaderboards"; "dev.pubgkt.mastery"; "dev.pubgkt.matches"; "dev.pubgkt.players"; "dev.pubgkt.stats.lifetime"; "dev.pubgkt.stats.ranked"; "dev.pubgkt.stats.season"; "dev.pubgkt.test"; }
+{ rank=same; "<root>"; "dev.pubgkt.clans"; "dev.pubgkt.core"; "dev.pubgkt.leaderboards"; "dev.pubgkt.mastery"; "dev.pubgkt.matches"; "dev.pubgkt.players"; "dev.pubgkt.stats.lifetime"; "dev.pubgkt.stats.ranked"; "dev.pubgkt.stats.season"; "dev.pubgkt.test"; }
 { rank=same; "dev.pubgkt.http"; "dev.pubgkt.stats"; }
 { rank=same; "dev.pubgkt.jsonapi"; }
 { rank=same; "dev.pubgkt"; }
 { rank=same; "dev.pubgkt.ratelimit"; }
-"dev.pubgkt.stats" -> "dev.pubgkt.jsonapi";
-"dev.pubgkt.stats.lifetime" -> "dev.pubgkt";
-"dev.pubgkt.stats.lifetime" -> "dev.pubgkt.http";
-"dev.pubgkt.stats.lifetime" -> "dev.pubgkt.stats";
-"dev.pubgkt.stats.lifetime" -> "dev.pubgkt.jsonapi";
-"dev.pubgkt.stats.ranked" -> "dev.pubgkt";
-"dev.pubgkt.stats.ranked" -> "dev.pubgkt.http";
-"dev.pubgkt.stats.ranked" -> "dev.pubgkt.jsonapi";
-"dev.pubgkt.stats.season" -> "dev.pubgkt";
-"dev.pubgkt.stats.season" -> "dev.pubgkt.jsonapi";
-"dev.pubgkt.stats.season" -> "dev.pubgkt.stats";
-"dev.pubgkt.stats.season" -> "dev.pubgkt.http";
-"dev.pubgkt.leaderboards" -> "dev.pubgkt";
-"dev.pubgkt.leaderboards" -> "dev.pubgkt.jsonapi";
-"dev.pubgkt.leaderboards" -> "dev.pubgkt.http";
+"dev.pubgkt.clans" -> "dev.pubgkt";
+"dev.pubgkt.clans" -> "dev.pubgkt.http";
+"dev.pubgkt.clans" -> "dev.pubgkt.jsonapi";
+"dev.pubgkt.mastery" -> "dev.pubgkt.jsonapi";
 "dev.pubgkt.mastery" -> "dev.pubgkt";
 "dev.pubgkt.mastery" -> "dev.pubgkt.http";
-"dev.pubgkt.mastery" -> "dev.pubgkt.jsonapi";
-"dev.pubgkt.matches" -> "dev.pubgkt";
-"dev.pubgkt.matches" -> "dev.pubgkt.http";
-"dev.pubgkt.matches" -> "dev.pubgkt.jsonapi";
 "dev.pubgkt.players" -> "dev.pubgkt";
 "dev.pubgkt.players" -> "dev.pubgkt.http";
 "dev.pubgkt.players" -> "dev.pubgkt.jsonapi";
+"dev.pubgkt.matches" -> "dev.pubgkt";
+"dev.pubgkt.matches" -> "dev.pubgkt.jsonapi";
+"dev.pubgkt.matches" -> "dev.pubgkt.http";
 "dev.pubgkt.http" -> "dev.pubgkt";
 "dev.pubgkt.http" -> "dev.pubgkt.ratelimit";
 "dev.pubgkt.http" -> "dev.pubgkt.jsonapi";
 "dev.pubgkt" -> "dev.pubgkt.http";
-"dev.pubgkt" -> "dev.pubgkt.ratelimit";
 "dev.pubgkt" -> "dev.pubgkt.jsonapi";
+"dev.pubgkt" -> "dev.pubgkt.ratelimit";
 "dev.pubgkt.jsonapi" -> "dev.pubgkt";
-"dev.pubgkt.clans" -> "dev.pubgkt.jsonapi";
-"dev.pubgkt.clans" -> "dev.pubgkt";
-"dev.pubgkt.clans" -> "dev.pubgkt.http";
+"dev.pubgkt.leaderboards" -> "dev.pubgkt";
+"dev.pubgkt.leaderboards" -> "dev.pubgkt.http";
+"dev.pubgkt.leaderboards" -> "dev.pubgkt.jsonapi";
+"dev.pubgkt.stats.ranked" -> "dev.pubgkt.jsonapi";
+"dev.pubgkt.stats.ranked" -> "dev.pubgkt";
+"dev.pubgkt.stats.ranked" -> "dev.pubgkt.http";
+"dev.pubgkt.stats" -> "dev.pubgkt.jsonapi";
+"dev.pubgkt.stats.lifetime" -> "dev.pubgkt";
+"dev.pubgkt.stats.lifetime" -> "dev.pubgkt.jsonapi";
+"dev.pubgkt.stats.lifetime" -> "dev.pubgkt.stats";
+"dev.pubgkt.stats.lifetime" -> "dev.pubgkt.http";
+"dev.pubgkt.stats.season" -> "dev.pubgkt.jsonapi";
+"dev.pubgkt.stats.season" -> "dev.pubgkt.stats";
+"dev.pubgkt.stats.season" -> "dev.pubgkt";
+"dev.pubgkt.stats.season" -> "dev.pubgkt.http";
 }

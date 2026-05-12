@@ -8,7 +8,6 @@ import kotlinx.coroutines.BuildersKt;
 import dev.pubgkt.leaderboards.GameMode;
 import dev.pubgkt.leaderboards.GetLeaderboardKt;
 import dev.pubgkt.leaderboards.Leaderboard;
-import dev.pubgkt.leaderboards.LeaderboardPlacement;
 
 public class LeaderboardsSample {
     public static void main(String[] args) throws InterruptedException {

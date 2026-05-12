@@ -1,7 +1,6 @@
 package dev.pubgkt.stats.lifetime
 
 import dev.pubgkt.PubgApi
-import dev.pubgkt.stats.lifetime.getLifetimeStatsByAccountId
 import dev.pubgkt.test.lastRequest
 import dev.pubgkt.test.mockEngine
 import io.ktor.http.HttpMethod

@@ -1,7 +1,6 @@
 package dev.pubgkt.stats.ranked
 
 import dev.pubgkt.PubgApi
-import dev.pubgkt.stats.ranked.getRankedStatsByAccountIdAndSeasonId
 import dev.pubgkt.test.lastRequest
 import dev.pubgkt.test.mockEngine
 import io.ktor.http.HttpMethod
