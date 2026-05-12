@@ -19,6 +19,7 @@ include(
     "matches",
     "players",
     "samples:jvm",
+    "samples:swift",
     "stats",
     "test-support",
 )
