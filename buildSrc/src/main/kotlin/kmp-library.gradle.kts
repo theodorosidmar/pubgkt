@@ -66,11 +66,12 @@ tasks {
         }
     }
 
+    val detektAll by registering {
+        dependsOn(withType<Detekt>())
+    }
+
     check {
-        dependsOn(
-            detektCommonMainSourceSet,
-            detektCommonTestSourceSet,
-        )
+        dependsOn(detektAll)
     }
 
     val detektMergeReport by registering(ReportMergeTask::class) {
