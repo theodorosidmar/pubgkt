@@ -12,7 +12,17 @@ dependencies {
     implementation(libs.coroutines.jdk8)
 }
 
-val sampleModules = listOf("Common", "Players", "Clans", "Matches", "Leaderboards", "Mastery", "Stats")
+val sampleModules = listOf(
+    "Common",
+    "Players",
+    "Clans",
+    "Matches",
+    "Leaderboards",
+    "Mastery",
+    "Stats",
+    "RateLimit",
+    "Retry",
+)
 
 sampleModules.forEach { module ->
     tasks {
