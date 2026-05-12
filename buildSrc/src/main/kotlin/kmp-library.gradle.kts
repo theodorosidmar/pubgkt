@@ -67,6 +67,7 @@ tasks {
     }
 
     val detektAll by registering {
+        group = "verification"
         dependsOn(withType<Detekt>())
     }
 
@@ -75,6 +76,7 @@ tasks {
     }
 
     val detektMergeReport by registering(ReportMergeTask::class) {
+        group = "verification"
         output.set(rootProject.layout.buildDirectory.file("reports/detekt/merge.sarif"))
     }
 
