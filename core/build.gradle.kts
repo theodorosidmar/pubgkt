@@ -6,12 +6,13 @@ plugins {
 }
 
 kotlin {
-    val xcf = XCFramework("pubgkt")
+    val xcf = XCFramework("PubgKt")
     targets.withType<KotlinNativeTarget>().configureEach {
         if (!konanTarget.family.isAppleFamily) return@configureEach
 
         binaries.framework {
-            baseName = "pubgkt"
+            baseName = "PubgKt"
+            binaryOption("bundleId", "dev.pubgkt.PubgKt")
             isStatic = true
             export(projects.common)
             export(projects.players)
