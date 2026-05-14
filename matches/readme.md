@@ -8,7 +8,8 @@ Retrieve detailed match data including participants, stats, and telemetry metada
 
 ## Installation
 
-### Gradle Kotlin DSL
+<details>
+<summary><strong>Gradle Kotlin DSL</strong></summary>
 
 ```kotlin
 dependencies {
@@ -16,7 +17,10 @@ dependencies {
 }
 ```
 
-### Gradle Groovy
+</details>
+
+<details>
+<summary><strong>Gradle Groovy</strong></summary>
 
 ```groovy
 dependencies {
@@ -24,7 +28,10 @@ dependencies {
 }
 ```
 
-### Maven
+</details>
+
+<details>
+<summary><strong>Maven</strong></summary>
 
 ```xml
 <dependency>
@@ -33,6 +40,28 @@ dependencies {
     <version>1.0.1</version>
 </dependency>
 ```
+
+</details>
+
+<details>
+<summary><strong>npm</strong></summary>
+
+```bash
+npm install @pubgkt/common @pubgkt/matches
+```
+
+</details>
+
+<details>
+<summary><strong>Swift Package Manager</strong></summary>
+
+Included in the `pubgkt` XCFramework — no separate import needed.
+
+```swift
+import PubgKt
+```
+
+</details>
 
 ## API Reference
 
@@ -67,4 +96,40 @@ Match match = BuildersKt.runBlocking(
 );
 System.out.println("Map: " + match.getMapName() + ", Mode: " + match.getGameMode());
 System.out.println("Duration: " + match.getDuration() + "s");
+```
+
+### Swift
+
+```swift
+import PubgKt
+
+let api = PubgApi(apiKey: "your-api-key")
+
+let players = try await api.getPlayersByNames(playerNames: ["sparkingg"], platform: .steam)
+if let firstMatch = players.first?.matches.first {
+    let match = try await api.getMatchById(matchId: firstMatch.id, platform: .steam)
+    print("Map: \(match.mapName), Mode: \(match.gameMode), Duration: \(match.duration)s")
+    for team in match.participants.prefix(3) {
+        for mp in team.players {
+            print("  \(mp.name) — \(mp.kills) kills, \(mp.damageDealt) dmg")
+        }
+    }
+}
+```
+
+### TypeScript
+
+```typescript
+import { PubgApi, Platform, KtList } from "@pubgkt/common";
+import { getPlayersByNames } from "@pubgkt/players";
+import { getMatchById } from "@pubgkt/matches";
+
+const api = new PubgApi("your-api-key");
+
+const players = await getPlayersByNames(api, KtList.fromJsArray(["sparkingg"]), Platform.STEAM);
+const matchIds = players.asJsReadonlyArrayView()[0].matches.asJsReadonlyArrayView();
+if (matchIds.length > 0) {
+    const match = await getMatchById(api, matchIds[0].id, Platform.STEAM);
+    console.log(`Map: ${match.mapName.name}, Mode: ${match.gameMode.name}, Duration: ${match.duration}s`);
+}
 ```

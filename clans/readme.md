@@ -8,7 +8,8 @@ Retrieve clan information by clan ID.
 
 ## Installation
 
-### Gradle Kotlin DSL
+<details>
+<summary><strong>Gradle Kotlin DSL</strong></summary>
 
 ```kotlin
 dependencies {
@@ -16,7 +17,10 @@ dependencies {
 }
 ```
 
-### Gradle Groovy
+</details>
+
+<details>
+<summary><strong>Gradle Groovy</strong></summary>
 
 ```groovy
 dependencies {
@@ -24,7 +28,10 @@ dependencies {
 }
 ```
 
-### Maven
+</details>
+
+<details>
+<summary><strong>Maven</strong></summary>
 
 ```xml
 <dependency>
@@ -33,6 +40,28 @@ dependencies {
     <version>1.0.1</version>
 </dependency>
 ```
+
+</details>
+
+<details>
+<summary><strong>npm</strong></summary>
+
+```bash
+npm install @pubgkt/common @pubgkt/clans
+```
+
+</details>
+
+<details>
+<summary><strong>Swift Package Manager</strong></summary>
+
+Included in the `pubgkt` XCFramework — no separate import needed.
+
+```swift
+import PubgKt
+```
+
+</details>
 
 ## API Reference
 
@@ -61,4 +90,35 @@ Clan clan = BuildersKt.runBlocking(
         (_, cont) -> GetClanByIdKt.getClanById(api, "clan.d52aad6adcfb4c4783a85eb250f6e822", Platform.STEAM, cont)
 );
 System.out.println(clan.getName() + " [" + clan.getTag() + "]");
+```
+
+### Swift
+
+```swift
+import PubgKt
+
+let api = PubgApi(apiKey: "your-api-key")
+
+let players = try await api.getPlayersByNames(playerNames: ["sparkingg"], platform: .steam)
+if let clanId = players.first?.clanId {
+    let clan = try await api.getClanById(clanId: clanId, platform: .steam)
+    print("\(clan.name) [\(clan.tag)] — Level \(clan.level), \(clan.memberCount) members")
+}
+```
+
+### TypeScript
+
+```typescript
+import { PubgApi, Platform, KtList } from "@pubgkt/common";
+import { getPlayersByNames } from "@pubgkt/players";
+import { getClanById } from "@pubgkt/clans";
+
+const api = new PubgApi("your-api-key");
+
+const players = await getPlayersByNames(api, KtList.fromJsArray(["sparkingg"]), Platform.STEAM);
+const player = players.asJsReadonlyArrayView()[0];
+if (player.clanId) {
+    const clan = await getClanById(api, player.clanId, Platform.STEAM);
+    console.log(`${clan.name} [${clan.tag}] — Level ${clan.level}, ${clan.memberCount} members`);
+}
 ```

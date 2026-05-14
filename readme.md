@@ -1,4 +1,5 @@
-[![Download](https://img.shields.io/maven-central/v/dev.pubgkt/common.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/dev.pubgkt/common)
+[![Maven Central](https://img.shields.io/maven-central/v/dev.pubgkt/common.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/dev.pubgkt/common)
+[![npm](https://img.shields.io/npm/v/@pubgkt/common?label=npm&color=red)](https://www.npmjs.com/org/pubgkt)
 ![CI](https://github.com/theodorosidmar/pubgkt/actions/workflows/ci.yml/badge.svg)
 ![Detekt](https://github.com/theodorosidmar/pubgkt/actions/workflows/detekt.yml/badge.svg)
 ![Coverage](https://img.shields.io/endpoint?url=https://theodorosidmar.github.io/pubgkt/coverage/core.json)
@@ -91,19 +92,25 @@ dependencies {
 
 ### Swift Package Manager
 
-Use `Package.swift` from this repository:
+Add the dependency in your `Package.swift`:
 
 ```swift
 .package(url: "https://github.com/theodorosidmar/pubgkt.git", from: "1.0.1")
 ```
 
-Then add one of the products:
+Then add the product to your target:
 
 ```swift
 .product(name: "pubgkt", package: "pubgkt")
 ```
 
-> **Important:** Every release must update the checksum in `Package.swift` to match the uploaded `pubgkt.xcframework.zip` asset.
+Import in your Swift code:
+
+```swift
+import PubgKt
+```
+
+> **Note:** The Apple distribution is a single umbrella XCFramework exported from `core` that includes all modules.
 
 </details>
 
@@ -209,7 +216,22 @@ List<Player> players = BuildersKt.runBlocking(
 );
 ```
 
-### Node.js
+### Swift
+
+```swift
+import PubgKt
+
+let api = PubgApi(apiKey: "your-api-key")
+
+// Find players by display name
+let players = try await api.getPlayersByNames(playerNames: ["sparkingg", "TGLTN"], platform: .steam)
+
+// Get lifetime stats
+let stats = try await api.getLifetimeStatsByAccountId(accountId: players.first!.id, platform: .steam)
+print("Squad FPP — \(stats.squadFpp.wins) wins, \(stats.squadFpp.kills) kills")
+```
+
+### Node.js / TypeScript
 
 ```typescript
 import { PubgApi, Platform, KtList } from "@pubgkt/common";
@@ -287,21 +309,28 @@ Full API reference is available at [theodorosidmar.github.io/pubgkt](https://the
 
 ## Samples
 
-The `samples` module contains runnable examples in both Kotlin and Java:
+### Kotlin / Java
 
 ```bash
-# Run any Kotlin sample
 ./gradlew :samples:jvm:runPlayersKotlin -Pargs="<api-key>"
 ./gradlew :samples:jvm:runStatsKotlin -Pargs="<api-key>"
 ./gradlew :samples:jvm:runMatchesKotlin -Pargs="<api-key>"
 
-# Run any Java sample
 ./gradlew :samples:jvm:runPlayersJava -Pargs="<api-key>"
 ./gradlew :samples:jvm:runStatsJava -Pargs="<api-key>"
 ./gradlew :samples:jvm:runMatchesJava -Pargs="<api-key>"
 ```
 
-Available modules: `Common`, `Players`, `Clans`, `Matches`, `Leaderboards`, `Mastery`, `Stats`
+### Swift
+
+```bash
+./gradlew :samples:swift:runPlayersSwift -Pargs="<api-key>"
+./gradlew :samples:swift:runStatsSwift -Pargs="<api-key>"
+./gradlew :samples:swift:runMatchesSwift -Pargs="<api-key>"
+./gradlew :samples:swift:runClansSwift -Pargs="<api-key>"
+./gradlew :samples:swift:runLeaderboardsSwift -Pargs="<api-key>"
+./gradlew :samples:swift:runMasterySwift -Pargs="<api-key>"
+```
 
 ### Node.js
 
@@ -322,13 +351,13 @@ Available modules: `common`, `players`, `clans`, `matches`, `leaderboards`, `mas
 
 ## Supported Platforms
 
-| Platform | Status  |
-|----------|---------|
-| JVM      | Done    |
-| iOS      | Done    |
-| watchOS  | Done    |
-| Android  | Done    |
-| JS/Node  | Done    |
+| Platform | Status |
+|----------|--------|
+| JVM      | ✅     |
+| iOS      | ✅     |
+| watchOS  | ✅     |
+| Android  | ✅     |
+| JS/Node  | ✅     |
 
 ## License
 

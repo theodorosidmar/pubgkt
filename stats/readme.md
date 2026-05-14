@@ -8,7 +8,8 @@ Retrieve lifetime, season, and ranked player statistics.
 
 ## Installation
 
-### Gradle Kotlin DSL
+<details>
+<summary><strong>Gradle Kotlin DSL</strong></summary>
 
 ```kotlin
 dependencies {
@@ -16,7 +17,10 @@ dependencies {
 }
 ```
 
-### Gradle Groovy
+</details>
+
+<details>
+<summary><strong>Gradle Groovy</strong></summary>
 
 ```groovy
 dependencies {
@@ -24,7 +28,10 @@ dependencies {
 }
 ```
 
-### Maven
+</details>
+
+<details>
+<summary><strong>Maven</strong></summary>
 
 ```xml
 <dependency>
@@ -33,6 +40,28 @@ dependencies {
     <version>1.0.1</version>
 </dependency>
 ```
+
+</details>
+
+<details>
+<summary><strong>npm</strong></summary>
+
+```bash
+npm install @pubgkt/common @pubgkt/stats
+```
+
+</details>
+
+<details>
+<summary><strong>Swift Package Manager</strong></summary>
+
+Included in the `pubgkt` XCFramework — no separate import needed.
+
+```swift
+import PubgKt
+```
+
+</details>
 
 ## API Reference
 
@@ -88,4 +117,60 @@ RankedStats ranked = BuildersKt.runBlocking(
         (_, cont) -> GetRankedStatsKt.getRankedStatsByAccountIdAndSeasonId(api, "account.abc123", "season-id", Platform.STEAM, cont)
 );
 System.out.println("Tier: " + ranked.getCurrentTier() + ", KDA: " + ranked.getKda());
+```
+
+### Swift
+
+```swift
+import PubgKt
+
+let api = PubgApi(apiKey: "your-api-key")
+
+let seasons = try await api.seasons(platform: .steam)
+guard let currentSeason = SeasonKt.currentOrNull(seasons) else { return }
+
+// Lifetime stats
+let lifetime = try await api.getLifetimeStatsByAccountId(accountId: "account.abc123", platform: .steam)
+print("Squad FPP — \(lifetime.squadFpp.wins) wins, \(lifetime.squadFpp.kills) kills")
+
+// Season stats
+let seasonStats = try await api.getSeasonStatsByAccountId(
+    accountId: "account.abc123",
+    seasonId: currentSeason.id,
+    platform: .steam
+)
+print("Season: \(seasonStats.seasonId) — \(seasonStats.squadFpp.wins) wins")
+
+// Ranked stats
+let ranked = try await api.getRankedStatsByAccountIdAndSeasonId(
+    accountId: "account.abc123",
+    seasonId: currentSeason.id,
+    platform: .steam
+)
+print("Tier: \(ranked.currentTier), RP: \(ranked.currentRankPoint), KDA: \(ranked.kda)")
+```
+
+### TypeScript
+
+```typescript
+import { PubgApi, Platform, getSeasonsByPlatform } from "@pubgkt/common";
+import { getLifetimeStatsByAccountId, getSeasonStatsByAccountId, getRankedStatsByAccountIdAndSeasonId } from "@pubgkt/stats";
+
+const api = new PubgApi("your-api-key");
+
+// Lifetime stats
+const lifetime = await getLifetimeStatsByAccountId(api, "account.abc123");
+console.log(`Squad FPP — ${lifetime.squadFpp.wins} wins, ${lifetime.squadFpp.kills} kills`);
+
+// Season stats
+const seasons = await getSeasonsByPlatform(api, Platform.STEAM);
+const current = seasons.asJsReadonlyArrayView().find((s) => s.isCurrentSeason);
+if (current) {
+    const seasonStats = await getSeasonStatsByAccountId(api, "account.abc123", current.id, Platform.STEAM);
+    console.log(`Season — ${seasonStats.squadFpp.wins} wins`);
+
+    // Ranked stats
+    const ranked = await getRankedStatsByAccountIdAndSeasonId(api, "account.abc123", current.id, Platform.STEAM);
+    console.log(`Tier: ${ranked.currentTier.tier}, KDA: ${ranked.kda}`);
+}
 ```

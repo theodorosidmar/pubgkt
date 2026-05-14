@@ -8,7 +8,8 @@ Retrieve weapon mastery and survival mastery data for players.
 
 ## Installation
 
-### Gradle Kotlin DSL
+<details>
+<summary><strong>Gradle Kotlin DSL</strong></summary>
 
 ```kotlin
 dependencies {
@@ -16,7 +17,10 @@ dependencies {
 }
 ```
 
-### Gradle Groovy
+</details>
+
+<details>
+<summary><strong>Gradle Groovy</strong></summary>
 
 ```groovy
 dependencies {
@@ -24,7 +28,10 @@ dependencies {
 }
 ```
 
-### Maven
+</details>
+
+<details>
+<summary><strong>Maven</strong></summary>
 
 ```xml
 <dependency>
@@ -33,6 +40,28 @@ dependencies {
     <version>1.0.1</version>
 </dependency>
 ```
+
+</details>
+
+<details>
+<summary><strong>npm</strong></summary>
+
+```bash
+npm install @pubgkt/common @pubgkt/mastery
+```
+
+</details>
+
+<details>
+<summary><strong>Swift Package Manager</strong></summary>
+
+Included in the `pubgkt` XCFramework — no separate import needed.
+
+```swift
+import PubgKt
+```
+
+</details>
 
 ## API Reference
 
@@ -75,4 +104,41 @@ SurvivalMastery survival = BuildersKt.runBlocking(
         (_, cont) -> GetSurvivalMasteryByAccountIdKt.getSurvivalMasteryByAccountId(api, "account.abc123", Platform.STEAM, cont)
 );
 System.out.println("Level: " + survival.getLevel() + ", XP: " + survival.getXp());
+```
+
+### Swift
+
+```swift
+import PubgKt
+
+let api = PubgApi(apiKey: "your-api-key")
+
+// Weapon mastery
+let weaponMastery = try await api.getWeaponMasteryByAccountId(accountId: "account.abc123", platform: .steam)
+print("Player: \(weaponMastery.playerId)")
+
+// Survival mastery
+let survival = try await api.getSurvivalMasteryByAccountId(accountId: "account.abc123", platform: .steam)
+print("XP: \(survival.xp), Level: \(survival.level), Tier: \(survival.tier)")
+print("Total matches: \(survival.totalMatchesPlayed)")
+```
+
+### TypeScript
+
+```typescript
+import { PubgApi, Platform } from "@pubgkt/common";
+import { getWeaponMasteryByAccountId, getSurvivalMasteryByAccountId } from "@pubgkt/mastery";
+
+const api = new PubgApi("your-api-key");
+
+// Weapon mastery
+const weapons = await getWeaponMasteryByAccountId(api, "account.abc123", Platform.STEAM);
+const ak47 = weapons.ak47;
+if (ak47) {
+    console.log(`AK47: level=${ak47.currentLevel}, kills=${ak47.statsTotal.kills}`);
+}
+
+// Survival mastery
+const survival = await getSurvivalMasteryByAccountId(api, "account.abc123", Platform.STEAM);
+console.log(`Level: ${survival.level}, XP: ${survival.xp}, Matches: ${survival.totalMatchesPlayed}`);
 ```

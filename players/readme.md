@@ -8,7 +8,8 @@ Retrieve player information by account ID or display name.
 
 ## Installation
 
-### Gradle Kotlin DSL
+<details>
+<summary><strong>Gradle Kotlin DSL</strong></summary>
 
 ```kotlin
 dependencies {
@@ -16,7 +17,10 @@ dependencies {
 }
 ```
 
-### Gradle Groovy
+</details>
+
+<details>
+<summary><strong>Gradle Groovy</strong></summary>
 
 ```groovy
 dependencies {
@@ -24,7 +28,10 @@ dependencies {
 }
 ```
 
-### Maven
+</details>
+
+<details>
+<summary><strong>Maven</strong></summary>
 
 ```xml
 <dependency>
@@ -34,15 +41,35 @@ dependencies {
 </dependency>
 ```
 
+</details>
+
+<details>
+<summary><strong>npm</strong></summary>
+
+```bash
+npm install @pubgkt/common @pubgkt/players
+```
+
+</details>
+
+<details>
+<summary><strong>Swift Package Manager</strong></summary>
+
+Included in the `pubgkt` XCFramework — no separate import needed.
+
+```swift
+import PubgKt
+```
+
+</details>
+
 ## API Reference
 
 | Function | Description |
 |----------|-------------|
 | `PubgApi.getPlayerByAccountId(accountId, platform)` | Get a single player by account ID |
 | `PubgApi.getPlayersById(accountIds, platform)` | Get up to 10 players by account IDs |
-| `PubgApi.getPlayersById(vararg accountIds, platform)` | Get up to 10 players by account IDs (vararg) |
 | `PubgApi.getPlayersByNames(playerNames, platform)` | Get up to 10 players by display names |
-| `PubgApi.getPlayersByNames(vararg playerNames, platform)` | Get up to 10 players by display names (vararg) |
 
 ## Usage
 
@@ -78,4 +105,38 @@ List<Player> players = BuildersKt.runBlocking(
         EmptyCoroutineContext.INSTANCE,
         (_, cont) -> GetPlayersByNameKt.getPlayersByNames(api, List.of("sparkingg", "TGLTN"), Platform.STEAM, cont)
 );
+```
+
+### Swift
+
+```swift
+import PubgKt
+
+let api = PubgApi(apiKey: "your-api-key")
+
+// Multiple players by display names
+let players = try await api.getPlayersByNames(playerNames: ["sparkingg", "TGLTN"], platform: .steam)
+for player in players {
+    print("\(player.name) — clan: \(player.clanId ?? "none")")
+}
+
+// Single player by account ID
+let player = try await api.getPlayerByAccountId(accountId: players.first!.id, platform: .steam)
+```
+
+### TypeScript
+
+```typescript
+import { PubgApi, Platform, KtList } from "@pubgkt/common";
+import { getPlayersByNames, getPlayerByAccountId } from "@pubgkt/players";
+
+const api = new PubgApi("your-api-key");
+
+// Multiple players by display names
+const players = await getPlayersByNames(api, KtList.fromJsArray(["sparkingg", "TGLTN"]), Platform.STEAM);
+const list = players.asJsReadonlyArrayView();
+list.forEach((p) => console.log(`${p.name} — clan: ${p.clanId}`));
+
+// Single player by account ID
+const player = await getPlayerByAccountId(api, list[0].id);
 ```

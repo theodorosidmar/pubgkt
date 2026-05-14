@@ -8,7 +8,8 @@ Core module providing the `PubgApi` client, platform enums, seasons, rate limiti
 
 ## Installation
 
-### Gradle Kotlin DSL
+<details>
+<summary><strong>Gradle Kotlin DSL</strong></summary>
 
 ```kotlin
 dependencies {
@@ -16,7 +17,10 @@ dependencies {
 }
 ```
 
-### Gradle Groovy
+</details>
+
+<details>
+<summary><strong>Gradle Groovy</strong></summary>
 
 ```groovy
 dependencies {
@@ -24,7 +28,10 @@ dependencies {
 }
 ```
 
-### Maven
+</details>
+
+<details>
+<summary><strong>Maven</strong></summary>
 
 ```xml
 <dependency>
@@ -33,6 +40,28 @@ dependencies {
     <version>1.0.1</version>
 </dependency>
 ```
+
+</details>
+
+<details>
+<summary><strong>npm</strong></summary>
+
+```bash
+npm install @pubgkt/common
+```
+
+</details>
+
+<details>
+<summary><strong>Swift Package Manager</strong></summary>
+
+Included in the `pubgkt` XCFramework — no separate import needed.
+
+```swift
+import PubgKt
+```
+
+</details>
 
 ## API Reference
 
@@ -72,6 +101,33 @@ List<Season> seasons = BuildersKt.runBlocking(
         EmptyCoroutineContext.INSTANCE,
         (_, cont) -> SeasonKt.seasons(api, Platform.STEAM, cont)
 );
+```
+
+### Swift
+
+```swift
+import PubgKt
+
+let api = PubgApi(apiKey: "your-api-key")
+
+// Check API status
+let isUp = try await api.isUp()
+
+// Get seasons
+let seasons = try await api.seasons(platform: .steam)
+let current = SeasonKt.currentOrNull(seasons)
+```
+
+### TypeScript
+
+```typescript
+import { PubgApi, Platform, getSeasonsByPlatform } from "@pubgkt/common";
+
+const api = new PubgApi("your-api-key");
+
+// Get seasons
+const seasons = await getSeasonsByPlatform(api, Platform.STEAM);
+const current = seasons.asJsReadonlyArrayView().find((s) => s.isCurrentSeason);
 ```
 
 ## Configuration
