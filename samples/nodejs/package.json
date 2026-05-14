@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "build:packages": "cd ../.. && ./gradlew :core:assembleNpmPackages",
+    "use:local": "npm run build:packages && node scripts/toggle-deps.mjs local && npm install",
+    "use:registry": "node scripts/toggle-deps.mjs registry && npm install",
     "common": "tsx src/common.ts",
     "players": "tsx src/players.ts",
     "clans": "tsx src/clans.ts",

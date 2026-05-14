@@ -8,7 +8,12 @@ application {
 }
 
 dependencies {
-    implementation(projects.core)
+    if (project.hasProperty("local")) {
+        implementation(projects.core)
+    } else {
+        implementation(platform("dev.pubgkt:bom:1.0.1"))
+        implementation("dev.pubgkt:core")
+    }
     implementation(libs.coroutines.jdk8)
 }
 
