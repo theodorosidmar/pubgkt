@@ -86,14 +86,14 @@ jobs:
       - name: Build Apple XCFrameworks
         run: >-
           ./gradlew
-          :core:assemblePubgktReleaseXCFramework
+          :core:assemblePubgKtReleaseXCFramework
 
       - name: Collect Apple release assets
         run: |
           set -euo pipefail
           mkdir -p release-assets/apple
-          xcf_count="$(find core/build/XCFrameworks -type d -path '*/release/pubgkt.xcframework' | wc -l | tr -d ' ')"
-          xcf_path="$(find core/build/XCFrameworks -type d -path '*/release/pubgkt.xcframework' | head -n 1)"
+          xcf_count="$(find core/build/XCFrameworks -type d -path '*/release/PubgKt.xcframework' | wc -l | tr -d ' ')"
+          xcf_path="$(find core/build/XCFrameworks -type d -path '*/release/PubgKt.xcframework' | head -n 1)"
 
           if [ "$xcf_count" -eq 0 ]; then
             echo "No release XCFramework found for module: core"
@@ -102,13 +102,13 @@ jobs:
           fi
           if [ "$xcf_count" -gt 1 ]; then
             echo "Multiple release XCFramework candidates found for module: core"
-            find core/build/XCFrameworks -type d -path '*/release/pubgkt.xcframework' | sort
+            find core/build/XCFrameworks -type d -path '*/release/PubgKt.xcframework' | sort
             exit 1
           fi
 
           ditto -c -k --sequesterRsrc --keepParent \
             "$xcf_path" \
-            "release-assets/apple/pubgkt.xcframework.zip"
+            "release-assets/apple/PubgKt.xcframework.zip"
 
       - name: Upload Apple release assets
         uses: actions/upload-artifact@v7
@@ -263,7 +263,7 @@ jobs:
           : > "$out_file"
           : > "$checksum_file"
 
-          zip_path="release-assets/apple/pubgkt.xcframework.zip"
+          zip_path="release-assets/apple/PubgKt.xcframework.zip"
           if [ ! -f "$zip_path" ]; then
             echo "Missing expected asset: $zip_path"
             exit 1
@@ -271,7 +271,7 @@ jobs:
 
           checksum="$(shasum -a 256 "$zip_path" | awk '{print $1}')"
           printf '%s\n' "$checksum" > "$checksum_file"
-          printf '%s\n' "url: \"https://github.com/theodorosidmar/pubgkt/releases/download/${{ steps.version.outputs.tag }}/pubgkt.xcframework.zip\"," >> "$out_file"
+          printf '%s\n' "url: \"https://github.com/theodorosidmar/pubgkt/releases/download/${{ steps.version.outputs.tag }}/PubgKt.xcframework.zip\"," >> "$out_file"
           printf '%s\n' "checksum: \"$checksum\"" >> "$out_file"
 
           {
@@ -297,14 +297,14 @@ jobs:
 
           text = package_file.read_text()
           pattern = (
-              r'(name: "pubgkt",\n\s+url: "https://github.com/theodorosidmar/pubgkt/releases/download/)'
-              r'v[^/]+(/pubgkt\.xcframework\.zip",\n\s+checksum: ")[0-9a-f]{64}("\n)'
+              r'(name: "PubgKt",\n\s+url: "https://github.com/theodorosidmar/pubgkt/releases/download/)'
+              r'v[^/]+(/PubgKt\.xcframework\.zip",\n\s+checksum: ")[0-9a-f]{64}("\n)'
           )
-          new_url_part = f'https://github.com/theodorosidmar/pubgkt/releases/download/{tag}/pubgkt.xcframework.zip'
+          new_url_part = f'https://github.com/theodorosidmar/pubgkt/releases/download/{tag}/PubgKt.xcframework.zip'
           replacement = lambda m: f'{m.group(1)}{tag}{m.group(2)}{checksum}{m.group(3)}'
           text, count = re.subn(pattern, replacement, text)
           if count != 1:
-              raise SystemExit("Failed to update target 'pubgkt' in Package.swift")
+              raise SystemExit("Failed to update target 'PubgKt' in Package.swift")
 
           package_file.write_text(text)
           PY
@@ -370,7 +370,7 @@ jobs:
             ```
 
             ### Swift (iOS/watchOS)
-            Download `pubgkt.xcframework.zip` from this release assets section.
+            Download `PubgKt.xcframework.zip` from this release assets section.
 
             - The Apple distribution is a single umbrella XCFramework exported from `core`.
             - Import it in Swift as `pubgkt`.
