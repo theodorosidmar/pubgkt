@@ -26,14 +26,14 @@ class PlayerSerializerTest {
     fun `missing relationships yields empty matches`() {
         val player = deserialize(PLAYER_RESOURCE_NO_RELATIONSHIPS_JSON)
 
-        assertEquals(emptyList(), player.matches)
+        assertEquals([], player.matches)
     }
 
     @Test
     fun `empty matches array yields empty list`() {
         val player = deserialize(PLAYER_RESOURCE_EMPTY_MATCHES_JSON)
 
-        assertEquals(emptyList(), player.matches)
+        assertEquals([], player.matches)
     }
 
     @Test

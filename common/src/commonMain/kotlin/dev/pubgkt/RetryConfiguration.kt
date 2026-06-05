@@ -42,7 +42,7 @@ public data object NoRetry : RetryPolicy {
  *     retry = Retry(
  *         maxRetries = 3,
  *         backoff = ExponentialBackoff(baseDelayMs = 500),
- *         retryOnExceptions = listOf(IOException::class),
+ *         retryOnExceptions = [IOException::class],
  *     ),
  * )
  * ```
@@ -59,7 +59,7 @@ public data class Retry @JsExport.Ignore constructor(
     val maxRetries: Int = 5,
     val backoff: BackoffStrategy = NoBackoff,
     @JsExport.Ignore
-    val retryOnExceptions: List<KClass<out Throwable>> = emptyList(),
+    val retryOnExceptions: List<KClass<out Throwable>> = [],
 ) : RetryPolicy {
 
     /**
@@ -74,7 +74,7 @@ public data class Retry @JsExport.Ignore constructor(
     ) : this(
         maxRetries = maxRetries,
         backoff = backoff,
-        retryOnExceptions = emptyList(),
+        retryOnExceptions = [],
     )
 
     override val enabled: Boolean = true

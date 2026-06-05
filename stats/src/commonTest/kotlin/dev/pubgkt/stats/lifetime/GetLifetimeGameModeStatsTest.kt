@@ -24,7 +24,7 @@ class GetLifetimeGameModeStatsTest {
         val gameMode = GameMode.SQUAD_FPP
         api.getLifetimeStatsByGameModeAndPlayers(
             gameMode = gameMode,
-            accountIds = listOf("account.abc123", "account.abc456"),
+            accountIds = ["account.abc123", "account.abc456"],
         )
 
         val request = engine.lastRequest
@@ -52,7 +52,7 @@ class GetLifetimeGameModeStatsTest {
         val lifetimeGameModeStats =
             api.getLifetimeStatsByGameModeAndPlayers(
                 gameMode = GameMode.SQUAD_FPP,
-                accountIds = listOf("account.abc123"),
+                accountIds = ["account.abc123"],
             )
 
         assertEquals(2, lifetimeGameModeStats.size)

@@ -46,7 +46,6 @@ public interface RateLimiter {
     }
 }
 
-@JsExport
 private class NoOpRateLimiter : RateLimiter {
     override suspend fun throttle() = Unit
 

@@ -1,5 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
-import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_3
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_4
 import org.jetbrains.kotlin.gradle.targets.js.testing.KotlinJsTest
 import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeTest
 
@@ -14,11 +14,12 @@ kotlin {
     compilerOptions {
         allWarningsAsErrors = true
         progressiveMode = true
-        apiVersion = KOTLIN_2_3
-        languageVersion = KOTLIN_2_3
+        apiVersion = KOTLIN_2_4
+        languageVersion = KOTLIN_2_4
         freeCompilerArgs.addAll(
-            "-Xcontext-parameters",
             "-Xname-based-destructuring=complete",
+            "-Xcollection-literals",
+            "-Xintrinsic-const-evaluation",
         )
     }
 
@@ -35,7 +36,6 @@ kotlin {
         binaries.library()
         compilerOptions {
             freeCompilerArgs.addAll(
-                "-Xenable-suspend-function-exporting",
                 "-Xes-long-as-bigint",
             )
         }

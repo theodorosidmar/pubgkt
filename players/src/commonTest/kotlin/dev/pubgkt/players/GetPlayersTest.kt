@@ -42,15 +42,15 @@ abstract class GetPlayersTest {
     @Test
     fun `vararg overload delegates to list overload`() = runTest {
         val fromVararg = api.fetchPlayers("value1")
-        val fromList = api.fetchPlayers(listOf("value1"))
+        val fromList = api.fetchPlayers(["value1"])
 
         assertEquals(fromList.size, fromVararg.size)
     }
 
     @Test
     fun `returns empty for empty list`() = runTest {
-        assertEquals(emptyList(), api.fetchPlayers(emptyList()))
-        assertEquals(emptyList(), api.fetchPlayers())
+        assertEquals([], api.fetchPlayers([]))
+        assertEquals([], api.fetchPlayers())
     }
 
     @Test

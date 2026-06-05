@@ -25,7 +25,7 @@ class GetSeasonGameModeStatsTest {
         api.getSeasonStatsByGameModeAndPlayers(
             seasonId = "season123",
             gameMode = gameMode,
-            accountIds = listOf("account.abc123", "account.abc456"),
+            accountIds = ["account.abc123", "account.abc456"],
         )
 
         val request = engine.lastRequest
@@ -54,7 +54,7 @@ class GetSeasonGameModeStatsTest {
             api.getSeasonStatsByGameModeAndPlayers(
                 seasonId = "season123",
                 gameMode = GameMode.SQUAD_FPP,
-                accountIds = listOf("account.abc123"),
+                accountIds = ["account.abc123"],
             )
 
         assertEquals(2, lifetimeGameModeStats.size)

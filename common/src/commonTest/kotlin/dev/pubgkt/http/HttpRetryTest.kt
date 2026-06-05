@@ -95,7 +95,7 @@ class HttpRetryTest {
                 Retry(
                     maxRetries = maxRetries,
                     backoff = NoBackoff,
-                    retryOnExceptions = listOf(RetryableException::class),
+                    retryOnExceptions = [RetryableException::class],
                 ),
             )
 
@@ -122,7 +122,7 @@ class HttpRetryTest {
                 Retry(
                     maxRetries = 3,
                     backoff = NoBackoff,
-                    retryOnExceptions = listOf(ConfiguredException::class),
+                    retryOnExceptions = [ConfiguredException::class],
                 ),
             )
 
