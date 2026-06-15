@@ -42,7 +42,7 @@ kotlin {
 }
 
 dependencies {
-    detektPlugins("dev.detekt:detekt-rules-ktlint-wrapper:2.0.0-alpha.3")
+    detektPlugins(detektKtlint)
 }
 
 detekt {
