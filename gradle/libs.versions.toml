@@ -5,7 +5,7 @@ coroutines = "1.11.0"
 android = "9.2.1"
 dokka = "2.2.0"
 vanniktech = "0.36.0"
-detekt = "2.0.0-alpha.3"
+detekt = "2.0.0-alpha.5"
 npm-publish = "3.7.0"
 kover = "0.9.8"
 
