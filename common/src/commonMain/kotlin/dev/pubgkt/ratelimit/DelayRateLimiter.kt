@@ -25,6 +25,7 @@ import kotlin.time.Instant
  * @see RateLimiter
  * @see RateLimitExceededException
  */
+@Suppress("NON_EXPORTABLE_TYPE")
 @JsExport
 public open class DelayRateLimiter @JsExport.Ignore constructor(protected val clock: Clock = Clock.System) :
     RateLimiter {

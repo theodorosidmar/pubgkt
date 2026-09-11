@@ -53,8 +53,8 @@ public data object NoRetry : RetryPolicy {
  *   Only exact type matches or subclasses are considered.
  * @see BackoffStrategy
  */
-@Suppress("NON_EXPORTABLE_TYPE")
 @JsExport
+@ConsistentCopyVisibility
 public data class Retry @JsExport.Ignore constructor(
     val maxRetries: Int = 5,
     val backoff: BackoffStrategy = NoBackoff,
