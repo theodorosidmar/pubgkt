@@ -1,0 +1,201 @@
+public final class dev/pubgkt/matches/DeathType : java/lang/Enum {
+	public static final field ALIVE Ldev/pubgkt/matches/DeathType;
+	public static final field BYPLAYER Ldev/pubgkt/matches/DeathType;
+	public static final field BYZONE Ldev/pubgkt/matches/DeathType;
+	public static final field LOGOUT Ldev/pubgkt/matches/DeathType;
+	public static final field SUICIDE Ldev/pubgkt/matches/DeathType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/pubgkt/matches/DeathType;
+	public static fun values ()[Ldev/pubgkt/matches/DeathType;
+}
+
+public final class dev/pubgkt/matches/GetMatchByIdKt {
+	public static final fun getMatchById (Ldev/pubgkt/PubgApi;Ljava/lang/String;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun getMatchById$default (Ldev/pubgkt/PubgApi;Ljava/lang/String;Ldev/pubgkt/Platform;Lkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public final class dev/pubgkt/matches/Map : java/lang/Enum {
+	public static final field BALTIC_MAIN Ldev/pubgkt/matches/Map;
+	public static final field DESERT_MAIN Ldev/pubgkt/matches/Map;
+	public static final field DIHOROTOK_MAIN Ldev/pubgkt/matches/Map;
+	public static final field ERANGEL_MAIN Ldev/pubgkt/matches/Map;
+	public static final field NEON_MAIN Ldev/pubgkt/matches/Map;
+	public static final field RANGE_MAIN Ldev/pubgkt/matches/Map;
+	public static final field SAVAGE_MAIN Ldev/pubgkt/matches/Map;
+	public static final field SUMMERLAND_MAIN Ldev/pubgkt/matches/Map;
+	public static final field TIGER_MAIN Ldev/pubgkt/matches/Map;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/pubgkt/matches/Map;
+	public static fun values ()[Ldev/pubgkt/matches/Map;
+}
+
+public final class dev/pubgkt/matches/Match {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ldev/pubgkt/Platform;ZLdev/pubgkt/matches/MatchType;Ldev/pubgkt/matches/MatchGameMode;Ldev/pubgkt/matches/Map;Ldev/pubgkt/matches/SeasonState;Lkotlin/time/Instant;ILjava/util/List;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()I
+	public final fun component11 ()Ljava/util/List;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ldev/pubgkt/Platform;
+	public final fun component4 ()Z
+	public final fun component5 ()Ldev/pubgkt/matches/MatchType;
+	public final fun component6 ()Ldev/pubgkt/matches/MatchGameMode;
+	public final fun component7 ()Ldev/pubgkt/matches/Map;
+	public final fun component8 ()Ldev/pubgkt/matches/SeasonState;
+	public final fun component9 ()Lkotlin/time/Instant;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ldev/pubgkt/Platform;ZLdev/pubgkt/matches/MatchType;Ldev/pubgkt/matches/MatchGameMode;Ldev/pubgkt/matches/Map;Ldev/pubgkt/matches/SeasonState;Lkotlin/time/Instant;ILjava/util/List;)Ldev/pubgkt/matches/Match;
+	public static synthetic fun copy$default (Ldev/pubgkt/matches/Match;Ljava/lang/String;Ljava/lang/String;Ldev/pubgkt/Platform;ZLdev/pubgkt/matches/MatchType;Ldev/pubgkt/matches/MatchGameMode;Ldev/pubgkt/matches/Map;Ldev/pubgkt/matches/SeasonState;Lkotlin/time/Instant;ILjava/util/List;ILjava/lang/Object;)Ldev/pubgkt/matches/Match;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getCreatedAt ()Lkotlin/time/Instant;
+	public final fun getDuration ()I
+	public final fun getGameMode ()Ldev/pubgkt/matches/MatchGameMode;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getMapName ()Ldev/pubgkt/matches/Map;
+	public final fun getMatchType ()Ldev/pubgkt/matches/MatchType;
+	public final fun getParticipants ()Ljava/util/List;
+	public final fun getPlatform ()Ldev/pubgkt/Platform;
+	public final fun getSeasonState ()Ldev/pubgkt/matches/SeasonState;
+	public final fun getTitleId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isCustomMatch ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/pubgkt/matches/MatchGameMode : java/lang/Enum {
+	public static final field CONQUEST_DUO Ldev/pubgkt/matches/MatchGameMode;
+	public static final field CONQUEST_DUO_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field CONQUEST_SOLO Ldev/pubgkt/matches/MatchGameMode;
+	public static final field CONQUEST_SOLO_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field CONQUEST_SQUAD Ldev/pubgkt/matches/MatchGameMode;
+	public static final field CONQUEST_SQUAD_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field DUO Ldev/pubgkt/matches/MatchGameMode;
+	public static final field DUO_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field ESPORTS_DUO Ldev/pubgkt/matches/MatchGameMode;
+	public static final field ESPORTS_DUO_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field ESPORTS_SOLO Ldev/pubgkt/matches/MatchGameMode;
+	public static final field ESPORTS_SOLO_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field ESPORTS_SQUAD Ldev/pubgkt/matches/MatchGameMode;
+	public static final field ESPORTS_SQUAD_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field LAB_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field LAB_TPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field NORMAL_DUO Ldev/pubgkt/matches/MatchGameMode;
+	public static final field NORMAL_DUO_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field NORMAL_SOLO Ldev/pubgkt/matches/MatchGameMode;
+	public static final field NORMAL_SOLO_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field NORMAL_SQUAD Ldev/pubgkt/matches/MatchGameMode;
+	public static final field NORMAL_SQUAD_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field SOLO Ldev/pubgkt/matches/MatchGameMode;
+	public static final field SOLO_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field SQUAD Ldev/pubgkt/matches/MatchGameMode;
+	public static final field SQUAD_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field TDM Ldev/pubgkt/matches/MatchGameMode;
+	public static final field WAR_DUO Ldev/pubgkt/matches/MatchGameMode;
+	public static final field WAR_DUO_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field WAR_SOLO Ldev/pubgkt/matches/MatchGameMode;
+	public static final field WAR_SOLO_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field WAR_SQUAD Ldev/pubgkt/matches/MatchGameMode;
+	public static final field WAR_SQUAD_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field ZOMBIE_DUO Ldev/pubgkt/matches/MatchGameMode;
+	public static final field ZOMBIE_DUO_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field ZOMBIE_SOLO Ldev/pubgkt/matches/MatchGameMode;
+	public static final field ZOMBIE_SOLO_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static final field ZOMBIE_SQUAD Ldev/pubgkt/matches/MatchGameMode;
+	public static final field ZOMBIE_SQUAD_FPP Ldev/pubgkt/matches/MatchGameMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/pubgkt/matches/MatchGameMode;
+	public static fun values ()[Ldev/pubgkt/matches/MatchGameMode;
+}
+
+public final class dev/pubgkt/matches/MatchParticipant {
+	public fun <init> (IIZLjava/util/List;)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun component3 ()Z
+	public final fun component4 ()Ljava/util/List;
+	public final fun copy (IIZLjava/util/List;)Ldev/pubgkt/matches/MatchParticipant;
+	public static synthetic fun copy$default (Ldev/pubgkt/matches/MatchParticipant;IIZLjava/util/List;ILjava/lang/Object;)Ldev/pubgkt/matches/MatchParticipant;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getPlayers ()Ljava/util/List;
+	public final fun getRank ()I
+	public final fun getTeamId ()I
+	public final fun getWon ()Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/pubgkt/matches/MatchPlayer {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;IIIDLdev/pubgkt/matches/DeathType;IIIIIDIDIDIIIDII)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component10 ()I
+	public final fun component11 ()I
+	public final fun component12 ()I
+	public final fun component13 ()D
+	public final fun component14 ()I
+	public final fun component15 ()D
+	public final fun component16 ()I
+	public final fun component17 ()D
+	public final fun component18 ()I
+	public final fun component19 ()I
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component20 ()I
+	public final fun component21 ()D
+	public final fun component22 ()I
+	public final fun component23 ()I
+	public final fun component3 ()I
+	public final fun component4 ()I
+	public final fun component5 ()I
+	public final fun component6 ()D
+	public final fun component7 ()Ldev/pubgkt/matches/DeathType;
+	public final fun component8 ()I
+	public final fun component9 ()I
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;IIIDLdev/pubgkt/matches/DeathType;IIIIIDIDIDIIIDII)Ldev/pubgkt/matches/MatchPlayer;
+	public static synthetic fun copy$default (Ldev/pubgkt/matches/MatchPlayer;Ljava/lang/String;Ljava/lang/String;IIIDLdev/pubgkt/matches/DeathType;IIIIIDIDIDIIIDIIILjava/lang/Object;)Ldev/pubgkt/matches/MatchPlayer;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAssists ()I
+	public final fun getBoosts ()I
+	public final fun getDamageDealt ()D
+	public final fun getDbnos ()I
+	public final fun getDeathType ()Ldev/pubgkt/matches/DeathType;
+	public final fun getHeadshotKills ()I
+	public final fun getHeals ()I
+	public final fun getId ()Ljava/lang/String;
+	public final fun getKillPlace ()I
+	public final fun getKillStreaks ()I
+	public final fun getKills ()I
+	public final fun getLongestKill ()D
+	public final fun getName ()Ljava/lang/String;
+	public final fun getRevives ()I
+	public final fun getRideDistance ()D
+	public final fun getRoadKills ()I
+	public final fun getSwimDistance ()D
+	public final fun getTeamKills ()I
+	public final fun getTimeSurvived ()I
+	public final fun getVehicleDestroys ()I
+	public final fun getWalkDistance ()D
+	public final fun getWeaponsAcquired ()I
+	public final fun getWinPlace ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/pubgkt/matches/MatchType : java/lang/Enum {
+	public static final field AIROYALE Ldev/pubgkt/matches/MatchType;
+	public static final field ARCADE Ldev/pubgkt/matches/MatchType;
+	public static final field CUSTOM Ldev/pubgkt/matches/MatchType;
+	public static final field EVENT Ldev/pubgkt/matches/MatchType;
+	public static final field OFFICIAL Ldev/pubgkt/matches/MatchType;
+	public static final field SEASONAL Ldev/pubgkt/matches/MatchType;
+	public static final field TRAINING Ldev/pubgkt/matches/MatchType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/pubgkt/matches/MatchType;
+	public static fun values ()[Ldev/pubgkt/matches/MatchType;
+}
+
+public final class dev/pubgkt/matches/SeasonState : java/lang/Enum {
+	public static final field CLOSED Ldev/pubgkt/matches/SeasonState;
+	public static final field PREPARE Ldev/pubgkt/matches/SeasonState;
+	public static final field PROGRESS Ldev/pubgkt/matches/SeasonState;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/pubgkt/matches/SeasonState;
+	public static fun values ()[Ldev/pubgkt/matches/SeasonState;
+}
+
